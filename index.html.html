@@ -2,8 +2,8 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>ADIGE Facility — Preventivo pulizie</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADIGE Facility S.r.l. — Il facility management che semplifica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -14,281 +14,336 @@
   --ghiaccio: #7EC8E3;
   --lago: #B0DCF0;
   --white: #FFFFFF;
-  --off: #F4F8FC;
-  --gray-light: #E2EDF5;
-  --gray: #7A9AB5;
+  --off-white: #F7FAFC;
+  --gray-light: #E8F0F7;
+  --gray: #8FA8BC;
   --text: #1a2b3c;
-  --r: 14px;
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --radius: 12px;
+  --shadow: 0 4px 32px rgba(28,53,87,0.10);
+  --shadow-lg: 0 8px 48px rgba(28,53,87,0.16);
 }
 
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family:'DM Sans',sans-serif; color:var(--text); background:var(--white); overflow-x:hidden; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-/* ─── TOP BAR ─── */
-.topbar {
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+/* ─── NAVBAR ─── */
+nav {
   position: fixed;
-  top:0; left:0; right:0;
-  z-index: 200;
-  background: var(--navy);
-  height: 56px;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(28,53,87,0.97);
+  backdrop-filter: blur(12px);
+  padding: 0 5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  border-bottom: 1px solid rgba(126,200,227,0.12);
+  height: 64px;
+  border-bottom: 1px solid rgba(126,200,227,0.15);
 }
 
-.tb-logo {
+.nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
 }
 
-.tb-brand {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1rem;
-  color: #fff;
-  line-height: 1.1;
+.logo-icon {
+  width: 38px;
+  height: 38px;
 }
 
-.tb-brand small {
+.nav-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.15rem;
+  color: var(--white);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+.nav-brand span {
   display: block;
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.58rem;
+  font-size: 0.65rem;
   font-weight: 300;
   color: var(--ghiaccio);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.tb-cta {
-  background: var(--acciaio);
-  color: #fff;
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 8px;
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.75);
   text-decoration: none;
-  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.nav-links a:hover { color: var(--ghiaccio); }
+
+.nav-cta {
+  background: var(--acciaio);
+  color: var(--white) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  transition: background 0.2s !important;
+}
+
+.nav-cta:hover { background: var(--ghiaccio) !important; color: var(--navy) !important; }
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
 }
 
 /* ─── HERO ─── */
-.hero {
+#hero {
+  min-height: 100vh;
   background: var(--navy);
-  padding: 80px 20px 48px;
+  display: flex;
+  align-items: center;
   position: relative;
   overflow: hidden;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 100px 5% 60px;
 }
 
-.hero-glow {
+.hero-bg {
   position: absolute;
-  width: 280px; height: 280px;
-  background: radial-gradient(circle, rgba(74,144,196,0.22), transparent 70%);
-  top: 10%; right: -60px;
-  border-radius: 50%;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(74,144,196,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(126,200,227,0.08) 0%, transparent 60%);
 }
 
-.hero-glow2 {
+.hero-pattern {
   position: absolute;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(126,200,227,0.1), transparent 70%);
-  bottom: 15%; left: -40px;
-  border-radius: 50%;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234A90C4' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-.hero-chip {
+.hero-mountains {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.06;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(126,200,227,0.1);
-  border: 1px solid rgba(126,200,227,0.25);
+  gap: 8px;
+  background: rgba(126,200,227,0.12);
+  border: 1px solid rgba(126,200,227,0.3);
   color: var(--ghiaccio);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 50px;
-  margin-bottom: 20px;
-  width: fit-content;
+  margin-bottom: 28px;
 }
 
-.hero h1 {
+.hero-badge i { font-size: 0.7rem; }
+
+h1 {
   font-family: 'DM Serif Display', serif;
-  font-size: 2.2rem;
-  color: #fff;
-  line-height: 1.14;
-  margin-bottom: 16px;
-  position: relative;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  color: var(--white);
+  line-height: 1.12;
+  margin-bottom: 24px;
 }
 
-.hero h1 em {
+h1 em {
   font-style: italic;
   color: var(--ghiaccio);
 }
 
 .hero-sub {
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 32px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.72);
+  max-width: 560px;
+  margin-bottom: 40px;
   font-weight: 300;
-  position: relative;
 }
 
-.hero-btns {
+.hero-actions {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  position: relative;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.btn-p {
-  display: flex;
+.btn-primary {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 9px;
+  gap: 10px;
   background: var(--acciaio);
-  color: #fff;
-  padding: 15px 20px;
-  border-radius: 12px;
+  color: var(--white);
+  padding: 14px 28px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: all 0.25s;
   border: none;
   cursor: pointer;
-  width: 100%;
 }
 
-.btn-p:active { transform: scale(0.97); }
+.btn-primary:hover {
+  background: var(--ghiaccio);
+  color: var(--navy);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(126,200,227,0.3);
+}
 
-.btn-s {
-  display: flex;
+.btn-secondary {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 9px;
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.75);
-  padding: 13px 20px;
-  border-radius: 12px;
+  gap: 10px;
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  padding: 14px 28px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.875rem;
-  border: 1px solid rgba(255,255,255,0.14);
-  width: 100%;
+  font-size: 0.95rem;
+  transition: all 0.25s;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
-.hero-pills {
+.btn-secondary:hover {
+  border-color: var(--ghiaccio);
+  color: var(--ghiaccio);
+}
+
+.hero-stats {
+  position: absolute;
+  right: 5%;
+  bottom: 12%;
+  z-index: 2;
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 28px;
-  position: relative;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.hero-pill {
+.stat-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(126,200,227,0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 16px 22px;
+  text-align: center;
+  min-width: 140px;
+}
+
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  color: var(--ghiaccio);
+}
+
+.stat-label {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.5);
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 5px 11px;
-  border-radius: 50px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
 }
 
-/* ─── SECTION BASE ─── */
-.sec {
-  padding: 52px 20px;
+/* ─── SECTIONS ─── */
+section {
+  padding: 90px 5%;
 }
 
-.sec-dark {
-  background: var(--navy);
-  color: #fff;
-}
-
-.sec-off { background: var(--off); }
-
-.sec-label {
-  display: flex;
+.section-label {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--acciaio);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
-.sec-label::before {
+.section-label::before {
   content: '';
-  width: 16px; height: 2px;
+  display: block;
+  width: 20px;
+  height: 2px;
   background: var(--acciaio);
   border-radius: 2px;
-  flex-shrink: 0;
 }
-
-.sec-dark .sec-label { color: var(--ghiaccio); }
-.sec-dark .sec-label::before { background: var(--ghiaccio); }
 
 h2 {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.75rem;
-  line-height: 1.18;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height: 1.2;
   color: var(--navy);
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
-.sec-dark h2 { color: #fff; }
-
-.sec-sub {
-  font-size: 0.9rem;
+.section-sub {
+  font-size: 1rem;
   color: var(--gray);
-  line-height: 1.65;
-  margin-bottom: 32px;
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 56px;
   font-weight: 300;
 }
 
-.sec-dark .sec-sub { color: rgba(255,255,255,0.52); }
-
-/* ─── BU CARDS ─── */
-.bu-scroll {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 8px;
-  margin: 0 -20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+/* ─── BUSINESS UNIT ─── */
+#business-unit {
+  background: var(--off-white);
 }
 
-.bu-scroll::-webkit-scrollbar { display: none; }
+.bu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
 
 .bu-card {
-  min-width: 220px;
-  background: #fff;
-  border-radius: var(--r);
-  padding: 20px;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
   border: 1px solid var(--gray-light);
-  scroll-snap-align: start;
-  flex-shrink: 0;
+  transition: all 0.25s;
   position: relative;
   overflow: hidden;
 }
 
 .bu-card.active {
   border-color: var(--acciaio);
-  box-shadow: 0 4px 20px rgba(74,144,196,0.12);
+  box-shadow: var(--shadow);
 }
 
 .bu-card.active::before {
@@ -299,205 +354,276 @@ h2 {
   background: linear-gradient(90deg, var(--acciaio), var(--ghiaccio));
 }
 
+.bu-card:not(.active) {
+  opacity: 0.6;
+}
+
 .bu-badge {
   display: inline-block;
-  font-size: 0.62rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: 50px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
-.bu-badge.on { background: rgba(74,144,196,0.1); color: var(--acciaio); }
-.bu-badge.off { background: var(--gray-light); color: var(--gray); }
+.bu-badge.online {
+  background: rgba(74,144,196,0.1);
+  color: var(--acciaio);
+}
 
-.bu-ico {
-  width: 38px; height: 38px;
-  background: linear-gradient(135deg, rgba(176,220,240,0.4), rgba(126,200,227,0.3));
-  border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
+.bu-badge.soon {
+  background: var(--gray-light);
+  color: var(--gray);
+}
+
+.bu-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--lago), var(--ghiaccio));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
   color: var(--navy);
-  font-size: 1rem;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
-.bu-card:not(.active) .bu-ico {
+.bu-card:not(.active) .bu-icon {
   background: var(--gray-light);
   color: var(--gray);
 }
 
 .bu-card h3 {
   font-family: 'DM Serif Display', serif;
-  font-size: 1rem;
+  font-size: 1.15rem;
   color: var(--navy);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .bu-card p {
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   color: var(--gray);
-  line-height: 1.55;
+  line-height: 1.6;
 }
-
-.bu-card:not(.active) { opacity: 0.65; }
 
 /* ─── SERVIZI ─── */
-.svc-list {
+#servizi {
+  background: var(--white);
+}
+
+.servizi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.servizi-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 28px;
+  gap: 20px;
 }
 
-.svc-item {
+.servizio-item {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   align-items: flex-start;
-  padding: 16px;
-  border-radius: var(--r);
+  padding: 20px;
+  border-radius: var(--radius);
   border: 1px solid var(--gray-light);
-  background: #fff;
+  transition: all 0.25s;
 }
 
-.svc-ico {
-  width: 36px; height: 36px;
-  min-width: 36px;
-  background: linear-gradient(135deg, rgba(74,144,196,0.08), rgba(126,200,227,0.12));
+.servizio-item:hover {
+  border-color: var(--lago);
+  box-shadow: var(--shadow);
+  transform: translateX(4px);
+}
+
+.servizio-ico {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  background: linear-gradient(135deg, rgba(74,144,196,0.1), rgba(126,200,227,0.15));
   border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--acciaio);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
-.svc-item h4 {
-  font-size: 0.875rem;
+.servizio-item h4 {
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--navy);
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
-.svc-item p {
-  font-size: 0.78rem;
+.servizio-item p {
+  font-size: 0.82rem;
   color: var(--gray);
   line-height: 1.5;
 }
 
-.process-box {
+.servizi-visual {
+  position: sticky;
+  top: 90px;
   background: var(--navy);
-  border-radius: var(--r);
-  padding: 24px;
-  color: #fff;
+  border-radius: 16px;
+  padding: 40px;
+  color: white;
+  overflow: hidden;
 }
 
-.process-box h3 {
+.servizi-visual::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(126,200,227,0.15), transparent 70%);
+  border-radius: 50%;
+}
+
+.servizi-visual h3 {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.15rem;
-  margin-bottom: 6px;
-  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  position: relative;
 }
 
-.process-box p {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.55);
-  margin-bottom: 20px;
+.servizi-visual p {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
   line-height: 1.6;
+  margin-bottom: 28px;
   font-weight: 300;
 }
 
-.step {
+.settori-tags {
   display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
 }
 
-.step:last-child { margin-bottom: 0; }
-
-.step-num {
-  width: 26px; height: 26px; min-width: 26px;
-  background: var(--acciaio);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.step span {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.72);
-  line-height: 1.45;
+.tag {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(126,200,227,0.2);
+  color: rgba(255,255,255,0.75);
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  border-radius: 50px;
 }
 
 /* ─── CALCOLATORE ─── */
-.calc-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(126,200,227,0.15);
-  border-radius: var(--r);
-  padding: 24px;
-  margin-bottom: 20px;
+#calcolatore {
+  background: linear-gradient(160deg, var(--navy) 0%, #1a3a5c 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-.field-label {
+#calcolatore::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 60%;
+  height: 100%;
+  background: radial-gradient(ellipse 80% 80% at 80% 20%, rgba(74,144,196,0.12), transparent 70%);
+}
+
+#calcolatore h2 { color: var(--white); }
+#calcolatore .section-sub { color: rgba(255,255,255,0.55); }
+
+.calc-container {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+
+.calc-form {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(126,200,227,0.15);
+  border-radius: 16px;
+  padding: 36px;
+  backdrop-filter: blur(8px);
+}
+
+.form-group {
+  margin-bottom: 28px;
+}
+
+.form-group label {
   display: block;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ghiaccio);
   margin-bottom: 12px;
 }
 
 /* Slider */
-.slider-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 14px;
+.slider-wrapper {
+  position: relative;
 }
 
-.slider-val {
+.slider-value {
+  position: absolute;
+  right: 0;
+  top: -32px;
   font-family: 'DM Serif Display', serif;
-  font-size: 1.5rem;
-  color: #fff;
-  line-height: 1;
+  font-size: 1.3rem;
+  color: var(--white);
 }
 
-.slider-val small {
+.slider-value span {
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--ghiaccio);
-  margin-left: 3px;
+  margin-left: 4px;
 }
 
 input[type="range"] {
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
-  height: 5px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 3px;
+  height: 4px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
   outline: none;
+  margin-top: 8px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 24px; height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--acciaio);
-  border: 3px solid #fff;
-  box-shadow: 0 2px 8px rgba(74,144,196,0.4);
   cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(74,144,196,0.4);
+  transition: transform 0.15s;
 }
 
-.slider-ends {
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider-labels {
   display: flex;
   justify-content: space-between;
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.3);
   margin-top: 6px;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.35);
 }
 
 /* Select */
@@ -505,335 +631,277 @@ select {
   width: 100%;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(126,200,227,0.2);
-  color: #fff;
-  padding: 13px 40px 13px 14px;
-  border-radius: 10px;
+  color: var(--white);
+  padding: 12px 16px;
+  border-radius: 8px;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.9rem;
   outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
   -webkit-appearance: none;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath fill='none' stroke='%237EC8E3' stroke-width='1.5' stroke-linecap='round' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237EC8E3' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
-  cursor: pointer;
 }
 
-select option { background: var(--navy); }
+select:focus { border-color: var(--ghiaccio); }
+select option { background: var(--navy); color: white; }
 
-/* Radio tabs */
-.radio-tabs {
+/* Radio */
+.radio-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 10px;
 }
 
-.rtab input { display: none; }
+.radio-option {
+  position: relative;
+}
 
-.rtab label {
+.radio-option input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-option label {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 11px 8px;
+  text-align: center;
+  padding: 10px 8px;
   border: 1px solid rgba(126,200,227,0.2);
-  border-radius: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
   font-size: 0.82rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.55);
-  cursor: pointer;
-  transition: all 0.18s;
-  text-align: center;
+  color: rgba(255,255,255,0.6);
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 0;
 }
 
-.rtab input:checked + label {
+.radio-option input:checked + label {
   background: var(--acciaio);
   border-color: var(--acciaio);
-  color: #fff;
-  box-shadow: 0 3px 10px rgba(74,144,196,0.3);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(74,144,196,0.3);
 }
 
 /* Checkbox */
-.cbox-group {
+.checkbox-group {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.cbox-row {
+.checkbox-option {
   display: flex;
   align-items: center;
   gap: 12px;
   cursor: pointer;
 }
 
-.cbox-row input[type="checkbox"] {
-  width: 20px; height: 20px;
-  min-width: 20px;
+.checkbox-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
   accent-color: var(--acciaio);
   cursor: pointer;
-  border-radius: 4px;
 }
 
-.cbox-row span {
-  font-size: 0.875rem;
+.checkbox-option span {
+  font-size: 0.87rem;
   color: rgba(255,255,255,0.7);
-  line-height: 1.4;
 }
 
 /* ─── RESULT CARD ─── */
-.result-card {
-  background: #fff;
-  border-radius: var(--r);
-  padding: 24px;
-  box-shadow: 0 8px 40px rgba(28,53,87,0.18);
+.calc-result {
+  position: sticky;
+  top: 90px;
 }
 
-.result-lbl {
-  font-size: 0.68rem;
+.result-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+}
+
+.result-header {
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gray);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .result-range {
   font-family: 'DM Serif Display', serif;
-  font-size: 2rem;
+  font-size: 2.4rem;
   color: var(--navy);
   line-height: 1.1;
+  margin-bottom: 4px;
 }
 
-.result-range .sep { color: var(--gray); font-size: 1.4rem; }
+.result-range .sep {
+  color: var(--gray);
+  font-size: 1.6rem;
+}
 
 .result-unit {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--gray);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
-.bk {
-  background: var(--off);
+.result-breakdown {
+  background: var(--off-white);
   border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
 }
 
-.bk-row {
+.breakdown-row {
   display: flex;
   justify-content: space-between;
-  font-size: 0.77rem;
   padding: 5px 0;
   color: var(--gray);
   border-bottom: 1px solid var(--gray-light);
 }
 
-.bk-row:last-child { border-bottom: none; }
-.bk-row strong { color: var(--navy); }
+.breakdown-row:last-child { border-bottom: none; }
+.breakdown-row strong { color: var(--navy); }
 
-.note-box {
-  font-size: 0.72rem;
+.result-note {
+  font-size: 0.75rem;
   color: var(--gray);
   line-height: 1.6;
-  padding: 10px 12px;
-  background: rgba(176,220,240,0.18);
+  margin-bottom: 24px;
+  padding: 12px;
+  background: rgba(176,220,240,0.2);
   border-left: 3px solid var(--lago);
   border-radius: 0 8px 8px 0;
-  margin-bottom: 18px;
 }
 
-.extra-box {
-  font-size: 0.78rem;
-  color: var(--acciaio);
-  padding: 10px 12px;
-  background: rgba(74,144,196,0.07);
-  border-radius: 8px;
-  margin-bottom: 14px;
-  line-height: 1.6;
-}
-
-.result-empty {
+.result-initial {
   text-align: center;
-  padding: 16px 0;
+  padding: 20px 0;
   color: var(--gray);
-  font-size: 0.87rem;
+  font-size: 0.9rem;
 }
 
-.result-empty i {
+.result-initial i {
   display: block;
   font-size: 2rem;
   color: var(--lago);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
-
-/* ─── STICKY BAR ─── */
-.sticky-bar {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 150;
-  background: var(--white);
-  border-top: 1px solid var(--gray-light);
-  padding: 12px 20px;
-  padding-bottom: calc(12px + var(--safe-bottom));
-  box-shadow: 0 -4px 24px rgba(28,53,87,0.1);
-  display: none;
-}
-
-.sticky-bar.show { display: block; }
-
-.sticky-bar .btn-p { border-radius: 10px; }
-
-/* ─── PERCHÉ ─── */
-.why-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.why-item {
-  background: #fff;
-  border-radius: var(--r);
-  padding: 20px;
-  border: 1px solid var(--gray-light);
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-}
-
-.why-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.6rem;
-  color: var(--lago);
-  line-height: 1;
-  min-width: 36px;
-}
-
-.why-item h3 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 5px;
-}
-
-.why-item p {
-  font-size: 0.82rem;
-  color: var(--gray);
-  line-height: 1.6;
-}
-
-/* ─── SETTORI ─── */
-.settori-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.settore {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 10px 16px;
-  border-radius: 50px;
-  border: 1px solid var(--gray-light);
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--navy);
-  background: #fff;
-}
-
-.settore i { color: var(--acciaio); font-size: 0.8rem; }
 
 /* ─── MODAL ─── */
-.overlay {
+.modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(28,53,87,0.82);
-  z-index: 300;
+  background: rgba(28,53,87,0.8);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
   display: none;
-  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-.overlay.open { display: block; }
+.modal-overlay.open { display: flex; }
 
 .modal {
-  background: #fff;
-  border-radius: 20px 20px 0 0;
-  padding: 28px 20px;
-  padding-bottom: calc(28px + var(--safe-bottom));
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  max-height: 92vh;
+  background: var(--white);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
   overflow-y: auto;
+  position: relative;
 }
 
-.modal-drag {
-  width: 40px; height: 4px;
-  background: var(--gray-light);
-  border-radius: 2px;
-  margin: 0 auto 20px;
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--off-white);
+  border: none;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
 }
+
+.modal-close:hover { background: var(--gray-light); color: var(--navy); }
 
 .modal h3 {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.45rem;
-  color: var(--navy);
-  margin-bottom: 5px;
-}
-
-.modal-sub {
-  font-size: 0.82rem;
-  color: var(--gray);
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.summary {
-  background: var(--off);
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin-bottom: 20px;
-  font-size: 0.8rem;
-  color: var(--gray);
-  line-height: 1.75;
-}
-
-.summary strong { color: var(--navy); }
-
-.summary .s-price {
-  display: block;
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.2rem;
-  color: var(--acciaio);
-  margin-top: 6px;
-}
-
-.f-req {
-  font-size: 0.7rem;
-  color: var(--gray);
-  margin-bottom: 18px;
-}
-
-.fg {
-  margin-bottom: 16px;
-}
-
-.fg label {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 1.6rem;
   color: var(--navy);
   margin-bottom: 6px;
 }
 
-.fg input,
-.fg textarea,
-.fg select {
+.modal-sub {
+  font-size: 0.875rem;
+  color: var(--gray);
+  margin-bottom: 24px;
+}
+
+.summary-box {
+  background: var(--off-white);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
+  font-size: 0.8rem;
+  color: var(--gray);
+  line-height: 1.8;
+}
+
+.summary-box strong { color: var(--navy); }
+
+.summary-box .summary-price {
+  display: block;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--acciaio);
+  margin-top: 8px;
+}
+
+.mf-group {
+  margin-bottom: 18px;
+}
+
+.mf-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.mf-group input,
+.mf-group textarea,
+.mf-group select {
   width: 100%;
-  background: var(--off);
+  background: var(--off-white);
   border: 1px solid var(--gray-light);
   color: var(--text);
-  padding: 13px 14px;
-  border-radius: 10px;
+  padding: 11px 14px;
+  border-radius: 8px;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.9rem;
   outline: none;
@@ -842,700 +910,958 @@ select option { background: var(--navy); }
   appearance: none;
 }
 
-.fg select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath fill='none' stroke='%238FA8BC' stroke-width='1.5' stroke-linecap='round' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+.mf-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238FA8BC' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
-  background-color: var(--off);
-  padding-right: 40px;
+  background-color: var(--off-white);
 }
 
-.fg input:focus,
-.fg textarea:focus,
-.fg select:focus {
+.mf-group input:focus,
+.mf-group textarea:focus,
+.mf-group select:focus {
   border-color: var(--acciaio);
-  background: #fff;
+  background: var(--white);
 }
 
-.fg textarea {
-  min-height: 100px;
+.mf-group textarea {
+  min-height: 110px;
   resize: vertical;
 }
 
-.fg-row {
+.mf-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
+}
+
+.form-required {
+  font-size: 0.72rem;
+  color: var(--gray);
+  margin-bottom: 20px;
 }
 
 .btn-submit {
   width: 100%;
   background: var(--navy);
-  color: #fff;
+  color: var(--white);
   padding: 15px;
-  border-radius: 12px;
+  border-radius: 10px;
   border: none;
   font-family: 'DM Sans', sans-serif;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.25s;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  transition: all 0.2s;
-  margin-top: 8px;
+  gap: 10px;
 }
 
-.btn-submit:active { transform: scale(0.98); }
-.btn-submit:disabled { opacity: 0.6; }
+.btn-submit:hover {
+  background: var(--acciaio);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(74,144,196,0.3);
+}
 
-.success {
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.success-msg {
   display: none;
   text-align: center;
-  padding: 28px 12px;
+  padding: 32px 20px;
 }
 
-.success i {
+.success-msg i {
   font-size: 3rem;
   color: #22c55e;
-  margin-bottom: 14px;
-  display: block;
+  margin-bottom: 16px;
 }
 
-.success h4 {
+.success-msg h4 {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   color: var(--navy);
   margin-bottom: 8px;
 }
 
-.success p {
-  font-size: 0.875rem;
+.success-msg p {
   color: var(--gray);
+  font-size: 0.9rem;
   line-height: 1.6;
 }
+
+/* ─── PERCHÉ NOI ─── */
+#perche {
+  background: var(--off-white);
+}
+
+.perche-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.perche-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 32px;
+  border: 1px solid var(--gray-light);
+  transition: all 0.25s;
+}
+
+.perche-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+  border-color: var(--lago);
+}
+
+.perche-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.4rem;
+  color: var(--lago);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.perche-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.perche-card p {
+  font-size: 0.875rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+/* ─── SETTORI ─── */
+#settori {
+  background: var(--white);
+  text-align: center;
+}
+
+#settori h2 { margin: 0 auto 16px; }
+#settori .section-sub { margin: 0 auto 48px; text-align: center; }
+#settori .section-label { justify-content: center; }
+
+.settori-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.settore-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 50px;
+  border: 1px solid var(--gray-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--navy);
+  background: var(--white);
+  transition: all 0.25s;
+}
+
+.settore-pill i {
+  color: var(--acciaio);
+  font-size: 0.9rem;
+}
+
+.settore-pill:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+  transform: translateY(-2px);
+}
+
+.settore-pill:hover i { color: var(--ghiaccio); }
 
 /* ─── FOOTER ─── */
 footer {
   background: var(--navy);
-  color: rgba(255,255,255,0.55);
-  padding: 40px 20px 80px;
+  color: rgba(255,255,255,0.6);
+  padding: 48px 5% 32px;
 }
 
-.foot-logo {
+.footer-top {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
-footer p {
+.footer-brand p {
   font-size: 0.82rem;
   line-height: 1.7;
-  margin-bottom: 24px;
+  max-width: 280px;
+  margin-top: 12px;
 }
 
-.foot-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 28px;
+.footer-links h4 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ghiaccio);
+  margin-bottom: 16px;
 }
 
-.foot-links a {
-  color: rgba(255,255,255,0.5);
+.footer-links ul { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  color: rgba(255,255,255,0.55);
   text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--ghiaccio); }
+
+.footer-contact p {
   font-size: 0.875rem;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.foot-links i { color: var(--ghiaccio); width: 14px; }
+.footer-contact i { color: var(--ghiaccio); width: 16px; }
 
-.foot-bottom {
+.footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.08);
-  padding-top: 20px;
-  font-size: 0.72rem;
+  padding-top: 24px;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.foot-legal {
+.footer-bottom p { font-size: 0.78rem; }
+
+.footer-legal {
   display: flex;
-  gap: 16px;
+  gap: 20px;
 }
 
-.foot-legal a {
-  color: rgba(255,255,255,0.35);
+.footer-legal a {
+  color: rgba(255,255,255,0.4);
   text-decoration: none;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
+  transition: color 0.2s;
 }
 
-/* ─── REVEAL ─── */
+.footer-legal a:hover { color: var(--ghiaccio); }
+
+/* ─── SCROLL REVEAL ─── */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal.on { opacity: 1; transform: none; }
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
 
-/* ─── FAR AWAY MSG ─── */
-.far-msg {
-  display: none;
-  background: #fff;
-  border-radius: var(--r);
-  padding: 24px;
-  box-shadow: 0 8px 40px rgba(28,53,87,0.18);
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: block; }
+
+  .hero-stats { display: none; }
+
+  .servizi-grid { grid-template-columns: 1fr; }
+  .servizi-visual { position: static; margin-top: 20px; }
+
+  .calc-container { grid-template-columns: 1fr; }
+  .calc-result { position: static; margin-top: 24px; }
+
+  .perche-grid { grid-template-columns: 1fr; }
+
+  .mf-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  section { padding: 64px 5%; }
+  .bu-grid { grid-template-columns: 1fr; }
+  .radio-group { grid-template-columns: 1fr; }
+  .modal { padding: 28px 20px; }
+  .footer-top { flex-direction: column; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <a href="#" class="tb-logo">
-    <svg width="30" height="30" viewBox="0 0 38 38" fill="none">
+<!-- NAVBAR -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <svg class="logo-icon" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M4 28 L13 10 L19 20 L25 10 L34 28" stroke="#7EC8E3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       <line x1="4" y1="31" x2="34" y2="31" stroke="#4A90C4" stroke-width="1.8" stroke-linecap="round"/>
       <path d="M6 34 Q19 31 32 34" stroke="#4A90C4" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <path d="M8 37 Q19 33 30 37" stroke="#B0DCF0" stroke-width="1.2" stroke-linecap="round" fill="none"/>
     </svg>
-    <div class="tb-brand">ADIGE Facility <small>S.r.l.</small></div>
+    <div class="nav-brand">
+      ADIGE Facility
+      <span>S.r.l.</span>
+    </div>
   </a>
-  <a href="#calcolatore" class="tb-cta">Preventivo</a>
-</div>
+  <ul class="nav-links">
+    <li><a href="#business-unit">Servizi</a></li>
+    <li><a href="#servizi">Pulizie</a></li>
+    <li><a href="#perche">Chi siamo</a></li>
+    <li><a href="#calcolatore" class="nav-cta">Preventivo gratuito</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+</nav>
 
 <!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <svg class="hero-mountains" viewBox="0 0 1440 200" preserveAspectRatio="none">
+    <path d="M0 200 L200 60 L380 140 L540 20 L720 100 L880 0 L1060 80 L1200 30 L1440 120 L1440 200Z" fill="white"/>
+  </svg>
 
-  <div class="hero-chip"><i class="fas fa-location-dot"></i> Trentino · Operativi in tutta Italia</div>
-
-  <h1>Gestiamo i tuoi spazi.<br><em>Tu pensi al business.</em></h1>
-
-  <p class="hero-sub">Pulizie professionali, manutenzioni e servizi integrati. Canoni fissi mensili, nessuna sorpresa in fattura.</p>
-
-  <div class="hero-btns">
-    <a href="#calcolatore" class="btn-p">
-      <i class="fas fa-calculator"></i>
-      Stima il tuo canone mensile
-    </a>
-    <a href="#servizi" class="btn-s">
-      <i class="fas fa-arrow-down"></i>
-      Scopri i servizi
-    </a>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fas fa-circle"></i>
+      Trentino-Alto Adige · Operatività nazionale
+    </div>
+    <h1>Gestiamo i tuoi spazi.<br><em>Tu pensi al business.</em></h1>
+    <p class="hero-sub">Pulizie professionali, manutenzioni e servizi integrati per uffici, strutture ricettive e residenze. Canoni fissi mensili, nessuna sorpresa in fattura.</p>
+    <div class="hero-actions">
+      <a href="#calcolatore" class="btn-primary">
+        <i class="fas fa-calculator"></i>
+        Stima il tuo canone
+      </a>
+      <a href="#servizi" class="btn-secondary">
+        <i class="fas fa-arrow-down"></i>
+        Scopri i servizi
+      </a>
+    </div>
   </div>
 
-  <div class="hero-pills">
-    <span class="hero-pill">✓ Sopralluogo gratuito</span>
-    <span class="hero-pill">✓ Canone fisso</span>
-    <span class="hero-pill">✓ Referente dedicato</span>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">7+</div>
+      <div class="stat-label">Città servite</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">24h</div>
+      <div class="stat-label">Risposta preventivo</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Sopralluogo gratuito</div>
+    </div>
   </div>
 </section>
 
 <!-- BUSINESS UNIT -->
-<section class="sec sec-off" id="bu">
-  <div class="sec-label">Le nostre aree</div>
-  <h2>Un partner per ogni esigenza</h2>
-  <p class="sec-sub">Oggi specialisti nelle pulizie, domani il tuo referente per tutto il facility.</p>
+<section id="business-unit">
+  <div class="section-label">Le nostre aree di business</div>
+  <h2>Un partner unico<br>per ogni esigenza</h2>
+  <p class="section-sub">Costruiamo un ecosistema completo di servizi. Oggi siamo specialisti nelle pulizie professionali — domani saremo il vostro referente per tutto.</p>
 
-  <div class="bu-scroll reveal">
+  <div class="bu-grid reveal">
     <div class="bu-card active">
-      <div class="bu-badge on">● Attivo</div>
-      <div class="bu-ico"><i class="fas fa-spray-can-sparkles"></i></div>
+      <div class="bu-badge online">● Attivo</div>
+      <div class="bu-icon"><i class="fas fa-spray-can-sparkles"></i></div>
       <h3>Pulizie Professionali</h3>
-      <p>La nostra BU core. Uffici, residenze, strutture ricettive.</p>
+      <p>La nostra BU core. Uffici, residenze, strutture ricettive. Operatori certificati, materiali professionali, frequenze su misura.</p>
     </div>
     <div class="bu-card">
-      <div class="bu-badge off">In arrivo</div>
-      <div class="bu-ico"><i class="fas fa-wrench"></i></div>
+      <div class="bu-badge soon">In arrivo</div>
+      <div class="bu-icon"><i class="fas fa-wrench"></i></div>
       <h3>Manutenzioni Tecniche</h3>
-      <p>Impianti elettrici, idraulici, termici.</p>
+      <p>Impianti elettrici, idraulici e termici. Piccole manutenzioni ordinarie e straordinarie gestite da tecnici qualificati.</p>
     </div>
     <div class="bu-card">
-      <div class="bu-badge off">In arrivo</div>
-      <div class="bu-ico"><i class="fas fa-leaf"></i></div>
+      <div class="bu-badge soon">In arrivo</div>
+      <div class="bu-icon"><i class="fas fa-leaf"></i></div>
       <h3>Gestione Verde</h3>
-      <p>Giardinaggio e manutenzione aree esterne.</p>
+      <p>Giardinaggio professionale, manutenzione aree esterne, irrigazione e cura del verde condominiale e aziendale.</p>
     </div>
     <div class="bu-card">
-      <div class="bu-badge off">In arrivo</div>
-      <div class="bu-ico"><i class="fas fa-user-tie"></i></div>
+      <div class="bu-badge soon">In arrivo</div>
+      <div class="bu-icon"><i class="fas fa-user-tie"></i></div>
       <h3>Portierato & Reception</h3>
-      <p>Presidio fisso e accoglienza professionale.</p>
+      <p>Accoglienza e presidio fisso per edifici direzionali, condomini e strutture che richiedono un punto di riferimento fisico.</p>
     </div>
   </div>
 </section>
 
-<!-- SERVIZI -->
-<section class="sec" id="servizi">
-  <div class="sec-label">Pulizie professionali</div>
-  <h2>Cosa include il servizio</h2>
-  <p class="sec-sub">Ogni contratto è costruito sulle reali esigenze dell'immobile.</p>
+<!-- SERVIZI PULIZIE -->
+<section id="servizi">
+  <div class="section-label">Pulizie professionali</div>
+  <h2>Cosa include<br>il nostro servizio</h2>
+  <p class="section-sub">Ogni contratto è costruito sulle esigenze reali dell'immobile. Nessun pacchetto rigido, solo servizi utili.</p>
 
-  <div class="svc-list reveal">
-    <div class="svc-item">
-      <div class="svc-ico"><i class="fas fa-broom"></i></div>
-      <div>
-        <h4>Pulizie ordinarie ricorrenti</h4>
-        <p>Pavimenti, superfici, bagni, aree comuni. Operatore dedicato.</p>
+  <div class="servizi-grid">
+    <div class="servizi-list reveal">
+      <div class="servizio-item">
+        <div class="servizio-ico"><i class="fas fa-broom"></i></div>
+        <div>
+          <h4>Pulizie ordinarie ricorrenti</h4>
+          <p>Pavimenti, superfici, servizi igienici, sale riunioni e aree comuni. Frequenza concordata, operatore dedicato.</p>
+        </div>
+      </div>
+      <div class="servizio-item">
+        <div class="servizio-ico"><i class="fas fa-shield-virus"></i></div>
+        <div>
+          <h4>Sanificazione profonda periodica</h4>
+          <p>Trattamenti approfonditi con prodotti biocidi certificati. Ideale per ambienti sanitari, ricettivi e scolastici.</p>
+        </div>
+      </div>
+      <div class="servizio-item">
+        <div class="servizio-ico"><i class="fas fa-hard-hat"></i></div>
+        <div>
+          <h4>Pulizie post-cantiere</h4>
+          <p>Rimozione polveri di costruzione, siliconi, vernici e residui. Consegna dell'immobile pronto all'uso.</p>
+        </div>
+      </div>
+      <div class="servizio-item">
+        <div class="servizio-ico"><i class="fas fa-box-open"></i></div>
+        <div>
+          <h4>Fornitura materiali di consumo</h4>
+          <p>Carta igienica, sapone liquido, sacchi e altri consumabili inclusi nel canone su richiesta. Zero pensieri.</p>
+        </div>
+      </div>
+      <div class="servizio-item">
+        <div class="servizio-ico"><i class="fas fa-user-check"></i></div>
+        <div>
+          <h4>Referente dedicato</h4>
+          <p>Un interlocutore unico per ogni cliente. Nessun call center: parlate sempre con chi conosce il vostro immobile.</p>
+        </div>
+      </div>
+      <div class="servizio-item">
+        <div class="servizio-ico"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h4>Reportistica e controllo qualità</h4>
+          <p>Check-list digitali, foto pre/post intervento e report mensile. Tracciabilità completa di ogni uscita.</p>
+        </div>
       </div>
     </div>
-    <div class="svc-item">
-      <div class="svc-ico"><i class="fas fa-shield-virus"></i></div>
-      <div>
-        <h4>Sanificazione profonda</h4>
-        <p>Trattamenti biocidi certificati, ideale per ambienti sanitari e ricettivi.</p>
-      </div>
-    </div>
-    <div class="svc-item">
-      <div class="svc-ico"><i class="fas fa-hard-hat"></i></div>
-      <div>
-        <h4>Pulizie post-cantiere</h4>
-        <p>Rimozione polveri, siliconi, vernici. Immobile pronto all'uso.</p>
-      </div>
-    </div>
-    <div class="svc-item">
-      <div class="svc-ico"><i class="fas fa-box-open"></i></div>
-      <div>
-        <h4>Fornitura materiali consumo</h4>
-        <p>Carta igienica, sapone, sacchi — inclusi nel canone su richiesta.</p>
-      </div>
-    </div>
-    <div class="svc-item">
-      <div class="svc-ico"><i class="fas fa-user-check"></i></div>
-      <div>
-        <h4>Referente dedicato</h4>
-        <p>Un interlocutore unico. Nessun call center.</p>
-      </div>
-    </div>
-    <div class="svc-item">
-      <div class="svc-ico"><i class="fas fa-chart-line"></i></div>
-      <div>
-        <h4>Reportistica e qualità</h4>
-        <p>Check-list digitali e report mensile per ogni uscita.</p>
-      </div>
-    </div>
-  </div>
 
-  <div class="process-box reveal">
-    <h3>Come funziona</h3>
-    <p>Dal sopralluogo al canone fisso in pochi giorni.</p>
-    <div class="step"><div class="step-num">1</div><span>Sopralluogo gratuito presso il tuo immobile</span></div>
-    <div class="step"><div class="step-num">2</div><span>Preventivo personalizzato entro 24 ore</span></div>
-    <div class="step"><div class="step-num">3</div><span>Contratto chiaro, avvio del servizio</span></div>
-    <div class="step"><div class="step-num">4</div><span>Canone fisso mensile con rendicontazione inclusa</span></div>
+    <div class="servizi-visual reveal">
+      <h3>Canone fisso mensile.<br>Nessuna sorpresa.</h3>
+      <p>La nostra formula è semplice: definiamo insieme il servizio, firmiamo un contratto chiaro, vi fatturiamo un importo fisso ogni mese. Nessuna variazione, nessun extra non concordato.</p>
+
+      <div style="background: rgba(255,255,255,0.06); border-radius: 10px; padding: 20px; border: 1px solid rgba(126,200,227,0.15);">
+        <div style="font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ghiaccio); margin-bottom: 12px;">Come funziona</div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="width: 28px; height: 28px; background: var(--acciaio); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; min-width: 28px;">1</div>
+            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.75);">Sopralluogo gratuito presso il tuo immobile</span>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="width: 28px; height: 28px; background: var(--acciaio); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; min-width: 28px;">2</div>
+            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.75);">Preventivo personalizzato entro 24h</span>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="width: 28px; height: 28px; background: var(--acciaio); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; min-width: 28px;">3</div>
+            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.75);">Contratto chiaro, avvio del servizio</span>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="width: 28px; height: 28px; background: var(--acciaio); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; min-width: 28px;">4</div>
+            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.75);">Canone fisso mensile, rendicontazione inclusa</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="settori-tags">
+        <span class="tag">🏢 Uffici</span>
+        <span class="tag">🏨 B&B & Hotel</span>
+        <span class="tag">🏪 Negozi</span>
+        <span class="tag">🏠 Condomini</span>
+        <span class="tag">🎓 Housing studenti</span>
+        <span class="tag">🏗 Post-cantiere</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- CALCOLATORE -->
-<section class="sec sec-dark" id="calcolatore">
-  <div class="sec-label">Stima orientativa</div>
-  <h2>Quanto potrebbe costarti?</h2>
-  <p class="sec-sub">Compila i campi per una fascia di prezzo indicativa. Il preventivo definitivo è sempre gratuito e prevede un sopralluogo.</p>
+<section id="calcolatore">
+  <div class="section-label" style="color: var(--ghiaccio);">Stima orientativa</div>
+  <h2>Quanto potrebbe<br>costarti il servizio?</h2>
+  <p class="section-sub">Inserisci i dati dell'immobile per ottenere una fascia di prezzo indicativa. Il preventivo definitivo — sempre gratuito — viene elaborato dopo un sopralluogo.</p>
 
-  <!-- SUPERFICIE -->
-  <div class="calc-card reveal">
-    <div class="slider-header">
-      <span class="field-label">Superficie immobile</span>
-      <div class="slider-val" id="mqVal">150 <small>mq</small></div>
+  <div class="calc-container">
+    <!-- FORM -->
+    <div class="calc-form reveal">
+
+      <!-- Superficie -->
+      <div class="form-group">
+        <label>Superficie dell'immobile</label>
+        <div class="slider-wrapper">
+          <div class="slider-value" id="mqDisplay">150 <span>mq</span></div>
+          <input type="range" id="mqSlider" min="50" max="2000" step="50" value="150" oninput="updateCalc()">
+          <div class="slider-labels"><span>50 mq</span><span>2.000 mq</span></div>
+        </div>
+      </div>
+
+      <!-- Tipologia -->
+      <div class="form-group">
+        <label>Tipologia immobile</label>
+        <select id="tipologia" onchange="updateCalc()">
+          <option value="ufficio">Ufficio / Studio professionale</option>
+          <option value="negozio">Negozio / Showroom</option>
+          <option value="magazzino">Magazzino / Capannone</option>
+          <option value="ricettivo">Struttura ricettiva (B&B, hotel, affitti brevi)</option>
+          <option value="condominio">Condominio / Residenza</option>
+        </select>
+      </div>
+
+      <!-- Frequenza -->
+      <div class="form-group">
+        <label>Frequenza pulizie</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="freq" id="f1" value="1" onchange="updateCalc()">
+            <label for="f1">1× / settimana</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="freq" id="f2" value="2" checked onchange="updateCalc()">
+            <label for="f2">2× / settimana</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="freq" id="f3" value="3" onchange="updateCalc()">
+            <label for="f3">3× / settimana</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="freq" id="f5" value="5" onchange="updateCalc()">
+            <label for="f5">Giornaliero (5×)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Distanza -->
+      <div class="form-group">
+        <label>Distanza dalla nostra sede operativa</label>
+        <select id="distanza" onchange="updateCalc()">
+          <option value="15">Entro 15 km (zona locale)</option>
+          <option value="40">16 – 40 km</option>
+          <option value="80">41 – 80 km</option>
+          <option value="999">Oltre 80 km</option>
+        </select>
+      </div>
+
+      <!-- Extra -->
+      <div class="form-group">
+        <label>Servizi aggiuntivi (opzionali)</label>
+        <div class="checkbox-group">
+          <label class="checkbox-option">
+            <input type="checkbox" id="sanificazione" onchange="updateCalc()">
+            <span>Sanificazione periodica mensile</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" id="materiali" onchange="updateCalc()">
+            <span>Fornitura materiali di consumo</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" id="postcantiere" onchange="updateCalc()">
+            <span>Pulizie post-cantiere (una tantum)</span>
+          </label>
+        </div>
+      </div>
+
     </div>
-    <input type="range" id="mqSlider" min="50" max="2000" step="50" value="150" oninput="calc()">
-    <div class="slider-ends"><span>50 mq</span><span>2.000 mq</span></div>
-  </div>
 
-  <!-- TIPOLOGIA -->
-  <div class="calc-card reveal">
-    <label class="field-label">Tipologia immobile</label>
-    <select id="tipologia" onchange="calc()">
-      <option value="ufficio">Ufficio / Studio professionale</option>
-      <option value="negozio">Negozio / Showroom</option>
-      <option value="magazzino">Magazzino / Capannone</option>
-      <option value="ricettivo">Struttura ricettiva (B&B, hotel)</option>
-      <option value="condominio">Condominio / Residenza</option>
-    </select>
-  </div>
+    <!-- RESULT -->
+    <div class="calc-result reveal">
+      <div class="result-card">
+        <div id="resultInitial" class="result-initial">
+          <i class="fas fa-calculator"></i>
+          <p>Compila i campi a sinistra per visualizzare la stima orientativa del canone mensile.</p>
+        </div>
+        <div id="resultContent" style="display:none;">
+          <div class="result-header">Fascia di prezzo orientativa</div>
+          <div class="result-range">
+            € <span id="priceMin">—</span>
+            <span class="sep"> – </span>
+            € <span id="priceMax">—</span>
+          </div>
+          <div class="result-unit">al mese · IVA esclusa</div>
 
-  <!-- FREQUENZA -->
-  <div class="calc-card reveal">
-    <label class="field-label">Frequenza pulizie</label>
-    <div class="radio-tabs">
-      <div class="rtab"><input type="radio" name="freq" id="f1" value="1" onchange="calc()"><label for="f1">1× / sett</label></div>
-      <div class="rtab"><input type="radio" name="freq" id="f2" value="2" checked onchange="calc()"><label for="f2">2× / sett</label></div>
-      <div class="rtab"><input type="radio" name="freq" id="f3" value="3" onchange="calc()"><label for="f3">3× / sett</label></div>
-      <div class="rtab"><input type="radio" name="freq" id="f5" value="5" onchange="calc()"><label for="f5">Giornaliero</label></div>
+          <div class="result-breakdown" id="breakdown"></div>
+
+          <div id="extraNote" style="display:none; font-size:0.78rem; color: #4A90C4; margin-bottom: 12px; padding: 10px; background: rgba(74,144,196,0.08); border-radius: 8px;"></div>
+
+          <div class="result-note">
+            La stima è puramente indicativa e non costituisce offerta contrattuale. Il preventivo definitivo viene elaborato dopo un sopralluogo gratuito presso il tuo immobile.
+          </div>
+
+          <button class="btn-primary" style="width:100%; justify-content:center;" onclick="openModal()">
+            <i class="fas fa-paper-plane"></i>
+            Richiedi preventivo gratuito
+          </button>
+        </div>
+        <div id="resultFarAway" style="display:none;">
+          <div class="result-header" style="color: var(--navy);">Trasferta su preventivo</div>
+          <p style="font-size:0.875rem; color:var(--gray); line-height:1.7; margin-bottom:20px;">Per distanze superiori a 80 km il costo trasferta varia significativamente in base alla zona. Contattaci per un preventivo personalizzato che includa il piano logistico.</p>
+          <button class="btn-primary" style="width:100%; justify-content:center; background: var(--navy);" onclick="openModal()">
+            <i class="fas fa-paper-plane"></i>
+            Richiedi preventivo gratuito
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <!-- DISTANZA -->
-  <div class="calc-card reveal">
-    <label class="field-label">Distanza dalla nostra sede</label>
-    <select id="distanza" onchange="calc()">
-      <option value="15">Entro 15 km (zona locale)</option>
-      <option value="40">16 – 40 km</option>
-      <option value="80">41 – 80 km</option>
-      <option value="999">Oltre 80 km</option>
-    </select>
-  </div>
-
-  <!-- EXTRA -->
-  <div class="calc-card reveal">
-    <label class="field-label">Servizi aggiuntivi (opzionali)</label>
-    <div class="cbox-group">
-      <label class="cbox-row"><input type="checkbox" id="sanif" onchange="calc()"><span>Sanificazione periodica mensile</span></label>
-      <label class="cbox-row"><input type="checkbox" id="mat" onchange="calc()"><span>Fornitura materiali di consumo</span></label>
-      <label class="cbox-row"><input type="checkbox" id="post" onchange="calc()"><span>Pulizie post-cantiere (una tantum)</span></label>
-    </div>
-  </div>
-
-  <!-- RESULT -->
-  <div class="result-card reveal" id="resultCard">
-    <div class="result-empty" id="rEmpty">
-      <i class="fas fa-sliders"></i>
-      Compila i campi per vedere la stima
-    </div>
-    <div id="rContent" style="display:none">
-      <div class="result-lbl">Fascia orientativa mensile</div>
-      <div class="result-range">€ <span id="rMin">—</span> <span class="sep">–</span> € <span id="rMax">—</span></div>
-      <div class="result-unit">IVA esclusa · stima indicativa</div>
-      <div class="bk" id="rBk"></div>
-      <div class="extra-box" id="rExtra" style="display:none"></div>
-      <div class="note-box">La stima non costituisce offerta contrattuale. Il preventivo definitivo viene elaborato dopo sopralluogo gratuito.</div>
-      <button class="btn-p" onclick="openModal()" id="ctaBtn">
-        <i class="fas fa-paper-plane"></i>
-        Richiedi preventivo gratuito
-      </button>
-    </div>
-  </div>
-
-  <div class="far-msg" id="farMsg">
-    <div class="result-lbl" style="color:var(--navy)">Trasferta su preventivo</div>
-    <p style="font-size:0.875rem;color:var(--gray);line-height:1.7;margin:10px 0 20px">Per distanze superiori a 80 km il costo trasferta varia in base alla zona. Contattaci per un piano logistico su misura.</p>
-    <button class="btn-p" onclick="openModal()" style="background:var(--navy)">
-      <i class="fas fa-paper-plane"></i>
-      Contattaci
-    </button>
   </div>
 </section>
 
-<!-- PERCHÉ -->
-<section class="sec sec-off" id="perche">
-  <div class="sec-label">Perché sceglierci</div>
-  <h2>Il partner che non cerchi due volte</h2>
-  <p class="sec-sub">Lavoriamo per costruire relazioni durature, non per vendere contratti una tantum.</p>
+<!-- PERCHÉ NOI -->
+<section id="perche">
+  <div class="section-label">Perché sceglierci</div>
+  <h2>Il partner che<br>non devi cercare due volte</h2>
+  <p class="section-sub">Lavoriamo per costruire relazioni durature, non per vendere contratti una tantum.</p>
 
-  <div class="why-list">
-    <div class="why-item reveal">
-      <div class="why-num">01</div>
-      <div>
-        <h3>Radicati nel territorio</h3>
-        <p>Nati in Trentino-Alto Adige, operativi su scala nazionale. Conosciamo le esigenze locali meglio di chiunque.</p>
-      </div>
+  <div class="perche-grid">
+    <div class="perche-card reveal">
+      <div class="perche-num">01</div>
+      <h3>Radicati nel territorio</h3>
+      <p>Nati in Trentino-Alto Adige, conosciamo le esigenze locali meglio di chiunque. Operativi su scala nazionale con la solidità di chi ha le radici in montagna.</p>
     </div>
-    <div class="why-item reveal">
-      <div class="why-num">02</div>
-      <div>
-        <h3>Trasparenza contrattuale</h3>
-        <p>Canoni fissi mensili, contratti in chiaro. Sapete esattamente cosa pagate ogni mese.</p>
-      </div>
+    <div class="perche-card reveal">
+      <div class="perche-num">02</div>
+      <h3>Trasparenza contrattuale</h3>
+      <p>Canoni fissi mensili, contratti in chiaro, nessun extra non concordato. Sapete esattamente cosa pagate e cosa ricevete, ogni mese.</p>
     </div>
-    <div class="why-item reveal">
-      <div class="why-num">03</div>
-      <div>
-        <h3>Referente dedicato</h3>
-        <p>Un interlocutore unico. Nessun call center: parlate sempre con chi conosce il vostro immobile.</p>
-      </div>
+    <div class="perche-card reveal">
+      <div class="perche-num">03</div>
+      <h3>Referente dedicato</h3>
+      <p>Un interlocutore unico per tutta la gestione del vostro immobile. Nessun call center, nessuna attesa: parlate sempre con la persona che conosce la vostra situazione.</p>
     </div>
   </div>
 </section>
 
 <!-- SETTORI -->
-<section class="sec">
-  <div class="sec-label">Settori</div>
-  <h2>Ogni tipo di immobile</h2>
-  <p class="sec-sub">Dall'ufficio direzionale al B&B di montagna.</p>
+<section id="settori">
+  <div class="section-label">Settori serviti</div>
+  <h2>Lavoriamo con<br>ogni tipo di immobile</h2>
+  <p class="section-sub">Dall'ufficio direzionale al B&B di montagna: adattiamo il servizio al contesto, non il contrario.</p>
 
-  <div class="settori-wrap reveal">
-    <div class="settore"><i class="fas fa-building"></i> Uffici</div>
-    <div class="settore"><i class="fas fa-bed"></i> Strutture ricettive</div>
-    <div class="settore"><i class="fas fa-graduation-cap"></i> Housing studenti</div>
-    <div class="settore"><i class="fas fa-store"></i> Negozi</div>
-    <div class="settore"><i class="fas fa-home"></i> Condomini</div>
-    <div class="settore"><i class="fas fa-industry"></i> Capannoni</div>
-    <div class="settore"><i class="fas fa-stethoscope"></i> Studi medici</div>
-    <div class="settore"><i class="fas fa-laptop-code"></i> PMI</div>
+  <div class="settori-grid">
+    <div class="settore-pill reveal"><i class="fas fa-building"></i> Uffici direzionali</div>
+    <div class="settore-pill reveal"><i class="fas fa-bed"></i> Strutture ricettive</div>
+    <div class="settore-pill reveal"><i class="fas fa-graduation-cap"></i> Housing studenti</div>
+    <div class="settore-pill reveal"><i class="fas fa-store"></i> Negozi & Showroom</div>
+    <div class="settore-pill reveal"><i class="fas fa-home"></i> Condomini</div>
+    <div class="settore-pill reveal"><i class="fas fa-industry"></i> Capannoni & Magazzini</div>
+    <div class="settore-pill reveal"><i class="fas fa-stethoscope"></i> Studi medici</div>
+    <div class="settore-pill reveal"><i class="fas fa-laptop-code"></i> PMI & Startup</div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="foot-logo">
-    <svg width="28" height="28" viewBox="0 0 38 38" fill="none">
-      <path d="M4 28 L13 10 L19 20 L25 10 L34 28" stroke="#7EC8E3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <line x1="4" y1="31" x2="34" y2="31" stroke="#4A90C4" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M6 34 Q19 31 32 34" stroke="#4A90C4" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    </svg>
-    <div class="tb-brand" style="font-size:1.05rem">ADIGE Facility <small>S.r.l.</small></div>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo" style="margin-bottom: 0;">
+        <svg width="32" height="32" viewBox="0 0 38 38" fill="none">
+          <path d="M4 28 L13 10 L19 20 L25 10 L34 28" stroke="#7EC8E3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <line x1="4" y1="31" x2="34" y2="31" stroke="#4A90C4" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M6 34 Q19 31 32 34" stroke="#4A90C4" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div class="nav-brand" style="font-size:1rem;">ADIGE Facility <span>S.r.l.</span></div>
+      </a>
+      <p>Il facility management che semplifica. Pulizie professionali e servizi integrati per immobili residenziali e commerciali in tutto il Nord Italia.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Navigazione</h4>
+      <ul>
+        <li><a href="#business-unit">I nostri servizi</a></li>
+        <li><a href="#servizi">Pulizie professionali</a></li>
+        <li><a href="#perche">Chi siamo</a></li>
+        <li><a href="#calcolatore">Preventivo gratuito</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact footer-links">
+      <h4>Contatti</h4>
+      <p><i class="fas fa-envelope"></i> info@adigefacility.it</p>
+      <p><i class="fas fa-globe"></i> www.adigefacility.it</p>
+      <p><i class="fas fa-map-marker-alt"></i> Trentino-Alto Adige</p>
+    </div>
   </div>
-  <p>Il facility management che semplifica. Pulizie professionali e servizi integrati per immobili in tutto il Nord Italia.</p>
-  <ul class="foot-links">
-    <li><a href="mailto:info@adigefacility.it"><i class="fas fa-envelope"></i> info@adigefacility.it</a></li>
-    <li><a href="#"><i class="fas fa-globe"></i> www.adigefacility.it</a></li>
-    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Trentino-Alto Adige</a></li>
-  </ul>
-  <div class="foot-bottom">
-    <p>© 2025 ADIGE Facility S.r.l. — P.IVA da completare</p>
-    <div class="foot-legal">
+  <div class="footer-bottom">
+    <p>© 2025 ADIGE Facility S.r.l. — Sito in fase di costituzione · P.IVA in corso di registrazione</p>
+    <div class="footer-legal">
       <a href="#">Privacy Policy</a>
       <a href="#">Cookie Policy</a>
     </div>
   </div>
 </footer>
 
-<!-- STICKY BAR -->
-<div class="sticky-bar" id="stickyBar">
-  <button class="btn-p" onclick="openModal()">
-    <i class="fas fa-paper-plane"></i>
-    Richiedi preventivo gratuito
-  </button>
-</div>
+<!-- MODAL PREVENTIVO -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
 
-<!-- MODAL -->
-<div class="overlay" id="overlay" onclick="closeOutside(event)">
-  <div class="modal" id="modal">
-    <div class="modal-drag"></div>
+    <div id="formContent">
+      <h3>Richiedi il preventivo gratuito</h3>
+      <p class="modal-sub">Ti ricontatteremo entro 24 ore lavorative per organizzare un sopralluogo senza impegno.</p>
 
-    <div id="formWrap">
-      <h3>Preventivo gratuito</h3>
-      <p class="modal-sub">Ti ricontatteremo entro 24 ore lavorative per organizzare il sopralluogo.</p>
+      <div class="summary-box" id="modalSummary"></div>
 
-      <div class="summary" id="summary"></div>
+      <!-- FORMSPREE FORM — sostituire YOUR_FORM_ID con l'ID ottenuto su formspree.io -->
+      <form id="preventivo-form" action="https://formspree.io/f/xjgzveeb" method="POST">
 
-      <form id="pForm" action="https://formspree.io/f/xjgzveeb" method="POST">
+        <!-- Campi nascosti dal calcolatore -->
         <input type="hidden" name="Superficie_mq" id="hMq">
-        <input type="hidden" name="Tipologia_immobile" id="hTip">
-        <input type="hidden" name="Frequenza_pulizie" id="hFreq">
-        <input type="hidden" name="Distanza_sede" id="hDist">
+        <input type="hidden" name="Tipologia_immobile" id="hTipologia">
+        <input type="hidden" name="Frequenza_pulizie" id="hFrequenza">
+        <input type="hidden" name="Distanza_sede" id="hDistanza">
         <input type="hidden" name="Servizi_extra" id="hExtra">
         <input type="hidden" name="Fascia_prezzo_stimata" id="hPrezzo">
-        <input type="hidden" name="_subject" id="hSubj" value="Richiesta preventivo ADIGE Facility">
+        <input type="hidden" name="_subject" id="hSubject" value="Richiesta preventivo ADIGE Facility">
 
-        <p class="f-req">* Campi obbligatori</p>
+        <p class="form-required">* Campi obbligatori</p>
 
-        <div class="fg-row">
-          <div class="fg">
-            <label>Nome e Cognome *</label>
-            <input type="text" name="Nome_Cognome" required placeholder="Mario Rossi">
+        <div class="mf-row">
+          <div class="mf-group">
+            <label for="nome">Nome e Cognome *</label>
+            <input type="text" id="nome" name="Nome_Cognome" required placeholder="Mario Rossi">
           </div>
-          <div class="fg">
-            <label>Azienda</label>
-            <input type="text" name="Azienda" placeholder="Opzionale">
-          </div>
-        </div>
-
-        <div class="fg-row">
-          <div class="fg">
-            <label>Email *</label>
-            <input type="email" name="Email" required placeholder="mario@es.it">
-          </div>
-          <div class="fg">
-            <label>Telefono *</label>
-            <input type="tel" name="Telefono" required placeholder="+39 3XX...">
+          <div class="mf-group">
+            <label for="azienda">Azienda / Ragione sociale</label>
+            <input type="text" id="azienda" name="Azienda" placeholder="Optionale">
           </div>
         </div>
 
-        <div class="fg">
-          <label>Indirizzo immobile</label>
-          <input type="text" name="Indirizzo" placeholder="Via Roma 1, Trento">
+        <div class="mf-row">
+          <div class="mf-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="Email" required placeholder="mario@esempio.it">
+          </div>
+          <div class="mf-group">
+            <label for="tel">Telefono *</label>
+            <input type="tel" id="tel" name="Telefono" required placeholder="+39 3XX XXX XXXX">
+          </div>
         </div>
 
-        <div class="fg">
-          <label>Note libere</label>
-          <textarea name="Note_libere" placeholder="Descrivici la tua situazione: tipo di attività, orari preferiti, piani e locali, esigenze particolari..."></textarea>
+        <div class="mf-group">
+          <label for="indirizzo">Indirizzo immobile (consigliato)</label>
+          <input type="text" id="indirizzo" name="Indirizzo_immobile" placeholder="Via Roma 1, Trento">
         </div>
 
-        <button type="submit" class="btn-submit" id="sbBtn">
-          <i class="fas fa-paper-plane"></i> Invia richiesta
+        <div class="mf-group">
+          <label for="note">Note libere</label>
+          <textarea id="note" name="Note_libere" placeholder="Descrivici la tua situazione: tipologia di attività, orari preferiti per il servizio, numero di locali e piani, eventuali criticità o esigenze particolari..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <i class="fas fa-paper-plane"></i>
+          Invia richiesta
         </button>
       </form>
     </div>
 
-    <div class="success" id="successMsg">
+    <div class="success-msg" id="successMsg">
       <i class="fas fa-circle-check"></i>
       <h4>Richiesta inviata!</h4>
-      <p>Ti contatteremo entro <strong>24 ore lavorative</strong> per il sopralluogo gratuito.</p>
+      <p>Abbiamo ricevuto la tua richiesta di preventivo. Ti contatteremo entro <strong>24 ore lavorative</strong> per organizzare il sopralluogo gratuito.</p>
       <br>
-      <p style="font-size:0.78rem;color:#aaa">Per urgenze: info@adigefacility.it</p>
+      <p style="font-size:0.8rem; color: #aaa;">Per urgenze: info@adigefacility.it</p>
     </div>
   </div>
 </div>
 
 <script>
-// ─── CALC ────────────────────────────────────────────────
-const COSTO_ORA = 12.50;
-const OVERHEAD  = 0.10;
-const MARGIN    = 0.20;
-const VARIAZ    = 0.08;
-const TRASFERTA = { 15:8, 40:20, 80:42, 999:null };
-const USCITE    = { 1:4, 2:8, 3:12, 5:21 };
-const ORE = mq => mq<=100?1.5:mq<=250?2.5:mq<=500?4:mq<=1000?7:12;
-const r5  = n => Math.round(n/5)*5;
+// ─── CALCOLO ───────────────────────────────────────────
+const COSTO_ORA = 12.50; // tariffa oraria competitiva fase startup
+const OVERHEAD  = 0.10; // overhead 10%
+const MARGIN    = 0.20; // margine obiettivo 20%
+const VARIAZ    = 0.08; // fascia mostrata al cliente ±8%
 
-let last = null;
+const TRASFERTA = { 15: 8, 40: 20, 80: 42, 999: null };
+const USCITE = { 1: 4, 2: 8, 3: 12, 5: 21 };
+const ORE_PER_MQ = mq => {
+  if (mq <= 100) return 1.5;
+  if (mq <= 250) return 2.5;
+  if (mq <= 500) return 4.0;
+  if (mq <= 1000) return 7.0;
+  return 12.0;
+};
 
-function calc() {
-  const mq   = +document.getElementById('mqSlider').value;
-  const freq = +document.querySelector('input[name="freq"]:checked').value;
-  const dist = +document.getElementById('distanza').value;
-  const tip  = document.getElementById('tipologia');
-  const tipLabel = tip.options[tip.selectedIndex].text;
-  const freqLabel = document.querySelector(`label[for="f${freq}"]`).textContent.trim();
-  const distEl = document.getElementById('distanza');
-  const distLabel = distEl.options[distEl.selectedIndex].text;
+function round5(n) { return Math.round(n / 5) * 5; }
 
-  document.getElementById('mqVal').innerHTML = `${mq} <small>mq</small>`;
+let lastCalc = null;
 
-  const rc  = document.getElementById('rContent');
-  const re  = document.getElementById('rEmpty');
-  const far = document.getElementById('farMsg');
-  const card = document.getElementById('resultCard');
+function updateCalc() {
+  const mq = parseInt(document.getElementById('mqSlider').value);
+  document.getElementById('mqDisplay').innerHTML = `${mq} <span>mq</span>`;
+
+  const freqEl = document.querySelector('input[name="freq"]:checked');
+  if (!freqEl) return;
+  const freq = parseInt(freqEl.value);
+  const dist = parseInt(document.getElementById('distanza').value);
+
+  document.getElementById('resultInitial').style.display = 'none';
 
   if (dist === 999) {
-    rc.style.display = 'none';
-    re.style.display = 'none';
-    card.style.display = 'none';
-    far.style.display = 'block';
-    document.getElementById('stickyBar').classList.add('show');
-    last = null;
+    document.getElementById('resultContent').style.display = 'none';
+    document.getElementById('resultFarAway').style.display = 'block';
     return;
   }
 
-  far.style.display = 'none';
-  card.style.display = 'block';
-  re.style.display = 'none';
-  rc.style.display = 'block';
+  document.getElementById('resultFarAway').style.display = 'none';
+  document.getElementById('resultContent').style.display = 'block';
 
   const uscite = USCITE[freq];
-  const ore = ORE(mq);
+  const ore = ORE_PER_MQ(mq);
   const costoOp = ore * uscite * COSTO_ORA;
-  const costoT  = TRASFERTA[dist] * uscite;
-  const base    = (costoOp + costoT) * (1 + OVERHEAD);
-  const centro  = base / (1 - MARGIN);
-  const min = r5(centro * (1 - VARIAZ));
-  const max = r5(centro * (1 + VARIAZ));
+  const costoTrasf = TRASFERTA[dist] * uscite;
+  const costoBase = (costoOp + costoTrasf) * (1 + OVERHEAD);
+  const prezzoCentro = costoBase / (1 - MARGIN);
 
-  document.getElementById('rMin').textContent = min.toLocaleString('it-IT');
-  document.getElementById('rMax').textContent = max.toLocaleString('it-IT');
-
-  document.getElementById('rBk').innerHTML = `
-    <div class="bk-row"><span>Superficie</span><strong>${mq} mq</strong></div>
-    <div class="bk-row"><span>Tipologia</span><strong>${tipLabel.split('/')[0].trim()}</strong></div>
-    <div class="bk-row"><span>Frequenza</span><strong>${freqLabel}</strong></div>
-    <div class="bk-row"><span>Uscite mensili</span><strong>${uscite}</strong></div>
-    <div class="bk-row"><span>Zona</span><strong>${distLabel}</strong></div>
-  `;
+  const min = round5(prezzoCentro * (1 - VARIAZ));
+  const max = round5(prezzoCentro * (1 + VARIAZ));
 
   // Extra
-  const sanif = document.getElementById('sanif').checked;
-  const mat   = document.getElementById('mat').checked;
-  const pstc  = document.getElementById('post').checked;
-  const extras = [];
-  if (sanif) extras.push('+ Sanificazione: €70–€100/mese');
-  if (mat)   extras.push('+ Materiali consumo: €30–€50/mese');
-  if (pstc)  extras.push('+ Post-cantiere: su preventivo');
-  const extraEl = document.getElementById('rExtra');
-  if (extras.length) {
+  const sanif = document.getElementById('sanificazione').checked;
+  const mat = document.getElementById('materiali').checked;
+  const post = document.getElementById('postcantiere').checked;
+
+  let extraText = [];
+  if (sanif) extraText.push('+ Sanificazione periodica: €70–€100/mese');
+  if (mat) extraText.push('+ Materiali di consumo: €30–€50/mese');
+  if (post) extraText.push('+ Pulizie post-cantiere: su preventivo dedicato');
+
+  const extraEl = document.getElementById('extraNote');
+  if (extraText.length > 0) {
     extraEl.style.display = 'block';
-    extraEl.innerHTML = '<strong>Servizi extra:</strong><br>' + extras.join('<br>');
+    extraEl.innerHTML = '<strong>Servizi extra selezionati:</strong><br>' + extraText.join('<br>');
   } else {
     extraEl.style.display = 'none';
   }
 
-  document.getElementById('stickyBar').classList.add('show');
+  document.getElementById('priceMin').textContent = min.toLocaleString('it-IT');
+  document.getElementById('priceMax').textContent = max.toLocaleString('it-IT');
 
-  last = { mq, tipLabel, freqLabel, distLabel, min, max, extras };
+  const tipLabel = document.getElementById('tipologia').options[document.getElementById('tipologia').selectedIndex].text;
+  const freqLabel = freqEl.closest('.radio-option').querySelector('label').textContent.trim();
+  const distLabel = document.getElementById('distanza').options[document.getElementById('distanza').selectedIndex].text;
+
+  document.getElementById('breakdown').innerHTML = `
+    <div class="breakdown-row"><span>Superficie</span><strong>${mq} mq</strong></div>
+    <div class="breakdown-row"><span>Tipologia</span><strong>${tipLabel.split('/')[0].trim()}</strong></div>
+    <div class="breakdown-row"><span>Frequenza</span><strong>${freqLabel}</strong></div>
+    <div class="breakdown-row"><span>Uscite mensili</span><strong>${uscite}</strong></div>
+    <div class="breakdown-row"><span>Distanza</span><strong>${distLabel}</strong></div>
+  `;
+
+  lastCalc = { mq, tipologia: tipLabel, freq: freqLabel, dist: distLabel, min, max, extra: extraText };
 }
 
-// ─── MODAL ───────────────────────────────────────────────
+// ─── MODAL ─────────────────────────────────────────────
 function openModal() {
-  const priceStr = last
-    ? `€${last.min.toLocaleString('it-IT')} – €${last.max.toLocaleString('it-IT')}/mese (IVA esclusa)`
-    : 'Non calcolata (distanza >80 km)';
+  if (!lastCalc) return;
 
-  if (last) {
-    document.getElementById('summary').innerHTML = `
-      <strong>Dati inseriti:</strong><br>
-      ${last.mq} mq · ${last.tipLabel.split('/')[0].trim()} · ${last.freqLabel} · ${last.distLabel}
-      ${last.extras.length ? '<br>Extra: ' + last.extras.join(', ') : ''}
-      <span class="s-price">${priceStr}</span>
-    `;
-    document.getElementById('hMq').value = last.mq + ' mq';
-    document.getElementById('hTip').value = last.tipLabel;
-    document.getElementById('hFreq').value = last.freqLabel;
-    document.getElementById('hDist').value = last.distLabel;
-    document.getElementById('hExtra').value = last.extras.join(', ') || 'Nessuno';
-    document.getElementById('hPrezzo').value = priceStr;
-    document.getElementById('hSubj').value = `Preventivo ADIGE Facility — ${last.tipLabel.split('/')[0].trim()} ${last.mq}mq`;
-  } else {
-    document.getElementById('summary').innerHTML = `<strong>Richiesta preventivo</strong><br>Distanza sede: oltre 80 km — trasferta da calcolare.<span class="s-price">Su preventivo dedicato</span>`;
-  }
+  const c = lastCalc;
+  const extraStr = c.extra.length ? c.extra.join(', ') : 'Nessuno';
+  const priceStr = `€${c.min.toLocaleString('it-IT')} – €${c.max.toLocaleString('it-IT')}/mese (IVA esclusa)`;
 
-  document.getElementById('overlay').classList.add('open');
+  document.getElementById('modalSummary').innerHTML = `
+    <strong>Riepilogo dati inseriti:</strong><br>
+    Superficie: <strong>${c.mq} mq</strong> · Tipologia: <strong>${c.tipologia.split('/')[0].trim()}</strong><br>
+    Frequenza: <strong>${c.freq}</strong> · Distanza: <strong>${c.dist}</strong><br>
+    Extra: <strong>${extraStr}</strong>
+    <span class="summary-price">${priceStr}</span>
+  `;
+
+  // Popola campi nascosti
+  document.getElementById('hMq').value = c.mq + ' mq';
+  document.getElementById('hTipologia').value = c.tipologia;
+  document.getElementById('hFrequenza').value = c.freq;
+  document.getElementById('hDistanza').value = c.dist;
+  document.getElementById('hExtra').value = extraStr;
+  document.getElementById('hPrezzo').value = priceStr;
+  document.getElementById('hSubject').value = `Preventivo ADIGE Facility — ${c.tipologia.split('/')[0].trim()} ${c.mq}mq`;
+
+  document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
-  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('modalOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
 
-function closeOutside(e) {
-  if (e.target === document.getElementById('overlay')) closeModal();
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
 }
 
-// ─── FORM ────────────────────────────────────────────────
-document.getElementById('pForm').addEventListener('submit', async function(e) {
+// ─── FORM SUBMIT ────────────────────────────────────────
+document.getElementById('preventivo-form').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const btn = document.getElementById('sbBtn');
+  const btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio...';
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
 
   try {
-    const res = await fetch(this.action, {
+    const response = await fetch(this.action, {
       method: 'POST',
       body: new FormData(this),
       headers: { 'Accept': 'application/json' }
     });
-    if (res.ok) {
-      document.getElementById('formWrap').style.display = 'none';
+
+    if (response.ok) {
+      document.getElementById('formContent').style.display = 'none';
       document.getElementById('successMsg').style.display = 'block';
     } else {
       btn.disabled = false;
       btn.innerHTML = '<i class="fas fa-paper-plane"></i> Invia richiesta';
-      alert('Errore. Riprova o scrivi a info@adigefacility.it');
+      alert('Si è verificato un errore. Riprova o scrivici a info@adigefacility.it');
     }
   } catch {
     btn.disabled = false;
     btn.innerHTML = '<i class="fas fa-paper-plane"></i> Invia richiesta';
-    alert('Errore di rete. Riprova o scrivi a info@adigefacility.it');
+    alert('Errore di rete. Riprova o scrivici a info@adigefacility.it');
   }
 });
 
-// ─── REVEAL ──────────────────────────────────────────────
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// ─── SCROLL REVEAL ──────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
 
-// ─── INIT ────────────────────────────────────────────────
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── MOBILE MENU ────────────────────────────────────────
+let menuOpen = false;
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  menuOpen = !menuOpen;
+  if (menuOpen) {
+    links.style.cssText = 'display:flex; flex-direction:column; position:absolute; top:64px; left:0; right:0; background:rgba(28,53,87,0.98); padding:20px 5%; gap:16px; z-index:99;';
+  } else {
+    links.style.cssText = 'display:none;';
+  }
+}
+
+// Init
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('f2').checked = true;
-  calc();
+  updateCalc();
 });
 </script>
 </body>
