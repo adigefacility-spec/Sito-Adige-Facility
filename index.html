@@ -54,16 +54,16 @@ nav {
   position: fixed; top:0; left:0; right:0; z-index:100;
   background: rgba(28,53,87,0.97);
   backdrop-filter: blur(12px);
-  height: 60px; padding: 0 5%;
+  height: 76px; padding: 0 5%;
   display:flex; align-items:center; justify-content:space-between;
   border-bottom:1px solid rgba(255,255,255,0.08);
   transition: background 0.3s;
 }
 body.theme-verde nav { background: rgba(30,77,51,0.97); }
 
-.nav-logo { display:flex; align-items:center; gap:11px; cursor:pointer; text-decoration:none; }
-.nav-brand { font-family:'DM Serif Display',serif; font-size:1.1rem; color:#fff; line-height:1.1; }
-.nav-brand small { display:block; font-family:'DM Sans',sans-serif; font-size:0.55rem; font-weight:400; color:var(--t-light); letter-spacing:0.14em; text-transform:uppercase; }
+.nav-logo { display:flex; align-items:center; gap:13px; cursor:pointer; text-decoration:none; }
+.nav-brand { font-family:'DM Serif Display',serif; font-size:1.5rem; color:#fff; line-height:1.05; }
+.nav-brand small { display:block; font-family:'DM Sans',sans-serif; font-size:0.62rem; font-weight:500; color:var(--t-light); letter-spacing:0.22em; text-transform:uppercase; margin-top:1px; }
 .nav-links { display:flex; gap:26px; list-style:none; align-items:center; }
 .nav-links a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.875rem; font-weight:500; cursor:pointer; transition:color 0.2s; }
 .nav-links a:hover { color:var(--t-light); }
@@ -239,6 +239,30 @@ select option { background:var(--t-dark); }
 .gallery-item i { font-size:1.6rem; opacity:0.5; }
 .gallery-item span { font-size:0.78rem; }
 
+/* ─── CAROUSEL ─── */
+.carousel { position:relative; height:440px; border-radius:18px; overflow:hidden; box-shadow:var(--shadow-lg); }
+.cslide { position:absolute; inset:0; opacity:0; transition:opacity 1.1s ease; background-size:cover; background-position:center; display:flex; align-items:flex-end; }
+.cslide.active { opacity:1; }
+.cslide.placeholder { display:flex; align-items:center; justify-content:center; }
+.cslide.ph-blue { background:linear-gradient(135deg,#1C3557,#4A90C4); }
+.cslide.ph-green { background:linear-gradient(135deg,#1E4D33,#3E9D5C); }
+.cslide-icon { position:absolute; font-size:8rem; color:rgba(255,255,255,0.06); top:50%; left:50%; transform:translate(-50%,-60%); }
+.cslide::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(10,20,35,0.75) 0%, rgba(10,20,35,0.1) 50%, transparent 100%); }
+.cslide.placeholder::after { display:none; }
+.cslide-cap { position:relative; z-index:2; padding:34px; color:#fff; max-width:70%; }
+.cslide.placeholder .cslide-cap { text-align:center; max-width:100%; }
+.cslide-cap .cap-eyebrow { font-size:0.7rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--t-light); margin-bottom:8px; }
+.cslide-cap .cap-title { font-family:'DM Serif Display',serif; font-size:1.5rem; line-height:1.2; }
+.cslide.placeholder .cap-ph-note { font-size:0.78rem; color:rgba(255,255,255,0.5); margin-top:10px; font-weight:300; }
+.carousel-dots { position:absolute; bottom:20px; right:26px; display:flex; gap:8px; z-index:3; }
+.cdot { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,0.4); cursor:pointer; transition:all 0.3s; border:none; padding:0; }
+.cdot.active { background:#fff; width:26px; border-radius:5px; }
+.carousel-arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:3; width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,0.15); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.25); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:0.9rem; transition:background 0.2s; }
+.carousel-arrow:hover { background:rgba(255,255,255,0.3); }
+.carousel-arrow.prev { left:18px; }
+.carousel-arrow.next { right:18px; }
+@media (max-width:600px){ .carousel { height:340px; } .cslide-cap { max-width:90%; padding:24px; } .cslide-cap .cap-title { font-size:1.2rem; } .carousel-arrow { display:none; } }
+
 /* ─── FAQ ─── */
 .faq-list { max-width:760px; }
 .faq-item { border-bottom:1px solid var(--gray-light); }
@@ -338,7 +362,7 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
 <!-- NAV -->
 <nav>
   <a class="nav-logo" onclick="showView('home')">
-    <svg width="34" height="34" viewBox="0 0 48 48" fill="none" id="navLogoIcon"></svg>
+    <svg width="46" height="46" viewBox="0 0 48 48" fill="none" id="navLogoIcon"></svg>
     <div class="nav-brand">ADIGE Facility <small>S.r.l.</small></div>
   </a>
   <ul class="nav-links">
@@ -460,6 +484,12 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
       <div class="sec-label">Pulizie Professionali</div>
       <h2>Spazi sempre puliti,<br>canone sempre chiaro</h2>
       <p class="sec-sub">Pulizie ordinarie e straordinarie per uffici, residenze e strutture ricettive. Ogni contratto è costruito sulle reali esigenze dell'immobile.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="carousel" id="carPulizie"></div>
     </div>
   </section>
 
@@ -613,6 +643,12 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
       <div class="sec-label">Gestione del Verde</div>
       <h2>Aree verdi curate,<br>in ogni stagione</h2>
       <p class="sec-sub">Sfalcio, potatura e cura del verde per condomini, aziende e privati. Smaltimento di sfalci e potature sempre incluso. Interventi una tantum o contratti continuativi.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="carousel" id="carVerde"></div>
     </div>
   </section>
 
@@ -1074,6 +1110,91 @@ function toggleFAQ(btn){
   a.style.maxHeight = open ? '0' : a.scrollHeight+'px';
 }
 
+// ─── CAROSELLO IMMAGINI ───────────────────────────────────
+// ▼▼▼  PER INSERIRE LE VOSTRE FOTO  ▼▼▼
+// Carica le foto nel repository GitHub (es. cartella "img") e scrivi qui i nomi file.
+// Esempio: images: ['img/pulizie1.jpg', 'img/pulizie2.jpg', ...]
+// Finché la lista resta vuota, vengono mostrate slide placeholder eleganti.
+const CAROUSEL = {
+  pulizie: {
+    cls: 'ph-blue',
+    images: [],   // ← inserisci qui gli URL/nomi delle tue foto pulizie
+    slides: [
+      { eyebrow:'Pulizie professionali', title:'Operatori formati, risultati impeccabili', icon:'fa-spray-can-sparkles' },
+      { eyebrow:'Uffici', title:'Ambienti di lavoro sempre curati', icon:'fa-building' },
+      { eyebrow:'Sanificazione', title:'Igiene profonda con prodotti certificati', icon:'fa-shield-virus' },
+      { eyebrow:'Strutture ricettive', title:'L\'accoglienza inizia dalla pulizia', icon:'fa-bed' },
+      { eyebrow:'Attenzione al dettaglio', title:'Ogni angolo, ogni volta', icon:'fa-magnifying-glass' },
+      { eyebrow:'Referente dedicato', title:'Una persona che conosce il tuo spazio', icon:'fa-user-check' }
+    ]
+  },
+  verde: {
+    cls: 'ph-green',
+    images: [],   // ← inserisci qui gli URL/nomi delle tue foto verde
+    slides: [
+      { eyebrow:'Gestione del verde', title:'Aree verdi curate in ogni stagione', icon:'fa-leaf' },
+      { eyebrow:'Sfalcio', title:'Prati ordinati con attrezzatura professionale', icon:'fa-scissors' },
+      { eyebrow:'Potatura', title:'Siepi e arbusti sempre in forma', icon:'fa-tree' },
+      { eyebrow:'Cura del verde', title:'Spazi che si fanno notare', icon:'fa-seedling' },
+      { eyebrow:'Pulizia stagionale', title:'Foglie e grondaie, pensiamo a tutto noi', icon:'fa-broom' },
+      { eyebrow:'Smaltimento incluso', title:'Residui gestiti nel rispetto delle norme', icon:'fa-recycle' }
+    ]
+  }
+};
+const carTimers = {};
+
+function buildCarousel(containerId, key) {
+  const cfg = CAROUSEL[key];
+  const c = document.getElementById(containerId);
+  if (!c) return;
+  const hasImgs = cfg.images && cfg.images.length > 0;
+  const n = hasImgs ? cfg.images.length : cfg.slides.length;
+
+  let html = '';
+  for (let i = 0; i < n; i++) {
+    const cap = cfg.slides[i % cfg.slides.length] || cfg.slides[0];
+    if (hasImgs) {
+      html += `<div class="cslide ${i===0?'active':''}" style="background-image:url('${cfg.images[i]}')">
+        <div class="cslide-cap"><div class="cap-eyebrow">${cap.eyebrow}</div><div class="cap-title">${cap.title}</div></div>
+      </div>`;
+    } else {
+      html += `<div class="cslide placeholder ${cfg.cls} ${i===0?'active':''}">
+        <i class="fas ${cap.icon} cslide-icon"></i>
+        <div class="cslide-cap"><div class="cap-eyebrow">${cap.eyebrow}</div><div class="cap-title">${cap.title}</div><div class="cap-ph-note">Foto in arrivo</div></div>
+      </div>`;
+    }
+  }
+  html += `<button class="carousel-arrow prev" onclick="carMove('${containerId}','${key}',-1)"><i class="fas fa-chevron-left"></i></button>`;
+  html += `<button class="carousel-arrow next" onclick="carMove('${containerId}','${key}',1)"><i class="fas fa-chevron-right"></i></button>`;
+  html += `<div class="carousel-dots">`;
+  for (let i = 0; i < n; i++) html += `<button class="cdot ${i===0?'active':''}" onclick="carGo('${containerId}','${key}',${i})"></button>`;
+  html += `</div>`;
+  c.innerHTML = html;
+  c.dataset.cur = '0';
+  startCarTimer(containerId, key);
+}
+
+function carShow(containerId, idx) {
+  const c = document.getElementById(containerId);
+  const slides = c.querySelectorAll('.cslide');
+  const dots = c.querySelectorAll('.cdot');
+  slides.forEach((s,i)=>s.classList.toggle('active', i===idx));
+  dots.forEach((d,i)=>d.classList.toggle('active', i===idx));
+  c.dataset.cur = idx;
+}
+function carMove(containerId, key, dir) {
+  const c = document.getElementById(containerId);
+  const n = c.querySelectorAll('.cslide').length;
+  let cur = (+c.dataset.cur + dir + n) % n;
+  carShow(containerId, cur);
+  startCarTimer(containerId, key);
+}
+function carGo(containerId, key, idx) { carShow(containerId, idx); startCarTimer(containerId, key); }
+function startCarTimer(containerId, key) {
+  clearInterval(carTimers[containerId]);
+  carTimers[containerId] = setInterval(()=>carMove(containerId, key, 1), 4500);
+}
+
 // ─── REVEAL ───────────────────────────────────────────────
 function initReveal(){
   const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');}),{threshold:0.1});
@@ -1088,6 +1209,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('cf-2').checked=true;
   calcPulizie();
   calcVerde();
+  buildCarousel('carPulizie','pulizie');
+  buildCarousel('carVerde','verde');
   initReveal();
 });
 </script>
