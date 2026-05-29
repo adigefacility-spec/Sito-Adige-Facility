@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADIGE Facility S.r.l. — Il facility management che semplifica</title>
+<title>ADIGE Facility S.r.l. — Pulizia, verde e manutenzione. Un solo partner.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root {
@@ -13,1855 +13,1084 @@
   --acciaio: #4A90C4;
   --ghiaccio: #7EC8E3;
   --lago: #B0DCF0;
+  /* tema attivo (default = blu pulizie) */
+  --t-dark: #1C3557;
+  --t-mid: #4A90C4;
+  --t-light: #7EC8E3;
+  --t-pale: #B0DCF0;
   --white: #FFFFFF;
-  --off-white: #F7FAFC;
-  --gray-light: #E8F0F7;
-  --gray: #8FA8BC;
+  --off: #F4F8FC;
+  --gray-light: #E2EDF5;
+  --gray: #7A9AB5;
   --text: #1a2b3c;
-  --radius: 12px;
-  --shadow: 0 4px 32px rgba(28,53,87,0.10);
-  --shadow-lg: 0 8px 48px rgba(28,53,87,0.16);
+  --r: 14px;
+  --shadow: 0 4px 28px rgba(28,53,87,0.10);
+  --shadow-lg: 0 10px 48px rgba(28,53,87,0.18);
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  color: var(--text);
-  background: var(--white);
-  overflow-x: hidden;
+/* tema verde, applicato sul body quando si entra nella BU verde */
+body.theme-verde {
+  --t-dark: #1E4D33;
+  --t-mid: #3E9D5C;
+  --t-light: #8FD4A0;
+  --t-pale: #C5E8CE;
+  --navy: #1E4D33;
+  --acciaio: #3E9D5C;
+  --ghiaccio: #8FD4A0;
+  --lago: #C5E8CE;
+  --gray: #6E9079;
+  --off: #F3FAF5;
+  --gray-light: #DFEFE4;
+  --shadow: 0 4px 28px rgba(30,77,51,0.10);
+  --shadow-lg: 0 10px 48px rgba(30,77,51,0.18);
 }
 
-/* ─── NAVBAR ─── */
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; color:var(--text); background:var(--white); overflow-x:hidden; }
+
+/* ─── NAV ─── */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
+  position: fixed; top:0; left:0; right:0; z-index:100;
   background: rgba(28,53,87,0.97);
   backdrop-filter: blur(12px);
-  padding: 0 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  border-bottom: 1px solid rgba(126,200,227,0.15);
+  height: 60px; padding: 0 5%;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  transition: background 0.3s;
 }
+body.theme-verde nav { background: rgba(30,77,51,0.97); }
 
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
+.nav-logo { display:flex; align-items:center; gap:11px; cursor:pointer; text-decoration:none; }
+.nav-brand { font-family:'DM Serif Display',serif; font-size:1.1rem; color:#fff; line-height:1.1; }
+.nav-brand small { display:block; font-family:'DM Sans',sans-serif; font-size:0.55rem; font-weight:400; color:var(--t-light); letter-spacing:0.14em; text-transform:uppercase; }
+.nav-links { display:flex; gap:26px; list-style:none; align-items:center; }
+.nav-links a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.875rem; font-weight:500; cursor:pointer; transition:color 0.2s; }
+.nav-links a:hover { color:var(--t-light); }
+.nav-cta { background:var(--t-mid); color:#fff !important; padding:8px 18px; border-radius:7px; }
+.nav-cta:hover { opacity:0.9; color:#fff !important; }
+.burger { display:none; background:none; border:none; color:#fff; font-size:1.3rem; cursor:pointer; }
 
-.logo-icon {
-  width: 38px;
-  height: 38px;
-}
-
-.nav-brand {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.15rem;
-  color: var(--white);
-  letter-spacing: 0.01em;
-  line-height: 1.2;
-}
-
-.nav-brand span {
-  display: block;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 300;
-  color: var(--ghiaccio);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.nav-links {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-}
-
-.nav-links a {
-  color: rgba(255,255,255,0.75);
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: color 0.2s;
-  letter-spacing: 0.02em;
-}
-
-.nav-links a:hover { color: var(--ghiaccio); }
-
-.nav-cta {
-  background: var(--acciaio);
-  color: var(--white) !important;
-  padding: 8px 20px;
-  border-radius: 6px;
-  transition: background 0.2s !important;
-}
-
-.nav-cta:hover { background: var(--ghiaccio) !important; color: var(--navy) !important; }
-
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.4rem;
-  cursor: pointer;
-}
+/* ─── VIEWS ─── */
+.view { display:none; }
+.view.active { display:block; animation: fade 0.4s ease; }
+@keyframes fade { from {opacity:0; transform:translateY(8px);} to {opacity:1; transform:none;} }
 
 /* ─── HERO ─── */
-#hero {
-  min-height: 100vh;
-  background: var(--navy);
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding: 100px 5% 60px;
+.hero {
+  background: var(--t-dark);
+  padding: 120px 5% 80px;
+  position:relative; overflow:hidden;
+  min-height: 92vh;
+  display:flex; flex-direction:column; justify-content:center;
 }
+.hero-glow { position:absolute; width:420px; height:420px; border-radius:50%; top:5%; right:-100px; background:radial-gradient(circle, rgba(74,144,196,0.2), transparent 70%); }
+body.theme-verde .hero-glow { background:radial-gradient(circle, rgba(62,157,92,0.22), transparent 70%); }
+.hero-content { position:relative; z-index:2; max-width:680px; }
+.hero-chip { display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); color:var(--t-light); font-size:0.72rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:6px 14px; border-radius:50px; margin-bottom:24px; }
+h1 { font-family:'DM Serif Display',serif; font-size:clamp(2.3rem,5vw,3.7rem); color:#fff; line-height:1.13; margin-bottom:20px; }
+h1 em { font-style:italic; color:var(--t-light); }
+.hero-sub { font-size:1.05rem; line-height:1.7; color:rgba(255,255,255,0.7); max-width:560px; margin-bottom:36px; font-weight:300; }
+.hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(74,144,196,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(126,200,227,0.08) 0%, transparent 60%);
-}
+.btn-p { display:inline-flex; align-items:center; justify-content:center; gap:9px; background:var(--t-mid); color:#fff; padding:14px 26px; border-radius:9px; text-decoration:none; font-weight:600; font-size:0.95rem; border:none; cursor:pointer; transition:transform 0.15s, box-shadow 0.2s; font-family:inherit; }
+.btn-p:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.2); }
+.btn-p:active { transform:scale(0.98); }
+.btn-s { display:inline-flex; align-items:center; justify-content:center; gap:9px; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.85); padding:14px 26px; border-radius:9px; text-decoration:none; font-weight:500; font-size:0.95rem; border:1px solid rgba(255,255,255,0.16); cursor:pointer; }
+.btn-s:hover { border-color:var(--t-light); color:var(--t-light); }
 
-.hero-pattern {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234A90C4' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-.hero-mountains {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0.06;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 680px;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(126,200,227,0.12);
-  border: 1px solid rgba(126,200,227,0.3);
-  color: var(--ghiaccio);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 50px;
-  margin-bottom: 28px;
-}
-
-.hero-badge i { font-size: 0.7rem; }
-
-h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-  color: var(--white);
-  line-height: 1.12;
-  margin-bottom: 24px;
-}
-
-h1 em {
-  font-style: italic;
-  color: var(--ghiaccio);
-}
-
-.hero-sub {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.72);
-  max-width: 560px;
-  margin-bottom: 40px;
-  font-weight: 300;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--acciaio);
-  color: var(--white);
-  padding: 14px 28px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.25s;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background: var(--ghiaccio);
-  color: var(--navy);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(126,200,227,0.3);
-}
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: transparent;
-  color: rgba(255,255,255,0.8);
-  padding: 14px 28px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: all 0.25s;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-.btn-secondary:hover {
-  border-color: var(--ghiaccio);
-  color: var(--ghiaccio);
-}
-
-.hero-stats {
-  position: absolute;
-  right: 5%;
-  bottom: 12%;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.stat-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(126,200,227,0.2);
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
-  padding: 16px 22px;
-  text-align: center;
-  min-width: 140px;
-}
-
-.stat-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.8rem;
-  color: var(--ghiaccio);
-}
-
-.stat-label {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-top: 2px;
-}
+.hero-pills { display:flex; gap:9px; flex-wrap:wrap; margin-top:30px; }
+.hero-pill { font-size:0.74rem; color:rgba(255,255,255,0.55); background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); padding:5px 12px; border-radius:50px; }
 
 /* ─── SECTIONS ─── */
-section {
-  padding: 90px 5%;
-}
-
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--acciaio);
-  margin-bottom: 16px;
-}
-
-.section-label::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: var(--acciaio);
-  border-radius: 2px;
-}
-
-h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  line-height: 1.2;
-  color: var(--navy);
-  margin-bottom: 16px;
-}
-
-.section-sub {
-  font-size: 1rem;
-  color: var(--gray);
-  line-height: 1.7;
-  max-width: 600px;
-  margin-bottom: 56px;
-  font-weight: 300;
-}
-
-/* ─── BUSINESS UNIT ─── */
-#business-unit {
-  background: var(--off-white);
-}
-
-.bu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.bu-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 28px;
-  border: 1px solid var(--gray-light);
-  transition: all 0.25s;
-  position: relative;
-  overflow: hidden;
-}
-
-.bu-card.active {
-  border-color: var(--acciaio);
-  box-shadow: var(--shadow);
-}
-
-.bu-card.active::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--acciaio), var(--ghiaccio));
-}
-
-.bu-card:not(.active) {
-  opacity: 0.6;
-}
-
-.bu-badge {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 50px;
-  margin-bottom: 16px;
-}
-
-.bu-badge.online {
-  background: rgba(74,144,196,0.1);
-  color: var(--acciaio);
-}
-
-.bu-badge.soon {
-  background: var(--gray-light);
-  color: var(--gray);
-}
-
-.bu-icon {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, var(--lago), var(--ghiaccio));
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  color: var(--navy);
-  margin-bottom: 16px;
-}
-
-.bu-card:not(.active) .bu-icon {
-  background: var(--gray-light);
-  color: var(--gray);
-}
-
-.bu-card h3 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.15rem;
-  color: var(--navy);
-  margin-bottom: 8px;
-}
-
-.bu-card p {
-  font-size: 0.875rem;
-  color: var(--gray);
-  line-height: 1.6;
-}
-
-/* ─── SERVIZI ─── */
-#servizi {
-  background: var(--white);
-}
-
-.servizi-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-.servizi-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.servizio-item {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  padding: 20px;
-  border-radius: var(--radius);
-  border: 1px solid var(--gray-light);
-  transition: all 0.25s;
-}
-
-.servizio-item:hover {
-  border-color: var(--lago);
-  box-shadow: var(--shadow);
-  transform: translateX(4px);
-}
-
-.servizio-ico {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  background: linear-gradient(135deg, rgba(74,144,196,0.1), rgba(126,200,227,0.15));
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--acciaio);
-  font-size: 1rem;
-}
-
-.servizio-item h4 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 4px;
-}
-
-.servizio-item p {
-  font-size: 0.82rem;
-  color: var(--gray);
-  line-height: 1.5;
-}
-
-.servizi-visual {
-  position: sticky;
-  top: 90px;
-  background: var(--navy);
-  border-radius: 16px;
-  padding: 40px;
-  color: white;
-  overflow: hidden;
-}
-
-.servizi-visual::before {
-  content: '';
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(126,200,227,0.15), transparent 70%);
-  border-radius: 50%;
-}
-
-.servizi-visual h3 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.5rem;
-  margin-bottom: 8px;
-  position: relative;
-}
-
-.servizi-visual p {
-  font-size: 0.875rem;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.6;
-  margin-bottom: 28px;
-  font-weight: 300;
-}
-
-.settori-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 24px;
-}
-
-.tag {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(126,200,227,0.2);
-  color: rgba(255,255,255,0.75);
-  font-size: 0.75rem;
-  padding: 6px 12px;
-  border-radius: 50px;
-}
-
-/* ─── CALCOLATORE ─── */
-#calcolatore {
-  background: linear-gradient(160deg, var(--navy) 0%, #1a3a5c 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-#calcolatore::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 60%;
-  height: 100%;
-  background: radial-gradient(ellipse 80% 80% at 80% 20%, rgba(74,144,196,0.12), transparent 70%);
-}
-
-#calcolatore h2 { color: var(--white); }
-#calcolatore .section-sub { color: rgba(255,255,255,0.55); }
-
-.calc-container {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 40px;
-  align-items: start;
-  position: relative;
-  z-index: 2;
-}
-
-.calc-form {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(126,200,227,0.15);
-  border-radius: 16px;
-  padding: 36px;
-  backdrop-filter: blur(8px);
-}
-
-.form-group {
-  margin-bottom: 28px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ghiaccio);
-  margin-bottom: 12px;
-}
-
-/* Slider */
-.slider-wrapper {
-  position: relative;
-}
-
-.slider-value {
-  position: absolute;
-  right: 0;
-  top: -32px;
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.3rem;
-  color: var(--white);
-}
-
-.slider-value span {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.75rem;
-  color: var(--ghiaccio);
-  margin-left: 4px;
-}
-
-input[type="range"] {
-  width: 100%;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 4px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 2px;
-  outline: none;
-  margin-top: 8px;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--acciaio);
-  cursor: pointer;
-  border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(74,144,196,0.4);
-  transition: transform 0.15s;
-}
-
-input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-}
-
-.slider-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 6px;
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.35);
-}
-
-/* Select */
-select {
-  width: 100%;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(126,200,227,0.2);
-  color: var(--white);
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.2s;
-  -webkit-appearance: none;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237EC8E3' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-}
-
-select:focus { border-color: var(--ghiaccio); }
-select option { background: var(--navy); color: white; }
-
-/* Radio */
-.radio-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.radio-option {
-  position: relative;
-}
-
-.radio-option input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.radio-option label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 10px 8px;
-  border: 1px solid rgba(126,200,227,0.2);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.6);
-  text-transform: none;
-  letter-spacing: 0;
-  margin: 0;
-}
-
-.radio-option input:checked + label {
-  background: var(--acciaio);
-  border-color: var(--acciaio);
-  color: var(--white);
-  box-shadow: 0 4px 12px rgba(74,144,196,0.3);
-}
-
-/* Checkbox */
-.checkbox-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.checkbox-option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-}
-
-.checkbox-option input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--acciaio);
-  cursor: pointer;
-}
-
-.checkbox-option span {
-  font-size: 0.87rem;
-  color: rgba(255,255,255,0.7);
-}
-
-/* ─── RESULT CARD ─── */
-.calc-result {
-  position: sticky;
-  top: 90px;
-}
-
-.result-card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: var(--shadow-lg);
-}
-
-.result-header {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gray);
-  margin-bottom: 8px;
-}
-
-.result-range {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.4rem;
-  color: var(--navy);
-  line-height: 1.1;
-  margin-bottom: 4px;
-}
-
-.result-range .sep {
-  color: var(--gray);
-  font-size: 1.6rem;
-}
-
-.result-unit {
-  font-size: 0.8rem;
-  color: var(--gray);
-  margin-bottom: 20px;
-}
-
-.result-breakdown {
-  background: var(--off-white);
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 20px;
-  font-size: 0.8rem;
-}
-
-.breakdown-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
-  color: var(--gray);
-  border-bottom: 1px solid var(--gray-light);
-}
-
-.breakdown-row:last-child { border-bottom: none; }
-.breakdown-row strong { color: var(--navy); }
-
-.result-note {
-  font-size: 0.75rem;
-  color: var(--gray);
-  line-height: 1.6;
-  margin-bottom: 24px;
-  padding: 12px;
-  background: rgba(176,220,240,0.2);
-  border-left: 3px solid var(--lago);
-  border-radius: 0 8px 8px 0;
-}
-
-.result-initial {
-  text-align: center;
-  padding: 20px 0;
-  color: var(--gray);
-  font-size: 0.9rem;
-}
-
-.result-initial i {
-  display: block;
-  font-size: 2rem;
-  color: var(--lago);
-  margin-bottom: 12px;
-}
-
-/* ─── MODAL ─── */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(28,53,87,0.8);
-  backdrop-filter: blur(6px);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.modal-overlay.open { display: flex; }
-
-.modal {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 40px;
-  max-width: 600px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-}
-
-.modal-close {
-  position: absolute;
-  top: 16px; right: 16px;
-  background: var(--off-white);
-  border: none;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1rem;
-  color: var(--gray);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
-
-.modal-close:hover { background: var(--gray-light); color: var(--navy); }
-
-.modal h3 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.6rem;
-  color: var(--navy);
-  margin-bottom: 6px;
-}
-
-.modal-sub {
-  font-size: 0.875rem;
-  color: var(--gray);
-  margin-bottom: 24px;
-}
-
-.summary-box {
-  background: var(--off-white);
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 24px;
-  font-size: 0.8rem;
-  color: var(--gray);
-  line-height: 1.8;
-}
-
-.summary-box strong { color: var(--navy); }
-
-.summary-box .summary-price {
-  display: block;
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.3rem;
-  color: var(--acciaio);
-  margin-top: 8px;
-}
-
-.mf-group {
-  margin-bottom: 18px;
-}
-
-.mf-group label {
-  display: block;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 6px;
-  letter-spacing: 0.04em;
-}
-
-.mf-group input,
-.mf-group textarea,
-.mf-group select {
-  width: 100%;
-  background: var(--off-white);
-  border: 1px solid var(--gray-light);
-  color: var(--text);
-  padding: 11px 14px;
-  border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  outline: none;
-  transition: border-color 0.2s;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.mf-group select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238FA8BC' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-color: var(--off-white);
-}
-
-.mf-group input:focus,
-.mf-group textarea:focus,
-.mf-group select:focus {
-  border-color: var(--acciaio);
-  background: var(--white);
-}
-
-.mf-group textarea {
-  min-height: 110px;
-  resize: vertical;
-}
-
-.mf-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-.form-required {
-  font-size: 0.72rem;
-  color: var(--gray);
-  margin-bottom: 20px;
-}
-
-.btn-submit {
-  width: 100%;
-  background: var(--navy);
-  color: var(--white);
-  padding: 15px;
-  border-radius: 10px;
-  border: none;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.btn-submit:hover {
-  background: var(--acciaio);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(74,144,196,0.3);
-}
-
-.btn-submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.success-msg {
-  display: none;
-  text-align: center;
-  padding: 32px 20px;
-}
-
-.success-msg i {
-  font-size: 3rem;
-  color: #22c55e;
-  margin-bottom: 16px;
-}
-
-.success-msg h4 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.4rem;
-  color: var(--navy);
-  margin-bottom: 8px;
-}
-
-.success-msg p {
-  color: var(--gray);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-/* ─── PERCHÉ NOI ─── */
-#perche {
-  background: var(--off-white);
-}
-
-.perche-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.perche-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 32px;
-  border: 1px solid var(--gray-light);
-  transition: all 0.25s;
-}
-
-.perche-card:hover {
-  box-shadow: var(--shadow);
-  transform: translateY(-4px);
-  border-color: var(--lago);
-}
-
-.perche-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.4rem;
-  color: var(--lago);
-  margin-bottom: 16px;
-  line-height: 1;
-}
-
-.perche-card h3 {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 10px;
-}
-
-.perche-card p {
-  font-size: 0.875rem;
-  color: var(--gray);
-  line-height: 1.7;
-}
+section { padding: 80px 5%; }
+.sec-off { background:var(--off); }
+.sec-dark { background:var(--t-dark); color:#fff; position:relative; overflow:hidden; }
+.wrap { max-width:1200px; margin:0 auto; }
+.sec-label { display:inline-flex; align-items:center; gap:8px; font-size:0.7rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--t-mid); margin-bottom:14px; }
+.sec-label::before { content:''; width:18px; height:2px; background:var(--t-mid); border-radius:2px; }
+.sec-dark .sec-label { color:var(--t-light); }
+.sec-dark .sec-label::before { background:var(--t-light); }
+h2 { font-family:'DM Serif Display',serif; font-size:clamp(1.8rem,3.5vw,2.7rem); line-height:1.18; color:var(--t-dark); margin-bottom:14px; }
+.sec-dark h2 { color:#fff; }
+.sec-sub { font-size:1rem; color:var(--gray); line-height:1.7; max-width:620px; margin-bottom:48px; font-weight:300; }
+.sec-dark .sec-sub { color:rgba(255,255,255,0.55); }
+
+/* ─── BU GRID ─── */
+.bu-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; }
+.bu-card { background:#fff; border-radius:var(--r); padding:26px; border:1px solid var(--gray-light); position:relative; overflow:hidden; transition:all 0.25s; cursor:pointer; }
+.bu-card.clickable:hover { transform:translateY(-5px); box-shadow:var(--shadow-lg); }
+.bu-card.active-bu { border-color:var(--t-mid); box-shadow:var(--shadow); }
+.bu-card.active-bu::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.bu-card.bu-blue.active-bu::before { background:linear-gradient(90deg,#4A90C4,#7EC8E3); }
+.bu-card.bu-green.active-bu::before { background:linear-gradient(90deg,#3E9D5C,#8FD4A0); }
+.bu-badge { display:inline-block; font-size:0.62rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:50px; margin-bottom:14px; }
+.bu-badge.on-blue { background:rgba(74,144,196,0.1); color:#4A90C4; }
+.bu-badge.on-green { background:rgba(62,157,92,0.12); color:#3E9D5C; }
+.bu-badge.soon { background:#EEF2F6; color:#9CB0C2; }
+.bu-ico { width:46px; height:46px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:1.25rem; margin-bottom:16px; }
+.bu-ico.blue { background:linear-gradient(135deg,#B0DCF0,#7EC8E3); color:#1C3557; }
+.bu-ico.green { background:linear-gradient(135deg,#C5E8CE,#8FD4A0); color:#1E4D33; }
+.bu-ico.gray { background:#EEF2F6; color:#9CB0C2; }
+.bu-card h3 { font-family:'DM Serif Display',serif; font-size:1.15rem; color:var(--navy); margin-bottom:8px; }
+.bu-card.bu-green h3 { color:#1E4D33; }
+.bu-card p { font-size:0.85rem; color:var(--gray); line-height:1.55; margin-bottom:14px; }
+.bu-link { font-size:0.8rem; font-weight:600; display:inline-flex; align-items:center; gap:6px; }
+.bu-link.blue { color:#4A90C4; }
+.bu-link.green { color:#3E9D5C; }
+.bu-link.gray { color:#9CB0C2; }
+.bu-card.soon-card { opacity:0.85; }
+
+/* ─── BACK BAR ─── */
+.back-bar { padding: 80px 5% 0; max-width:1200px; margin:0 auto; }
+.back-btn { display:inline-flex; align-items:center; gap:8px; background:none; border:none; color:var(--t-mid); font-family:inherit; font-size:0.9rem; font-weight:600; cursor:pointer; padding:8px 0; }
+.back-btn:hover { gap:11px; }
+
+/* ─── SERVIZI DETAIL ─── */
+.svc-grid { display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:start; }
+.svc-list { display:flex; flex-direction:column; gap:14px; }
+.svc-item { display:flex; gap:15px; align-items:flex-start; padding:18px; border-radius:var(--r); border:1px solid var(--gray-light); background:#fff; transition:all 0.2s; }
+.svc-item:hover { border-color:var(--t-light); box-shadow:var(--shadow); transform:translateX(4px); }
+.svc-ico { width:40px; height:40px; min-width:40px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:1rem; }
+.bu-blue-theme .svc-ico { background:rgba(74,144,196,0.1); color:#4A90C4; }
+.bu-green-theme .svc-ico { background:rgba(62,157,92,0.1); color:#3E9D5C; }
+.svc-item h4 { font-size:0.95rem; font-weight:600; color:var(--navy); margin-bottom:4px; }
+.svc-item p { font-size:0.82rem; color:var(--gray); line-height:1.5; }
+
+.process-box { border-radius:16px; padding:34px; color:#fff; position:sticky; top:84px; overflow:hidden; }
+.bu-blue-theme .process-box { background:var(--navy); }
+.bu-green-theme .process-box { background:#1E4D33; }
+.process-box h3 { font-family:'DM Serif Display',serif; font-size:1.4rem; margin-bottom:6px; }
+.process-box > p { font-size:0.875rem; color:rgba(255,255,255,0.6); line-height:1.6; margin-bottom:26px; font-weight:300; }
+.step { display:flex; gap:13px; align-items:center; margin-bottom:14px; }
+.step-num { width:28px; height:28px; min-width:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.78rem; font-weight:700; color:#fff; }
+.bu-blue-theme .step-num { background:#4A90C4; }
+.bu-green-theme .step-num { background:#3E9D5C; }
+.step span { font-size:0.85rem; color:rgba(255,255,255,0.75); line-height:1.45; }
+
+/* ─── CALC ─── */
+.calc-container { display:grid; grid-template-columns:1fr 380px; gap:38px; align-items:start; }
+.calc-form { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:34px; backdrop-filter:blur(8px); }
+.fgroup { margin-bottom:26px; }
+.fgroup:last-child { margin-bottom:0; }
+.fgroup label.flab { display:block; font-size:0.74rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--t-light); margin-bottom:12px; }
+.slider-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
+.slider-v { font-family:'DM Serif Display',serif; font-size:1.4rem; color:#fff; }
+.slider-v small { font-family:'DM Sans',sans-serif; font-size:0.72rem; color:var(--t-light); margin-left:3px; }
+input[type=range] { width:100%; -webkit-appearance:none; appearance:none; height:5px; background:rgba(255,255,255,0.12); border-radius:3px; outline:none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:var(--t-mid); border:3px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.3); cursor:pointer; }
+.slider-ends { display:flex; justify-content:space-between; font-size:0.68rem; color:rgba(255,255,255,0.3); margin-top:6px; }
+
+select { width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:13px 40px 13px 14px; border-radius:9px; font-family:inherit; font-size:0.9rem; outline:none; cursor:pointer; -webkit-appearance:none; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; }
+select option { background:var(--t-dark); }
+
+.radio-tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.rtab input { display:none; }
+.rtab label { display:flex; align-items:center; justify-content:center; padding:11px 6px; border:1px solid rgba(255,255,255,0.2); border-radius:9px; font-size:0.8rem; font-weight:500; color:rgba(255,255,255,0.6); cursor:pointer; transition:all 0.18s; text-align:center; }
+.rtab input:checked + label { background:var(--t-mid); border-color:var(--t-mid); color:#fff; }
+
+.cbox-group { display:flex; flex-direction:column; gap:12px; }
+.cbox-row { display:flex; align-items:center; gap:12px; cursor:pointer; }
+.cbox-row input[type=checkbox] { width:20px; height:20px; min-width:20px; accent-color:var(--t-mid); cursor:pointer; }
+.cbox-row span { font-size:0.875rem; color:rgba(255,255,255,0.72); }
+
+/* servizio verde con input dinamico */
+.svc-input { display:none; margin-top:10px; margin-left:32px; }
+.svc-input.show { display:block; }
+.svc-input input[type=number] { width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:9px 12px; border-radius:8px; font-family:inherit; font-size:0.88rem; outline:none; }
+.svc-input .unit { font-size:0.76rem; color:rgba(255,255,255,0.45); margin-left:8px; }
+.svc-checkbox { display:flex; align-items:center; gap:12px; cursor:pointer; }
+.svc-checkbox input[type=checkbox] { width:20px; height:20px; min-width:20px; accent-color:var(--t-mid); cursor:pointer; }
+.svc-checkbox > div { flex:1; }
+.svc-checkbox .s-name { font-size:0.9rem; color:#fff; font-weight:500; }
+.svc-checkbox .s-desc { font-size:0.74rem; color:rgba(255,255,255,0.45); }
+.svc-block { padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.08); }
+.svc-block:last-child { border-bottom:none; }
+
+/* ─── RESULT ─── */
+.calc-result { position:sticky; top:84px; }
+.result-card { background:#fff; border-radius:16px; padding:30px; box-shadow:var(--shadow-lg); }
+.result-lbl { font-size:0.68rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray); margin-bottom:8px; }
+.result-range { font-family:'DM Serif Display',serif; font-size:2.2rem; color:var(--navy); line-height:1.1; }
+.result-range .sep { color:var(--gray); font-size:1.5rem; }
+.result-unit { font-size:0.78rem; color:var(--gray); margin-bottom:18px; }
+.bk { background:var(--off); border-radius:10px; padding:14px; margin-bottom:16px; font-size:0.8rem; }
+.bk-row { display:flex; justify-content:space-between; padding:5px 0; color:var(--gray); border-bottom:1px solid var(--gray-light); }
+.bk-row:last-child { border-bottom:none; }
+.bk-row strong { color:var(--navy); }
+.extra-note { font-size:0.78rem; padding:10px 12px; border-radius:8px; margin-bottom:14px; line-height:1.6; }
+.bu-blue-theme .extra-note { color:#4A90C4; background:rgba(74,144,196,0.07); }
+.bu-green-theme .extra-note { color:#3E9D5C; background:rgba(62,157,92,0.08); }
+.note-box { font-size:0.74rem; color:var(--gray); line-height:1.6; padding:11px 13px; border-left:3px solid var(--t-light); border-radius:0 8px 8px 0; margin-bottom:18px; background:rgba(0,0,0,0.02); }
+.result-empty { text-align:center; padding:18px 0; color:var(--gray); font-size:0.88rem; }
+.result-empty i { display:block; font-size:2rem; color:var(--t-light); margin-bottom:10px; }
+
+/* ─── TIPOLOGIE ─── */
+.tipo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+.tipo-card { background:#fff; border-radius:var(--r); padding:24px; border:1px solid var(--gray-light); }
+.tipo-card .tipo-tag { font-size:0.68rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--t-mid); margin-bottom:10px; }
+.tipo-card h4 { font-family:'DM Serif Display',serif; font-size:1.1rem; color:var(--navy); margin-bottom:8px; }
+.tipo-card p { font-size:0.82rem; color:var(--gray); line-height:1.6; margin-bottom:12px; }
+.tipo-price { font-size:0.85rem; font-weight:600; color:var(--t-dark); }
+
+/* ─── GALLERY ─── */
+.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; }
+.gallery-item { aspect-ratio:4/3; border-radius:var(--r); background:var(--off); border:2px dashed var(--gray-light); display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--gray); gap:8px; }
+.gallery-item i { font-size:1.6rem; opacity:0.5; }
+.gallery-item span { font-size:0.78rem; }
+
+/* ─── FAQ ─── */
+.faq-list { max-width:760px; }
+.faq-item { border-bottom:1px solid var(--gray-light); }
+.faq-q { width:100%; text-align:left; background:none; border:none; padding:20px 0; font-family:inherit; font-size:1rem; font-weight:600; color:var(--navy); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.faq-q i { color:var(--t-mid); transition:transform 0.25s; font-size:0.9rem; }
+.faq-q.open i { transform:rotate(45deg); }
+.faq-a { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+.faq-a p { font-size:0.9rem; color:var(--gray); line-height:1.7; padding-bottom:20px; }
+
+/* ─── WHY ─── */
+.why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.why-card { background:#fff; border-radius:var(--r); padding:30px; border:1px solid var(--gray-light); transition:all 0.25s; }
+.why-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--t-light); }
+.why-num { font-family:'DM Serif Display',serif; font-size:2.3rem; color:var(--t-light); margin-bottom:14px; line-height:1; }
+.why-card h3 { font-size:1.05rem; font-weight:600; color:var(--navy); margin-bottom:9px; }
+.why-card p { font-size:0.875rem; color:var(--gray); line-height:1.7; }
 
 /* ─── SETTORI ─── */
-#settori {
-  background: var(--white);
-  text-align: center;
-}
+.settori-wrap { display:flex; flex-wrap:wrap; gap:11px; }
+.settore { display:flex; align-items:center; gap:8px; padding:12px 20px; border-radius:50px; border:1px solid var(--gray-light); font-size:0.85rem; font-weight:500; color:var(--navy); background:#fff; transition:all 0.25s; }
+.settore i { color:var(--t-mid); font-size:0.85rem; }
+.settore:hover { background:var(--t-dark); color:#fff; border-color:var(--t-dark); transform:translateY(-2px); }
+.settore:hover i { color:var(--t-light); }
 
-#settori h2 { margin: 0 auto 16px; }
-#settori .section-sub { margin: 0 auto 48px; text-align: center; }
-#settori .section-label { justify-content: center; }
+/* ─── CTA STRIP ─── */
+.cta-strip { background:var(--t-dark); border-radius:18px; padding:48px; text-align:center; color:#fff; position:relative; overflow:hidden; }
+.cta-strip h2 { color:#fff; margin-bottom:12px; }
+.cta-strip p { color:rgba(255,255,255,0.6); margin-bottom:28px; font-size:1rem; }
 
-.settori-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.settore-pill {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
-  border-radius: 50px;
-  border: 1px solid var(--gray-light);
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--navy);
-  background: var(--white);
-  transition: all 0.25s;
-}
-
-.settore-pill i {
-  color: var(--acciaio);
-  font-size: 0.9rem;
-}
-
-.settore-pill:hover {
-  background: var(--navy);
-  color: var(--white);
-  border-color: var(--navy);
-  transform: translateY(-2px);
-}
-
-.settore-pill:hover i { color: var(--ghiaccio); }
+/* ─── MODAL ─── */
+.overlay { position:fixed; inset:0; background:rgba(28,53,87,0.82); backdrop-filter:blur(6px); z-index:300; display:none; align-items:center; justify-content:center; padding:20px; overflow-y:auto; }
+.overlay.open { display:flex; }
+.modal { background:#fff; border-radius:20px; padding:38px; max-width:600px; width:100%; max-height:92vh; overflow-y:auto; position:relative; }
+.modal-close { position:absolute; top:16px; right:16px; background:var(--off); border:none; width:36px; height:36px; border-radius:50%; cursor:pointer; font-size:1rem; color:var(--gray); display:flex; align-items:center; justify-content:center; }
+.modal-close:hover { background:var(--gray-light); }
+.modal h3 { font-family:'DM Serif Display',serif; font-size:1.5rem; color:var(--navy); margin-bottom:5px; }
+.modal-sub { font-size:0.85rem; color:var(--gray); margin-bottom:22px; }
+.summary { background:var(--off); border-radius:10px; padding:15px; margin-bottom:22px; font-size:0.8rem; color:var(--gray); line-height:1.8; }
+.summary strong { color:var(--navy); }
+.summary .s-price { display:block; font-family:'DM Serif Display',serif; font-size:1.25rem; color:var(--t-mid); margin-top:6px; }
+.f-req { font-size:0.72rem; color:var(--gray); margin-bottom:18px; }
+.fg { margin-bottom:16px; }
+.fg label { display:block; font-size:0.76rem; font-weight:600; color:var(--navy); margin-bottom:6px; }
+.fg input, .fg textarea { width:100%; background:var(--off); border:1px solid var(--gray-light); color:var(--text); padding:12px 14px; border-radius:9px; font-family:inherit; font-size:0.9rem; outline:none; }
+.fg input:focus, .fg textarea:focus { border-color:var(--t-mid); background:#fff; }
+.fg textarea { min-height:100px; resize:vertical; }
+.fg-row { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+.btn-submit { width:100%; background:var(--t-dark); color:#fff; padding:15px; border-radius:11px; border:none; font-family:inherit; font-size:1rem; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:9px; transition:all 0.2s; margin-top:6px; }
+.btn-submit:hover { background:var(--t-mid); }
+.btn-submit:disabled { opacity:0.6; }
+.success { display:none; text-align:center; padding:30px 12px; }
+.success i { font-size:3rem; color:#22c55e; margin-bottom:14px; display:block; }
+.success h4 { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--navy); margin-bottom:8px; }
+.success p { font-size:0.9rem; color:var(--gray); line-height:1.6; }
 
 /* ─── FOOTER ─── */
-footer {
-  background: var(--navy);
-  color: rgba(255,255,255,0.6);
-  padding: 48px 5% 32px;
-}
+footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px; }
+.footer-top { display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:36px; max-width:1200px; margin-left:auto; margin-right:auto; }
+.footer-brand p { font-size:0.82rem; line-height:1.7; max-width:300px; margin-top:14px; }
+.footer-links h4 { font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#7EC8E3; margin-bottom:16px; }
+.footer-links ul { list-style:none; }
+.footer-links li { margin-bottom:10px; }
+.footer-links a { color:rgba(255,255,255,0.55); text-decoration:none; font-size:0.875rem; cursor:pointer; display:flex; align-items:center; gap:9px; }
+.footer-links a:hover { color:#7EC8E3; }
+.footer-links i { color:#7EC8E3; width:15px; }
+.footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:24px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; max-width:1200px; margin:0 auto; }
+.footer-bottom p { font-size:0.75rem; }
+.footer-legal { display:flex; gap:18px; }
+.footer-legal a { color:rgba(255,255,255,0.4); text-decoration:none; font-size:0.74rem; }
 
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 40px;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.footer-brand p {
-  font-size: 0.82rem;
-  line-height: 1.7;
-  max-width: 280px;
-  margin-top: 12px;
-}
-
-.footer-links h4 {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ghiaccio);
-  margin-bottom: 16px;
-}
-
-.footer-links ul { list-style: none; }
-.footer-links li { margin-bottom: 10px; }
-.footer-links a {
-  color: rgba(255,255,255,0.55);
-  text-decoration: none;
-  font-size: 0.875rem;
-  transition: color 0.2s;
-}
-
-.footer-links a:hover { color: var(--ghiaccio); }
-
-.footer-contact p {
-  font-size: 0.875rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.footer-contact i { color: var(--ghiaccio); width: 16px; }
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding-top: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.footer-bottom p { font-size: 0.78rem; }
-
-.footer-legal {
-  display: flex;
-  gap: 20px;
-}
-
-.footer-legal a {
-  color: rgba(255,255,255,0.4);
-  text-decoration: none;
-  font-size: 0.75rem;
-  transition: color 0.2s;
-}
-
-.footer-legal a:hover { color: var(--ghiaccio); }
-
-/* ─── SCROLL REVEAL ─── */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
+/* ─── REVEAL ─── */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.5s ease, transform 0.5s ease; }
+.reveal.on { opacity:1; transform:none; }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 900px) {
-  .nav-links { display: none; }
-  .hamburger { display: block; }
-
-  .hero-stats { display: none; }
-
-  .servizi-grid { grid-template-columns: 1fr; }
-  .servizi-visual { position: static; margin-top: 20px; }
-
-  .calc-container { grid-template-columns: 1fr; }
-  .calc-result { position: static; margin-top: 24px; }
-
-  .perche-grid { grid-template-columns: 1fr; }
-
-  .mf-row { grid-template-columns: 1fr; }
+@media (max-width:900px){
+  .nav-links { display:none; }
+  .burger { display:block; }
+  .svc-grid { grid-template-columns:1fr; }
+  .process-box { position:static; margin-top:8px; }
+  .calc-container { grid-template-columns:1fr; }
+  .calc-result { position:static; margin-top:24px; }
+  .why-grid { grid-template-columns:1fr; }
+  .fg-row { grid-template-columns:1fr; }
+  .footer-top { flex-direction:column; gap:28px; }
 }
-
-@media (max-width: 600px) {
-  section { padding: 64px 5%; }
-  .bu-grid { grid-template-columns: 1fr; }
-  .radio-group { grid-template-columns: 1fr; }
-  .modal { padding: 28px 20px; }
-  .footer-top { flex-direction: column; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
+@media (max-width:600px){
+  section { padding:60px 5%; }
+  .hero { padding:100px 5% 60px; }
+  .bu-grid { grid-template-columns:1fr; }
+  .radio-tabs { grid-template-columns:1fr 1fr; }
+  .cta-strip { padding:32px 20px; }
+  .modal { padding:26px 20px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">
-    <svg class="logo-icon" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 28 L13 10 L19 20 L25 10 L34 28" stroke="#7EC8E3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <line x1="4" y1="31" x2="34" y2="31" stroke="#4A90C4" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M6 34 Q19 31 32 34" stroke="#4A90C4" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-      <path d="M8 37 Q19 33 30 37" stroke="#B0DCF0" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-    </svg>
-    <div class="nav-brand">
-      ADIGE Facility
-      <span>S.r.l.</span>
-    </div>
+  <a class="nav-logo" onclick="showView('home')">
+    <svg width="34" height="34" viewBox="0 0 48 48" fill="none" id="navLogoIcon"></svg>
+    <div class="nav-brand">ADIGE Facility <small>S.r.l.</small></div>
   </a>
   <ul class="nav-links">
-    <li><a href="#business-unit">Servizi</a></li>
-    <li><a href="#servizi">Pulizie</a></li>
-    <li><a href="#perche">Chi siamo</a></li>
-    <li><a href="#calcolatore" class="nav-cta">Preventivo gratuito</a></li>
+    <li><a onclick="showView('home')">Home</a></li>
+    <li><a onclick="goBU('pulizie')">Pulizie</a></li>
+    <li><a onclick="goBU('verde')">Verde</a></li>
+    <li><a onclick="scrollToContact()" class="nav-cta">Contattaci</a></li>
   </ul>
-  <button class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+  <button class="burger" onclick="showView('home')"><i class="fas fa-house"></i></button>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-pattern"></div>
-  <svg class="hero-mountains" viewBox="0 0 1440 200" preserveAspectRatio="none">
-    <path d="M0 200 L200 60 L380 140 L540 20 L720 100 L880 0 L1060 80 L1200 30 L1440 120 L1440 200Z" fill="white"/>
-  </svg>
-
-  <div class="hero-content">
-    <div class="hero-badge">
-      <i class="fas fa-circle"></i>
-      Trentino-Alto Adige · Operatività nazionale
-    </div>
-    <h1>Gestiamo i tuoi spazi.<br><em>Tu pensi al business.</em></h1>
-    <p class="hero-sub">Pulizie professionali, manutenzioni e servizi integrati per uffici, strutture ricettive e residenze. Canoni fissi mensili, nessuna sorpresa in fattura.</p>
-    <div class="hero-actions">
-      <a href="#calcolatore" class="btn-primary">
-        <i class="fas fa-calculator"></i>
-        Stima il tuo canone
-      </a>
-      <a href="#servizi" class="btn-secondary">
-        <i class="fas fa-arrow-down"></i>
-        Scopri i servizi
-      </a>
-    </div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-card">
-      <div class="stat-num">7+</div>
-      <div class="stat-label">Città servite</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">24h</div>
-      <div class="stat-label">Risposta preventivo</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Sopralluogo gratuito</div>
-    </div>
-  </div>
-</section>
-
-<!-- BUSINESS UNIT -->
-<section id="business-unit">
-  <div class="section-label">Le nostre aree di business</div>
-  <h2>Un partner unico<br>per ogni esigenza</h2>
-  <p class="section-sub">Costruiamo un ecosistema completo di servizi. Oggi siamo specialisti nelle pulizie professionali — domani saremo il vostro referente per tutto.</p>
-
-  <div class="bu-grid reveal">
-    <div class="bu-card active">
-      <div class="bu-badge online">● Attivo</div>
-      <div class="bu-icon"><i class="fas fa-spray-can-sparkles"></i></div>
-      <h3>Pulizie Professionali</h3>
-      <p>La nostra BU core. Uffici, residenze, strutture ricettive. Operatori certificati, materiali professionali, frequenze su misura.</p>
-    </div>
-    <div class="bu-card">
-      <div class="bu-badge soon">In arrivo</div>
-      <div class="bu-icon"><i class="fas fa-wrench"></i></div>
-      <h3>Manutenzioni Tecniche</h3>
-      <p>Impianti elettrici, idraulici e termici. Piccole manutenzioni ordinarie e straordinarie gestite da tecnici qualificati.</p>
-    </div>
-    <div class="bu-card">
-      <div class="bu-badge soon">In arrivo</div>
-      <div class="bu-icon"><i class="fas fa-leaf"></i></div>
-      <h3>Gestione Verde</h3>
-      <p>Giardinaggio professionale, manutenzione aree esterne, irrigazione e cura del verde condominiale e aziendale.</p>
-    </div>
-    <div class="bu-card">
-      <div class="bu-badge soon">In arrivo</div>
-      <div class="bu-icon"><i class="fas fa-user-tie"></i></div>
-      <h3>Portierato & Reception</h3>
-      <p>Accoglienza e presidio fisso per edifici direzionali, condomini e strutture che richiedono un punto di riferimento fisico.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SERVIZI PULIZIE -->
-<section id="servizi">
-  <div class="section-label">Pulizie professionali</div>
-  <h2>Cosa include<br>il nostro servizio</h2>
-  <p class="section-sub">Ogni contratto è costruito sulle esigenze reali dell'immobile. Nessun pacchetto rigido, solo servizi utili.</p>
-
-  <div class="servizi-grid">
-    <div class="servizi-list reveal">
-      <div class="servizio-item">
-        <div class="servizio-ico"><i class="fas fa-broom"></i></div>
-        <div>
-          <h4>Pulizie ordinarie ricorrenti</h4>
-          <p>Pavimenti, superfici, servizi igienici, sale riunioni e aree comuni. Frequenza concordata, operatore dedicato.</p>
-        </div>
+<!-- ══════════ HOME VIEW ══════════ -->
+<div class="view active" id="view-home">
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-chip"><i class="fas fa-location-dot"></i> Trentino-Alto Adige · Operativi in tutta Italia</div>
+      <h1>Gestiamo i tuoi spazi.<br><em>Tu pensi al business.</em></h1>
+      <p class="hero-sub">Pulizia, verde e manutenzione. Un solo partner, un solo referente, canoni fissi mensili senza sorprese in fattura.</p>
+      <div class="hero-btns">
+        <a class="btn-p" onclick="goBU('pulizie')"><i class="fas fa-spray-can-sparkles"></i> Servizio pulizie</a>
+        <a class="btn-s" onclick="goBU('verde')"><i class="fas fa-leaf"></i> Gestione verde</a>
       </div>
-      <div class="servizio-item">
-        <div class="servizio-ico"><i class="fas fa-shield-virus"></i></div>
-        <div>
-          <h4>Sanificazione profonda periodica</h4>
-          <p>Trattamenti approfonditi con prodotti biocidi certificati. Ideale per ambienti sanitari, ricettivi e scolastici.</p>
-        </div>
+      <div class="hero-pills">
+        <span class="hero-pill">✓ Sopralluogo gratuito</span>
+        <span class="hero-pill">✓ Canone fisso</span>
+        <span class="hero-pill">✓ Referente dedicato</span>
+        <span class="hero-pill">✓ Massima flessibilità</span>
       </div>
-      <div class="servizio-item">
-        <div class="servizio-ico"><i class="fas fa-hard-hat"></i></div>
-        <div>
-          <h4>Pulizie post-cantiere</h4>
-          <p>Rimozione polveri di costruzione, siliconi, vernici e residui. Consegna dell'immobile pronto all'uso.</p>
+    </div>
+  </section>
+
+  <section class="sec-off">
+    <div class="wrap">
+      <div class="sec-label">Le nostre aree di business</div>
+      <h2>Un partner per ogni esigenza</h2>
+      <p class="sec-sub">Clicca su un'area per scoprire i servizi, calcolare una stima e richiedere un preventivo dedicato.</p>
+      <div class="bu-grid">
+        <div class="bu-card bu-blue active-bu clickable" onclick="goBU('pulizie')">
+          <div class="bu-badge on-blue">● Attivo</div>
+          <div class="bu-ico blue"><i class="fas fa-spray-can-sparkles"></i></div>
+          <h3>Pulizie Professionali</h3>
+          <p>Uffici, residenze, strutture ricettive. Operatori formati, materiali professionali, frequenze su misura.</p>
+          <span class="bu-link blue">Scopri di più <i class="fas fa-arrow-right"></i></span>
         </div>
-      </div>
-      <div class="servizio-item">
-        <div class="servizio-ico"><i class="fas fa-box-open"></i></div>
-        <div>
-          <h4>Fornitura materiali di consumo</h4>
-          <p>Carta igienica, sapone liquido, sacchi e altri consumabili inclusi nel canone su richiesta. Zero pensieri.</p>
+        <div class="bu-card bu-green active-bu clickable" onclick="goBU('verde')">
+          <div class="bu-badge on-green">● Attivo</div>
+          <div class="bu-ico green"><i class="fas fa-leaf"></i></div>
+          <h3>Gestione del Verde</h3>
+          <p>Sfalcio, potatura, cura di aree verdi per condomini, aziende e privati. Smaltimento incluso.</p>
+          <span class="bu-link green">Scopri di più <i class="fas fa-arrow-right"></i></span>
         </div>
-      </div>
-      <div class="servizio-item">
-        <div class="servizio-ico"><i class="fas fa-user-check"></i></div>
-        <div>
-          <h4>Referente dedicato</h4>
-          <p>Un interlocutore unico per ogni cliente. Nessun call center: parlate sempre con chi conosce il vostro immobile.</p>
+        <div class="bu-card soon-card clickable" onclick="goSoon('Manutenzioni Tecniche')">
+          <div class="bu-badge soon">In arrivo</div>
+          <div class="bu-ico gray"><i class="fas fa-wrench"></i></div>
+          <h3>Manutenzioni Tecniche</h3>
+          <p>Impianti elettrici, idraulici e termici. Piccole manutenzioni ordinarie e straordinarie.</p>
+          <span class="bu-link gray">Avvisami <i class="fas fa-bell"></i></span>
         </div>
-      </div>
-      <div class="servizio-item">
-        <div class="servizio-ico"><i class="fas fa-chart-line"></i></div>
-        <div>
-          <h4>Reportistica e controllo qualità</h4>
-          <p>Check-list digitali, foto pre/post intervento e report mensile. Tracciabilità completa di ogni uscita.</p>
+        <div class="bu-card soon-card clickable" onclick="goSoon('Portierato & Reception')">
+          <div class="bu-badge soon">In arrivo</div>
+          <div class="bu-ico gray"><i class="fas fa-user-tie"></i></div>
+          <h3>Portierato & Reception</h3>
+          <p>Accoglienza e presidio fisso per edifici direzionali, condomini e strutture ricettive.</p>
+          <span class="bu-link gray">Avvisami <i class="fas fa-bell"></i></span>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="servizi-visual reveal">
-      <h3>Canone fisso mensile.<br>Nessuna sorpresa.</h3>
-      <p>La nostra formula è semplice: definiamo insieme il servizio, firmiamo un contratto chiaro, vi fatturiamo un importo fisso ogni mese. Nessuna variazione, nessun extra non concordato.</p>
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Perché sceglierci</div>
+      <h2>Il partner che non cerchi due volte</h2>
+      <p class="sec-sub">Lavoriamo per costruire relazioni durature, non per vendere contratti una tantum.</p>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-num">01</div><h3>Radicati nel territorio</h3><p>Nati in Trentino-Alto Adige, operativi su scala nazionale. Conosciamo le esigenze locali meglio di chiunque.</p></div>
+        <div class="why-card"><div class="why-num">02</div><h3>Trasparenza contrattuale</h3><p>Canoni fissi mensili, contratti in chiaro. Sapete esattamente cosa pagate ogni mese.</p></div>
+        <div class="why-card"><div class="why-num">03</div><h3>Referente dedicato</h3><p>Un interlocutore unico per ogni cliente. Nessun call center: parlate sempre con chi conosce il vostro immobile.</p></div>
+      </div>
+    </div>
+  </section>
 
-      <div style="background: rgba(255,255,255,0.06); border-radius: 10px; padding: 20px; border: 1px solid rgba(126,200,227,0.15);">
-        <div style="font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ghiaccio); margin-bottom: 12px;">Come funziona</div>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <div style="display: flex; gap: 12px; align-items: center;">
-            <div style="width: 28px; height: 28px; background: var(--acciaio); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; min-width: 28px;">1</div>
-            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.75);">Sopralluogo gratuito presso il tuo immobile</span>
+  <section class="sec-off">
+    <div class="wrap">
+      <div class="sec-label">Settori serviti</div>
+      <h2>Ogni tipo di immobile</h2>
+      <p class="sec-sub">Dall'ufficio direzionale al B&B di montagna: adattiamo il servizio al contesto.</p>
+      <div class="settori-wrap">
+        <div class="settore"><i class="fas fa-building"></i> Uffici</div>
+        <div class="settore"><i class="fas fa-bed"></i> Strutture ricettive</div>
+        <div class="settore"><i class="fas fa-graduation-cap"></i> Housing studenti</div>
+        <div class="settore"><i class="fas fa-store"></i> Negozi</div>
+        <div class="settore"><i class="fas fa-home"></i> Condomini</div>
+        <div class="settore"><i class="fas fa-industry"></i> Capannoni</div>
+        <div class="settore"><i class="fas fa-stethoscope"></i> Studi medici</div>
+        <div class="settore"><i class="fas fa-laptop-code"></i> PMI</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cta-strip" id="homeContact">
+        <h2>Parliamo dei tuoi spazi</h2>
+        <p>Sopralluogo gratuito e preventivo entro 24 ore lavorative.</p>
+        <button class="btn-p" onclick="openModal('Richiesta generica', null)"><i class="fas fa-paper-plane"></i> Richiedi un preventivo</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ PULIZIE VIEW ══════════ -->
+<div class="view bu-blue-theme" id="view-pulizie">
+  <div class="back-bar"><button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Torna alla home</button></div>
+
+  <section style="padding-top:30px;">
+    <div class="wrap">
+      <div class="sec-label">Pulizie Professionali</div>
+      <h2>Spazi sempre puliti,<br>canone sempre chiaro</h2>
+      <p class="sec-sub">Pulizie ordinarie e straordinarie per uffici, residenze e strutture ricettive. Ogni contratto è costruito sulle reali esigenze dell'immobile.</p>
+    </div>
+  </section>
+
+  <section class="sec-off" style="padding-top:20px;">
+    <div class="wrap">
+      <div class="svc-grid">
+        <div class="svc-list">
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-broom"></i></div><div><h4>Pulizie ordinarie ricorrenti</h4><p>Pavimenti, superfici, bagni, sale riunioni e aree comuni. Frequenza concordata, operatore dedicato.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-shield-virus"></i></div><div><h4>Sanificazione profonda periodica</h4><p>Trattamenti con prodotti biocidi certificati, ideali per ambienti sanitari, ricettivi e scolastici.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-hard-hat"></i></div><div><h4>Pulizie post-cantiere</h4><p>Rimozione polveri di costruzione, siliconi, vernici e residui. Immobile pronto all'uso.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-box-open"></i></div><div><h4>Fornitura materiali di consumo</h4><p>Carta igienica, sapone, sacchi e consumabili inclusi nel canone su richiesta.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-user-check"></i></div><div><h4>Referente dedicato</h4><p>Un interlocutore unico. Nessun call center: parlate con chi conosce il vostro immobile.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-chart-line"></i></div><div><h4>Reportistica e controllo qualità</h4><p>Check-list digitali, foto pre/post intervento e report mensile. Tracciabilità completa.</p></div></div>
+        </div>
+        <div class="process-box">
+          <h3>Come funziona</h3>
+          <p>Dal sopralluogo al canone fisso in pochi giorni.</p>
+          <div class="step"><div class="step-num">1</div><span>Sopralluogo gratuito presso il tuo immobile</span></div>
+          <div class="step"><div class="step-num">2</div><span>Preventivo personalizzato entro 24 ore</span></div>
+          <div class="step"><div class="step-num">3</div><span>Contratto chiaro, avvio del servizio</span></div>
+          <div class="step"><div class="step-num">4</div><span>Canone fisso mensile, rendicontazione inclusa</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCOLATORE PULIZIE -->
+  <section class="sec-dark">
+    <div class="wrap">
+      <div class="hero-glow"></div>
+      <div class="sec-label">Stima orientativa</div>
+      <h2>Quanto potrebbe costarti?</h2>
+      <p class="sec-sub">Compila i campi per una fascia di prezzo indicativa. Il preventivo definitivo è sempre gratuito e prevede un sopralluogo.</p>
+      <div class="calc-container">
+        <div class="calc-form">
+          <div class="fgroup">
+            <div class="slider-head"><label class="flab">Superficie immobile</label><div class="slider-v" id="cMqVal">150 <small>mq</small></div></div>
+            <input type="range" id="cMq" min="50" max="2000" step="50" value="150" oninput="calcPulizie()">
+            <div class="slider-ends"><span>50 mq</span><span>2.000 mq</span></div>
           </div>
-          <div style="display: flex; gap: 12px; align-items: center;">
-            <div style="width: 28px; height: 28px; background: var(--acciaio); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; min-width: 28px;">2</div>
-            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.75);">Preventivo personalizzato entro 24h</span>
+          <div class="fgroup">
+            <label class="flab">Tipologia immobile</label>
+            <select id="cTipo" onchange="calcPulizie()">
+              <option value="ufficio">Ufficio / Studio professionale</option>
+              <option value="negozio">Negozio / Showroom</option>
+              <option value="magazzino">Magazzino / Capannone</option>
+              <option value="ricettivo">Struttura ricettiva (B&B, hotel)</option>
+              <option value="condominio">Condominio / Residenza</option>
+            </select>
           </div>
-          <div style="display: flex; gap: 12px; align-items: center;">
-            <div style="width: 28px; height: 28px; background: var(--acciaio); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; min-width: 28px;">3</div>
-            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.75);">Contratto chiaro, avvio del servizio</span>
+          <div class="fgroup">
+            <label class="flab">Frequenza pulizie</label>
+            <div class="radio-tabs">
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-bim" value="2m" onchange="calcPulizie()"><label for="cf-bim">2× / mese</label></div>
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-1" value="1" onchange="calcPulizie()"><label for="cf-1">1× / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-2" value="2" checked onchange="calcPulizie()"><label for="cf-2">2× / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-3" value="3" onchange="calcPulizie()"><label for="cf-3">3× / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-5" value="5" onchange="calcPulizie()"><label for="cf-5">Giornaliero</label></div>
+            </div>
           </div>
-          <div style="display: flex; gap: 12px; align-items: center;">
-            <div style="width: 28px; height: 28px; background: var(--acciaio); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; min-width: 28px;">4</div>
-            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.75);">Canone fisso mensile, rendicontazione inclusa</span>
+          <div class="fgroup">
+            <label class="flab">Distanza dalla nostra sede</label>
+            <select id="cDist" onchange="calcPulizie()">
+              <option value="15">Entro 15 km (zona locale)</option>
+              <option value="40">16 – 40 km</option>
+              <option value="80">41 – 80 km</option>
+              <option value="999">Oltre 80 km</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label class="flab">Servizi aggiuntivi (opzionali)</label>
+            <div class="cbox-group">
+              <label class="cbox-row"><input type="checkbox" id="cSanif" onchange="calcPulizie()"><span>Sanificazione periodica mensile</span></label>
+              <label class="cbox-row"><input type="checkbox" id="cMat" onchange="calcPulizie()"><span>Fornitura materiali di consumo</span></label>
+              <label class="cbox-row"><input type="checkbox" id="cPost" onchange="calcPulizie()"><span>Pulizie post-cantiere (una tantum)</span></label>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="settori-tags">
-        <span class="tag">🏢 Uffici</span>
-        <span class="tag">🏨 B&B & Hotel</span>
-        <span class="tag">🏪 Negozi</span>
-        <span class="tag">🏠 Condomini</span>
-        <span class="tag">🎓 Housing studenti</span>
-        <span class="tag">🏗 Post-cantiere</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CALCOLATORE -->
-<section id="calcolatore">
-  <div class="section-label" style="color: var(--ghiaccio);">Stima orientativa</div>
-  <h2>Quanto potrebbe<br>costarti il servizio?</h2>
-  <p class="section-sub">Inserisci i dati dell'immobile per ottenere una fascia di prezzo indicativa. Il preventivo definitivo — sempre gratuito — viene elaborato dopo un sopralluogo.</p>
-
-  <div class="calc-container">
-    <!-- FORM -->
-    <div class="calc-form reveal">
-
-      <!-- Superficie -->
-      <div class="form-group">
-        <label>Superficie dell'immobile</label>
-        <div class="slider-wrapper">
-          <div class="slider-value" id="mqDisplay">150 <span>mq</span></div>
-          <input type="range" id="mqSlider" min="50" max="2000" step="50" value="150" oninput="updateCalc()">
-          <div class="slider-labels"><span>50 mq</span><span>2.000 mq</span></div>
-        </div>
-      </div>
-
-      <!-- Tipologia -->
-      <div class="form-group">
-        <label>Tipologia immobile</label>
-        <select id="tipologia" onchange="updateCalc()">
-          <option value="ufficio">Ufficio / Studio professionale</option>
-          <option value="negozio">Negozio / Showroom</option>
-          <option value="magazzino">Magazzino / Capannone</option>
-          <option value="ricettivo">Struttura ricettiva (B&B, hotel, affitti brevi)</option>
-          <option value="condominio">Condominio / Residenza</option>
-        </select>
-      </div>
-
-      <!-- Frequenza -->
-      <div class="form-group">
-        <label>Frequenza pulizie</label>
-        <div class="radio-group">
-          <div class="radio-option">
-            <input type="radio" name="freq" id="f1" value="1" onchange="updateCalc()">
-            <label for="f1">1× / settimana</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" name="freq" id="f2" value="2" checked onchange="updateCalc()">
-            <label for="f2">2× / settimana</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" name="freq" id="f3" value="3" onchange="updateCalc()">
-            <label for="f3">3× / settimana</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" name="freq" id="f5" value="5" onchange="updateCalc()">
-            <label for="f5">Giornaliero (5×)</label>
+        <div class="calc-result">
+          <div class="result-card">
+            <div id="cContent">
+              <div class="result-lbl">Fascia orientativa mensile</div>
+              <div class="result-range">€ <span id="cMin">—</span> <span class="sep">–</span> € <span id="cMax">—</span></div>
+              <div class="result-unit">IVA esclusa · stima indicativa</div>
+              <div class="bk" id="cBk"></div>
+              <div class="extra-note" id="cExtra" style="display:none"></div>
+              <div class="note-box">La stima non costituisce offerta contrattuale. Il preventivo definitivo viene elaborato dopo sopralluogo gratuito.</div>
+              <button class="btn-p" style="width:100%" onclick="openModalFromCalc('pulizie')"><i class="fas fa-paper-plane"></i> Richiedi preventivo gratuito</button>
+            </div>
+            <div id="cFar" style="display:none">
+              <div class="result-lbl" style="color:var(--navy)">Trasferta su preventivo</div>
+              <p style="font-size:0.875rem;color:var(--gray);line-height:1.7;margin:10px 0 20px">Per distanze superiori a 80 km il costo trasferta varia in base alla zona. Contattaci per un piano logistico su misura.</p>
+              <button class="btn-p" style="width:100%" onclick="openModalFromCalc('pulizie')"><i class="fas fa-paper-plane"></i> Contattaci</button>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- Distanza -->
-      <div class="form-group">
-        <label>Distanza dalla nostra sede operativa</label>
-        <select id="distanza" onchange="updateCalc()">
-          <option value="15">Entro 15 km (zona locale)</option>
-          <option value="40">16 – 40 km</option>
-          <option value="80">41 – 80 km</option>
-          <option value="999">Oltre 80 km</option>
-        </select>
-      </div>
-
-      <!-- Extra -->
-      <div class="form-group">
-        <label>Servizi aggiuntivi (opzionali)</label>
-        <div class="checkbox-group">
-          <label class="checkbox-option">
-            <input type="checkbox" id="sanificazione" onchange="updateCalc()">
-            <span>Sanificazione periodica mensile</span>
-          </label>
-          <label class="checkbox-option">
-            <input type="checkbox" id="materiali" onchange="updateCalc()">
-            <span>Fornitura materiali di consumo</span>
-          </label>
-          <label class="checkbox-option">
-            <input type="checkbox" id="postcantiere" onchange="updateCalc()">
-            <span>Pulizie post-cantiere (una tantum)</span>
-          </label>
-        </div>
-      </div>
-
     </div>
+  </section>
 
-    <!-- RESULT -->
-    <div class="calc-result reveal">
-      <div class="result-card">
-        <div id="resultInitial" class="result-initial">
-          <i class="fas fa-calculator"></i>
-          <p>Compila i campi a sinistra per visualizzare la stima orientativa del canone mensile.</p>
+  <!-- TIPOLOGIE PULIZIE -->
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Tipologie di intervento</div>
+      <h2>Esempi di servizio</h2>
+      <p class="sec-sub">Configurazioni tipiche per darti un riferimento concreto. Ogni contratto resta personalizzato sul tuo immobile.</p>
+      <div class="tipo-grid">
+        <div class="tipo-card"><div class="tipo-tag">Ufficio</div><h4>Studio professionale</h4><p>120 mq, 2 volte a settimana, zona locale. Pulizia uffici, bagni, reception e aree comuni.</p><div class="tipo-price">da ~€280/mese</div></div>
+        <div class="tipo-card"><div class="tipo-tag">Ricettivo</div><h4>B&B di montagna</h4><p>Pulizie aree comuni e camere, frequenza flessibile in base alle prenotazioni stagionali.</p><div class="tipo-price">su misura</div></div>
+        <div class="tipo-card"><div class="tipo-tag">Condominio</div><h4>Scale e aree comuni</h4><p>Pulizia vani scala, ascensore e ingressi 1 volta a settimana, con gestione materiali.</p><div class="tipo-price">da ~€180/mese</div></div>
+        <div class="tipo-card"><div class="tipo-tag">Housing</div><h4>Residenza studenti</h4><p>Gestione multi-unità con pulizie aree comuni ricorrenti e interventi al cambio inquilino.</p><div class="tipo-price">su misura</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY PULIZIE -->
+  <section class="sec-off">
+    <div class="wrap">
+      <div class="sec-label">I nostri lavori</div>
+      <h2>Galleria interventi</h2>
+      <p class="sec-sub">Stiamo raccogliendo le foto dei nostri primi cantieri. Presto qui troverai i risultati reali.</p>
+      <div class="gallery-grid">
+        <div class="gallery-item"><i class="fas fa-camera"></i><span>In arrivo</span></div>
+        <div class="gallery-item"><i class="fas fa-camera"></i><span>In arrivo</span></div>
+        <div class="gallery-item"><i class="fas fa-camera"></i><span>In arrivo</span></div>
+        <div class="gallery-item"><i class="fas fa-camera"></i><span>In arrivo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Domande frequenti</div>
+      <h2>Le risposte che cerchi</h2>
+      <div class="faq-list" id="faqPulizie"></div>
+    </div>
+  </section>
+
+  <section class="sec-off">
+    <div class="wrap"><div class="cta-strip"><h2>Pronto a partire?</h2><p>Sopralluogo gratuito e preventivo entro 24 ore.</p><button class="btn-p" onclick="openModal('Richiesta pulizie', null)"><i class="fas fa-paper-plane"></i> Richiedi preventivo pulizie</button></div></div>
+  </section>
+</div>
+
+<!-- ══════════ VERDE VIEW ══════════ -->
+<div class="view bu-green-theme" id="view-verde">
+  <div class="back-bar"><button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Torna alla home</button></div>
+
+  <section style="padding-top:30px;">
+    <div class="wrap">
+      <div class="sec-label">Gestione del Verde</div>
+      <h2>Aree verdi curate,<br>in ogni stagione</h2>
+      <p class="sec-sub">Sfalcio, potatura e cura del verde per condomini, aziende e privati. Smaltimento di sfalci e potature sempre incluso. Interventi una tantum o contratti continuativi.</p>
+    </div>
+  </section>
+
+  <section class="sec-off" style="padding-top:20px;">
+    <div class="wrap">
+      <div class="svc-grid">
+        <div class="svc-list">
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-scissors"></i></div><div><h4>Sfalcio e taglio erba</h4><p>Taglio prati e aree verdi con attrezzatura professionale. Resa rapida anche su grandi superfici.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-tree"></i></div><div><h4>Potatura siepi e arbusti</h4><p>Sagomatura e contenimento di siepi e arbusti per spazi sempre ordinati.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-seedling"></i></div><div><h4>Messa a dimora piante</h4><p>Piantumazione di alberi, arbusti e piante ornamentali con scelta delle specie più adatte.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-spray-can"></i></div><div><h4>Diserbo aree pavimentate</h4><p>Rimozione erbacce da vialetti, cortili e aree pavimentate, mantenendo il decoro.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-house-chimney"></i></div><div><h4>Pulizia grondaie</h4><p>Rimozione foglie e detriti dalle grondaie, anche in quota in sicurezza.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-broom"></i></div><div><h4>Raccolta foglie</h4><p>Raccolta e rimozione foglie autunnali da prati, vialetti e aree comuni.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-recycle"></i></div><div><h4>Smaltimento sfalci e potature</h4><p>Gestiamo noi raccolta e smaltimento dei residui verdi, nel rispetto delle normative.</p></div></div>
         </div>
-        <div id="resultContent" style="display:none;">
-          <div class="result-header">Fascia di prezzo orientativa</div>
-          <div class="result-range">
-            € <span id="priceMin">—</span>
-            <span class="sep"> – </span>
-            € <span id="priceMax">—</span>
+        <div class="process-box">
+          <h3>Come funziona</h3>
+          <p>Flessibilità totale: dal singolo intervento al contratto stagionale.</p>
+          <div class="step"><div class="step-num">1</div><span>Sopralluogo gratuito dell'area verde</span></div>
+          <div class="step"><div class="step-num">2</div><span>Preventivo personalizzato entro 24 ore</span></div>
+          <div class="step"><div class="step-num">3</div><span>Intervento una tantum o piano continuativo</span></div>
+          <div class="step"><div class="step-num">4</div><span>Smaltimento residui sempre incluso</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCOLATORE VERDE -->
+  <section class="sec-dark">
+    <div class="wrap">
+      <div class="hero-glow"></div>
+      <div class="sec-label">Stima orientativa</div>
+      <h2>Configura il tuo intervento</h2>
+      <p class="sec-sub">Seleziona i servizi che ti servono e inserisci le dimensioni. Il calcolatore combina i costi e ti dà una fascia indicativa.</p>
+      <div class="calc-container">
+        <div class="calc-form">
+          <div class="fgroup">
+            <label class="flab">Servizi richiesti</label>
+            <div class="svc-block">
+              <label class="svc-checkbox"><input type="checkbox" id="vSfalcio" onchange="toggleSvc('Sfalcio'); calcVerde()"><div><div class="s-name">Sfalcio / taglio erba</div><div class="s-desc">Taglio prato</div></div></label>
+              <div class="svc-input" id="inSfalcio"><input type="number" min="0" value="0" id="vSfalcioMq" oninput="calcVerde()"><span class="unit">mq di prato</span></div>
+            </div>
+            <div class="svc-block">
+              <label class="svc-checkbox"><input type="checkbox" id="vSiepi" onchange="toggleSvc('Siepi'); calcVerde()"><div><div class="s-name">Potatura siepi e arbusti</div><div class="s-desc">Sagomatura siepi</div></div></label>
+              <div class="svc-input" id="inSiepi"><input type="number" min="0" value="0" id="vSiepiMl" oninput="calcVerde()"><span class="unit">metri lineari</span></div>
+            </div>
+            <div class="svc-block">
+              <label class="svc-checkbox"><input type="checkbox" id="vDimora" onchange="toggleSvc('Dimora'); calcVerde()"><div><div class="s-name">Messa a dimora piante</div><div class="s-desc">Piantumazione</div></div></label>
+              <div class="svc-input" id="inDimora"><input type="number" min="0" value="0" id="vDimoraN" oninput="calcVerde()"><span class="unit">n° piante</span></div>
+            </div>
+            <div class="svc-block">
+              <label class="svc-checkbox"><input type="checkbox" id="vDiserbo" onchange="toggleSvc('Diserbo'); calcVerde()"><div><div class="s-name">Diserbo aree pavimentate</div><div class="s-desc">Rimozione erbacce</div></div></label>
+              <div class="svc-input" id="inDiserbo"><input type="number" min="0" value="0" id="vDiserboMq" oninput="calcVerde()"><span class="unit">mq</span></div>
+            </div>
+            <div class="svc-block">
+              <label class="svc-checkbox"><input type="checkbox" id="vGrondaie" onchange="toggleSvc('Grondaie'); calcVerde()"><div><div class="s-name">Pulizia grondaie</div><div class="s-desc">Anche in quota</div></div></label>
+              <div class="svc-input" id="inGrondaie"><input type="number" min="0" value="0" id="vGrondaieMl" oninput="calcVerde()"><span class="unit">metri lineari</span></div>
+            </div>
+            <div class="svc-block">
+              <label class="svc-checkbox"><input type="checkbox" id="vFoglie" onchange="toggleSvc('Foglie'); calcVerde()"><div><div class="s-name">Raccolta foglie</div><div class="s-desc">Pulizia autunnale</div></div></label>
+              <div class="svc-input" id="inFoglie"><input type="number" min="0" value="0" id="vFoglieMq" oninput="calcVerde()"><span class="unit">mq</span></div>
+            </div>
+            <div class="svc-block">
+              <label class="svc-checkbox"><input type="checkbox" id="vSmalt" onchange="calcVerde()"><div><div class="s-name">Smaltimento sfalci e potature</div><div class="s-desc">Raccolta e conferimento residui</div></div></label>
+            </div>
           </div>
-          <div class="result-unit">al mese · IVA esclusa</div>
-
-          <div class="result-breakdown" id="breakdown"></div>
-
-          <div id="extraNote" style="display:none; font-size:0.78rem; color: #4A90C4; margin-bottom: 12px; padding: 10px; background: rgba(74,144,196,0.08); border-radius: 8px;"></div>
-
-          <div class="result-note">
-            La stima è puramente indicativa e non costituisce offerta contrattuale. Il preventivo definitivo viene elaborato dopo un sopralluogo gratuito presso il tuo immobile.
+          <div class="fgroup">
+            <label class="flab">Frequenza</label>
+            <div class="radio-tabs">
+              <div class="rtab"><input type="radio" name="vFreq" id="vf-una" value="una" checked onchange="calcVerde()"><label for="vf-una">Una tantum</label></div>
+              <div class="rtab"><input type="radio" name="vFreq" id="vf-mese" value="mese" onchange="calcVerde()"><label for="vf-mese">1× / mese</label></div>
+              <div class="rtab"><input type="radio" name="vFreq" id="vf-2mese" value="2mese" onchange="calcVerde()"><label for="vf-2mese">2× / mese</label></div>
+              <div class="rtab"><input type="radio" name="vFreq" id="vf-sett" value="sett" onchange="calcVerde()"><label for="vf-sett">1× / sett</label></div>
+            </div>
           </div>
-
-          <button class="btn-primary" style="width:100%; justify-content:center;" onclick="openModal()">
-            <i class="fas fa-paper-plane"></i>
-            Richiedi preventivo gratuito
-          </button>
+          <div class="fgroup">
+            <label class="flab">Distanza dalla nostra sede</label>
+            <select id="vDist" onchange="calcVerde()">
+              <option value="15">Entro 15 km (zona locale)</option>
+              <option value="40">16 – 40 km</option>
+              <option value="80">41 – 80 km</option>
+              <option value="999">Oltre 80 km</option>
+            </select>
+          </div>
         </div>
-        <div id="resultFarAway" style="display:none;">
-          <div class="result-header" style="color: var(--navy);">Trasferta su preventivo</div>
-          <p style="font-size:0.875rem; color:var(--gray); line-height:1.7; margin-bottom:20px;">Per distanze superiori a 80 km il costo trasferta varia significativamente in base alla zona. Contattaci per un preventivo personalizzato che includa il piano logistico.</p>
-          <button class="btn-primary" style="width:100%; justify-content:center; background: var(--navy);" onclick="openModal()">
-            <i class="fas fa-paper-plane"></i>
-            Richiedi preventivo gratuito
-          </button>
+        <div class="calc-result">
+          <div class="result-card">
+            <div id="vEmpty" class="result-empty"><i class="fas fa-leaf"></i>Seleziona almeno un servizio per vedere la stima</div>
+            <div id="vContent" style="display:none">
+              <div class="result-lbl" id="vLbl">Fascia orientativa</div>
+              <div class="result-range">€ <span id="vMin">—</span> <span class="sep">–</span> € <span id="vMax">—</span></div>
+              <div class="result-unit" id="vUnit">IVA esclusa · stima indicativa</div>
+              <div class="bk" id="vBk"></div>
+              <div class="note-box">La stima non costituisce offerta contrattuale. Il preventivo definitivo viene elaborato dopo sopralluogo gratuito.</div>
+              <button class="btn-p" style="width:100%" onclick="openModalFromCalc('verde')"><i class="fas fa-paper-plane"></i> Richiedi preventivo gratuito</button>
+            </div>
+            <div id="vFar" style="display:none">
+              <div class="result-lbl" style="color:var(--navy)">Trasferta su preventivo</div>
+              <p style="font-size:0.875rem;color:var(--gray);line-height:1.7;margin:10px 0 20px">Per distanze superiori a 80 km il costo trasferta varia in base alla zona. Contattaci per un piano su misura.</p>
+              <button class="btn-p" style="width:100%" onclick="openModalFromCalc('verde')"><i class="fas fa-paper-plane"></i> Contattaci</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PERCHÉ NOI -->
-<section id="perche">
-  <div class="section-label">Perché sceglierci</div>
-  <h2>Il partner che<br>non devi cercare due volte</h2>
-  <p class="section-sub">Lavoriamo per costruire relazioni durature, non per vendere contratti una tantum.</p>
-
-  <div class="perche-grid">
-    <div class="perche-card reveal">
-      <div class="perche-num">01</div>
-      <h3>Radicati nel territorio</h3>
-      <p>Nati in Trentino-Alto Adige, conosciamo le esigenze locali meglio di chiunque. Operativi su scala nazionale con la solidità di chi ha le radici in montagna.</p>
+  <!-- TIPOLOGIE VERDE -->
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Tipologie di intervento</div>
+      <h2>Esempi di servizio</h2>
+      <p class="sec-sub">Configurazioni tipiche di riferimento. Ogni preventivo resta personalizzato sull'area verde.</p>
+      <div class="tipo-grid">
+        <div class="tipo-card"><div class="tipo-tag">Condominio</div><h4>Verde condominiale</h4><p>Sfalcio prato 400 mq + potatura siepi, una volta al mese nella stagione vegetativa.</p><div class="tipo-price">da ~€150/intervento</div></div>
+        <div class="tipo-card"><div class="tipo-tag">Azienda</div><h4>Area verde aziendale</h4><p>Manutenzione prato e aiuole con contratto continuativo bimensile e smaltimento incluso.</p><div class="tipo-price">su misura</div></div>
+        <div class="tipo-card"><div class="tipo-tag">Stagionale</div><h4>Pulizia autunnale</h4><p>Raccolta foglie, pulizia grondaie e diserbo vialetti. Intervento una tantum.</p><div class="tipo-price">da ~€120/intervento</div></div>
+        <div class="tipo-card"><div class="tipo-tag">Privato</div><h4>Giardino di villa</h4><p>Sfalcio, potatura e cura del verde con piano programmato su misura.</p><div class="tipo-price">su misura</div></div>
+      </div>
     </div>
-    <div class="perche-card reveal">
-      <div class="perche-num">02</div>
-      <h3>Trasparenza contrattuale</h3>
-      <p>Canoni fissi mensili, contratti in chiaro, nessun extra non concordato. Sapete esattamente cosa pagate e cosa ricevete, ogni mese.</p>
-    </div>
-    <div class="perche-card reveal">
-      <div class="perche-num">03</div>
-      <h3>Referente dedicato</h3>
-      <p>Un interlocutore unico per tutta la gestione del vostro immobile. Nessun call center, nessuna attesa: parlate sempre con la persona che conosce la vostra situazione.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- SETTORI -->
-<section id="settori">
-  <div class="section-label">Settori serviti</div>
-  <h2>Lavoriamo con<br>ogni tipo di immobile</h2>
-  <p class="section-sub">Dall'ufficio direzionale al B&B di montagna: adattiamo il servizio al contesto, non il contrario.</p>
+  <!-- GALLERY VERDE -->
+  <section class="sec-off">
+    <div class="wrap">
+      <div class="sec-label">I nostri lavori</div>
+      <h2>Galleria interventi</h2>
+      <p class="sec-sub">Stiamo raccogliendo le foto dei nostri primi interventi sul verde. Presto qui i risultati reali.</p>
+      <div class="gallery-grid">
+        <div class="gallery-item"><i class="fas fa-camera"></i><span>In arrivo</span></div>
+        <div class="gallery-item"><i class="fas fa-camera"></i><span>In arrivo</span></div>
+        <div class="gallery-item"><i class="fas fa-camera"></i><span>In arrivo</span></div>
+        <div class="gallery-item"><i class="fas fa-camera"></i><span>In arrivo</span></div>
+      </div>
+    </div>
+  </section>
 
-  <div class="settori-grid">
-    <div class="settore-pill reveal"><i class="fas fa-building"></i> Uffici direzionali</div>
-    <div class="settore-pill reveal"><i class="fas fa-bed"></i> Strutture ricettive</div>
-    <div class="settore-pill reveal"><i class="fas fa-graduation-cap"></i> Housing studenti</div>
-    <div class="settore-pill reveal"><i class="fas fa-store"></i> Negozi & Showroom</div>
-    <div class="settore-pill reveal"><i class="fas fa-home"></i> Condomini</div>
-    <div class="settore-pill reveal"><i class="fas fa-industry"></i> Capannoni & Magazzini</div>
-    <div class="settore-pill reveal"><i class="fas fa-stethoscope"></i> Studi medici</div>
-    <div class="settore-pill reveal"><i class="fas fa-laptop-code"></i> PMI & Startup</div>
-  </div>
-</section>
+  <!-- FAQ VERDE -->
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Domande frequenti</div>
+      <h2>Le risposte che cerchi</h2>
+      <div class="faq-list" id="faqVerde"></div>
+    </div>
+  </section>
+
+  <section class="sec-off">
+    <div class="wrap"><div class="cta-strip"><h2>Diamo nuova vita ai tuoi spazi verdi</h2><p>Sopralluogo gratuito e preventivo entro 24 ore.</p><button class="btn-p" onclick="openModal('Richiesta verde', null)"><i class="fas fa-paper-plane"></i> Richiedi preventivo verde</button></div></div>
+  </section>
+</div>
+
+<!-- ══════════ SOON VIEW ══════════ -->
+<div class="view" id="view-soon">
+  <div class="back-bar"><button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Torna alla home</button></div>
+  <section style="padding-top:40px; min-height:60vh; display:flex; align-items:center;">
+    <div class="wrap" style="text-align:center; max-width:640px;">
+      <div class="bu-ico gray" style="margin:0 auto 24px; width:64px; height:64px; font-size:1.6rem;"><i class="fas fa-clock"></i></div>
+      <div class="sec-label" style="justify-content:center;">In arrivo</div>
+      <h2 id="soonTitle">Servizio in arrivo</h2>
+      <p class="sec-sub" style="margin:0 auto 32px; text-align:center;">Stiamo lavorando per attivare anche questo servizio. Lascia la tua email e sarai tra i primi a saperlo quando sarà disponibile.</p>
+      <form id="soonForm" action="https://formspree.io/f/xjgzveeb" method="POST" style="max-width:420px; margin:0 auto; display:flex; flex-direction:column; gap:12px;">
+        <input type="hidden" name="_subject" id="soonSubj" value="Avvisami — servizio in arrivo">
+        <input type="hidden" name="Servizio_interesse" id="soonSvc">
+        <input type="email" name="Email" required placeholder="La tua email" style="background:var(--off); border:1px solid var(--gray-light); padding:14px; border-radius:10px; font-family:inherit; font-size:0.95rem; outline:none;">
+        <button type="submit" class="btn-p"><i class="fas fa-bell"></i> Avvisami quando è disponibile</button>
+      </form>
+      <div id="soonSuccess" style="display:none; margin-top:20px; color:#22c55e; font-weight:600;"><i class="fas fa-circle-check"></i> Perfetto! Ti avviseremo appena il servizio sarà attivo.</div>
+    </div>
+  </section>
+</div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#hero" class="nav-logo" style="margin-bottom: 0;">
-        <svg width="32" height="32" viewBox="0 0 38 38" fill="none">
-          <path d="M4 28 L13 10 L19 20 L25 10 L34 28" stroke="#7EC8E3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <line x1="4" y1="31" x2="34" y2="31" stroke="#4A90C4" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M6 34 Q19 31 32 34" stroke="#4A90C4" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-        </svg>
-        <div class="nav-brand" style="font-size:1rem;">ADIGE Facility <span>S.r.l.</span></div>
+      <a class="nav-logo" onclick="showView('home')" style="cursor:pointer;">
+        <svg width="30" height="30" viewBox="0 0 48 48" id="footLogoIcon"></svg>
+        <div class="nav-brand" style="font-size:1.05rem;">ADIGE Facility <small>S.r.l.</small></div>
       </a>
-      <p>Il facility management che semplifica. Pulizie professionali e servizi integrati per immobili residenziali e commerciali in tutto il Nord Italia.</p>
+      <p>Pulizia, verde e manutenzione. Un solo partner per immobili residenziali e commerciali in tutto il Nord Italia.</p>
     </div>
     <div class="footer-links">
-      <h4>Navigazione</h4>
+      <h4>Servizi</h4>
       <ul>
-        <li><a href="#business-unit">I nostri servizi</a></li>
-        <li><a href="#servizi">Pulizie professionali</a></li>
-        <li><a href="#perche">Chi siamo</a></li>
-        <li><a href="#calcolatore">Preventivo gratuito</a></li>
+        <li><a onclick="goBU('pulizie')">Pulizie professionali</a></li>
+        <li><a onclick="goBU('verde')">Gestione del verde</a></li>
+        <li><a onclick="goSoon('Manutenzioni Tecniche')">Manutenzioni tecniche</a></li>
+        <li><a onclick="goSoon('Portierato & Reception')">Portierato & reception</a></li>
       </ul>
     </div>
-    <div class="footer-contact footer-links">
+    <div class="footer-links">
       <h4>Contatti</h4>
-      <p><i class="fas fa-envelope"></i> info@adigefacility.it</p>
-      <p><i class="fas fa-globe"></i> www.adigefacility.it</p>
-      <p><i class="fas fa-map-marker-alt"></i> Trentino-Alto Adige</p>
+      <ul>
+        <li><a href="mailto:adigefacility@gmail.com"><i class="fas fa-envelope"></i> adigefacility@gmail.com</a></li>
+        <li><a><i class="fas fa-map-marker-alt"></i> Trentino-Alto Adige</a></li>
+        <li><a onclick="openModal('Richiesta generica', null)"><i class="fas fa-paper-plane"></i> Richiedi preventivo</a></li>
+      </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 ADIGE Facility S.r.l. — Sito in fase di costituzione · P.IVA in corso di registrazione</p>
-    <div class="footer-legal">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Cookie Policy</a>
-    </div>
+    <div class="footer-legal"><a>Privacy Policy</a><a>Cookie Policy</a></div>
   </div>
 </footer>
 
-<!-- MODAL PREVENTIVO -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
-  <div class="modal" id="modalBox">
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeOutside(event)">
+  <div class="modal">
     <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-
-    <div id="formContent">
+    <div id="formWrap">
       <h3>Richiedi il preventivo gratuito</h3>
-      <p class="modal-sub">Ti ricontatteremo entro 24 ore lavorative per organizzare un sopralluogo senza impegno.</p>
-
-      <div class="summary-box" id="modalSummary"></div>
-
-      <!-- FORMSPREE FORM — sostituire YOUR_FORM_ID con l'ID ottenuto su formspree.io -->
-      <form id="preventivo-form" action="https://formspree.io/f/xjgzveeb" method="POST">
-
-        <!-- Campi nascosti dal calcolatore -->
-        <input type="hidden" name="Superficie_mq" id="hMq">
-        <input type="hidden" name="Tipologia_immobile" id="hTipologia">
-        <input type="hidden" name="Frequenza_pulizie" id="hFrequenza">
-        <input type="hidden" name="Distanza_sede" id="hDistanza">
-        <input type="hidden" name="Servizi_extra" id="hExtra">
-        <input type="hidden" name="Fascia_prezzo_stimata" id="hPrezzo">
-        <input type="hidden" name="_subject" id="hSubject" value="Richiesta preventivo ADIGE Facility">
-
-        <p class="form-required">* Campi obbligatori</p>
-
-        <div class="mf-row">
-          <div class="mf-group">
-            <label for="nome">Nome e Cognome *</label>
-            <input type="text" id="nome" name="Nome_Cognome" required placeholder="Mario Rossi">
-          </div>
-          <div class="mf-group">
-            <label for="azienda">Azienda / Ragione sociale</label>
-            <input type="text" id="azienda" name="Azienda" placeholder="Optionale">
-          </div>
+      <p class="modal-sub">Ti ricontatteremo entro 24 ore lavorative per organizzare il sopralluogo.</p>
+      <div class="summary" id="modalSummary" style="display:none"></div>
+      <form id="pForm" action="https://formspree.io/f/xjgzveeb" method="POST">
+        <input type="hidden" name="Servizio" id="hSvc">
+        <input type="hidden" name="Dettagli_stima" id="hDett">
+        <input type="hidden" name="_subject" id="hSubj" value="Richiesta preventivo ADIGE Facility">
+        <p class="f-req">* Campi obbligatori</p>
+        <div class="fg-row">
+          <div class="fg"><label>Nome e Cognome *</label><input type="text" name="Nome_Cognome" required placeholder="Mario Rossi"></div>
+          <div class="fg"><label>Azienda</label><input type="text" name="Azienda" placeholder="Opzionale"></div>
         </div>
-
-        <div class="mf-row">
-          <div class="mf-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="Email" required placeholder="mario@esempio.it">
-          </div>
-          <div class="mf-group">
-            <label for="tel">Telefono *</label>
-            <input type="tel" id="tel" name="Telefono" required placeholder="+39 3XX XXX XXXX">
-          </div>
+        <div class="fg-row">
+          <div class="fg"><label>Email *</label><input type="email" name="Email" required placeholder="mario@esempio.it"></div>
+          <div class="fg"><label>Telefono *</label><input type="tel" name="Telefono" required placeholder="+39 3XX XXX XXXX"></div>
         </div>
-
-        <div class="mf-group">
-          <label for="indirizzo">Indirizzo immobile (consigliato)</label>
-          <input type="text" id="indirizzo" name="Indirizzo_immobile" placeholder="Via Roma 1, Trento">
-        </div>
-
-        <div class="mf-group">
-          <label for="note">Note libere</label>
-          <textarea id="note" name="Note_libere" placeholder="Descrivici la tua situazione: tipologia di attività, orari preferiti per il servizio, numero di locali e piani, eventuali criticità o esigenze particolari..."></textarea>
-        </div>
-
-        <button type="submit" class="btn-submit" id="submitBtn">
-          <i class="fas fa-paper-plane"></i>
-          Invia richiesta
-        </button>
+        <div class="fg"><label>Indirizzo immobile (consigliato)</label><input type="text" name="Indirizzo" placeholder="Via Roma 1, Trento"></div>
+        <div class="fg"><label>Note libere</label><textarea name="Note_libere" placeholder="Descrivici la tua situazione: tipo di attività, orari preferiti, dimensioni e piani, esigenze particolari..."></textarea></div>
+        <button type="submit" class="btn-submit" id="sbBtn"><i class="fas fa-paper-plane"></i> Invia richiesta</button>
       </form>
     </div>
-
-    <div class="success-msg" id="successMsg">
+    <div class="success" id="successMsg">
       <i class="fas fa-circle-check"></i>
       <h4>Richiesta inviata!</h4>
-      <p>Abbiamo ricevuto la tua richiesta di preventivo. Ti contatteremo entro <strong>24 ore lavorative</strong> per organizzare il sopralluogo gratuito.</p>
-      <br>
-      <p style="font-size:0.8rem; color: #aaa;">Per urgenze: info@adigefacility.it</p>
+      <p>Ti contatteremo entro <strong>24 ore lavorative</strong> per il sopralluogo gratuito.</p>
+      <br><p style="font-size:0.8rem;color:#aaa">Per urgenze: adigefacility@gmail.com</p>
     </div>
   </div>
 </div>
 
 <script>
-// ─── CALCOLO ───────────────────────────────────────────
-const COSTO_ORA = 12.50; // tariffa oraria competitiva fase startup
-const OVERHEAD  = 0.10; // overhead 10%
-const MARGIN    = 0.20; // margine obiettivo 20%
-const VARIAZ    = 0.08; // fascia mostrata al cliente ±8%
+// ─── LOGO SVG ─────────────────────────────────────────────
+function logoSVG() {
+  return `<polygon points="6,40 18,12 22,20 13,40" fill="var(--t-dark)"/>
+    <polygon points="20,14 24,6 42,40 31,40 24,24 20,32" fill="var(--t-mid)"/>
+    <polygon points="14,34 34,34 37,40 11,40" fill="var(--t-light)"/>`;
+}
+function paintLogos() {
+  document.getElementById('navLogoIcon').innerHTML = logoSVG();
+  document.getElementById('footLogoIcon').innerHTML = logoSVG();
+}
 
-const TRASFERTA = { 15: 8, 40: 20, 80: 42, 999: null };
-const USCITE = { 1: 4, 2: 8, 3: 12, 5: 21 };
-const ORE_PER_MQ = mq => {
-  if (mq <= 100) return 1.5;
-  if (mq <= 250) return 2.5;
-  if (mq <= 500) return 4.0;
-  if (mq <= 1000) return 7.0;
-  return 12.0;
-};
+// ─── VIEW SWITCHING ───────────────────────────────────────
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + id).classList.add('active');
+  document.body.classList.toggle('theme-verde', id === 'verde');
+  window.scrollTo({ top: 0, behavior: 'instant' in window ? 'auto' : 'auto' });
+  window.scrollTo(0, 0);
+}
+function goBU(bu) { showView(bu); if (bu === 'pulizie') calcPulizie(); }
+function goSoon(svc) {
+  document.getElementById('soonTitle').textContent = svc;
+  document.getElementById('soonSvc').value = svc;
+  document.getElementById('soonSubj').value = 'Avvisami — ' + svc;
+  document.getElementById('soonForm').style.display = 'flex';
+  document.getElementById('soonSuccess').style.display = 'none';
+  showView('soon');
+}
+function scrollToContact() {
+  showView('home');
+  setTimeout(() => document.getElementById('homeContact').scrollIntoView({behavior:'smooth'}), 100);
+}
 
-function round5(n) { return Math.round(n / 5) * 5; }
+// ─── CALCOLATORE PULIZIE ──────────────────────────────────
+const C_ORA=12.50, C_OVH=0.10, C_MARG=0.20, C_VAR=0.08;
+const C_TRASF={15:8,40:20,80:42,999:null};
+const C_USCITE={'2m':2,'1':4,'2':8,'3':12,'5':21};
+const C_ORE=mq=>mq<=100?1.5:mq<=250?2.5:mq<=500?4:mq<=1000?7:12;
+const r5=n=>Math.round(n/5)*5;
+let lastPulizie=null;
 
-let lastCalc = null;
+function calcPulizie() {
+  const mq=+document.getElementById('cMq').value;
+  document.getElementById('cMqVal').innerHTML=`${mq} <small>mq</small>`;
+  const fEl=document.querySelector('input[name="cFreq"]:checked');
+  const fKey=fEl.value;
+  const dist=+document.getElementById('cDist').value;
+  const tipEl=document.getElementById('cTipo'); const tipLabel=tipEl.options[tipEl.selectedIndex].text;
+  const fLabel=document.querySelector(`label[for="${fEl.id}"]`).textContent.trim();
+  const dEl=document.getElementById('cDist'); const dLabel=dEl.options[dEl.selectedIndex].text;
 
-function updateCalc() {
-  const mq = parseInt(document.getElementById('mqSlider').value);
-  document.getElementById('mqDisplay').innerHTML = `${mq} <span>mq</span>`;
+  if(dist===999){ document.getElementById('cContent').style.display='none'; document.getElementById('cFar').style.display='block'; lastPulizie=null; return; }
+  document.getElementById('cFar').style.display='none'; document.getElementById('cContent').style.display='block';
 
-  const freqEl = document.querySelector('input[name="freq"]:checked');
-  if (!freqEl) return;
-  const freq = parseInt(freqEl.value);
-  const dist = parseInt(document.getElementById('distanza').value);
+  const uscite=C_USCITE[fKey], ore=C_ORE(mq);
+  const op=ore*uscite*C_ORA, tr=C_TRASF[dist]*uscite;
+  const base=(op+tr)*(1+C_OVH), centro=base/(1-C_MARG);
+  const min=r5(centro*(1-C_VAR)), max=r5(centro*(1+C_VAR));
 
-  document.getElementById('resultInitial').style.display = 'none';
+  document.getElementById('cMin').textContent=min.toLocaleString('it-IT');
+  document.getElementById('cMax').textContent=max.toLocaleString('it-IT');
+  document.getElementById('cBk').innerHTML=`
+    <div class="bk-row"><span>Superficie</span><strong>${mq} mq</strong></div>
+    <div class="bk-row"><span>Tipologia</span><strong>${tipLabel.split('/')[0].trim()}</strong></div>
+    <div class="bk-row"><span>Frequenza</span><strong>${fLabel}</strong></div>
+    <div class="bk-row"><span>Uscite mensili</span><strong>${uscite}</strong></div>
+    <div class="bk-row"><span>Zona</span><strong>${dLabel}</strong></div>`;
 
-  if (dist === 999) {
-    document.getElementById('resultContent').style.display = 'none';
-    document.getElementById('resultFarAway').style.display = 'block';
-    return;
-  }
+  const ex=[]; if(document.getElementById('cSanif').checked)ex.push('+ Sanificazione: €70–€100/mese');
+  if(document.getElementById('cMat').checked)ex.push('+ Materiali consumo: €30–€50/mese');
+  if(document.getElementById('cPost').checked)ex.push('+ Post-cantiere: su preventivo');
+  const exEl=document.getElementById('cExtra');
+  if(ex.length){exEl.style.display='block'; exEl.innerHTML='<strong>Servizi extra:</strong><br>'+ex.join('<br>');}else exEl.style.display='none';
 
-  document.getElementById('resultFarAway').style.display = 'none';
-  document.getElementById('resultContent').style.display = 'block';
+  lastPulizie={mq,tipLabel,fLabel,dLabel,uscite,min,max,extras:ex};
+}
 
-  const uscite = USCITE[freq];
-  const ore = ORE_PER_MQ(mq);
-  const costoOp = ore * uscite * COSTO_ORA;
-  const costoTrasf = TRASFERTA[dist] * uscite;
-  const costoBase = (costoOp + costoTrasf) * (1 + OVERHEAD);
-  const prezzoCentro = costoBase / (1 - MARGIN);
+// ─── CALCOLATORE VERDE ────────────────────────────────────
+const V_OVH=0.16, V_MARG=0.20, V_VAR=0.10;
+const V_TRASF={15:10,40:24,80:48,999:null};
+const V_FREQ={'una':1,'mese':1,'2mese':2,'sett':4};
+const V_MIN_INTERVENTO=60;
+let lastVerde=null;
 
-  const min = round5(prezzoCentro * (1 - VARIAZ));
-  const max = round5(prezzoCentro * (1 + VARIAZ));
+function toggleSvc(name){
+  const cb=document.getElementById('v'+name);
+  const inp=document.getElementById('in'+name);
+  if(inp) inp.classList.toggle('show', cb.checked);
+}
 
-  // Extra
-  const sanif = document.getElementById('sanificazione').checked;
-  const mat = document.getElementById('materiali').checked;
-  const post = document.getElementById('postcantiere').checked;
+function calcVerde() {
+  const dist=+document.getElementById('vDist').value;
+  const fEl=document.querySelector('input[name="vFreq"]:checked');
+  const fKey=fEl.value;
+  const fLabel=document.querySelector(`label[for="${fEl.id}"]`).textContent.trim();
 
-  let extraText = [];
-  if (sanif) extraText.push('+ Sanificazione periodica: €70–€100/mese');
-  if (mat) extraText.push('+ Materiali di consumo: €30–€50/mese');
-  if (post) extraText.push('+ Pulizie post-cantiere: su preventivo dedicato');
+  let costo=0; const righe=[];
+  if(document.getElementById('vSfalcio').checked){const mq=+document.getElementById('vSfalcioMq').value; if(mq>0){const c=(mq/300)*40; costo+=c; righe.push(['Sfalcio '+mq+' mq', c]);}}
+  if(document.getElementById('vSiepi').checked){const ml=+document.getElementById('vSiepiMl').value; if(ml>0){const c=(ml/12)*42; costo+=c; righe.push(['Siepi '+ml+' ml', c]);}}
+  if(document.getElementById('vDimora').checked){const n=+document.getElementById('vDimoraN').value; if(n>0){const c=n*35; costo+=c; righe.push(['Messa a dimora '+n+' piante', c]);}}
+  if(document.getElementById('vDiserbo').checked){const mq=+document.getElementById('vDiserboMq').value; if(mq>0){const c=(mq/150)*38; costo+=c; righe.push(['Diserbo '+mq+' mq', c]);}}
+  if(document.getElementById('vGrondaie').checked){const ml=+document.getElementById('vGrondaieMl').value; if(ml>0){const c=(ml/25)*45; costo+=c; righe.push(['Grondaie '+ml+' ml', c]);}}
+  if(document.getElementById('vFoglie').checked){const mq=+document.getElementById('vFoglieMq').value; if(mq>0){const c=(mq/200)*38; costo+=c; righe.push(['Raccolta foglie '+mq+' mq', c]);}}
+  if(document.getElementById('vSmalt').checked){costo+=30; righe.push(['Smaltimento residui', 30]);}
 
-  const extraEl = document.getElementById('extraNote');
-  if (extraText.length > 0) {
-    extraEl.style.display = 'block';
-    extraEl.innerHTML = '<strong>Servizi extra selezionati:</strong><br>' + extraText.join('<br>');
+  const empty=document.getElementById('vEmpty'), content=document.getElementById('vContent'), far=document.getElementById('vFar');
+
+  if(righe.length===0){ empty.style.display='block'; content.style.display='none'; far.style.display='none'; lastVerde=null; return; }
+  empty.style.display='none';
+
+  if(dist===999){ content.style.display='none'; far.style.display='block'; lastVerde=null; return; }
+  far.style.display='none'; content.style.display='block';
+
+  const trasf=V_TRASF[dist];
+  let perInt=(costo+trasf)*(1+V_OVH)/(1-V_MARG);
+  if(perInt<V_MIN_INTERVENTO) perInt=V_MIN_INTERVENTO;
+
+  const mult=V_FREQ[fKey];
+  const totale=perInt*mult;
+  const min=r5(totale*(1-V_VAR)), max=r5(totale*(1+V_VAR));
+  const isUna=(fKey==='una');
+
+  document.getElementById('vLbl').textContent = isUna ? 'Stima intervento' : 'Fascia orientativa mensile';
+  document.getElementById('vUnit').textContent = isUna ? 'IVA esclusa · per intervento' : 'IVA esclusa · al mese';
+  document.getElementById('vMin').textContent=min.toLocaleString('it-IT');
+  document.getElementById('vMax').textContent=max.toLocaleString('it-IT');
+
+  let bk=righe.map(r=>`<div class="bk-row"><span>${r[0]}</span><strong>€${r5(r[1]).toLocaleString('it-IT')}</strong></div>`).join('');
+  bk+=`<div class="bk-row"><span>Frequenza</span><strong>${fLabel}</strong></div>`;
+  document.getElementById('vBk').innerHTML=bk;
+
+  lastVerde={righe:righe.map(r=>r[0]), fLabel, min, max, isUna};
+}
+
+// ─── MODAL ────────────────────────────────────────────────
+function openModal(svcName, dettagli) {
+  document.getElementById('hSvc').value=svcName||'Richiesta generica';
+  const sum=document.getElementById('modalSummary');
+  if(dettagli){
+    sum.style.display='block'; sum.innerHTML=dettagli;
+    document.getElementById('hDett').value=dettagli.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+  } else { sum.style.display='none'; document.getElementById('hDett').value=''; }
+  document.getElementById('hSubj').value='Richiesta preventivo — '+(svcName||'generica');
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function openModalFromCalc(type){
+  if(type==='pulizie' && lastPulizie){
+    const p=lastPulizie;
+    const price=`€${p.min.toLocaleString('it-IT')} – €${p.max.toLocaleString('it-IT')}/mese (IVA esclusa)`;
+    const det=`<strong>Pulizie · dati inseriti:</strong><br>${p.mq} mq · ${p.tipLabel.split('/')[0].trim()} · ${p.fLabel} · ${p.dLabel}${p.extras.length?'<br>Extra: '+p.extras.join(', '):''}<span class="s-price">${price}</span>`;
+    openModal('Pulizie', det);
+  } else if(type==='verde' && lastVerde){
+    const v=lastVerde;
+    const unit=v.isUna?'per intervento':'/mese';
+    const price=`€${v.min.toLocaleString('it-IT')} – €${v.max.toLocaleString('it-IT')} ${unit} (IVA esclusa)`;
+    const det=`<strong>Verde · servizi richiesti:</strong><br>${v.righe.join(', ')}<br>Frequenza: ${v.fLabel}<span class="s-price">${price}</span>`;
+    openModal('Gestione verde', det);
   } else {
-    extraEl.style.display = 'none';
+    openModal('Richiesta preventivo', null);
   }
-
-  document.getElementById('priceMin').textContent = min.toLocaleString('it-IT');
-  document.getElementById('priceMax').textContent = max.toLocaleString('it-IT');
-
-  const tipLabel = document.getElementById('tipologia').options[document.getElementById('tipologia').selectedIndex].text;
-  const freqLabel = freqEl.closest('.radio-option').querySelector('label').textContent.trim();
-  const distLabel = document.getElementById('distanza').options[document.getElementById('distanza').selectedIndex].text;
-
-  document.getElementById('breakdown').innerHTML = `
-    <div class="breakdown-row"><span>Superficie</span><strong>${mq} mq</strong></div>
-    <div class="breakdown-row"><span>Tipologia</span><strong>${tipLabel.split('/')[0].trim()}</strong></div>
-    <div class="breakdown-row"><span>Frequenza</span><strong>${freqLabel}</strong></div>
-    <div class="breakdown-row"><span>Uscite mensili</span><strong>${uscite}</strong></div>
-    <div class="breakdown-row"><span>Distanza</span><strong>${distLabel}</strong></div>
-  `;
-
-  lastCalc = { mq, tipologia: tipLabel, freq: freqLabel, dist: distLabel, min, max, extra: extraText };
 }
 
-// ─── MODAL ─────────────────────────────────────────────
-function openModal() {
-  if (!lastCalc) return;
+function closeModal(){ document.getElementById('overlay').classList.remove('open'); document.body.style.overflow=''; }
+function closeOutside(e){ if(e.target===document.getElementById('overlay')) closeModal(); }
 
-  const c = lastCalc;
-  const extraStr = c.extra.length ? c.extra.join(', ') : 'Nessuno';
-  const priceStr = `€${c.min.toLocaleString('it-IT')} – €${c.max.toLocaleString('it-IT')}/mese (IVA esclusa)`;
-
-  document.getElementById('modalSummary').innerHTML = `
-    <strong>Riepilogo dati inseriti:</strong><br>
-    Superficie: <strong>${c.mq} mq</strong> · Tipologia: <strong>${c.tipologia.split('/')[0].trim()}</strong><br>
-    Frequenza: <strong>${c.freq}</strong> · Distanza: <strong>${c.dist}</strong><br>
-    Extra: <strong>${extraStr}</strong>
-    <span class="summary-price">${priceStr}</span>
-  `;
-
-  // Popola campi nascosti
-  document.getElementById('hMq').value = c.mq + ' mq';
-  document.getElementById('hTipologia').value = c.tipologia;
-  document.getElementById('hFrequenza').value = c.freq;
-  document.getElementById('hDistanza').value = c.dist;
-  document.getElementById('hExtra').value = extraStr;
-  document.getElementById('hPrezzo').value = priceStr;
-  document.getElementById('hSubject').value = `Preventivo ADIGE Facility — ${c.tipologia.split('/')[0].trim()} ${c.mq}mq`;
-
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function closeModalOutside(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-
-// ─── FORM SUBMIT ────────────────────────────────────────
-document.getElementById('preventivo-form').addEventListener('submit', async function(e) {
+// ─── FORM SUBMIT (preventivo) ─────────────────────────────
+document.getElementById('pForm').addEventListener('submit', async function(e){
   e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
-
-  try {
-    const response = await fetch(this.action, {
-      method: 'POST',
-      body: new FormData(this),
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (response.ok) {
-      document.getElementById('formContent').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    } else {
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Invia richiesta';
-      alert('Si è verificato un errore. Riprova o scrivici a info@adigefacility.it');
-    }
-  } catch {
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Invia richiesta';
-    alert('Errore di rete. Riprova o scrivici a info@adigefacility.it');
-  }
+  const btn=document.getElementById('sbBtn'); btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Invio...';
+  try{
+    const res=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
+    if(res.ok){ document.getElementById('formWrap').style.display='none'; document.getElementById('successMsg').style.display='block'; }
+    else{ btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> Invia richiesta'; alert('Errore. Riprova o scrivi a adigefacility@gmail.com'); }
+  }catch{ btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> Invia richiesta'; alert('Errore di rete. Riprova o scrivi a adigefacility@gmail.com'); }
 });
 
-// ─── SCROLL REVEAL ──────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12 });
+// ─── FORM SUBMIT (soon) ───────────────────────────────────
+document.getElementById('soonForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  try{
+    const res=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
+    if(res.ok){ this.style.display='none'; document.getElementById('soonSuccess').style.display='block'; }
+    else alert('Errore. Riprova o scrivi a adigefacility@gmail.com');
+  }catch{ alert('Errore di rete. Riprova più tardi.'); }
+});
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// ─── MOBILE MENU ────────────────────────────────────────
-let menuOpen = false;
-function toggleMenu() {
-  const links = document.querySelector('.nav-links');
-  menuOpen = !menuOpen;
-  if (menuOpen) {
-    links.style.cssText = 'display:flex; flex-direction:column; position:absolute; top:64px; left:0; right:0; background:rgba(28,53,87,0.98); padding:20px 5%; gap:16px; z-index:99;';
-  } else {
-    links.style.cssText = 'display:none;';
-  }
+// ─── FAQ ──────────────────────────────────────────────────
+const FAQ_PULIZIE=[
+  ['Ogni quanto consigliate le pulizie per un ufficio?','Dipende dal passaggio di persone. Per la maggior parte degli uffici una pulizia ordinaria 1-2 volte a settimana è sufficiente, mentre bagni e aree comuni ad alto utilizzo beneficiano di interventi più frequenti. Durante il sopralluogo definiamo insieme la frequenza ottimale per il tuo spazio.'],
+  ['I materiali e i prodotti sono inclusi nel prezzo?','Sì. Attrezzatura, macchinari e prodotti professionali sono sempre inclusi nel canone. Su richiesta possiamo gestire anche la fornitura dei materiali di consumo come carta igienica, sapone e sacchi.'],
+  ['Lavorate anche fuori orario o nei weekend?','Sì. Possiamo operare prima dell\'apertura o dopo la chiusura per non interferire con la tua attività. Siamo disponibili anche il sabato mattina.'],
+  ['Quanto dura il contratto minimo?','Il contratto standard è di 12 mesi: la formula che garantisce continuità del servizio e un canone fisso ottimizzato. Per esigenze particolari valutiamo insieme soluzioni dedicate.'],
+  ['Posso modificare la frequenza durante il contratto?','Assolutamente sì. Offriamo massima flessibilità: puoi aumentare la frequenza, aggiungere servizi o richiedere un intervento straordinario quando se ne presenta l\'occasione, ricontrattualizzando in modo semplice.'],
+  ['Fate interventi una tantum o solo contratti continuativi?','Entrambi. Ci adattiamo alle tue esigenze: dal singolo intervento straordinario al contratto continuativo con canone fisso mensile.']
+];
+const FAQ_VERDE=[
+  ['Smaltite voi sfalci e potature?','Sì. La raccolta e lo smaltimento di sfalci, potature e residui verdi sono gestiti interamente da noi, nel rispetto delle normative ambientali. È un servizio sempre incluso.'],
+  ['Fate interventi una tantum o solo contratti continuativi?','Entrambi. Offriamo massima flessibilità legata alle esigenze del cliente: dal singolo intervento di pulizia stagionale al contratto continuativo con interventi programmati.'],
+  ['Posso modificare la frequenza durante il contratto?','Sì. Puoi aumentare o ridurre la frequenza, aggiungere servizi o richiedere interventi straordinari. Ci adattiamo all\'andamento stagionale del tuo verde.'],
+  ['Lavorate anche fuori orario o nei weekend?','Sì, possiamo organizzare gli interventi negli orari più comodi per te, compreso il sabato mattina.'],
+  ['Quanto dura il contratto minimo?','Per i contratti continuativi lo standard è di 12 mesi, così da coprire l\'intero ciclo stagionale. Gli interventi una tantum, invece, non hanno alcun vincolo di durata.'],
+  ['I materiali e l\'attrezzatura sono inclusi?','Sì. Macchinari, attrezzatura professionale e materiali di consumo sono sempre inclusi nel preventivo. Nessun costo nascosto.']
+];
+function buildFAQ(containerId, data){
+  const c=document.getElementById(containerId);
+  c.innerHTML=data.map((f,i)=>`
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">${f[0]}<i class="fas fa-plus"></i></button>
+      <div class="faq-a"><p>${f[1]}</p></div>
+    </div>`).join('');
+}
+function toggleFAQ(btn){
+  const a=btn.nextElementSibling;
+  const open=btn.classList.contains('open');
+  btn.classList.toggle('open');
+  a.style.maxHeight = open ? '0' : a.scrollHeight+'px';
 }
 
-// Init
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('f2').checked = true;
-  updateCalc();
+// ─── REVEAL ───────────────────────────────────────────────
+function initReveal(){
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');}),{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+// ─── INIT ─────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  paintLogos();
+  buildFAQ('faqPulizie', FAQ_PULIZIE);
+  buildFAQ('faqVerde', FAQ_VERDE);
+  document.getElementById('cf-2').checked=true;
+  calcPulizie();
+  calcVerde();
+  initReveal();
 });
 </script>
 </body>
