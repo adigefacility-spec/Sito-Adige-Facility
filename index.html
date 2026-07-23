@@ -355,7 +355,81 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
   .cta-strip { padding:32px 20px; }
   .modal { padding:26px 20px; }
 }
+
+/* ─── CALC v1.2 (aggiunte) ─── */
+.calc-form input.ftxt, .calc-form input.fnum { width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:13px 14px; border-radius:9px; font-family:inherit; font-size:0.9rem; outline:none; }
+.calc-form input.ftxt::placeholder, .calc-form input.fnum::placeholder { color:rgba(255,255,255,0.35); }
+.calc-form input.ftxt:focus, .calc-form input.fnum:focus { border-color:var(--t-light); }
+.fhalf { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.finfo { font-size:0.72rem; color:rgba(255,255,255,0.42); margin-top:7px; line-height:1.5; }
+.price-big { font-family:'DM Serif Display',serif; font-size:2.7rem; color:var(--navy); line-height:1.05; }
+.agent-flag { display:inline-flex; align-items:center; gap:6px; font-size:0.68rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; background:rgba(74,144,196,0.12); color:#4A90C4; padding:4px 10px; border-radius:50px; margin-bottom:10px; }
+.margin-note { font-size:0.75rem; padding:10px 12px; border-radius:8px; margin-bottom:14px; line-height:1.55; }
+.margin-ok { background:rgba(34,197,94,0.10); color:#15803d; }
+.margin-warn { background:rgba(234,179,8,0.13); color:#a16207; }
+.margin-bad { background:rgba(239,68,68,0.10); color:#b91c1c; }
+.ord-check span { color:var(--gray) !important; font-size:0.8rem; line-height:1.5; }
+.subpanel { display:none; margin-top:14px; padding:16px 18px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); }
+.subpanel.show { display:block; }
+.subpanel.verde { border-color:rgba(143,212,160,0.3); background:rgba(62,157,92,0.10); }
+.sub-title { font-size:0.72rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--t-light); margin-bottom:14px; display:flex; align-items:center; gap:7px; }
+.subpanel.verde .sub-title { color:#8FD4A0; }
+.mini-slider { margin-bottom:16px; }
+.mini-slider:last-child { margin-bottom:0; }
+.mini-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; }
+.mini-head label { font-size:0.84rem; color:rgba(255,255,255,0.75); }
+.mini-val { font-family:'DM Serif Display',serif; font-size:1.1rem; color:#fff; }
+.mini-val small { font-family:'DM Sans',sans-serif; font-size:0.68rem; color:var(--t-light); margin-left:3px; }
+.subpanel.verde .mini-val small { color:#8FD4A0; }
+.subpanel.verde input[type=range]::-webkit-slider-thumb { background:#3E9D5C; }
+.disabled-slider { opacity:0.35; pointer-events:none; }
+.warn-note { font-size:0.76rem; line-height:1.6; padding:12px 14px; border-radius:9px; background:rgba(234,179,8,0.10); border-left:3px solid #eab308; color:rgba(255,255,255,0.72); margin-top:12px; }
+.result-card .warn-note { background:rgba(234,179,8,0.09); color:#8a6d1f; border-left-color:#eab308; }
+.tot-row { display:flex; justify-content:space-between; align-items:baseline; padding:9px 0; border-bottom:1px solid var(--gray-light); font-size:0.9rem; color:var(--gray); }
+.tot-row:last-child { border-bottom:none; }
+.tot-row strong { color:var(--navy); font-size:1rem; }
+.pb-claim { margin-top:26px; padding-top:22px; border-top:1px solid rgba(255,255,255,0.14); }
+.pb-claim-t { font-family:'DM Serif Display',serif; font-size:1.12rem; color:#fff; line-height:1.3; margin-bottom:8px; }
+.pb-claim p { font-size:0.83rem; color:rgba(255,255,255,0.6); line-height:1.65; font-weight:300; }
+.accuracy { display:flex; gap:13px; align-items:flex-start; padding:16px 18px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); margin-bottom:30px; }
+.accuracy i { color:var(--t-light); font-size:1rem; margin-top:2px; }
+.accuracy strong { color:#fff; font-weight:600; display:block; margin-bottom:4px; font-size:0.88rem; }
+.accuracy p { font-size:0.81rem; color:rgba(255,255,255,0.6); line-height:1.65; }
+.modo-switch { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; padding-bottom:26px; border-bottom:1px solid rgba(255,255,255,0.12); }
+.modo-switch input { display:none; }
+.modo-switch label { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:16px 10px; border:1px solid rgba(255,255,255,0.2); border-radius:11px; cursor:pointer; transition:all 0.18s; text-align:center; }
+.modo-switch label .m-t { font-size:0.92rem; font-weight:600; color:rgba(255,255,255,0.75); }
+.modo-switch label .m-d { font-size:0.72rem; color:rgba(255,255,255,0.4); line-height:1.4; }
+.modo-switch input:checked + label { background:var(--t-mid); border-color:var(--t-mid); }
+.modo-switch input:checked + label .m-t, .modo-switch input:checked + label .m-d { color:#fff; }
+.hide { display:none !important; }
+.man-note-field { display:none; margin-top:12px; margin-left:31px; }
+.man-note-field.show { display:block; }
+.man-note-field textarea { width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:11px 13px; border-radius:9px; font-family:inherit; font-size:0.85rem; outline:none; min-height:80px; resize:vertical; }
+.man-note-field textarea::placeholder { color:rgba(255,255,255,0.32); }
+.man-bridge { font-size:0.78rem; line-height:1.65; padding:13px 15px; border-radius:10px; background:rgba(74,144,196,0.12); border-left:3px solid var(--t-mid); color:rgba(255,255,255,0.7); margin-top:14px; }
+.man-bridge strong { color:#fff; }
+.ut-group { margin-bottom:26px; }
+.ut-group:last-child { margin-bottom:0; }
+.ut-head { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.ut-head i { width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.85rem; background:rgba(255,255,255,0.10); color:var(--t-light); }
+.ut-head h4 { font-size:0.95rem; font-weight:600; color:#fff; }
+.ut-desc { font-size:0.78rem; color:rgba(255,255,255,0.45); line-height:1.55; margin-bottom:16px; }
+.ut-item { padding:13px 0; border-bottom:1px solid rgba(255,255,255,0.08); }
+.ut-item:last-child { border-bottom:none; }
+.ut-row { display:flex; align-items:flex-start; gap:12px; cursor:pointer; }
+.ut-row input[type=checkbox] { width:19px; height:19px; min-width:19px; margin-top:2px; accent-color:var(--t-mid); cursor:pointer; }
+.ut-name { font-size:0.89rem; color:#fff; font-weight:500; }
+.ut-note { font-size:0.74rem; color:rgba(255,255,255,0.45); line-height:1.5; margin-top:2px; }
+.ut-qty { display:none; margin-top:12px; margin-left:31px; }
+.ut-qty.show { display:block; }
+.ut-spec .ut-head i { background:rgba(234,179,8,0.15); color:#eab308; }
+.ut-free textarea { width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:13px 14px; border-radius:9px; font-family:inherit; font-size:0.9rem; outline:none; min-height:110px; resize:vertical; }
+.ut-free textarea::placeholder { color:rgba(255,255,255,0.32); }
+.ut-free textarea:focus { border-color:var(--t-light); }
+.est-badge { display:inline-flex; align-items:center; gap:7px; font-size:0.68rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; background:rgba(234,179,8,0.13); color:#a16207; padding:5px 11px; border-radius:50px; margin-bottom:12px; }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -369,6 +443,8 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
     <li><a onclick="showView('home')">Home</a></li>
     <li><a onclick="goBU('pulizie')">Pulizie</a></li>
     <li><a onclick="goBU('verde')">Verde</a></li>
+    <li><a onclick="showView('manutenzioni')">Manutenzioni</a></li>
+    <li><a onclick="showView('unatantum')">Una tantum</a></li>
     <li><a onclick="scrollToContact()" class="nav-cta">Contattaci</a></li>
   </ul>
   <button class="burger" onclick="showView('home')"><i class="fas fa-house"></i></button>
@@ -415,12 +491,19 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
           <p>Sfalcio, potatura, cura di aree verdi per condomini, aziende e privati. Smaltimento incluso.</p>
           <span class="bu-link green">Scopri di più <i class="fas fa-arrow-right"></i></span>
         </div>
-        <div class="bu-card soon-card clickable" onclick="goSoon('Manutenzioni Tecniche')">
-          <div class="bu-badge soon">In arrivo</div>
-          <div class="bu-ico gray"><i class="fas fa-wrench"></i></div>
+        <div class="bu-card bu-blue active-bu clickable" onclick="showView('unatantum')">
+          <div class="bu-badge on-blue">&#9679; Attivo</div>
+          <div class="bu-ico blue"><i class="fas fa-screwdriver-wrench"></i></div>
+          <h3>Interventi una tantum</h3>
+          <p>Pulizie straordinarie, sgomberi, imbiancature e piccole manutenzioni. Senza contratto, quando ti serve.</p>
+          <span class="bu-link blue">Configura l'intervento <i class="fas fa-arrow-right"></i></span>
+        </div>
+        <div class="bu-card bu-blue active-bu clickable" onclick="showView('manutenzioni')">
+          <div class="bu-badge on-blue">&#9679; Attivo</div>
+          <div class="bu-ico blue"><i class="fas fa-wrench"></i></div>
           <h3>Manutenzioni Tecniche</h3>
-          <p>Impianti elettrici, idraulici e termici. Piccole manutenzioni ordinarie e straordinarie.</p>
-          <span class="bu-link gray">Avvisami <i class="fas fa-bell"></i></span>
+          <p>Imbiancature, riparazioni e impianti. Le eseguiamo noi o le coordiniamo con artigiani di fiducia.</p>
+          <span class="bu-link blue">Scopri di pi&ugrave; <i class="fas fa-arrow-right"></i></span>
         </div>
         <div class="bu-card soon-card clickable" onclick="goSoon('Portierato & Reception')">
           <div class="bu-badge soon">In arrivo</div>
@@ -506,11 +589,15 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
         </div>
         <div class="process-box">
           <h3>Come funziona</h3>
-          <p>Dal sopralluogo al canone fisso in pochi giorni.</p>
-          <div class="step"><div class="step-num">1</div><span>Sopralluogo gratuito presso il tuo immobile</span></div>
-          <div class="step"><div class="step-num">2</div><span>Preventivo personalizzato entro 24 ore</span></div>
-          <div class="step"><div class="step-num">3</div><span>Contratto chiaro, avvio del servizio</span></div>
-          <div class="step"><div class="step-num">4</div><span>Canone fisso mensile, rendicontazione inclusa</span></div>
+          <p>Inserisci i dati del tuo immobile, visualizza subito il preventivo e poi decidi tu: concludi l'ordine online, oppure richiedi un sopralluogo.</p>
+          <div class="step"><div class="step-num">1</div><span>Compili i dati del tuo immobile</span></div>
+          <div class="step"><div class="step-num">2</div><span>Vedi il canone all'istante, senza attendere</span></div>
+          <div class="step"><div class="step-num">3</div><span>Concludi online oppure fissi un sopralluogo</span></div>
+          <div class="step"><div class="step-num">4</div><span>Ti richiamiamo entro 48 ore e partiamo</span></div>
+          <div class="pb-claim">
+            <div class="pb-claim-t">Il prezzo che vedi &egrave; il prezzo che paghi</div>
+            <p>Niente listini nascosti, niente attese per sapere quanto costa. Un canone chiaro, un referente che conosce il tuo immobile, e la libert&agrave; di decidere con i tuoi tempi.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -523,66 +610,210 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
       <div class="sec-label">Stima orientativa</div>
       <h2>Quanto potrebbe costarti?</h2>
       <p class="sec-sub">Compila i campi per una fascia di prezzo indicativa. Il preventivo definitivo è sempre gratuito e prevede un sopralluogo.</p>
+      <div class="accuracy">
+        <i class="fas fa-circle-check"></i>
+        <div>
+          <strong>I dati che inserisci fanno il prezzo</strong>
+          <p>Il preventivo &egrave; calcolato esattamente su quello che indichi: superficie, frequenza, bagni, pavimentazione. Se i dati sono corretti, il prezzo che vedi &egrave; quello che pagherai davvero. Se invece la situazione reale risulta diversa in avvio servizio, il canone va rivisto insieme &mdash; e nessuno dei due ci guadagna. Nel dubbio su una misura, richiedi il sopralluogo: &egrave; gratuito.</p>
+        </div>
+      </div>
       <div class="calc-container">
         <div class="calc-form">
-          <div class="fgroup">
-            <div class="slider-head"><label class="flab">Superficie immobile</label><div class="slider-v" id="cMqVal">150 <small>mq</small></div></div>
-            <input type="range" id="cMq" min="50" max="2000" step="50" value="150" oninput="calcPulizie()">
-            <div class="slider-ends"><span>50 mq</span><span>2.000 mq</span></div>
+
+          <div class="modo-switch">
+            <input type="radio" name="cModo" id="cm-ric" value="ric" checked onchange="calcPulizie()">
+            <label for="cm-ric"><span class="m-t">Servizio ricorrente</span><span class="m-d">Canone mensile continuativo</span></label>
+            <input type="radio" name="cModo" id="cm-una" value="una" onchange="calcPulizie()">
+            <label for="cm-una"><span class="m-t">Intervento una tantum</span><span class="m-d">Un solo intervento, senza contratto</span></label>
           </div>
+
+          <div class="fgroup" id="grpTipoUna" style="display:none">
+            <label class="flab">Tipo di intervento</label>
+            <select id="cTipoUna" onchange="calcPulizie()">
+              <option value="cantiere">Pulizia di fine cantiere</option>
+              <option value="affitto">Pulizia appartamento dopo affitto</option>
+              <option value="straord">Pulizia straordinaria approfondita</option>
+              <option value="sanif">Sanificazione ambienti</option>
+            </select>
+          </div>
+
           <div class="fgroup">
-            <label class="flab">Tipologia immobile</label>
+            <label class="flab">1 &middot; Dove si trova l'immobile</label>
+            <input type="text" class="ftxt" id="cIndirizzo" placeholder="Via Roma 1, Trento" oninput="calcPulizie()">
+            <div class="fhalf" style="margin-top:12px">
+              <select id="cProv" onchange="calcPulizie()">
+                <option value="TN">Provincia di Trento</option>
+                <option value="BZ">Provincia di Bolzano</option>
+                <option value="ALTRA">Altra provincia</option>
+              </select>
+              <select id="cKm" onchange="calcPulizie()">
+                <option value="10">Entro 15 km</option>
+                <option value="25">16 &ndash; 35 km</option>
+                <option value="50">36 &ndash; 60 km</option>
+                <option value="80">61 &ndash; 80 km</option>
+              </select>
+            </div>
+            <div class="finfo">L'indirizzo ci serve per calcolare il costo di trasferta. Fuori dalle province di Trento e Bolzano il preventivo viene elaborato dopo sopralluogo.</div>
+          </div>
+
+          <div class="fgroup">
+            <div class="slider-head"><label class="flab">2 &middot; Superficie da pulire</label><div class="slider-v" id="cMqVal">50 <small>mq</small></div></div>
+            <input type="range" id="cMq" min="50" max="1500" step="10" value="50" oninput="calcPulizie()">
+            <div class="slider-ends"><span>50 mq</span><span>1.500 mq</span></div>
+            <div class="finfo">Oltre 1.500 mq il preventivo richiede un sopralluogo tecnico.</div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flab">3 &middot; Tipologia immobile</label>
             <select id="cTipo" onchange="calcPulizie()">
               <option value="ufficio">Ufficio / Studio professionale</option>
               <option value="negozio">Negozio / Showroom</option>
-              <option value="magazzino">Magazzino / Capannone</option>
-              <option value="ricettivo">Struttura ricettiva (B&B, hotel)</option>
-              <option value="condominio">Condominio / Residenza</option>
+              <option value="capannone">Capannone / Magazzino</option>
+              <option value="garage">Garage / Autorimessa</option>
+              <option value="condominio">Condominio / Scale</option>
+            </select>
+
+            <div class="subpanel" id="panelScriv">
+              <div class="sub-title"><i class="fas fa-desktop"></i> Postazioni di lavoro</div>
+              <label class="cbox-row" style="margin-bottom:4px"><input type="checkbox" id="cScrivOn" onchange="calcPulizie()"><span>Spolvero scrivanie e postazioni</span></label>
+              <div class="mini-slider disabled-slider" id="scrivSlider" style="margin-top:14px">
+                <div class="mini-head"><label>Numero di scrivanie</label><div class="mini-val" id="cScrivVal">1 <small>postazione</small></div></div>
+                <input type="range" id="cScriv" min="1" max="120" step="1" value="1" oninput="calcPulizie()">
+                <div class="slider-ends"><span>1</span><span>120</span></div>
+              </div>
+              <div class="warn-note" id="scrivNote" style="display:none">
+                <strong>Nota importante:</strong> i nostri addetti non spostano n&eacute; toccano gli oggetti presenti sulle scrivanie (documenti, effetti personali, apparecchiature). Si raccomanda di lasciare le postazioni il pi&ugrave; possibile sgombere e in ordine, per consentire una pulizia efficace dell'intera superficie.
+              </div>
+            </div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flab">4 &middot; Tipo di pavimentazione</label>
+            <select id="cPav" onchange="calcPulizie()">
+              <option value="gres">Gres / Ceramica</option>
+              <option value="marmo">Marmo / Pietra lucidata</option>
+              <option value="parquet">Parquet</option>
+              <option value="moquette">Moquette</option>
+              <option value="resina">Resina / Cemento industriale</option>
             </select>
           </div>
+
           <div class="fgroup">
-            <label class="flab">Frequenza pulizie</label>
+            <label class="flab">5 &middot; Piani e servizi igienici</label>
+            <div class="fhalf">
+              <div>
+                <input type="number" class="fnum" id="cPiani" min="1" max="20" value="1" oninput="calcPulizie()">
+                <div class="finfo">N&deg; piani serviti</div>
+              </div>
+              <div>
+                <input type="number" class="fnum" id="cBagni" min="0" max="30" value="1" oninput="calcPulizie()">
+                <div class="finfo">N&deg; bagni</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fgroup" id="grpFreq">
+            <label class="flab">6 &middot; Frequenza degli interventi</label>
             <div class="radio-tabs">
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-bim" value="2m" onchange="calcPulizie()"><label for="cf-bim">2× / mese</label></div>
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-1" value="1" onchange="calcPulizie()"><label for="cf-1">1× / sett</label></div>
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-2" value="2" checked onchange="calcPulizie()"><label for="cf-2">2× / sett</label></div>
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-3" value="3" onchange="calcPulizie()"><label for="cf-3">3× / sett</label></div>
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-5" value="5" onchange="calcPulizie()"><label for="cf-5">Giornaliero</label></div>
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-mens" value="mensile" checked onchange="calcPulizie()"><label for="cf-mens">Mensile</label></div>
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-quind" value="quindicinale" onchange="calcPulizie()"><label for="cf-quind">Quindicinale</label></div>
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-1" value="f1" onchange="calcPulizie()"><label for="cf-1">1&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-2" value="f2" onchange="calcPulizie()"><label for="cf-2">2&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-3" value="f3" onchange="calcPulizie()"><label for="cf-3">3&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreq" id="cf-5" value="f5" onchange="calcPulizie()"><label for="cf-5">5&times; / sett</label></div>
             </div>
           </div>
-          <div class="fgroup">
-            <label class="flab">Distanza dalla nostra sede</label>
-            <select id="cDist" onchange="calcPulizie()">
-              <option value="15">Entro 15 km (zona locale)</option>
-              <option value="40">16 – 40 km</option>
-              <option value="80">41 – 80 km</option>
-              <option value="999">Oltre 80 km</option>
-            </select>
+
+          <div class="fgroup" id="grpDurata">
+            <label class="flab">7 &middot; Durata del contratto</label>
+            <div class="radio-tabs" style="grid-template-columns:1fr 1fr">
+              <div class="rtab"><input type="radio" name="cDur" id="cd-12" value="12" checked onchange="calcPulizie()"><label for="cd-12">12 mesi</label></div>
+              <div class="rtab"><input type="radio" name="cDur" id="cd-24" value="24" onchange="calcPulizie()"><label for="cd-24">24 mesi &middot; scontato</label></div>
+            </div>
           </div>
+
           <div class="fgroup">
-            <label class="flab">Servizi aggiuntivi (opzionali)</label>
+            <label class="flab">8 &middot; Altri servizi (sconto multiservizio)</label>
             <div class="cbox-group">
-              <label class="cbox-row"><input type="checkbox" id="cSanif" onchange="calcPulizie()"><span>Sanificazione periodica mensile</span></label>
-              <label class="cbox-row"><input type="checkbox" id="cMat" onchange="calcPulizie()"><span>Fornitura materiali di consumo</span></label>
-              <label class="cbox-row"><input type="checkbox" id="cPost" onchange="calcPulizie()"><span>Pulizie post-cantiere (una tantum)</span></label>
+              <label class="cbox-row"><input type="checkbox" id="cBundleVerde" onchange="calcPulizie()"><span>Aggiungi Gestione del Verde</span></label>
+              <label class="cbox-row"><input type="checkbox" id="cBundleMan" onchange="calcPulizie()"><span>Aggiungi Manutenzioni Tecniche</span></label>
+            </div>
+            <div class="finfo">2 servizi: &minus;5% &middot; 3 servizi: &minus;8%.</div>
+
+            <div class="subpanel" id="panelManP">
+              <div class="sub-title"><i class="fas fa-wrench"></i> Quali manutenzioni ti servono?</div>
+              <div id="pmanBox"></div>
+            </div>
+
+            <div class="subpanel verde" id="panelVerde">
+              <div class="sub-title"><i class="fas fa-leaf"></i> Configura la gestione del verde</div>
+
+              <label class="cbox-row" style="margin-bottom:2px"><input type="checkbox" id="cVSfalcioOn" onchange="calcPulizie()"><span>Sfalcio e taglio erba</span></label>
+              <div class="mini-slider disabled-slider" id="vSfalcioSlider" style="margin-top:12px; margin-bottom:18px">
+                <div class="mini-head"><label>Superficie a prato</label><div class="mini-val" id="cVSfalcioVal">50 <small>mq</small></div></div>
+                <input type="range" id="cVSfalcio" min="50" max="3000" step="50" value="50" oninput="calcPulizie()">
+                <div class="slider-ends"><span>50 mq</span><span>3.000 mq</span></div>
+              </div>
+
+              <label class="cbox-row" style="margin-bottom:2px"><input type="checkbox" id="cVSiepiOn" onchange="calcPulizie()"><span>Cura e potatura siepi</span></label>
+              <div class="mini-slider disabled-slider" id="vSiepiSlider" style="margin-top:12px; margin-bottom:18px">
+                <div class="mini-head"><label>Sviluppo siepi</label><div class="mini-val" id="cVSiepiVal">5 <small>m lineari</small></div></div>
+                <input type="range" id="cVSiepi" min="5" max="300" step="5" value="5" oninput="calcPulizie()">
+                <div class="slider-ends"><span>5 m</span><span>300 m</span></div>
+              </div>
+
+              <label class="cbox-row" style="margin-bottom:14px"><input type="checkbox" id="cVSmalt" checked onchange="calcPulizie()"><span>Smaltimento sfalci e potature</span></label>
+
+              <label class="flab" style="margin-bottom:10px">Frequenza interventi sul verde</label>
+              <div class="radio-tabs">
+                <div class="rtab"><input type="radio" name="cVFreq" id="cvf-1" value="1" checked onchange="calcPulizie()"><label for="cvf-1">1&times; / mese</label></div>
+                <div class="rtab"><input type="radio" name="cVFreq" id="cvf-2" value="2" onchange="calcPulizie()"><label for="cvf-2">2&times; / mese</label></div>
+                <div class="rtab"><input type="radio" name="cVFreq" id="cvf-4" value="4" onchange="calcPulizie()"><label for="cvf-4">1&times; / sett</label></div>
+              </div>
+              <div class="finfo">Il verde viene fatturato separatamente dalle pulizie: non rientra nel reverse charge e segue il regime IVA ordinario.</div>
             </div>
           </div>
+
+          <div class="fgroup">
+            <label class="flab">9 &middot; Codice agente (facoltativo)</label>
+            <input type="text" class="ftxt" id="cAgente" placeholder="AG-001" oninput="calcPulizie()">
+            <div class="finfo">Da compilare solo nel caso in cui sia un commerciale di ADIGE Facility ad eseguire il sopralluogo.</div>
+            <div id="cAgenteBox" style="display:none; margin-top:14px">
+              <label class="flab" style="margin-bottom:8px">Sconto commerciale</label>
+              <select id="cScontoComm" onchange="calcPulizie()">
+                <option value="0">Nessuno sconto</option>
+                <option value="2">&minus;2%</option>
+                <option value="3">&minus;3%</option>
+                <option value="5">&minus;5%</option>
+                <option value="7">&minus;7% (massimo consentito)</option>
+              </select>
+            </div>
+          </div>
+
         </div>
+
         <div class="calc-result">
           <div class="result-card">
             <div id="cContent">
-              <div class="result-lbl">Fascia orientativa mensile</div>
-              <div class="result-range">€ <span id="cMin">—</span> <span class="sep">–</span> € <span id="cMax">—</span></div>
-              <div class="result-unit">IVA esclusa · stima indicativa</div>
+              <div class="agent-flag" id="cAgentFlag" style="display:none"><i class="fas fa-user-tie"></i> <span id="cAgentCode"></span></div>
+              <div class="result-lbl" id="cPrezzoLbl">Canone mensile</div>
+              <div class="price-big">&euro; <span id="cPrezzo">&mdash;</span></div>
+              <div class="result-unit">IVA esclusa &middot; contratto <span id="cDurLbl">12 mesi</span></div>
+              <div class="bk" id="cSplit" style="display:none"></div>
               <div class="bk" id="cBk"></div>
-              <div class="extra-note" id="cExtra" style="display:none"></div>
-              <div class="note-box">La stima non costituisce offerta contrattuale. Il preventivo definitivo viene elaborato dopo sopralluogo gratuito.</div>
-              <button class="btn-p" style="width:100%" onclick="openModalFromCalc('pulizie')"><i class="fas fa-paper-plane"></i> Richiedi preventivo gratuito</button>
+              <div class="warn-note" id="cScrivNoteOut" style="display:none"></div>
+              <div class="extra-note" id="cSconti" style="display:none"></div>
+              <div class="margin-note" id="cClip" style="display:none; background:rgba(74,144,196,0.09); color:#2c6a99"></div>
+              <div class="margin-note" id="cMargine" style="display:none"></div>
+              <div class="note-box" id="cMinimo" style="display:none">Il canone corrisponde all'importo minimo di uscita: per interventi molto ridotti si applica la tariffa minima.</div>
+              <div class="note-box">Reverse charge: sui servizi di pulizia su edifici tra soggetti passivi IVA l'imposta &egrave; assolta dal committente ex art. 17 DPR 633/72. Prezzo calcolato sui dati inseriti; eventuali difformit&agrave; rilevate in avvio servizio possono comportare una revisione.</div>
+              <button class="btn-p" style="width:100%; margin-bottom:10px" onclick="openOrdine()"><i class="fas fa-file-signature"></i> Concludi l'ordine online</button>
+              <button class="btn-s" style="width:100%; color:var(--navy); border-color:var(--gray-light); background:var(--off)" onclick="openModalFromCalc('pulizie')"><i class="fas fa-calendar-check"></i> Preferisco un sopralluogo</button>
             </div>
-            <div id="cFar" style="display:none">
-              <div class="result-lbl" style="color:var(--navy)">Trasferta su preventivo</div>
-              <p style="font-size:0.875rem;color:var(--gray);line-height:1.7;margin:10px 0 20px">Per distanze superiori a 80 km il costo trasferta varia in base alla zona. Contattaci per un piano logistico su misura.</p>
-              <button class="btn-p" style="width:100%" onclick="openModalFromCalc('pulizie')"><i class="fas fa-paper-plane"></i> Contattaci</button>
+            <div id="cSopr" style="display:none">
+              <div class="result-lbl" style="color:var(--navy)">Serve un sopralluogo</div>
+              <p id="cSoprMsg" style="font-size:0.875rem;color:var(--gray);line-height:1.7;margin:10px 0 20px"></p>
+              <button class="btn-p" style="width:100%" onclick="openModalFromCalc('pulizie')"><i class="fas fa-paper-plane"></i> Richiedi sopralluogo gratuito</button>
             </div>
           </div>
         </div>
@@ -685,6 +916,12 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
       <p class="sec-sub">Seleziona i servizi che ti servono e inserisci le dimensioni. Il calcolatore combina i costi e ti dà una fascia indicativa.</p>
       <div class="calc-container">
         <div class="calc-form">
+          <div class="modo-switch">
+            <input type="radio" name="vModo" id="vm-una" value="una" checked onchange="calcVerde()">
+            <label for="vm-una"><span class="m-t">Intervento una tantum</span><span class="m-d">Un solo intervento, senza contratto</span></label>
+            <input type="radio" name="vModo" id="vm-ric" value="ric" onchange="calcVerde()">
+            <label for="vm-ric"><span class="m-t">Servizio ricorrente</span><span class="m-d">Interventi programmati a canone</span></label>
+          </div>
           <div class="fgroup">
             <label class="flab">Servizi richiesti</label>
             <div class="svc-block">
@@ -715,10 +952,10 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
               <label class="svc-checkbox"><input type="checkbox" id="vSmalt" onchange="calcVerde()"><div><div class="s-name">Smaltimento sfalci e potature</div><div class="s-desc">Raccolta e conferimento residui</div></div></label>
             </div>
           </div>
-          <div class="fgroup">
-            <label class="flab">Frequenza</label>
+          <div class="fgroup" id="grpVFreq" style="display:none">
+            <label class="flab">Frequenza degli interventi</label>
             <div class="radio-tabs">
-              <div class="rtab"><input type="radio" name="vFreq" id="vf-una" value="una" checked onchange="calcVerde()"><label for="vf-una">Una tantum</label></div>
+              <div class="rtab" style="display:none"><input type="radio" name="vFreq" id="vf-una" value="una" checked onchange="calcVerde()"><label for="vf-una">Una tantum</label></div>
               <div class="rtab"><input type="radio" name="vFreq" id="vf-mese" value="mese" onchange="calcVerde()"><label for="vf-mese">1× / mese</label></div>
               <div class="rtab"><input type="radio" name="vFreq" id="vf-2mese" value="2mese" onchange="calcVerde()"><label for="vf-2mese">2× / mese</label></div>
               <div class="rtab"><input type="radio" name="vFreq" id="vf-sett" value="sett" onchange="calcVerde()"><label for="vf-sett">1× / sett</label></div>
@@ -733,6 +970,44 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
               <option value="999">Oltre 80 km</option>
             </select>
           </div>
+
+          <div class="fgroup">
+            <label class="flab">Aggiungi altri servizi (sconto multiservizio)</label>
+            <div class="cbox-group">
+              <label class="cbox-row"><input type="checkbox" id="vAddPul" onchange="calcVerde()"><span>Aggiungi Pulizie Professionali</span></label>
+              <label class="cbox-row"><input type="checkbox" id="vAddMan" onchange="calcVerde()"><span>Aggiungi Manutenzioni Tecniche</span></label>
+            </div>
+            <div class="finfo">2 servizi: &minus;5% &middot; 3 servizi: &minus;8%.</div>
+
+            <div class="subpanel" id="panelPul">
+              <div class="sub-title"><i class="fas fa-spray-can-sparkles"></i> Configura le pulizie</div>
+              <div class="mini-slider" style="margin-bottom:16px">
+                <div class="mini-head"><label>Superficie da pulire</label><div class="mini-val" id="vPulMqVal">50 <small>mq</small></div></div>
+                <input type="range" id="vPulMq" min="50" max="1500" step="10" value="50" oninput="calcVerde()">
+                <div class="slider-ends"><span>50 mq</span><span>1.500 mq</span></div>
+              </div>
+              <label class="flab" style="margin-bottom:10px">Tipologia</label>
+              <select id="vPulTipo" onchange="calcVerde()" style="margin-bottom:16px">
+                <option value="ufficio">Ufficio / Studio professionale</option>
+                <option value="negozio">Negozio / Showroom</option>
+                <option value="capannone">Capannone / Magazzino</option>
+                <option value="garage">Garage / Autorimessa</option>
+                <option value="condominio">Condominio / Scale</option>
+              </select>
+              <label class="flab" style="margin-bottom:10px">Frequenza</label>
+              <div class="radio-tabs">
+                <div class="rtab"><input type="radio" name="vPulFreq" id="vpf-m" value="mensile" checked onchange="calcVerde()"><label for="vpf-m">Mensile</label></div>
+                <div class="rtab"><input type="radio" name="vPulFreq" id="vpf-1" value="f1" onchange="calcVerde()"><label for="vpf-1">1&times; / sett</label></div>
+                <div class="rtab"><input type="radio" name="vPulFreq" id="vpf-2" value="f2" onchange="calcVerde()"><label for="vpf-2">2&times; / sett</label></div>
+              </div>
+              <div class="finfo">Per una configurazione completa (pavimentazione, piani, bagni, scrivanie) usa il <a onclick="goBU('pulizie')" style="color:var(--t-light); cursor:pointer; text-decoration:underline">calcolatore pulizie dedicato</a>.</div>
+            </div>
+
+            <div class="subpanel" id="panelManV">
+              <div class="sub-title"><i class="fas fa-wrench"></i> Manutenzioni tecniche</div>
+              <div id="vmanBox"></div>
+            </div>
+          </div>
         </div>
         <div class="calc-result">
           <div class="result-card">
@@ -741,7 +1016,10 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
               <div class="result-lbl" id="vLbl">Fascia orientativa</div>
               <div class="result-range">€ <span id="vMin">—</span> <span class="sep">–</span> € <span id="vMax">—</span></div>
               <div class="result-unit" id="vUnit">IVA esclusa · stima indicativa</div>
+              <div class="bk" id="vSplit" style="display:none"></div>
               <div class="bk" id="vBk"></div>
+              <div class="extra-note" id="vScontoBox" style="display:none"></div>
+              <div class="warn-note" id="vManNote" style="display:none"></div>
               <div class="note-box">La stima non costituisce offerta contrattuale. Il preventivo definitivo viene elaborato dopo sopralluogo gratuito.</div>
               <button class="btn-p" style="width:100%" onclick="openModalFromCalc('verde')"><i class="fas fa-paper-plane"></i> Richiedi preventivo gratuito</button>
             </div>
@@ -800,6 +1078,459 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
   </section>
 </div>
 
+<!-- ══════════ MANUTENZIONI VIEW ══════════ -->
+<div class="view bu-blue-theme" id="view-manutenzioni">
+  <div class="back-bar"><button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Torna alla home</button></div>
+
+  <section style="padding-top:30px;">
+    <div class="wrap">
+      <div class="sec-label">Manutenzioni Tecniche</div>
+      <h2>Un immobile che funziona,<br>senza rincorrere nessuno</h2>
+      <p class="sec-sub">Imbiancature, riparazioni, silicone, montaggi: li facciamo noi. Impianti elettrici, idraulici, termici, opere murarie e serramenti: li affidiamo ad artigiani abilitati con cui lavoriamo stabilmente, coordinando noi tempi, accessi e qualit&agrave;. Tu hai un solo numero da chiamare e una sola fattura da gestire.</p>
+    </div>
+  </section>
+
+  <section class="sec-off" style="padding-top:20px;">
+    <div class="wrap">
+      <div class="svc-grid">
+        <div class="svc-list">
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-paint-roller"></i></div><div><h4>Imbiancatura pareti e soffitti</h4><p>Protezione degli ambienti, due mani di pittura traspirante e pulizia finale inclusa. Su richiesta pitture lavabili o antimuffa.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-trowel"></i></div><div><h4>Stuccatura e rasatura</h4><p>Chiusura di crepe, fori e imperfezioni, rasatura dove serve per una superficie uniforme prima della tinteggiatura.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-screwdriver"></i></div><div><h4>Piccole riparazioni</h4><p>Maniglie, mensole, tapparelle, zanzariere, sostituzione lampade: tutte quelle cose per cui nessuno viene volentieri.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-couch"></i></div><div><h4>Montaggio e smontaggio arredi</h4><p>Armadi, scrivanie, scaffalature e postazioni di lavoro. Utile nei cambi sede e negli allestimenti.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-droplet"></i></div><div><h4>Rifacimento silicone</h4><p>Rimozione del silicone ammalorato, sanificazione della fuga e nuova sigillatura antimuffa in bagni e cucine.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-bolt"></i></div><div><h4>Impianti elettrici</h4><p>Verifica, messa a norma, nuovi punti luce e prese, quadri elettrici. Eseguiti da elettricisti abilitati con rilascio di dichiarazione di conformit&agrave;.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-faucet"></i></div><div><h4>Impianti idraulici e termici</h4><p>Perdite, sostituzione sanitari e rubinetteria, manutenzione caldaia, radiatori e valvole termostatiche.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-trowel-bricks"></i></div><div><h4>Opere murarie e cartongesso</h4><p>Tramezze, controsoffitti, nicchie e ripristini di intonaco per riorganizzare gli spazi.</p></div></div>
+          <div class="svc-item"><div class="svc-ico"><i class="fas fa-door-open"></i></div><div><h4>Serramenti e infissi</h4><p>Regolazione, sostituzione guarnizioni, riparazione di tapparelle e persiane. Meno spifferi, meno consumi.</p></div></div>
+        </div>
+        <div class="process-box">
+          <h3>Come funziona</h3>
+          <p>Configura il tuo intervento, ottieni subito una stima e poi fissiamo il sopralluogo per chiudere il preventivo.</p>
+          <div class="step"><div class="step-num">1</div><span>Selezioni le lavorazioni che ti servono</span></div>
+          <div class="step"><div class="step-num">2</div><span>Vedi subito una stima di base</span></div>
+          <div class="step"><div class="step-num">3</div><span>Sopralluogo gratuito per il preventivo definitivo</span></div>
+          <div class="step"><div class="step-num">4</div><span>Coordiniamo noi il cantiere fino alla consegna</span></div>
+          <div class="pb-claim">
+            <div class="pb-claim-t">Un solo referente, anche quando servono pi&ugrave; mestieri</div>
+            <p>Non devi cercare l'imbianchino, poi l'elettricista, poi chi ti sistema il serramento. Ci pensiamo noi a metterli d'accordo: tu parli con una persona sola e ricevi un lavoro finito.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-dark">
+    <div class="wrap">
+      <div class="hero-glow"></div>
+      <div class="sec-label">Preventivo</div>
+      <h2>Configura il tuo intervento</h2>
+      <p class="sec-sub">Seleziona le lavorazioni che ti servono e ottieni subito una stima di base.</p>
+
+      <div class="accuracy">
+        <i class="fas fa-circle-check"></i>
+        <div>
+          <strong>Pi&ugrave; sei preciso, pi&ugrave; la stima &egrave; vicina al vero</strong>
+          <p>Le quantit&agrave; e le note che inserisci determinano l'importo. Per le lavorazioni sugli impianti non diamo cifre a priori: senza vedere lo stato reale sarebbero inventate, e preferiamo dirtelo che scriverti un numero che poi cambia.</p>
+        </div>
+      </div>
+
+      <div class="calc-container">
+        <div class="calc-form">
+
+          <div class="modo-switch">
+            <input type="radio" name="mModo" id="mm-una" value="una" checked onchange="calcMan()">
+            <label for="mm-una"><span class="m-t">Intervento una tantum</span><span class="m-d">Un lavoro singolo, senza contratto</span></label>
+            <input type="radio" name="mModo" id="mm-ric" value="ric" onchange="calcMan()">
+            <label for="mm-ric"><span class="m-t">Manutenzione programmata</span><span class="m-d">Canone mensile con ore incluse</span></label>
+          </div>
+
+          <div id="mBlocUna">
+            <div class="fgroup">
+              <label class="flab">Lavorazioni richieste</label>
+              <div id="mmanBox"></div>
+            </div>
+          </div>
+
+          <div id="mBlocRic" style="display:none">
+            <div class="fgroup">
+              <label class="flab">Ore di manutenzione incluse ogni mese</label>
+              <div class="radio-tabs">
+                <div class="rtab"><input type="radio" name="mOre" id="mo-4" value="4" checked onchange="calcMan()"><label for="mo-4">4 ore</label></div>
+                <div class="rtab"><input type="radio" name="mOre" id="mo-8" value="8" onchange="calcMan()"><label for="mo-8">8 ore</label></div>
+                <div class="rtab"><input type="radio" name="mOre" id="mo-16" value="16" onchange="calcMan()"><label for="mo-16">16 ore</label></div>
+              </div>
+              <div class="finfo">Un monte ore mensile per interventi correttivi e controlli programmati. Le ore non utilizzate si accumulano nel trimestre. Materiali e ricambi sono esclusi e fatturati a consumo.</div>
+            </div>
+            <div class="fgroup">
+              <label class="flab">Numero di immobili da presidiare</label>
+              <div class="mini-head"><label>Immobili</label><div class="mini-val" id="mImmVal">1 <small>immobile</small></div></div>
+              <input type="range" id="mImm" min="1" max="20" step="1" value="1" oninput="calcMan()">
+            </div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flab">Dove si trova l'immobile</label>
+            <input type="text" class="ftxt" id="mIndirizzo" placeholder="Via Roma 1, Trento" oninput="calcMan()">
+            <div class="fhalf" style="margin-top:12px">
+              <select id="mProv" onchange="calcMan()">
+                <option value="TN">Provincia di Trento</option>
+                <option value="BZ">Provincia di Bolzano</option>
+                <option value="ALTRA">Altra provincia</option>
+              </select>
+              <select id="mKm" onchange="calcMan()">
+                <option value="10">Entro 15 km</option>
+                <option value="25">16 &ndash; 35 km</option>
+                <option value="50">36 &ndash; 60 km</option>
+                <option value="80">61 &ndash; 80 km</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flab">Aggiungi altri servizi (sconto multiservizio)</label>
+            <div class="cbox-group">
+              <label class="cbox-row"><input type="checkbox" id="mAddPul" onchange="calcMan()"><span>Aggiungi Pulizie Professionali</span></label>
+              <label class="cbox-row"><input type="checkbox" id="mAddVer" onchange="calcMan()"><span>Aggiungi Gestione del Verde</span></label>
+            </div>
+            <div class="finfo">2 servizi: &minus;5% &middot; 3 servizi: &minus;8%.</div>
+
+            <div class="subpanel" id="mPanelPul">
+              <div class="sub-title"><i class="fas fa-spray-can-sparkles"></i> Configura le pulizie</div>
+              <div class="mini-slider" style="margin-bottom:16px">
+                <div class="mini-head"><label>Superficie da pulire</label><div class="mini-val" id="mPulMqVal">50 <small>mq</small></div></div>
+                <input type="range" id="mPulMq" min="50" max="1500" step="10" value="50" oninput="calcMan()">
+              </div>
+              <select id="mPulTipo" onchange="calcMan()" style="margin-bottom:16px">
+                <option value="ufficio">Ufficio / Studio professionale</option>
+                <option value="negozio">Negozio / Showroom</option>
+                <option value="capannone">Capannone / Magazzino</option>
+                <option value="garage">Garage / Autorimessa</option>
+                <option value="condominio">Condominio / Scale</option>
+              </select>
+              <div class="radio-tabs">
+                <div class="rtab"><input type="radio" name="mPulFreq" id="mpf-m" value="mensile" checked onchange="calcMan()"><label for="mpf-m">Mensile</label></div>
+                <div class="rtab"><input type="radio" name="mPulFreq" id="mpf-1" value="f1" onchange="calcMan()"><label for="mpf-1">1&times; / sett</label></div>
+                <div class="rtab"><input type="radio" name="mPulFreq" id="mpf-2" value="f2" onchange="calcMan()"><label for="mpf-2">2&times; / sett</label></div>
+              </div>
+            </div>
+
+            <div class="subpanel verde" id="mPanelVer">
+              <div class="sub-title"><i class="fas fa-leaf"></i> Configura il verde</div>
+              <div class="mini-slider" style="margin-bottom:16px">
+                <div class="mini-head"><label>Superficie a prato</label><div class="mini-val" id="mVerMqVal">50 <small>mq</small></div></div>
+                <input type="range" id="mVerMq" min="50" max="3000" step="50" value="50" oninput="calcMan()">
+              </div>
+              <div class="mini-slider" style="margin-bottom:16px">
+                <div class="mini-head"><label>Sviluppo siepi</label><div class="mini-val" id="mVerMlVal">0 <small>m lineari</small></div></div>
+                <input type="range" id="mVerMl" min="0" max="300" step="5" value="0" oninput="calcMan()">
+              </div>
+              <div class="radio-tabs">
+                <div class="rtab"><input type="radio" name="mVerFreq" id="mvf-1" value="1" checked onchange="calcMan()"><label for="mvf-1">1&times; / mese</label></div>
+                <div class="rtab"><input type="radio" name="mVerFreq" id="mvf-2" value="2" onchange="calcMan()"><label for="mvf-2">2&times; / mese</label></div>
+                <div class="rtab"><input type="radio" name="mVerFreq" id="mvf-4" value="4" onchange="calcMan()"><label for="mvf-4">1&times; / sett</label></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fgroup ut-free">
+            <label class="flab">Descrivici il lavoro nel dettaglio</label>
+            <textarea id="mNote" placeholder="Stato attuale degli ambienti, altezza dei soffitti, piano dell'immobile e presenza di ascensore, accessi difficili, mobili da spostare, tempi entro cui deve essere concluso..." oninput="calcMan()"></textarea>
+          </div>
+
+        </div>
+
+        <div class="calc-result">
+          <div class="result-card">
+            <div id="mEmpty" class="result-empty"><i class="fas fa-wrench"></i>Seleziona almeno una lavorazione per vedere la stima</div>
+            <div id="mContent" style="display:none">
+              <div class="est-badge"><i class="fas fa-circle-info"></i> <span id="mBadge">Stima di base</span></div>
+              <div class="result-lbl" id="mLbl">Importo indicativo</div>
+              <div class="price-big">&euro; <span id="mPrezzo">&mdash;</span></div>
+              <div class="result-unit" id="mUnit">IVA esclusa &middot; intervento una tantum</div>
+              <div class="bk" id="mSplit" style="display:none"></div>
+              <div class="bk" id="mBk"></div>
+              <div class="extra-note" id="mSconto" style="display:none"></div>
+              <div class="warn-note" id="mSoprNote"></div>
+              <div class="note-box">La stima si basa sui dati che hai inserito e non costituisce offerta contrattuale. Il prezzo definitivo viene confermato dopo il sopralluogo, sempre gratuito.</div>
+              <button class="btn-p" style="width:100%" onclick="richiediMan()"><i class="fas fa-calendar-check"></i> Fissa il sopralluogo gratuito</button>
+            </div>
+            <div id="mSoloSopr" style="display:none">
+              <div class="est-badge" style="background:rgba(234,179,8,0.13)"><i class="fas fa-helmet-safety"></i> Sopralluogo necessario</div>
+              <div class="result-lbl" style="color:var(--navy)">Preventivo su misura</div>
+              <p style="font-size:0.875rem;color:var(--gray);line-height:1.7;margin:10px 0 16px" id="mSoprMsg"></p>
+              <div class="bk" id="mBkSopr"></div>
+              <button class="btn-p" style="width:100%" onclick="richiediMan()"><i class="fas fa-calendar-check"></i> Fissa il sopralluogo gratuito</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Manutenzione programmata</div>
+      <h2>Meglio prevenire<br>che riparare d'urgenza</h2>
+      <p class="sec-sub">Per chi gestisce pi&ugrave; immobili proponiamo un piano di manutenzione a canone: controlli periodici programmati, interventi correttivi entro tempi garantiti e un unico referente. Costa meno di una serie di emergenze, e permette di pianificare il budget.</p>
+      <div class="tipo-grid">
+        <div class="tipo-card"><div class="tipo-tag">Uffici</div><h4>Presidio periodico</h4><p>Controllo trimestrale di impianti, serramenti e finiture, con interventi correttivi inclusi entro un monte ore.</p><div class="tipo-price">su misura</div></div>
+        <div class="tipo-card"><div class="tipo-tag">Housing</div><h4>Cambio inquilino</h4><p>Ripristino completo tra un contratto e l'altro: ritocchi di tinteggiatura, silicone, piccole riparazioni e pulizia finale.</p><div class="tipo-price">su misura</div></div>
+        <div class="tipo-card"><div class="tipo-tag">Condominio</div><h4>Manutenzione parti comuni</h4><p>Androni, vani scala e locali tecnici sempre in ordine, con reportistica per l'amministratore.</p><div class="tipo-price">su misura</div></div>
+        <div class="tipo-card"><div class="tipo-tag">Retail</div><h4>Rete di punti vendita</h4><p>Interventi coordinati su pi&ugrave; sedi con standard uniformi e tempi di risposta concordati.</p><div class="tipo-price">su misura</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-off">
+    <div class="wrap">
+      <div class="sec-label">Domande frequenti</div>
+      <h2>Le risposte che cerchi</h2>
+      <div class="faq-list" id="faqMan"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap"><div class="cta-strip"><h2>Hai un lavoro da fare?</h2><p>Sopralluogo gratuito e preventivo entro 24 ore lavorative.</p><button class="btn-p" onclick="openModal('Manutenzioni tecniche', null)"><i class="fas fa-paper-plane"></i> Richiedi preventivo manutenzioni</button></div></div>
+  </section>
+</div>
+
+<!-- ══════════ UNA TANTUM VIEW ══════════ -->
+<div class="view bu-blue-theme" id="view-unatantum">
+  <div class="back-bar"><button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Torna alla home</button></div>
+
+  <section style="padding-top:30px;">
+    <div class="wrap">
+      <div class="sec-label">Interventi una tantum</div>
+      <h2>Un lavoro singolo,<br>senza contratto</h2>
+      <p class="sec-sub">Non tutto ha bisogno di un canone mensile. Sgomberi, pulizie di fine cantiere, appartamenti da riconsegnare, imbiancature, piccole manutenzioni: configura quello che ti serve e ottieni subito una stima di base. Per le lavorazioni pi&ugrave; tecniche ci appoggiamo ad artigiani di fiducia, coordinando noi il cantiere.</p>
+    </div>
+  </section>
+
+  <section class="sec-dark" style="padding-top:40px;">
+    <div class="wrap">
+      <div class="hero-glow"></div>
+      <div class="sec-label">Configuratore</div>
+      <h2>Cosa ti serve?</h2>
+      <p class="sec-sub">Seleziona una o pi&ugrave; lavorazioni. Combinandone diverse ottieni uno sconto automatico.</p>
+
+      <div class="accuracy">
+        <i class="fas fa-circle-check"></i>
+        <div>
+          <strong>Pi&ugrave; sei preciso, pi&ugrave; la stima &egrave; vicina al vero</strong>
+          <p>Quantit&agrave; e note che inserisci determinano l'importo. Un dato approssimativo produce una stima approssimativa, che poi va corretta in sopralluogo: meglio essere precisi subito, cos&igrave; il preventivo definitivo non ti riserva sorprese.</p>
+        </div>
+      </div>
+      <div class="calc-container">
+        <div class="calc-form">
+
+          <!-- A · PULIZIE STRAORDINARIE -->
+          <div class="ut-group">
+            <div class="ut-head"><i class="fas fa-spray-can-sparkles"></i><h4>Pulizie straordinarie</h4></div>
+            <div class="ut-desc">Interventi singoli e approfonditi. Stima affidabile gi&agrave; da qui.</div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uCantiere" onchange="calcUT()"><div><div class="ut-name">Pulizia di fine cantiere</div><div class="ut-note">Rimozione polveri di costruzione, residui di stucco, vernice e silicone. Immobile pronto all'uso.</div></div></label>
+              <div class="ut-qty" id="qCantiere">
+                <div class="mini-head"><label>Superficie</label><div class="mini-val" id="uCantiereVal">1 <small>mq</small></div></div>
+                <input type="range" id="uCantiereMq" min="20" max="800" step="10" value="20" oninput="calcUT()">
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uAffitto" onchange="calcUT()"><div><div class="ut-name">Pulizia appartamento dopo affitto</div><div class="ut-note">Riconsegna o cambio inquilino: pulizia completa di ambienti, sanitari, elettrodomestici e infissi.</div></div></label>
+              <div class="ut-qty" id="qAffitto">
+                <div class="mini-head"><label>Superficie</label><div class="mini-val" id="uAffittoVal">1 <small>mq</small></div></div>
+                <input type="range" id="uAffittoMq" min="20" max="500" step="10" value="20" oninput="calcUT()">
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uStraord" onchange="calcUT()"><div><div class="ut-name">Pulizia straordinaria approfondita</div><div class="ut-note">Uffici, negozi e spazi commerciali: intervento profondo una tantum, anche stagionale.</div></div></label>
+              <div class="ut-qty" id="qStraord">
+                <div class="mini-head"><label>Superficie</label><div class="mini-val" id="uStraordVal">1 <small>mq</small></div></div>
+                <input type="range" id="uStraordMq" min="30" max="1500" step="10" value="30" oninput="calcUT()">
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uVetri" onchange="calcUT()"><div><div class="ut-name">Pulizia vetri e vetrine</div><div class="ut-note">Lavaggio su entrambi i lati, telai e davanzali inclusi. Per vetrate in quota indicalo nelle note.</div></div></label>
+              <div class="ut-qty" id="qVetri">
+                <div class="mini-head"><label>Numero di vetri</label><div class="mini-val" id="uVetriVal">1 <small>vetri</small></div></div>
+                <input type="range" id="uVetriN" min="1" max="150" step="1" value="1" oninput="calcUT()">
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uSgombero" onchange="calcUT()"><div><div class="ut-name">Sgombero garage, cantina o soffitta</div><div class="ut-note">Svuotamento completo, trasporto e conferimento in discarica autorizzata. Smaltimento incluso.</div></div></label>
+              <div class="ut-qty" id="qSgombero">
+                <div class="mini-head"><label>Volume da sgomberare</label><div class="mini-val" id="uSgomberoVal">1 <small>m&sup3;</small></div></div>
+                <input type="range" id="uSgomberoMc" min="1" max="60" step="1" value="1" oninput="calcUT()">
+                <div class="finfo">Indicativamente: un box auto pieno a met&agrave; &asymp; 10 m&sup3;, una cantina piccola &asymp; 5 m&sup3;.</div>
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uPavim" onchange="calcUT()"><div><div class="ut-name">Trattamento pavimenti</div><div class="ut-note">Deceratura e inceratura, cristallizzazione marmo, ripristino gres opacizzato.</div></div></label>
+              <div class="ut-qty" id="qPavim">
+                <div class="mini-head"><label>Superficie</label><div class="mini-val" id="uPavimVal">1 <small>mq</small></div></div>
+                <input type="range" id="uPavimMq" min="20" max="1000" step="10" value="20" oninput="calcUT()">
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uMoquette" onchange="calcUT()"><div><div class="ut-name">Lavaggio moquette e tappezzerie</div><div class="ut-note">Iniezione-estrazione su moquette, divani e sedute. Asciugatura rapida.</div></div></label>
+              <div class="ut-qty" id="qMoquette">
+                <div class="mini-head"><label>Superficie</label><div class="mini-val" id="uMoquetteVal">1 <small>mq</small></div></div>
+                <input type="range" id="uMoquetteMq" min="10" max="500" step="10" value="10" oninput="calcUT()">
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uSanif" onchange="calcUT()"><div><div class="ut-name">Sanificazione ambienti</div><div class="ut-note">Trattamento con prodotti biocidi certificati. Rilascio di attestato di avvenuta sanificazione.</div></div></label>
+              <div class="ut-qty" id="qSanif">
+                <div class="mini-head"><label>Superficie</label><div class="mini-val" id="uSanifVal">1 <small>mq</small></div></div>
+                <input type="range" id="uSanifMq" min="20" max="1200" step="10" value="20" oninput="calcUT()">
+              </div>
+            </div>
+          </div>
+
+          <!-- B · PICCOLE MANUTENZIONI -->
+          <div class="ut-group">
+            <div class="ut-head"><i class="fas fa-paint-roller"></i><h4>Piccole manutenzioni</h4></div>
+            <div class="ut-desc">Lavorazioni edili leggere. La stima &egrave; indicativa: lo stato reale delle superfici si valuta in sopralluogo.</div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uImbianca" onchange="calcUT()"><div><div class="ut-name">Imbiancatura pareti e soffitti</div><div class="ut-note">Protezione ambienti, due mani di pittura traspirante, pulizia finale inclusa.</div></div></label>
+              <div class="ut-qty" id="qImbianca">
+                <div class="mini-head"><label>Superficie da tinteggiare</label><div class="mini-val" id="uImbiancaVal">1 <small>mq</small></div></div>
+                <input type="range" id="uImbiancaMq" min="20" max="1000" step="10" value="20" oninput="calcUT()">
+                <div class="finfo">&Egrave; la superficie delle pareti, non del pavimento: per una stanza di 20 mq si arriva a circa 55-60 mq di parete.</div>
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uStucco" onchange="calcUT()"><div><div class="ut-name">Stuccatura e rasatura</div><div class="ut-note">Chiusura di crepe, fori e imperfezioni, rasatura dove necessario prima della tinteggiatura.</div></div></label>
+              <div class="ut-qty" id="qStucco">
+                <div class="mini-head"><label>Superficie da stuccare</label><div class="mini-val" id="uStuccoVal">1 <small>mq</small></div></div>
+                <input type="range" id="uStuccoMq" min="5" max="500" step="5" value="5" oninput="calcUT()">
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uMobili" onchange="calcUT()"><div><div class="ut-name">Montaggio e smontaggio mobili</div><div class="ut-note">Armadi, scrivanie, scaffalature. Trasporto valutabile a parte.</div></div></label>
+              <div class="ut-qty" id="qMobili">
+                <div class="mini-head"><label>Numero di pezzi</label><div class="mini-val" id="uMobiliVal">1 <small>pezzi</small></div></div>
+                <input type="range" id="uMobiliN" min="1" max="40" step="1" value="1" oninput="calcUT()">
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uSilicone" onchange="calcUT()"><div><div class="ut-name">Rifacimento silicone bagni e cucine</div><div class="ut-note">Rimozione del silicone ammalorato, sanificazione della fuga e nuova sigillatura antimuffa.</div></div></label>
+              <div class="ut-qty" id="qSilicone">
+                <div class="mini-head"><label>Sviluppo lineare</label><div class="mini-val" id="uSiliconeVal">1 <small>m lineari</small></div></div>
+                <input type="range" id="uSiliconeMl" min="1" max="60" step="1" value="1" oninput="calcUT()">
+              </div>
+            </div>
+
+            <div class="ut-item">
+              <label class="ut-row"><input type="checkbox" id="uRipara" onchange="calcUT()"><div><div class="ut-name">Piccole riparazioni</div><div class="ut-note">Maniglie, mensole, tapparelle, zanzariere, sostituzione lampade e piccole sistemazioni.</div></div></label>
+              <div class="ut-qty" id="qRipara">
+                <div class="mini-head"><label>Numero di interventi</label><div class="mini-val" id="uRiparaVal">1 <small>interventi</small></div></div>
+                <input type="range" id="uRiparaN" min="1" max="20" step="1" value="1" oninput="calcUT()">
+              </div>
+            </div>
+          </div>
+
+          <!-- C · LAVORAZIONI SPECIALISTICHE -->
+          <div class="ut-group ut-spec">
+            <div class="ut-head"><i class="fas fa-helmet-safety"></i><h4>Lavorazioni specialistiche</h4></div>
+            <div class="ut-desc">Eseguite da artigiani abilitati con cui collaboriamo stabilmente: coordiniamo noi il lavoro e restiamo il tuo unico referente. Per queste lavorazioni <strong style="color:rgba(255,255,255,0.75)">il sopralluogo &egrave; sempre necessario</strong>: senza vedere l'impianto qualsiasi cifra sarebbe inventata.</div>
+
+            <div class="ut-item"><label class="ut-row"><input type="checkbox" id="uElettrico" onchange="calcUT()"><div><div class="ut-name">Impianto elettrico</div><div class="ut-note">Verifica, messa a norma, nuovi punti luce e prese, quadri elettrici.</div></div></label></div>
+            <div class="ut-item"><label class="ut-row"><input type="checkbox" id="uIdraulico" onchange="calcUT()"><div><div class="ut-name">Impianto idraulico</div><div class="ut-note">Perdite, sostituzione sanitari e rubinetteria, scarichi.</div></div></label></div>
+            <div class="ut-item"><label class="ut-row"><input type="checkbox" id="uTermico" onchange="calcUT()"><div><div class="ut-name">Impianto termico e caldaia</div><div class="ut-note">Manutenzione, verifica fumi, sostituzione radiatori e valvole termostatiche.</div></div></label></div>
+            <div class="ut-item"><label class="ut-row"><input type="checkbox" id="uMuratura" onchange="calcUT()"><div><div class="ut-name">Opere murarie e cartongesso</div><div class="ut-note">Tramezze, controsoffitti, nicchie, ripristini di intonaco.</div></div></label></div>
+            <div class="ut-item"><label class="ut-row"><input type="checkbox" id="uSerramenti" onchange="calcUT()"><div><div class="ut-name">Serramenti e infissi</div><div class="ut-note">Regolazione, sostituzione guarnizioni, riparazione tapparelle e persiane.</div></div></label></div>
+            <div class="ut-item"><label class="ut-row"><input type="checkbox" id="uPosa" onchange="calcUT()"><div><div class="ut-name">Posa pavimenti e rivestimenti</div><div class="ut-note">Piastrelle, gres, battiscopa, ripristino fughe.</div></div></label></div>
+          </div>
+
+          <!-- LOGISTICA -->
+          <div class="fgroup">
+            <label class="flab">Dove si trova l'immobile</label>
+            <input type="text" class="ftxt" id="uIndirizzo" placeholder="Via Roma 1, Trento" oninput="calcUT()">
+            <div class="fhalf" style="margin-top:12px">
+              <select id="uProv" onchange="calcUT()">
+                <option value="TN">Provincia di Trento</option>
+                <option value="BZ">Provincia di Bolzano</option>
+                <option value="ALTRA">Altra provincia</option>
+              </select>
+              <select id="uKm" onchange="calcUT()">
+                <option value="10">Entro 15 km</option>
+                <option value="25">16 &ndash; 35 km</option>
+                <option value="50">36 &ndash; 60 km</option>
+                <option value="80">61 &ndash; 80 km</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- NOTE LIBERE -->
+          <div class="fgroup ut-free">
+            <label class="flab">Descrivici il lavoro nel dettaglio</label>
+            <textarea id="uNote" placeholder="Pi&ugrave; ci racconti, pi&ugrave; la stima sar&agrave; precisa. Ad esempio: stato attuale degli ambienti, presenza di mobili o materiali da spostare, altezza dei soffitti, accessi difficili o assenza di ascensore, piano dell'immobile, disponibilit&agrave; di acqua e corrente, tempi entro cui deve essere concluso, eventuali lavorazioni gi&agrave; fatte da altri..." oninput="calcUT()"></textarea>
+            <div class="finfo">Se hai delle foto, potrai allegarle nella mail di risposta: ci aiutano moltissimo a quantificare il lavoro.</div>
+          </div>
+
+        </div>
+
+        <div class="calc-result">
+          <div class="result-card">
+            <div id="uEmpty" class="result-empty"><i class="fas fa-screwdriver-wrench"></i>Seleziona almeno una lavorazione per vedere la stima</div>
+
+            <div id="uContent" style="display:none">
+              <div class="est-badge"><i class="fas fa-circle-info"></i> Stima di base</div>
+              <div class="result-lbl">Importo indicativo</div>
+              <div class="price-big">&euro; <span id="uPrezzo">&mdash;</span></div>
+              <div class="result-unit">IVA esclusa &middot; intervento una tantum</div>
+              <div class="bk" id="uBk"></div>
+              <div class="extra-note" id="uSconto" style="display:none"></div>
+              <div class="margin-note" id="uMargine" style="display:none"></div>
+              <div class="warn-note" id="uSoprNote"></div>
+              <div class="note-box">La stima si basa sui dati che hai inserito e non costituisce offerta contrattuale. Il prezzo definitivo viene confermato dopo il sopralluogo, che &egrave; sempre gratuito.</div>
+              <button class="btn-p" style="width:100%" onclick="richiediUT()"><i class="fas fa-calendar-check"></i> Fissa il sopralluogo gratuito</button>
+            </div>
+
+            <div id="uSoloSopr" style="display:none">
+              <div class="est-badge" style="background:rgba(234,179,8,0.13)"><i class="fas fa-helmet-safety"></i> Sopralluogo necessario</div>
+              <div class="result-lbl" style="color:var(--navy)">Preventivo su misura</div>
+              <p style="font-size:0.875rem;color:var(--gray);line-height:1.7;margin:10px 0 16px" id="uSoprMsg"></p>
+              <div class="bk" id="uBkSopr"></div>
+              <button class="btn-p" style="width:100%" onclick="richiediUT()"><i class="fas fa-calendar-check"></i> Fissa il sopralluogo gratuito</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Come lavoriamo sugli interventi singoli</div>
+      <h2>Un solo referente,<br>anche per i lavori tecnici</h2>
+      <p class="sec-sub">Pulizie e piccole manutenzioni le eseguiamo direttamente. Per impianti, opere murarie e serramenti ci appoggiamo ad artigiani abilitati con cui lavoriamo stabilmente: sei tu a parlare con noi, e siamo noi a coordinare il cantiere e a risponderti del risultato.</p>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-num">01</div><h3>Stima subito, prezzo dopo il sopralluogo</h3><p>Il configuratore ti d&agrave; un ordine di grandezza reale. Il prezzo definitivo lo confermiamo solo dopo aver visto il lavoro, senza sorprese in fattura.</p></div>
+        <div class="why-card"><div class="why-num">02</div><h3>Pi&ugrave; lavorazioni, meno costi</h3><p>Combinando pi&ugrave; interventi nella stessa uscita si risparmia su trasferta e organizzazione: lo sconto &egrave; automatico.</p></div>
+        <div class="why-card"><div class="why-num">03</div><h3>Artigiani selezionati</h3><p>Collaboriamo solo con professionisti abilitati e assicurati. Coordiniamo noi tempi e qualit&agrave;, tu hai un unico interlocutore.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-off">
+    <div class="wrap"><div class="cta-strip"><h2>Raccontaci cosa ti serve</h2><p>Sopralluogo gratuito e preventivo entro 24 ore lavorative.</p><button class="btn-p" onclick="openModal('Intervento una tantum', null)"><i class="fas fa-paper-plane"></i> Richiedi un preventivo</button></div></div>
+  </section>
+</div>
+
 <!-- ══════════ SOON VIEW ══════════ -->
 <div class="view" id="view-soon">
   <div class="back-bar"><button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Torna alla home</button></div>
@@ -835,7 +1566,8 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
       <ul>
         <li><a onclick="goBU('pulizie')">Pulizie professionali</a></li>
         <li><a onclick="goBU('verde')">Gestione del verde</a></li>
-        <li><a onclick="goSoon('Manutenzioni Tecniche')">Manutenzioni tecniche</a></li>
+        <li><a onclick="showView('unatantum')">Interventi una tantum</a></li>
+        <li><a onclick="showView('manutenzioni')">Manutenzioni tecniche</a></li>
         <li><a onclick="goSoon('Portierato & Reception')">Portierato & reception</a></li>
       </ul>
     </div>
@@ -889,6 +1621,69 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
   </div>
 </div>
 
+<!-- MODAL RECUPERO OFFERTA (aperta dal link nella mail) -->
+<div class="overlay" id="overlayRec">
+  <div class="modal" style="max-width:520px">
+    <button class="modal-close" onclick="closeRec()"><i class="fas fa-times"></i></button>
+    <h3>Offerta <span id="recCod"></span></h3>
+    <p class="modal-sub">Riepilogo dell'ordine registrato. Da qui puoi riscaricare il PDF di conferma in qualsiasi momento.</p>
+    <div class="summary" id="recSummary"></div>
+    <button class="btn-submit" onclick="scaricaRec()"><i class="fas fa-file-pdf"></i> Scarica il PDF dell'offerta</button>
+    <button class="btn-s" style="width:100%; margin-top:10px; color:var(--navy); border-color:var(--gray-light); background:var(--off)" onclick="closeRec()"><i class="fas fa-arrow-right"></i> Vai al sito</button>
+  </div>
+</div>
+
+<!-- MODAL ORDINE ONLINE -->
+<div class="overlay" id="overlayOrd" onclick="closeOutsideOrd(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOrdine()"><i class="fas fa-times"></i></button>
+    <div id="ordWrap">
+      <h3>Conferma il tuo ordine</h3>
+      <p class="modal-sub">Compila i dati per formalizzare la richiesta d'ordine. Riceverai il PDF di conferma e verrai ricontattato per calendarizzare gli interventi.</p>
+      <div class="summary" id="ordSummary"></div>
+      <form id="ordForm" action="https://formspree.io/f/xjgzveeb" method="POST">
+        <input type="hidden" name="_subject" id="ordSubj" value="NUOVO ORDINE ONLINE - ADIGE Facility">
+        <input type="hidden" name="_cc" id="ordCc">
+        <input type="hidden" name="Codice_offerta" id="ordCod">
+        <input type="hidden" name="Canone_mensile" id="ordCanone">
+        <input type="hidden" name="Dettaglio_ordine" id="ordDett">
+        <input type="hidden" name="Link_offerta_PDF" id="ordLink">
+        <input type="hidden" name="Data_ora_invio" id="ordTs">
+        <input type="hidden" name="Tracciabilita" id="ordTrace">
+        <div style="position:absolute; left:-9999px; opacity:0" aria-hidden="true">
+          <label>Non compilare questo campo</label>
+          <input type="text" name="_gotcha" id="ordHp" tabindex="-1" autocomplete="off">
+        </div>
+        <p class="f-req">* Campi obbligatori</p>
+        <div class="fg-row">
+          <div class="fg"><label>Ragione sociale *</label><input type="text" name="Ragione_sociale" required placeholder="Rossi S.r.l."></div>
+          <div class="fg"><label>P.IVA / Codice Fiscale *</label><input type="text" name="Partita_IVA" id="ordPiva" required placeholder="IT01234567890"><div id="pivaErr" style="display:none; font-size:0.74rem; color:#b91c1c; margin-top:5px"></div></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label>Referente *</label><input type="text" name="Referente" required placeholder="Mario Rossi"></div>
+          <div class="fg"><label>Telefono *</label><input type="tel" name="Telefono" required placeholder="+39 3XX XXX XXXX"></div>
+        </div>
+        <div class="fg"><label>Email *</label><input type="email" name="Email" id="ordEmail" required placeholder="amministrazione@esempio.it"></div>
+        <div class="fg"><label>Indirizzo dell'immobile *</label><input type="text" name="Indirizzo" id="ordIndirizzo" required placeholder="Via Roma 1, Trento"></div>
+        <div class="fg"><label>Data di avvio desiderata</label><input type="date" name="Data_avvio"></div>
+        <div class="fg"><label>Note</label><textarea name="Note" placeholder="Orari preferiti, referente in loco, modalit&agrave; di accesso, esigenze particolari..."></textarea></div>
+        <label class="cbox-row ord-check" style="margin-bottom:16px; align-items:flex-start">
+          <input type="checkbox" name="Accettazione_condizioni" required value="Accettate" style="margin-top:2px">
+          <span>Dichiaro che i dati inseriti sono veritieri e di avere i poteri per impegnare l'azienda indicata. Accetto le condizioni: durata contrattuale indicata, canone mensile IVA esclusa in reverse charge, e prendo atto che questa &egrave; una <strong>proposta d'ordine</strong> che diventa contratto solo con la conferma scritta di ADIGE Facility S.r.l., entro 48 ore lavorative.</span>
+        </label>
+        <button type="submit" class="btn-submit" id="ordBtn"><i class="fas fa-file-signature"></i> Conferma ordine e scarica PDF</button>
+      </form>
+    </div>
+    <div class="success" id="ordSuccess">
+      <i class="fas fa-circle-check"></i>
+      <h4>Ordine ricevuto!</h4>
+      <p>Grazie per aver concluso l'ordine con noi. A breve verr&agrave; ricontattato per calendarizzare gli interventi.</p>
+      <p style="margin-top:12px">Codice offerta: <strong id="ordCodOut"></strong></p>
+      <br><p style="font-size:0.8rem;color:#aaa">Il PDF di conferma &egrave; stato scaricato sul tuo dispositivo. Copia della richiesta &egrave; stata inviata a adigefacility@gmail.com.</p>
+    </div>
+  </div>
+</div>
+
 <script>
 // ─── LOGO SVG ─────────────────────────────────────────────
 function logoSVG() {
@@ -923,48 +1718,1147 @@ function scrollToContact() {
   setTimeout(() => document.getElementById('homeContact').scrollIntoView({behavior:'smooth'}), 100);
 }
 
-// ─── CALCOLATORE PULIZIE ──────────────────────────────────
-const C_ORA=12.50, C_OVH=0.10, C_MARG=0.20, C_VAR=0.08;
-const C_TRASF={15:8,40:20,80:42,999:null};
-const C_USCITE={'2m':2,'1':4,'2':8,'3':12,'5':21};
-const C_ORE=mq=>mq<=100?1.5:mq<=250?2.5:mq<=500?4:mq<=1000?7:12;
-const r5=n=>Math.round(n/5)*5;
-let lastPulizie=null;
+// ═══════════════════════════════════════════════════════════════
+//  MOTORE PREVENTIVI PULIZIE — allineato al foglio "ADIGE Listino v1.2"
+//
+//  ▼▼ FONTE DI VERITÀ = il foglio Google (scheda "Parametri") ▼▼
+//  Quando cambiate un valore nel foglio, aggiornatelo anche qui sotto.
+//  A destra di ogni riga è indicata la cella corrispondente.
+//  Nessun'altra parte del sito va toccata.
+// ═══════════════════════════════════════════════════════════════
+const P = {
+  costoOrario:   10.50,   // Parametri!B5   costo orario CCNL Multiservizi
+  uscitaFurgone: 20,      // Parametri!B6   costo uscita furgone
+  costoKm:       0.35,    // Parametri!B7   costo al km (andata+ritorno)
+  overhead:      0.12,    // Parametri!B8   spese generali
+  interessi:     0.02,    // Parametri!B9   costo del debito
+  ricarico:      1.22,    // Parametri!B10  ricarico base → margine di listino ~18%
+                          //   (1.15 = solo prezzo-pavimento, azzera ogni sconto)
+  margineMin:    0.15,    // Parametri!B11  soglia semaforo margine (obiettivo)
+  margineFloor:  0.13,    // margine netto MINIMO garantito: gli sconti vengono
+                          //   automaticamente ridotti pur di non scendere sotto
+  maggPiano:     0.05,    // Parametri!B15  maggiorazione per piano oltre il primo
+  minutiBagno:   12,      // Parametri!B16  minuti per bagno per intervento
+  minutiScrivania: 2,     // ⚠ DA CONFERMARE — minuti per scrivania per intervento
+                          //   (spolvero + piano e tastiera con panno umido disinfettante)
+  maggAgente:    0.03,    // Parametri!B17  maggiorazione canale commerciale (non mostrata)
+  scontoCommMax: 0.07,    // Parametri!B18  sconto commerciale massimo
+  capSconti:     0.10,    // Parametri!B19  tetto sconti cumulati
+  sconto24:      0.02,    // Parametri!B20  sconto contratto 24 mesi
+  canoneMinimo:  45,      // ⚠ DA CONFERMARE — canone minimo di uscita
+  mqMin: 50, mqMax: 1500,
+  rese:  { ufficio:200, negozio:250, capannone:400, garage:450, condominio:150 },   // Parametri!B24:B28
+  pavim: { gres:0, marmo:0.10, parquet:0.15, moquette:0.20, resina:-0.10 },         // Parametri!B32:B36
+  freq: {                                                                            // Parametri!A40:C45
+    mensile:      { i:1,     e:0,    l:'Mensile' },
+    quindicinale: { i:2.17,  e:0,    l:'Quindicinale' },
+    f1:           { i:4.33,  e:0,    l:'1\u00d7 / settimana' },
+    f2:           { i:8.67,  e:0,    l:'2\u00d7 / settimana' },
+    f3:           { i:13,    e:0.05, l:'3\u00d7 / settimana' },
+    f5:           { i:21.67, e:0.05, l:'5\u00d7 / settimana' }
+  },
+  bundle: { 1:0, 2:0.05, 3:0.08 },                                                   // Parametri!B49:B51
 
-function calcPulizie() {
-  const mq=+document.getElementById('cMq').value;
-  document.getElementById('cMqVal').innerHTML=`${mq} <small>mq</small>`;
-  const fEl=document.querySelector('input[name="cFreq"]:checked');
-  const fKey=fEl.value;
-  const dist=+document.getElementById('cDist').value;
-  const tipEl=document.getElementById('cTipo'); const tipLabel=tipEl.options[tipEl.selectedIndex].text;
-  const fLabel=document.querySelector(`label[for="${fEl.id}"]`).textContent.trim();
-  const dEl=document.getElementById('cDist'); const dLabel=dEl.options[dEl.selectedIndex].text;
+  // ── GESTIONE DEL VERDE (abbinata alle pulizie) ──────────────────────────────
+  // Tariffe allineate al calcolatore della sezione Verde: se cambiate le une,
+  // cambiate anche le altre (più in basso: V_OVH, V_MARG, V_TRASF, V_MIN_INTERVENTO).
+  verde: {
+    sfalcioResa:  300,   // mq lavorati per "unità" di intervento
+    sfalcioCosto: 40,    // costo per unità
+    siepiResa:    12,    // metri lineari per unità
+    siepiCosto:   42,    // costo per unità
+    smaltimento:  30     // costo conferimento residui per intervento
+  },
+  // Codici commerciali validi: aggiungete qui i codici degli agenti attivi
+  agenti: ['AG-001','AG-002','AG-003'],
+  labelTipo: { ufficio:'Ufficio', negozio:'Negozio', capannone:'Capannone', garage:'Garage', condominio:'Condominio / Scale' },
+  labelPav:  { gres:'Gres / Ceramica', marmo:'Marmo / Pietra lucidata', parquet:'Parquet', moquette:'Moquette', resina:'Resina / Cemento industriale' }
+};
 
-  if(dist===999){ document.getElementById('cContent').style.display='none'; document.getElementById('cFar').style.display='block'; lastPulizie=null; return; }
-  document.getElementById('cFar').style.display='none'; document.getElementById('cContent').style.display='block';
+const eur = n => Math.round(n).toLocaleString('it-IT');
+const r5  = n => Math.round(n/5)*5;          // usato anche dal calcolatore verde
+let lastPulizie = null;
 
-  const uscite=C_USCITE[fKey], ore=C_ORE(mq);
-  const op=ore*uscite*C_ORA, tr=C_TRASF[dist]*uscite;
-  const base=(op+tr)*(1+C_OVH), centro=base/(1-C_MARG);
-  const min=r5(centro*(1-C_VAR)), max=r5(centro*(1+C_VAR));
+// ─── Motore di calcolo (identico alla catena del foglio) ───
+function motorePulizie(d){
+  const resa    = P.rese[d.tipo];
+  const f       = P.freq[d.freq];
+  const oreInt  = (d.mq / resa)
+                + (d.bagni * P.minutiBagno / 60)
+                + (d.scrivanie * P.minutiScrivania / 60);
+  const oreMese = oreInt * f.i;
 
-  document.getElementById('cMin').textContent=min.toLocaleString('it-IT');
-  document.getElementById('cMax').textContent=max.toLocaleString('it-IT');
-  document.getElementById('cBk').innerHTML=`
-    <div class="bk-row"><span>Superficie</span><strong>${mq} mq</strong></div>
-    <div class="bk-row"><span>Tipologia</span><strong>${tipLabel.split('/')[0].trim()}</strong></div>
-    <div class="bk-row"><span>Frequenza</span><strong>${fLabel}</strong></div>
-    <div class="bk-row"><span>Uscite mensili</span><strong>${uscite}</strong></div>
-    <div class="bk-row"><span>Zona</span><strong>${dLabel}</strong></div>`;
+  const cManodopera = oreMese * P.costoOrario;
+  const cFurgone    = f.i * P.uscitaFurgone;
+  const cKm         = d.km * P.costoKm * f.i;
+  const costoBase   = cManodopera + cFurgone + cKm;
 
-  const ex=[]; if(document.getElementById('cSanif').checked)ex.push('+ Sanificazione: €70–€100/mese');
-  if(document.getElementById('cMat').checked)ex.push('+ Materiali consumo: €30–€50/mese');
-  if(document.getElementById('cPost').checked)ex.push('+ Post-cantiere: su preventivo');
-  const exEl=document.getElementById('cExtra');
-  if(ex.length){exEl.style.display='block'; exEl.innerHTML='<strong>Servizi extra:</strong><br>'+ex.join('<br>');}else exEl.style.display='none';
+  const mPav   = P.pavim[d.pav];
+  const mPiani = (d.piani - 1) * P.maggPiano;
+  const costoRett = costoBase * (1 + mPav) * (1 + mPiani) * (1 - f.e);
+  const costoTot  = costoRett * (1 + P.overhead) * (1 + P.interessi);
 
-  lastPulizie={mq,tipLabel,fLabel,dLabel,uscite,min,max,extras:ex};
+  let canone = costoTot * P.ricarico;
+  canone = canone * (1 + (d.agente ? P.maggAgente : 0));   // +3% canale, incluso nel totale
+
+  const sBundle = P.bundle[Math.min(d.servizi, 3)] || 0;
+  const sComm   = d.agente ? Math.min(d.scontoComm, P.scontoCommMax) : 0;
+  const sTot    = Math.min(sBundle + sComm, P.capSconti);
+  const s24     = (d.durata === 24) ? P.sconto24 : 0;
+
+  const scontoTeorico = 1 - (1 - sTot) * (1 - s24);
+  let finale = canone * (1 - sTot) * (1 - s24);
+
+  // ── PAVIMENTO DI MARGINE ──────────────────────────────────────
+  // Il prezzo non scende mai sotto il livello che garantisce il
+  // margine netto minimo: se gli sconti lo sfondano, vengono ridotti.
+  const prezzoFloor = costoTot / (1 - P.margineFloor);
+  let scontoRidotto = false, sottoMinimo = false;
+  if (finale < prezzoFloor) { finale = prezzoFloor; scontoRidotto = true; }
+  if (finale < P.canoneMinimo) { finale = P.canoneMinimo; sottoMinimo = true; }
+
+  // arrotondo per eccesso quando una soglia ha morso, per non riaprire il buco
+  finale = (scontoRidotto || sottoMinimo) ? Math.ceil(finale) : Math.round(finale);
+
+  const scontoEffettivo = canone > 0 ? Math.max(0, 1 - finale / canone) : 0;
+  const margine = finale > 0 ? (finale - costoTot) / finale : 0;
+
+  return { oreInt, oreMese, interventi:f.i, freqLabel:f.l, costoTot,
+           mPav, mPiani, eff:f.e, sBundle, sComm, sTot, s24, finale, margine,
+           sottoMinimo, scontoRidotto, scontoTeorico, scontoEffettivo };
+}
+
+// ─── Motore pulizie UNA TANTUM (tariffe di mercato del modulo UT) ───
+function motorePuliziaUna(d){
+  const tar = { cantiere:4.50, affitto:3.20, straord:2.80, sanif:2.20 };
+  const lab = { cantiere:'Pulizia di fine cantiere', affitto:'Pulizia dopo affitto',
+                straord:'Pulizia straordinaria approfondita', sanif:'Sanificazione ambienti' };
+  const resa= { cantiere:12, affitto:18, straord:25, sanif:45 };
+
+  const mPav   = P.pavim[d.pav];
+  const mPiani = (d.piani - 1) * P.maggPiano;
+
+  let prezzo = tar[d.tipo] * d.mq * (1 + mPav) * (1 + mPiani);
+  prezzo += d.bagni * 15;        // ⚠ addendo per bagno su intervento singolo
+  prezzo += d.scrivanie * 2.50;  // ⚠ addendo per scrivania su intervento singolo
+
+  const ore   = d.mq / resa[d.tipo] + d.bagni * 0.25 + d.scrivanie * (P.minutiScrivania / 60);
+  const gg    = Math.max(1, Math.ceil(ore / 7));
+  const costoTot = (ore * P.costoOrario + 0.30 * d.mq + (P.uscitaFurgone + d.km * P.costoKm) * gg)
+                 * (1 + P.overhead) * (1 + P.interessi);
+
+  const sBundle = P.bundle[Math.min(d.servizi, 3)] || 0;
+  let finale = prezzo * (1 - sBundle);
+
+  const floor = costoTot / (1 - P.margineFloor);
+  let scontoRidotto = false, sottoMinimo = false;
+  if (finale < floor)          { finale = floor; scontoRidotto = true; }
+  if (finale < UT.minimoUscita){ finale = UT.minimoUscita; sottoMinimo = true; }
+  finale = (scontoRidotto || sottoMinimo) ? Math.ceil(finale) : Math.round(finale);
+
+  return { unaTantum:true, tipoLabel:lab[d.tipo], oreMese:ore, giornate:gg, interventi:1,
+           freqLabel:'Intervento singolo', costoTot, mPav, mPiani, eff:0,
+           sBundle, sComm:0, sTot:sBundle, s24:0, finale,
+           margine:(finale - costoTot) / finale, sottoMinimo, scontoRidotto,
+           scontoTeorico:sBundle, scontoEffettivo: prezzo > 0 ? Math.max(0, 1 - finale / prezzo) : 0 };
+}
+
+// ─── Motore verde abbinato (stessa logica del calcolatore Verde) ───
+function motoreVerde(d){
+  let costo = 0; const voci = [];
+  if (d.sfalcio > 0) {
+    const c = (d.sfalcio / P.verde.sfalcioResa) * P.verde.sfalcioCosto;
+    costo += c; voci.push('Sfalcio prato ' + d.sfalcio.toLocaleString('it-IT') + ' mq');
+  }
+  if (d.siepi > 0) {
+    const c = (d.siepi / P.verde.siepiResa) * P.verde.siepiCosto;
+    costo += c; voci.push('Potatura siepi ' + d.siepi + ' m lineari');
+  }
+  if (costo === 0) return null;
+  if (d.smaltimento) { costo += P.verde.smaltimento; voci.push('Smaltimento sfalci e potature'); }
+
+  const trasferta = V_TRASF[d.km] || V_TRASF[15];
+  const costoInt  = (costo + trasferta) * (1 + V_OVH);
+  let perInt = costoInt / (1 - V_MARG);
+  if (perInt < V_MIN_INTERVENTO) perInt = V_MIN_INTERVENTO;
+
+  const costoMese = costoInt * d.interventi;
+  let mensile = perInt * d.interventi * (1 - d.sconto);
+
+  // stesso pavimento di margine applicato alle pulizie
+  const floor = costoMese / (1 - P.margineFloor);
+  let ridotto = false;
+  if (mensile < floor) { mensile = floor; ridotto = true; }
+  mensile = ridotto ? Math.ceil(mensile) : Math.round(mensile);
+
+  return { mensile, costoMese, voci, interventi: d.interventi,
+           margine: (mensile - costoMese) / mensile, ridotto };
+}
+
+// ─── Fascia km → chiave trasferta del calcolatore verde ───
+function kmToTrasf(km){ return km <= 15 ? 15 : km <= 40 ? 40 : 80; }
+
+// ─── Lettura form + rendering ───
+function calcPulizie(){
+  const mq = +document.getElementById('cMq').value;
+  document.getElementById('cMqVal').innerHTML = mq.toLocaleString('it-IT') + ' <small>mq</small>';
+
+  const prov  = document.getElementById('cProv').value;
+  const km    = +document.getElementById('cKm').value;
+  const tipo  = document.getElementById('cTipo').value;
+  const pav   = document.getElementById('cPav').value;
+  const piani = Math.max(1, +document.getElementById('cPiani').value || 1);
+  const bagni = Math.max(0, +document.getElementById('cBagni').value || 0);
+  const freq  = document.querySelector('input[name="cFreq"]:checked').value;
+  const durata = +document.querySelector('input[name="cDur"]:checked').value;
+  const modo  = document.querySelector('input[name="cModo"]:checked').value;
+  const unaT  = (modo === 'una');
+
+  // campi visibili in base alla modalità
+  document.getElementById('grpFreq').style.display    = unaT ? 'none' : '';
+  document.getElementById('grpDurata').style.display  = unaT ? 'none' : '';
+  document.getElementById('grpTipoUna').style.display = unaT ? '' : 'none';
+  const indirizzo = document.getElementById('cIndirizzo').value.trim();
+
+  const cod    = document.getElementById('cAgente').value.trim().toUpperCase();
+  const agente = P.agenti.includes(cod) ? cod : null;
+  document.getElementById('cAgenteBox').style.display = agente ? 'block' : 'none';
+  const scontoComm = agente ? (+document.getElementById('cScontoComm').value) / 100 : 0;
+
+  // ── Scrivanie: pannello visibile solo per uffici ──
+  const isUfficio = (tipo === 'ufficio');
+  document.getElementById('panelScriv').classList.toggle('show', isUfficio);
+  const scrivOn = isUfficio && document.getElementById('cScrivOn').checked;
+  document.getElementById('scrivSlider').classList.toggle('disabled-slider', !scrivOn);
+  document.getElementById('scrivNote').style.display = scrivOn ? 'block' : 'none';
+  const nScriv = +document.getElementById('cScriv').value;
+  document.getElementById('cScrivVal').innerHTML = nScriv + ' <small>postazion' + (nScriv === 1 ? 'e' : 'i') + '</small>';
+  const scrivanie = scrivOn ? nScriv : 0;
+
+  // ── Verde abbinato ──
+  const verdeOn = document.getElementById('cBundleVerde').checked;
+  document.getElementById('panelVerde').classList.toggle('show', verdeOn);
+  const vSfOn = verdeOn && document.getElementById('cVSfalcioOn').checked;
+  const vSiOn = verdeOn && document.getElementById('cVSiepiOn').checked;
+  document.getElementById('vSfalcioSlider').classList.toggle('disabled-slider', !vSfOn);
+  document.getElementById('vSiepiSlider').classList.toggle('disabled-slider', !vSiOn);
+  const vSfMq = +document.getElementById('cVSfalcio').value;
+  const vSiMl = +document.getElementById('cVSiepi').value;
+  document.getElementById('cVSfalcioVal').innerHTML = vSfMq.toLocaleString('it-IT') + ' <small>mq</small>';
+  document.getElementById('cVSiepiVal').innerHTML = vSiMl + ' <small>m lineari</small>';
+
+  let servizi = 1;
+  if (verdeOn) servizi++;
+  if (document.getElementById('cBundleMan').checked) servizi++;
+
+  const boxPrezzo = document.getElementById('cContent');
+  const boxSopr   = document.getElementById('cSopr');
+
+  // Fuori provincia → sopralluogo obbligatorio
+  if (prov === 'ALTRA') {
+    boxPrezzo.style.display = 'none'; boxSopr.style.display = 'block';
+    document.getElementById('cSoprMsg').textContent =
+      "L'immobile si trova fuori dalle province di Trento e Bolzano: per queste zone valutiamo la logistica caso per caso e formuliamo il preventivo dopo un sopralluogo.";
+    lastPulizie = null; return;
+  }
+  boxPrezzo.style.display = 'block'; boxSopr.style.display = 'none';
+
+  // pannello manutenzioni del bundle
+  const man = document.getElementById('cBundleMan').checked ? leggiMan('pm') : null;
+  document.getElementById('panelManP').classList.toggle('show', document.getElementById('cBundleMan').checked);
+
+  const r = unaT
+    ? motorePuliziaUna({ mq, tipo: document.getElementById('cTipoUna').value, pav, piani, bagni, scrivanie, km, servizi })
+    : motorePulizie({ mq, tipo, pav, piani, bagni, scrivanie, freq, km, durata, agente, scontoComm, servizi });
+
+  // Verde abbinato: sconto uguale a quello delle pulizie
+  const vFreqEl = document.querySelector('input[name="cVFreq"]:checked');
+  const rv = (vSfOn || vSiOn) ? motoreVerde({
+    sfalcio: vSfOn ? vSfMq : 0,
+    siepi:   vSiOn ? vSiMl : 0,
+    smaltimento: document.getElementById('cVSmalt').checked,
+    interventi: +vFreqEl.value,
+    km: kmToTrasf(km),
+    sconto: Math.min(r.sTot + r.s24, P.capSconti)
+  }) : null;
+  const manImporto = (man && man.righe.length) ? Math.round(man.prezzo * (1 - (P.bundle[Math.min(servizi,3)] || 0))) : 0;
+  const totale = r.finale + (rv ? rv.mensile : 0);
+
+  document.getElementById('cPrezzo').textContent = eur(totale);
+  document.getElementById('cDurLbl').textContent = unaT
+    ? r.tipoLabel + (r.giornate > 1 ? ' \u00b7 ' + r.giornate + ' giornate' : '')
+    : durata + ' mesi';
+  document.getElementById('cPrezzoLbl').textContent = unaT
+    ? 'Importo intervento'
+    : (rv ? 'Canone mensile complessivo' : 'Canone mensile');
+
+  // Split pulizie / verde
+  const splitBox = document.getElementById('cSplit');
+  if (rv || manImporto) {
+    const per = unaT ? '' : ' al mese';
+    let h = '<div class="tot-row"><span>Pulizie professionali</span><strong>\u20ac ' + eur(r.finale) + per + '</strong></div>';
+    if (rv) h += '<div class="tot-row"><span>Gestione del verde &middot; ' + rv.interventi + '\u00d7 al mese</span><strong>\u20ac ' + eur(rv.mensile) + '</strong></div>';
+    if (rv && !unaT) h += '<div class="tot-row"><span><strong>Totale mensile</strong></span><strong>\u20ac ' + eur(totale) + '</strong></div>';
+    if (manImporto) h += '<div class="tot-row"><span>Manutenzioni &middot; una tantum</span><strong>\u20ac ' + eur(manImporto) + '</strong></div>';
+    splitBox.style.display = 'block'; splitBox.innerHTML = h;
+  } else splitBox.style.display = 'none';
+
+  // Nota scrivanie nel riquadro prezzo
+  const snOut = document.getElementById('cScrivNoteOut');
+  if (scrivanie > 0) {
+    snOut.style.display = 'block';
+    snOut.innerHTML = '<strong>Scrivanie:</strong> gli addetti non spostano gli oggetti presenti sulle postazioni. Lasciare le scrivanie sgombere consente una pulizia completa del piano di lavoro.';
+  } else snOut.style.display = 'none';
+
+  // Badge modalità commerciale
+  const flag = document.getElementById('cAgentFlag');
+  if (agente) { flag.style.display = 'inline-flex'; document.getElementById('cAgentCode').textContent = 'Modalit\u00e0 commerciale \u00b7 ' + agente; }
+  else flag.style.display = 'none';
+
+  // Riepilogo dati
+  const pct = v => (v >= 0 ? '+' : '\u2212') + Math.abs(Math.round(v * 100)) + '%';
+  let bk = '';
+  bk += '<div class="bk-row"><span>Superficie</span><strong>' + mq.toLocaleString('it-IT') + ' mq</strong></div>';
+  bk += '<div class="bk-row"><span>Tipologia</span><strong>' + P.labelTipo[tipo] + '</strong></div>';
+  bk += '<div class="bk-row"><span>Pavimentazione</span><strong>' + P.labelPav[pav] + (r.mPav ? ' (' + pct(r.mPav) + ')' : '') + '</strong></div>';
+  bk += '<div class="bk-row"><span>Piani serviti</span><strong>' + piani + (r.mPiani ? ' (' + pct(r.mPiani) + ')' : '') + '</strong></div>';
+  bk += '<div class="bk-row"><span>Bagni</span><strong>' + bagni + '</strong></div>';
+  if (scrivanie > 0) bk += '<div class="bk-row"><span>Scrivanie (spolvero e sanificazione)</span><strong>' + scrivanie + '</strong></div>';
+  if (unaT){
+    bk += '<div class="bk-row"><span>Tipo di intervento</span><strong>' + r.tipoLabel + '</strong></div>';
+    bk += '<div class="bk-row"><span>Tempo stimato</span><strong>' + r.oreMese.toFixed(1).replace('.', ',') + ' h</strong></div>';
+  } else {
+    bk += '<div class="bk-row"><span>Frequenza</span><strong>' + r.freqLabel + '</strong></div>';
+    bk += '<div class="bk-row"><span>Interventi al mese</span><strong>' + Math.round(r.interventi) + '</strong></div>';
+    bk += '<div class="bk-row"><span>Ore di servizio al mese</span><strong>' + r.oreMese.toFixed(1).replace('.', ',') + ' h</strong></div>';
+  }
+  if (man && man.attivo){
+    man.righe.forEach(x => { bk += '<div class="bk-row"><span>Manutenzione</span><strong>' + x[0] + '</strong></div>'; });
+    man.spec.forEach(x => { bk += '<div class="bk-row"><span>' + x.n + '</span><strong>su preventivo</strong></div>'; });
+  }
+  if (rv) rv.voci.forEach(v => { bk += '<div class="bk-row"><span>Verde</span><strong>' + v + '</strong></div>'; });
+  document.getElementById('cBk').innerHTML = bk;
+
+  // Sconti applicati (il +3% canale non viene mai mostrato)
+  const sc = [];
+  if (r.sBundle) sc.push('Multiservizio: \u2212' + Math.round(r.sBundle * 100) + '%');
+  if (r.sComm)   sc.push('Sconto commerciale: \u2212' + Math.round(r.sComm * 100) + '%');
+  if (r.sTot < (r.sBundle + r.sComm)) sc.push('(applicato il tetto massimo del ' + Math.round(P.capSconti * 100) + '%)');
+  if (r.s24)     sc.push('Contratto 24 mesi: \u2212' + Math.round(r.s24 * 100) + '%');
+  if (r.scontoRidotto && r.scontoTeorico > 0) {
+    sc.push('Sconto effettivamente applicato: \u2212' + (r.scontoEffettivo * 100).toFixed(1).replace('.', ',') + '%');
+  }
+  const scBox = document.getElementById('cSconti');
+  if (sc.length) { scBox.style.display = 'block'; scBox.innerHTML = '<strong>Sconti applicati:</strong><br>' + sc.join('<br>'); }
+  else scBox.style.display = 'none';
+
+  // Avviso quando il pavimento di margine ha ridotto lo sconto
+  const clipBox = document.getElementById('cClip');
+  if (r.scontoRidotto && r.scontoTeorico > 0.001) {
+    clipBox.style.display = 'block';
+    clipBox.textContent = agente
+      ? 'Sconto ridotto automaticamente: lo sconto richiesto (\u2212' + Math.round(r.scontoTeorico * 100) + '%) portava il margine sotto il ' + Math.round(P.margineFloor * 100) + '% minimo. Questo \u00e8 il prezzo pi\u00f9 basso praticabile su questa configurazione.'
+      : 'Su questa configurazione il canone \u00e8 gi\u00e0 al livello minimo praticabile: gli sconti applicabili sono limitati.';
+  } else clipBox.style.display = 'none';
+
+  // Semaforo margine: visibile SOLO in modalità commerciale (uso interno)
+  const mBox = document.getElementById('cMargine');
+  if (agente) {
+    const m = Math.round(r.margine * 100);
+    let cls = 'margin-ok', txt = 'Margine netto ' + m + '% \u00b7 sopra l\'obiettivo del ' + Math.round(P.margineMin * 100) + '%';
+    if (r.margine <= P.margineFloor + 0.001) { cls = 'margin-warn'; txt = 'Margine netto ' + m + '% \u00b7 sei sul pavimento minimo, non c\'\u00e8 pi\u00f9 spazio di trattativa'; }
+    else if (r.margine < P.margineMin)       { cls = 'margin-warn'; txt = 'Margine netto ' + m + '% \u00b7 sotto l\'obiettivo del ' + Math.round(P.margineMin * 100) + '%, spazio residuo limitato'; }
+    mBox.style.display = 'block'; mBox.className = 'margin-note ' + cls; mBox.textContent = txt;
+  } else mBox.style.display = 'none';
+
+  document.getElementById('cMinimo').style.display = r.sottoMinimo ? 'block' : 'none';
+
+  if (man && man.spec.length){
+    const sn = document.getElementById('cScrivNoteOut');
+    sn.style.display = 'block';
+    sn.innerHTML = '<strong>' + man.spec.map(x => x.n).join(', ') + ':</strong> quotate a parte dopo il sopralluogo del tecnico. Ci appoggiamo a un artigiano specializzato e coordiniamo noi tempi e consegna.';
+  }
+
+  lastPulizie = {
+    mq, tipo, pav, piani, bagni, scrivanie, durata, indirizzo, prov, km, agente, servizi,
+    tipoLabel: P.labelTipo[tipo], pavLabel: P.labelPav[pav],
+    freqLabel: r.freqLabel, interventi: Math.round(r.interventi),
+    oreMese: r.oreMese, sconti: sc, canone: r.finale,
+    verde: rv ? { voci: rv.voci, interventi: rv.interventi, canone: rv.mensile } : null,
+    man: (man && man.attivo) ? { righe: man.righe.map(x => x[0]), spec: man.spec, importo: manImporto } : null,
+    unaTantum: unaT, tipoUnaLabel: unaT ? r.tipoLabel : null,
+    totale: totale
+  };
+}
+
+// ─── Codice offerta tracciabile ───
+function nuovoCodiceOfferta(){
+  const anno = new Date().getFullYear();
+  const n = Math.floor(1000 + Math.random() * 9000);
+  return 'ADG-' + anno + '-' + n;
+}
+
+// ─── Testo riepilogo (usato da modale e PDF) ───
+function righeOfferta(p){
+  const r = [
+    ['Indirizzo immobile', p.indirizzo || 'da comunicare'],
+    ['Tipologia', p.tipoLabel],
+    ['Superficie', p.mq.toLocaleString('it-IT') + ' mq'],
+    ['Pavimentazione', p.pavLabel],
+    ['Piani serviti', String(p.piani)],
+    ['Bagni', String(p.bagni)]
+  ];
+  if (p.scrivanie > 0) r.push(['Scrivanie da spolverare', String(p.scrivanie)]);
+  if (p.unaTantum){
+    r.push(['Tipo di intervento', p.tipoUnaLabel]);
+    r.push(['Modalit\u00e0', 'Intervento una tantum']);
+  } else {
+    r.push(['Frequenza', p.freqLabel]);
+    r.push(['Interventi al mese', String(p.interventi)]);
+    r.push(['Durata contratto', p.durata + ' mesi']);
+  }
+  if (p.man){
+    p.man.righe.forEach(x => r.push(['Manutenzione', x]));
+    p.man.spec.forEach(x => r.push([x.n, x.note ? 'su preventivo \u2014 ' + x.note : 'su preventivo']));
+    if (p.man.importo) r.push(['Manutenzioni una tantum', '\u20ac ' + eur(p.man.importo)]);
+  }
+  if (p.verde) {
+    r.push(['Canone pulizie', '\u20ac ' + eur(p.canone) + ' (IVA esclusa)']);
+    p.verde.voci.forEach(v => r.push(['Verde', v]));
+    r.push(['Verde \u00b7 interventi al mese', String(p.verde.interventi)]);
+    r.push(['Canone verde', '\u20ac ' + eur(p.verde.canone) + ' (IVA ordinaria)']);
+    r.push(['CANONE MENSILE TOTALE', '\u20ac ' + eur(p.totale)]);
+  } else {
+    r.push(['Canone mensile', '\u20ac ' + eur(p.canone) + ' (IVA esclusa)']);
+  }
+  return r;
+}
+
+// ─── VALIDAZIONE P.IVA / CODICE FISCALE ───────────────────────
+// La P.IVA italiana ha una cifra di controllo: un numero inventato
+// a caso non la supera quasi mai. È il filtro più efficace contro
+// gli ordini falsi, e non disturba chi inserisce dati veri.
+function validaPivaCf(v){
+  const s = (v || '').toUpperCase().replace(/[\s.\-]/g, '').replace(/^IT/, '');
+  if (!s) return { ok:false, msg:'Inserisci la partita IVA o il codice fiscale.' };
+
+  if (/^\d{11}$/.test(s)) {
+    if (/^(\d)\1{10}$/.test(s)) return { ok:false, msg:'Questa partita IVA non risulta valida: ricontrolla le 11 cifre.' };
+    let tot = 0;
+    for (let i = 0; i < 10; i++){
+      let n = +s[i];
+      if (i % 2 === 1){ n *= 2; if (n > 9) n -= 9; }
+      tot += n;
+    }
+    const check = (10 - tot % 10) % 10;
+    return check === +s[10]
+      ? { ok:true }
+      : { ok:false, msg:'Questa partita IVA non risulta valida: ricontrolla le 11 cifre.' };
+  }
+  if (/^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$/.test(s)) return { ok:true };
+  return { ok:false, msg:'Formato non riconosciuto: 11 cifre per la P.IVA, 16 caratteri per il codice fiscale.' };
+}
+
+// tempo di compilazione: un ordine vero non si compila in 4 secondi
+const tempoApertura = Date.now();
+
+// ─── ORDINE ONLINE ───
+let codiceCorrente = null;
+
+function openOrdine(){
+  if (!lastPulizie) { openModal('Richiesta pulizie', null); return; }
+  const p = lastPulizie;
+  codiceCorrente = nuovoCodiceOfferta();
+
+  const righe = righeOfferta(p);
+  let html = '<strong>Riepilogo ordine \u00b7 ' + codiceCorrente + '</strong><br>';
+  html += righe.filter(r => !r[0].startsWith('CANONE')).map(r => r[0] + ': ' + r[1]).join('<br>');
+  if (p.sconti.length) html += '<br>' + p.sconti.join('<br>');
+  if (p.scrivanie > 0) html += '<br><em style="font-size:0.92em">Gli addetti non spostano gli oggetti presenti sulle scrivanie.</em>';
+  html += '<span class="s-price">\u20ac ' + eur(p.totale) + ' / mese</span>';
+  document.getElementById('ordSummary').innerHTML = html;
+
+  document.getElementById('ordCod').value = codiceCorrente;
+  document.getElementById('ordCanone').value = eur(p.totale) + ' EUR/mese (totale)';
+  document.getElementById('ordSubj').value = 'NUOVO ORDINE ' + codiceCorrente + ' - ADIGE Facility';
+  document.getElementById('ordIndirizzo').value = p.indirizzo || '';
+  document.getElementById('ordDett').value =
+    righeOfferta(p).map(r => r[0] + ': ' + r[1]).join(' | ') +
+    (p.sconti.length ? ' | Sconti: ' + p.sconti.join(', ') : '') +
+    (p.agente ? ' | Agente: ' + p.agente : ' | Canale: diretto online');
+
+  document.getElementById('ordWrap').style.display = 'block';
+  document.getElementById('ordSuccess').style.display = 'none';
+  document.getElementById('overlayOrd').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeOrdine(){ document.getElementById('overlayOrd').classList.remove('open'); document.body.style.overflow = ''; }
+function closeOutsideOrd(e){ if (e.target === document.getElementById('overlayOrd')) closeOrdine(); }
+
+// ─── PDF di conferma ordine ───
+function generaPDF(dati, offerta, codice){
+  try{
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    const p = offerta || lastPulizie;
+    const cod = codice || codiceCorrente;
+
+    // Intestazione
+    doc.setFillColor(28, 53, 87); doc.rect(0, 0, 210, 32, 'F');
+    doc.setTextColor(255); doc.setFont('helvetica', 'bold'); doc.setFontSize(18);
+    doc.text('ADIGE Facility S.r.l.', 15, 15);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    doc.text('Pulizia, verde e manutenzione \u2014 Trentino-Alto Adige', 15, 22);
+    doc.text('adigefacility@gmail.com', 15, 27);
+
+    doc.setTextColor(28, 53, 87); doc.setFont('helvetica', 'bold'); doc.setFontSize(14);
+    doc.text('PROPOSTA D\'ORDINE', 15, 46);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(90);
+    doc.text('Codice offerta: ' + cod, 15, 53);
+    doc.text('Data: ' + new Date().toLocaleDateString('it-IT'), 15, 59);
+
+    // Cliente
+    let y = 72;
+    doc.setTextColor(28, 53, 87); doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+    doc.text('Cliente', 15, y); y += 6;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(60);
+    [['Ragione sociale', dati.Ragione_sociale], ['P.IVA / C.F.', dati.Partita_IVA],
+     ['Referente', dati.Referente], ['Email', dati.Email], ['Telefono', dati.Telefono]]
+      .forEach(r => { doc.text(r[0] + ':', 15, y); doc.text(String(r[1] || '-'), 65, y); y += 6; });
+
+    // Servizio
+    y += 4;
+    doc.setTextColor(28, 53, 87); doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+    doc.text(p.verde ? 'Servizi: Pulizie professionali + Gestione del verde' : 'Servizio: Pulizie professionali', 15, y); y += 6;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(60);
+    righeOfferta(p).forEach(r => {
+      doc.setDrawColor(226, 237, 245); doc.line(15, y + 1.5, 195, y + 1.5);
+      doc.text(r[0], 15, y); doc.text(String(r[1]), 120, y); y += 7;
+    });
+    if (p.sconti.length) {
+      y += 2; doc.setFontSize(9);
+      p.sconti.forEach(s => { doc.text(s, 15, y); y += 5; });
+      doc.setFontSize(10);
+    }
+
+    // Totale
+    y += 4;
+    doc.setFillColor(244, 248, 252); doc.rect(15, y - 5, 180, 14, 'F');
+    doc.setTextColor(28, 53, 87); doc.setFont('helvetica', 'bold'); doc.setFontSize(12);
+    doc.text('CANONE MENSILE TOTALE', 20, y + 3);
+    doc.text('\u20ac ' + eur(p.totale != null ? p.totale : p.canone), 190, y + 3, { align: 'right' });
+    y += 20;
+
+    if (p.scrivanie > 0) {
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(90);
+      doc.text('Pulizia delle postazioni di lavoro', 15, y); y += 5;
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(120);
+      const ns = doc.splitTextToSize(
+        'Il servizio comprende la spolveratura della postazione e la sanificazione del piano di lavoro e della tastiera ' +
+        'con panno umido e detergente disinfettante. Gli addetti non spostano ne\' toccano gli oggetti presenti sulle scrivanie ' +
+        '(documenti, effetti personali, apparecchiature): si raccomanda di lasciare le postazioni il piu\' possibile sgombere ' +
+        'e in ordine, per consentire una pulizia completa della superficie.', 180);
+      doc.text(ns, 15, y); y += ns.length * 4 + 5;
+    }
+
+    // Note legali
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(120);
+    const note = doc.splitTextToSize(
+      'Reverse charge: sui servizi di pulizia su edifici tra soggetti passivi IVA l\'imposta e\' assolta dal committente ai sensi dell\'art. 17, comma 6, lett. a-ter, DPR 633/72. ' +
+      'Il presente documento costituisce proposta d\'ordine formulata dal cliente e non ancora un contratto: il rapporto si perfeziona solo con la conferma scritta di ADIGE Facility S.r.l., che sara\' inviata entro 48 ore lavorative previa verifica telefonica dei dati. ' +
+      'Il canone e\' calcolato sui dati dichiarati dal cliente; eventuali difformita\' rilevate all\'avvio del servizio possono comportare una revisione concordata del canone. ' +
+      'Durata contrattuale: ' + p.durata + ' mesi.' +
+      (p.verde ? ' I servizi di gestione del verde sono fatturati separatamente e soggetti a IVA con regime ordinario.' : ''), 180);
+    doc.text(note, 15, y); y += note.length * 4 + 6;
+
+    if (dati.Note) {
+      doc.setTextColor(60); doc.setFontSize(9);
+      doc.text('Note del cliente: ' + dati.Note, 15, y, { maxWidth: 180 });
+    }
+
+    doc.setFontSize(8); doc.setTextColor(150);
+    doc.text('ADIGE Facility S.r.l. \u2014 P.IVA in corso di registrazione \u2014 adigefacility@gmail.com', 15, 285);
+
+    doc.save('ADIGE_Conferma_Ordine_' + cod + '.pdf');
+    return true;
+  } catch(err){ console.error('PDF non generato:', err); return false; }
+}
+
+// ─── LINK OFFERTA ──────────────────────────────────────────────
+// L'intera offerta viene codificata dentro l'URL: aprendo il link
+// il PDF viene rigenerato identico, senza bisogno di alcun server.
+function codificaOfferta(obj){
+  const s = JSON.stringify(obj);
+  return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function decodificaOfferta(str){
+  let s = str.replace(/-/g,'+').replace(/_/g,'/');
+  while (s.length % 4) s += '=';
+  return JSON.parse(decodeURIComponent(escape(atob(s))));
+}
+function linkOfferta(dati){
+  const p = lastPulizie;
+  const payload = {
+    c: codiceCorrente,
+    d: { Ragione_sociale: dati.Ragione_sociale, Partita_IVA: dati.Partita_IVA,
+         Referente: dati.Referente, Email: dati.Email, Telefono: dati.Telefono,
+         Note: dati.Note || '' },
+    p: { indirizzo: dati.Indirizzo || p.indirizzo, tipoLabel: p.tipoLabel, mq: p.mq,
+         pavLabel: p.pavLabel, piani: p.piani, bagni: p.bagni, scrivanie: p.scrivanie,
+         freqLabel: p.freqLabel, interventi: p.interventi, durata: p.durata,
+         canone: p.canone, verde: p.verde, totale: p.totale, sconti: p.sconti }
+  };
+  const base = location.origin + location.pathname;
+  return base + '?off=' + codificaOfferta(payload);
+}
+
+// ─── Recupero offerta dal link ───
+let recDati = null, recOfferta = null, recCod = null;
+function apriRecupero(payload){
+  recCod = payload.c; recDati = payload.d; recOfferta = payload.p;
+  document.getElementById('recCod').textContent = recCod;
+  let html = righeOfferta(recOfferta).map(r => r[0] + ': ' + r[1]).join('<br>');
+  if (recOfferta.sconti && recOfferta.sconti.length) html += '<br>' + recOfferta.sconti.join('<br>');
+  html = '<strong>' + (recDati.Ragione_sociale || 'Cliente') + '</strong><br>' + html;
+  document.getElementById('recSummary').innerHTML = html;
+  document.getElementById('overlayRec').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeRec(){ document.getElementById('overlayRec').classList.remove('open'); document.body.style.overflow = ''; }
+function scaricaRec(){ generaPDF(recDati, recOfferta, recCod); }
+
+document.addEventListener('DOMContentLoaded', function(){
+  const off = new URLSearchParams(location.search).get('off');
+  if(!off) return;
+  try { apriRecupero(decodificaOfferta(off)); }
+  catch(err){ console.error('Offerta non leggibile:', err); }
+});
+
+// ─── Invio ordine ───
+document.addEventListener('DOMContentLoaded', function(){
+  const of = document.getElementById('ordForm');
+  if(!of) return;
+  of.addEventListener('submit', async function(e){
+    e.preventDefault();
+    // Honeypot: se compilato è un bot, esco in silenzio
+    if (document.getElementById('ordHp').value) return;
+
+    // Validazione P.IVA / Codice Fiscale
+    const errBox = document.getElementById('pivaErr');
+    const piva = document.getElementById('ordPiva').value;
+    const chk = validaPivaCf(piva);
+    if (!chk.ok){
+      errBox.style.display = 'block';
+      errBox.textContent = chk.msg;
+      document.getElementById('ordPiva').focus();
+      return;
+    }
+    errBox.style.display = 'none';
+
+    // Doppia conferma esplicita
+    if (!confirm('Stai inviando una proposta d\'ordine vincolante per la tua azienda.\n\nTi ricontatteremo al numero indicato per confermare.\n\nProcediamo?')) return;
+
+    const btn = document.getElementById('ordBtn');
+    btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
+    document.getElementById('ordTs').value = new Date().toLocaleString('it-IT') + ' (' + Intl.DateTimeFormat().resolvedOptions().timeZone + ')';
+    document.getElementById('ordTrace').value = 'UA: ' + navigator.userAgent + ' | Lingua: ' + navigator.language + ' | Schermo: ' + screen.width + 'x' + screen.height + ' | Compilazione: ' + Math.round((Date.now() - tempoApertura) / 1000) + 's';
+    const fd = new FormData(this);
+    const dati = Object.fromEntries(fd.entries());
+    document.getElementById('ordCc').value = dati.Email || '';
+    fd.set('_cc', dati.Email || '');
+    const url = linkOfferta(dati);
+    document.getElementById('ordLink').value = url;
+    fd.set('Link_offerta_PDF', url);
+    try{
+      const res = await fetch(this.action, { method:'POST', body: fd, headers:{ 'Accept':'application/json' } });
+      if(res.ok){
+        generaPDF(dati, lastPulizie, codiceCorrente);
+        document.getElementById('ordCodOut').textContent = codiceCorrente;
+        document.getElementById('ordWrap').style.display = 'none';
+        document.getElementById('ordSuccess').style.display = 'block';
+      } else {
+        btn.disabled = false; btn.innerHTML = '<i class="fas fa-file-signature"></i> Conferma ordine e scarica PDF';
+        alert('Errore nell\'invio. Riprova o scrivi a adigefacility@gmail.com');
+      }
+    }catch{
+      btn.disabled = false; btn.innerHTML = '<i class="fas fa-file-signature"></i> Conferma ordine e scarica PDF';
+      alert('Errore di rete. Riprova o scrivi a adigefacility@gmail.com');
+    }
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+//  MODULO MANUTENZIONI  (condiviso da 3 punti del sito)
+//
+//  Lo stesso pannello viene generato in tre posti — pagina Manutenzioni,
+//  bundle del calcolatore Pulizie, bundle del calcolatore Verde — con un
+//  prefisso diverso per gli id. Un solo listino, nessuna divergenza.
+//
+//  voci  = lavorazioni che eseguiamo noi, con prezzo
+//  spec  = lavorazioni via artigiano: nessun prezzo, campo note, sopralluogo
+// ═══════════════════════════════════════════════════════════════
+const MAN = {
+  tariffaOraria: 32,   // ⚠ DA CONFERMARE — tariffa oraria manutenzione programmata
+  oreMinime: 4,
+
+  voci: {
+    ikea: { n:'Installazione mobili e arredi', d:'Montaggio di mobili IKEA e affini, scrivanie, armadi, scaffalature.',
+            u:'pezzi', t:38, resa:1.2, mat:2,    min:1,  max:40,   step:1 },
+    imbianca: { n:'Imbiancatura pareti e soffitti', d:'Protezione ambienti, due mani di pittura traspirante, pulizia finale inclusa.',
+            u:'mq di parete', t:7.50, resa:9, mat:1.80, min:20, max:1000, step:10 },
+    cartongesso: { n:'Pareti e controsoffitti in cartongesso', d:'Tramezze, controsoffitti e nicchie. Struttura, lastre e stuccatura incluse.',
+            u:'mq', t:48, resa:2, mat:16,   min:5,  max:300,  step:5 },
+    demolizioni: { n:'Piccole demolizioni', d:'Rimozione di tramezze, rivestimenti e strutture leggere. Trasporto e smaltimento macerie inclusi.',
+            u:'mq', t:32, resa:2.5, mat:9,  min:2,  max:200,  step:2 }
+  },
+
+  spec: {
+    elettrico: { n:'Verifica impianto elettrico', d:'Controllo, messa a norma, nuovi punti luce e prese, quadri elettrici.',
+                 ph:'Descrivi cosa ti serve: quante prese o punti luce, presenza di salvavita, et\u00e0 dell\'impianto, problemi riscontrati, se serve la dichiarazione di conformit\u00e0...' },
+    idraulico: { n:'Manutenzioni idrauliche', d:'Perdite, sostituzione sanitari e rubinetteria, scarichi, caldaia e radiatori.',
+                 ph:'Descrivi cosa ti serve: tipo di problema, da quanto tempo, quali sanitari o tubazioni sono coinvolti, se l\'acqua \u00e8 gi\u00e0 stata chiusa...' }
+  },
+
+  // Testo che spiega il nostro ruolo sulle lavorazioni specialistiche
+  ponte: '<strong>Come funziona:</strong> per queste lavorazioni ci appoggiamo a un artigiano specializzato e facciamo da ponte tra lui e te. Coordiniamo noi il sopralluogo, i tempi e la qualit\u00e0 del lavoro, garantendo le date di consegna concordate. Tu resti con un solo referente e una sola fattura.'
+};
+
+// ─── Genera il pannello manutenzioni dentro un contenitore ───
+function renderMan(boxId, pfx, cb){
+  const box = document.getElementById(boxId);
+  if (!box || box.dataset.done) return;
+  let h = '';
+  for (const k in MAN.voci){
+    const v = MAN.voci[k];
+    h += '<div class="ut-item">'
+       +   '<label class="ut-row"><input type="checkbox" id="' + pfx + '_' + k + '" onchange="' + cb + '"><div>'
+       +     '<div class="ut-name">' + v.n + '</div><div class="ut-note">' + v.d + '</div></div></label>'
+       +   '<div class="ut-qty" id="' + pfx + 'q_' + k + '">'
+       +     '<div class="mini-head"><label>Quantit\u00e0</label><div class="mini-val" id="' + pfx + 'v_' + k + '">' + v.min + ' <small>' + v.u + '</small></div></div>'
+       +     '<input type="range" id="' + pfx + 'i_' + k + '" min="' + v.min + '" max="' + v.max + '" step="' + v.step + '" value="' + v.min + '" oninput="' + cb + '">'
+       +   '</div>'
+       + '</div>';
+  }
+  for (const k in MAN.spec){
+    const s = MAN.spec[k];
+    h += '<div class="ut-item">'
+       +   '<label class="ut-row"><input type="checkbox" id="' + pfx + '_' + k + '" onchange="' + cb + '"><div>'
+       +     '<div class="ut-name">' + s.n + '</div><div class="ut-note">' + s.d + '</div></div></label>'
+       +   '<div class="man-note-field" id="' + pfx + 'q_' + k + '">'
+       +     '<textarea id="' + pfx + 'n_' + k + '" placeholder="' + s.ph + '" oninput="' + cb + '"></textarea>'
+       +   '</div>'
+       + '</div>';
+  }
+  h += '<div class="man-bridge">' + MAN.ponte + '</div>';
+  box.innerHTML = h;
+  box.dataset.done = '1';
+}
+
+// ─── Legge il pannello e calcola ───
+function leggiMan(pfx){
+  let prezzo = 0, costo = 0, ore = 0;
+  const righe = [], spec = [];
+
+  for (const k in MAN.voci){
+    const v  = MAN.voci[k];
+    const cb = document.getElementById(pfx + '_' + k);
+    if (!cb) continue;
+    const q  = document.getElementById(pfx + 'q_' + k);
+    q.classList.toggle('show', cb.checked);
+    const qta = +document.getElementById(pfx + 'i_' + k).value;
+    document.getElementById(pfx + 'v_' + k).innerHTML = qta.toLocaleString('it-IT') + ' <small>' + v.u + '</small>';
+    if (!cb.checked) continue;
+    prezzo += v.t * qta;
+    ore    += qta / v.resa;
+    costo  += (qta / v.resa) * P.costoOrario + v.mat * qta;
+    righe.push([v.n + ' \u00b7 ' + qta.toLocaleString('it-IT') + ' ' + v.u, v.t * qta]);
+  }
+
+  for (const k in MAN.spec){
+    const cb = document.getElementById(pfx + '_' + k);
+    if (!cb) continue;
+    const q = document.getElementById(pfx + 'q_' + k);
+    q.classList.toggle('show', cb.checked);
+    if (!cb.checked) continue;
+    spec.push({ n: MAN.spec[k].n, note: document.getElementById(pfx + 'n_' + k).value.trim() });
+  }
+  return { prezzo, costo, ore, righe, spec, attivo: righe.length > 0 || spec.length > 0 };
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  INTERVENTI UNA TANTUM
+//
+//  Tariffe ancorate ai prezzi di mercato italiani 2026 e verificate
+//  contro il costo interno (resa + materiali) per non scendere sotto
+//  il pavimento di margine. Tutte ⚠ DA TARARE sui primi cantieri reali.
+//
+//    prezzo = tariffa unitaria x quantità        (riferimento di mercato)
+//    costo  = (quantità / resa) x costo orario + materiali   (verifica interna)
+//
+//  Riferimenti di mercato usati:
+//    fine cantiere    3,00 – 6,00 €/mq        imbiancatura   5,00 – 15,00 €/mq
+//    post-affitto     3,00 – 5,00 €/mq        stuccatura     5,00 –  8,00 €/mq
+//    sgombero        150 – 500 € a cantina    sanificazione  15 – 25 €/ora
+// ═══════════════════════════════════════════════════════════════
+const UT = {
+  minimoUscita: 100,      // ⚠ importo minimo per uscita dedicata
+  ricaricoArtigiano: 1.20, // ⚠ ricarico su preventivo artigiano (uso interno, mai mostrato)
+  sconto: { 1:0, 2:0.05, 3:0.08 },   // stessa scala del bundle canoni
+
+  // id checkbox : { nome, campo quantità, unità, tariffa, resa (unità/ora), materiali per unità }
+  voci: {
+    uCantiere: { n:'Pulizia di fine cantiere',            q:'uCantiereMq', u:'mq',        t:4.50, resa:12, mat:0.30 },
+    uAffitto:  { n:'Pulizia appartamento dopo affitto',   q:'uAffittoMq',  u:'mq',        t:3.20, resa:18, mat:0.25 },
+    uStraord:  { n:'Pulizia straordinaria approfondita',  q:'uStraordMq',  u:'mq',        t:2.80, resa:25, mat:0.20 },
+    uVetri:    { n:'Pulizia vetri e vetrine',             q:'uVetriN',     u:'vetri',     t:4.00, resa:7,  mat:0.15 },
+    uSgombero: { n:'Sgombero garage, cantina o soffitta', q:'uSgomberoMc', u:'m\u00b3',  t:42,   resa:2.5,mat:14   },
+    uPavim:    { n:'Trattamento pavimenti',               q:'uPavimMq',    u:'mq',        t:5.50, resa:15, mat:0.80 },
+    uMoquette: { n:'Lavaggio moquette e tappezzerie',     q:'uMoquetteMq', u:'mq',        t:3.50, resa:28, mat:0.35 },
+    uSanif:    { n:'Sanificazione ambienti',              q:'uSanifMq',    u:'mq',        t:2.20, resa:45, mat:0.30 },
+    uImbianca: { n:'Imbiancatura pareti e soffitti',      q:'uImbiancaMq', u:'mq',        t:7.50, resa:9,  mat:1.80 },
+    uStucco:   { n:'Stuccatura e rasatura',               q:'uStuccoMq',   u:'mq',        t:6.00, resa:7,  mat:1.20 },
+    uMobili:   { n:'Montaggio e smontaggio mobili',       q:'uMobiliN',    u:'pezzi',     t:38,   resa:1.2,mat:2    },
+    uSilicone: { n:'Rifacimento silicone',                q:'uSiliconeMl', u:'m lineari', t:13,   resa:3,  mat:3    },
+    uRipara:   { n:'Piccole riparazioni',                 q:'uRiparaN',    u:'interventi',t:45,   resa:1.1,mat:5    }
+  },
+
+  // Lavorazioni via artigiano: nessun prezzo, sopralluogo obbligatorio
+  spec: {
+    uElettrico:  'Impianto elettrico',
+    uIdraulico:  'Impianto idraulico',
+    uTermico:    'Impianto termico e caldaia',
+    uMuratura:   'Opere murarie e cartongesso',
+    uSerramenti: 'Serramenti e infissi',
+    uPosa:       'Posa pavimenti e rivestimenti'
+  }
+};
+
+let lastUT = null;
+
+function calcUT(){
+  const km   = +document.getElementById('uKm').value;
+  const prov = document.getElementById('uProv').value;
+  const note = document.getElementById('uNote').value.trim();
+  const indirizzo = document.getElementById('uIndirizzo').value.trim();
+
+  let prezzo = 0, costo = 0, ore = 0;
+  const righe = [], nomi = [];
+
+  for (const id in UT.voci){
+    const v  = UT.voci[id];
+    const cb = document.getElementById(id);
+    const box = document.getElementById('q' + id.slice(1));
+    if (box) box.classList.toggle('show', cb.checked);
+
+    const inp = document.getElementById(v.q);
+    const qta = inp ? +inp.value : 0;
+
+    // etichetta viva sotto lo slider
+    const lab = document.getElementById(v.q.replace(/(Mq|Mc|Ml|N)$/, 'Val'));
+    if (lab) lab.innerHTML = qta.toLocaleString('it-IT') + ' <small>' + v.u + '</small>';
+
+    if (!cb.checked || qta <= 0) continue;
+
+    const p = v.t * qta;
+    const h = qta / v.resa;
+    prezzo += p;
+    ore    += h;
+    costo  += h * P.costoOrario + v.mat * qta;
+    righe.push([v.n + ' \u00b7 ' + qta.toLocaleString('it-IT') + ' ' + v.u, p]);
+    nomi.push(v.n);
+  }
+
+  // Lavorazioni specialistiche selezionate
+  const specSel = [];
+  for (const id in UT.spec) if (document.getElementById(id).checked) specSel.push(UT.spec[id]);
+
+  const empty   = document.getElementById('uEmpty');
+  const content = document.getElementById('uContent');
+  const solo    = document.getElementById('uSoloSopr');
+
+  if (righe.length === 0 && specSel.length === 0){
+    empty.style.display = 'block'; content.style.display = 'none'; solo.style.display = 'none';
+    lastUT = null; return;
+  }
+  empty.style.display = 'none';
+
+  // Fuori provincia oppure solo lavorazioni specialistiche → nessun prezzo
+  const fuori = (prov === 'ALTRA');
+  if (righe.length === 0 || fuori){
+    content.style.display = 'none'; solo.style.display = 'block';
+    document.getElementById('uSoprMsg').textContent = fuori
+      ? "L'immobile si trova fuori dalle province di Trento e Bolzano: valutiamo la logistica caso per caso e formuliamo il preventivo dopo un sopralluogo."
+      : 'Hai selezionato lavorazioni che richiedono la valutazione di un tecnico. Non ti diamo una cifra a caso: veniamo a vedere il lavoro e ti mandiamo un preventivo dettagliato entro 24 ore.';
+    let b = righe.map(r => '<div class="bk-row"><span>' + r[0] + '</span><strong></strong></div>').join('');
+    b += specSel.map(s => '<div class="bk-row"><span>' + s + '</span><strong>su preventivo</strong></div>').join('');
+    document.getElementById('uBkSopr').innerHTML = b;
+    lastUT = { righe: righe.map(r => r[0]), spec: specSel, note, indirizzo, prov, totale: null };
+    return;
+  }
+  solo.style.display = 'none'; content.style.display = 'block';
+
+  // Trasferta e costi indiretti
+  const trasferta = P.uscitaFurgone + km * P.costoKm;
+  const giornate  = Math.max(1, Math.ceil(ore / 7));
+  const costoTot  = (costo + trasferta * giornate) * (1 + P.overhead) * (1 + P.interessi);
+
+  // Sconto multi-lavorazione
+  const nServ  = Math.min(righe.length, 3);
+  const scTeor = UT.sconto[nServ] || 0;
+  let finale = prezzo * (1 - scTeor);
+
+  // stesse guardie dei canoni
+  const floor = costoTot / (1 - P.margineFloor);
+  let ridotto = false, minimo = false;
+  if (finale < floor)          { finale = floor; ridotto = true; }
+  if (finale < UT.minimoUscita){ finale = UT.minimoUscita; minimo = true; }
+  finale = (ridotto || minimo) ? Math.ceil(finale) : Math.round(finale);
+
+  const scReale = prezzo > 0 ? Math.max(0, 1 - finale / prezzo) : 0;
+  const margine = (finale - costoTot) / finale;
+
+  document.getElementById('uPrezzo').textContent = eur(finale);
+
+  let bk = righe.map(r => '<div class="bk-row"><span>' + r[0] + '</span><strong>\u20ac ' + eur(r[1]) + '</strong></div>').join('');
+  bk += '<div class="bk-row"><span>Tempo stimato di lavoro</span><strong>' + ore.toFixed(1).replace('.', ',') + ' h' + (giornate > 1 ? ' \u00b7 ' + giornate + ' giornate' : '') + '</strong></div>';
+  specSel.forEach(s => { bk += '<div class="bk-row"><span>' + s + '</span><strong>su preventivo</strong></div>'; });
+  document.getElementById('uBk').innerHTML = bk;
+
+  const scBox = document.getElementById('uSconto');
+  if (scTeor > 0){
+    scBox.style.display = 'block';
+    scBox.innerHTML = '<strong>Sconto pi\u00f9 lavorazioni:</strong><br>' + righe.length + ' interventi nella stessa uscita: \u2212' + Math.round(scTeor * 100) + '%' +
+      (ridotto ? '<br>Applicato: \u2212' + (scReale * 100).toFixed(1).replace('.', ',') + '% (limite di margine)' : '');
+  } else scBox.style.display = 'none';
+
+  // Semaforo margine solo per uso interno
+  const mBox = document.getElementById('uMargine');
+  const codAg = document.getElementById('cAgente') ? document.getElementById('cAgente').value.trim().toUpperCase() : '';
+  if (P.agenti.includes(codAg)){
+    const m = Math.round(margine * 100);
+    mBox.style.display = 'block';
+    mBox.className = 'margin-note ' + (margine >= P.margineMin ? 'margin-ok' : margine <= P.margineFloor + 0.001 ? 'margin-warn' : 'margin-warn');
+    mBox.textContent = 'Margine stimato ' + m + '% \u00b7 costo interno \u20ac ' + eur(costoTot) + ' \u00b7 ' + ore.toFixed(1).replace('.', ',') + ' h';
+  } else mBox.style.display = 'none';
+
+  // Nota sopralluogo: tono diverso se ci sono lavorazioni tecniche
+  const sn = document.getElementById('uSoprNote');
+  if (specSel.length){
+    sn.innerHTML = '<strong>Attenzione:</strong> l\'importo sopra copre solo pulizie e piccole manutenzioni. Le lavorazioni specialistiche selezionate (' + specSel.join(', ') + ') vengono quotate a parte dopo il sopralluogo del tecnico.';
+  } else if (minimo){
+    sn.innerHTML = '<strong>Importo minimo di uscita.</strong> Per lavori di piccola entit\u00e0 si applica la tariffa minima di \u20ac ' + UT.minimoUscita + ', che copre trasferta e organizzazione del cantiere. Aggiungendo altre lavorazioni il rapporto migliora sensibilmente.';
+  } else {
+    sn.innerHTML = '<strong>Questa \u00e8 una stima di base.</strong> Per finalizzare il preventivo fissiamo un sopralluogo: lo stato reale delle superfici, gli accessi e gli ingombri possono cambiare i tempi di lavoro. Il sopralluogo \u00e8 gratuito e senza impegno.';
+  }
+
+  lastUT = { righe: righe.map(r => r[0]), spec: specSel, ore, giornate, note, indirizzo, prov, totale: finale };
+}
+
+// ─── Richiesta sopralluogo dal configuratore una tantum ───
+function richiediUT(){
+  if (!lastUT){ openModal('Intervento una tantum', null); return; }
+  const u = lastUT;
+  let det = '<strong>Intervento una tantum \u00b7 lavorazioni richieste:</strong><br>' + u.righe.join('<br>');
+  if (u.spec.length) det += '<br><strong>Da quotare dopo sopralluogo tecnico:</strong><br>' + u.spec.join('<br>');
+  if (u.indirizzo)   det += '<br>Indirizzo: ' + u.indirizzo;
+  if (u.ore)         det += '<br>Tempo stimato: ' + u.ore.toFixed(1).replace('.', ',') + ' h';
+  if (u.note)        det += '<br><strong>Note del cliente:</strong><br>' + u.note.replace(/</g, '&lt;').replace(/\n/g, '<br>');
+  det += u.totale
+    ? '<span class="s-price">Stima di base: \u20ac ' + eur(u.totale) + ' (IVA esclusa)</span>'
+    : '<span class="s-price">Preventivo dopo sopralluogo</span>';
+  openModal('Intervento una tantum', det);
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  CALCOLATORE MANUTENZIONI (pagina Manutenzioni Tecniche)
+// ═══════════════════════════════════════════════════════════════
+let lastMan = null;
+
+function calcMan(){
+  const modo = document.querySelector('input[name="mModo"]:checked').value;
+  const ric  = (modo === 'ric');
+  document.getElementById('mBlocUna').style.display = ric ? 'none' : '';
+  document.getElementById('mBlocRic').style.display = ric ? '' : 'none';
+
+  const prov = document.getElementById('mProv').value;
+  const km   = +document.getElementById('mKm').value;
+  const note = document.getElementById('mNote').value.trim();
+  const indirizzo = document.getElementById('mIndirizzo').value.trim();
+
+  // bundle
+  const addPul = document.getElementById('mAddPul').checked;
+  const addVer = document.getElementById('mAddVer').checked;
+  document.getElementById('mPanelPul').classList.toggle('show', addPul);
+  document.getElementById('mPanelVer').classList.toggle('show', addVer);
+  let nServ = 1; if (addPul) nServ++; if (addVer) nServ++;
+  const scB = P.bundle[Math.min(nServ, 3)] || 0;
+
+  const pMq = +document.getElementById('mPulMq').value;
+  document.getElementById('mPulMqVal').innerHTML = pMq.toLocaleString('it-IT') + ' <small>mq</small>';
+  const vMq = +document.getElementById('mVerMq').value;
+  const vMl = +document.getElementById('mVerMl').value;
+  document.getElementById('mVerMqVal').innerHTML = vMq.toLocaleString('it-IT') + ' <small>mq</small>';
+  document.getElementById('mVerMlVal').innerHTML = vMl + ' <small>m lineari</small>';
+
+  const empty = document.getElementById('mEmpty');
+  const cont  = document.getElementById('mContent');
+  const solo  = document.getElementById('mSoloSopr');
+
+  // ── modalità RICORRENTE ──
+  if (ric){
+    const oreMese = +document.querySelector('input[name="mOre"]:checked').value;
+    const nImm = +document.getElementById('mImm').value;
+    document.getElementById('mImmVal').innerHTML = nImm + ' <small>immobil' + (nImm === 1 ? 'e' : 'i') + '</small>';
+
+    if (prov === 'ALTRA'){ mostraSoloSopr([], [], true); lastMan = { ric:true, note, indirizzo, totale:null }; return; }
+
+    const uscite = Math.max(1, Math.ceil(oreMese / 4)) * nImm;
+    const costoTot = (oreMese * nImm * P.costoOrario + (P.uscitaFurgone + km * P.costoKm) * uscite)
+                   * (1 + P.overhead) * (1 + P.interessi);
+    let canone = oreMese * nImm * MAN.tariffaOraria + (P.uscitaFurgone + km * P.costoKm) * uscite * 0.5;
+    canone = canone * (1 - scB);
+    const floor = costoTot / (1 - P.margineFloor);
+    let clip = false;
+    if (canone < floor){ canone = floor; clip = true; }
+    canone = clip ? Math.ceil(canone) : Math.round(canone);
+
+    const ex = extraServizi(addPul, addVer, pMq, vMq, vMl, km, nServ);
+    const tot = canone + ex.tot;
+
+    empty.style.display = 'none'; solo.style.display = 'none'; cont.style.display = 'block';
+    document.getElementById('mBadge').textContent = 'Manutenzione programmata';
+    document.getElementById('mLbl').textContent = ex.tot ? 'Canone mensile complessivo' : 'Canone mensile';
+    document.getElementById('mPrezzo').textContent = eur(tot);
+    document.getElementById('mUnit').textContent = 'IVA esclusa \u00b7 ' + (oreMese * nImm) + ' ore incluse al mese';
+
+    let bk = '<div class="bk-row"><span>Ore incluse</span><strong>' + oreMese + ' h al mese' + (nImm > 1 ? ' per immobile' : '') + '</strong></div>';
+    bk += '<div class="bk-row"><span>Immobili presidiati</span><strong>' + nImm + '</strong></div>';
+    bk += '<div class="bk-row"><span>Ore totali</span><strong>' + (oreMese * nImm) + ' h al mese</strong></div>';
+    document.getElementById('mBk').innerHTML = bk;
+    renderSplit('mSplit', [['Manutenzione programmata', canone]].concat(ex.righe), ex.tot ? tot : null);
+    mostraSconto('mSconto', scB, nServ);
+    document.getElementById('mSoprNote').innerHTML = '<strong>Materiali e ricambi esclusi:</strong> il canone copre la manodopera e le uscite programmate. I materiali vengono fatturati a consumo, sempre con preventivo preventivo approvato da te. Le ore non utilizzate si accumulano nel trimestre.';
+
+    lastMan = { ric:true, oreMese, nImm, note, indirizzo, canone, extra:ex.righe, totale:tot, spec:[], righe:[] };
+    return;
+  }
+
+  // ── modalità UNA TANTUM ──
+  const m = leggiMan('mm');
+  if (!m.attivo && !addPul && !addVer){
+    empty.style.display = 'block'; cont.style.display = 'none'; solo.style.display = 'none';
+    lastMan = null; return;
+  }
+  empty.style.display = 'none';
+
+  if (prov === 'ALTRA' || (m.righe.length === 0 && m.spec.length > 0 && !addPul && !addVer)){
+    mostraSoloSopr(m.righe, m.spec, prov === 'ALTRA');
+    lastMan = { ric:false, righe:m.righe.map(x => x[0]), spec:m.spec, note, indirizzo, totale:null };
+    return;
+  }
+  solo.style.display = 'none'; cont.style.display = 'block';
+
+  const gg = Math.max(1, Math.ceil(m.ore / 7));
+  const costoTot = (m.costo + (P.uscitaFurgone + km * P.costoKm) * gg) * (1 + P.overhead) * (1 + P.interessi);
+  let importo = m.prezzo * (1 - scB);
+  const floor = costoTot / (1 - P.margineFloor);
+  let clip = false, minimo = false;
+  if (m.righe.length){
+    if (importo < floor){ importo = floor; clip = true; }
+    if (importo < UT.minimoUscita){ importo = UT.minimoUscita; minimo = true; }
+  }
+  importo = (clip || minimo) ? Math.ceil(importo) : Math.round(importo);
+
+  const ex = extraServizi(addPul, addVer, pMq, vMq, vMl, km, nServ);
+
+  document.getElementById('mBadge').textContent = 'Stima di base';
+  document.getElementById('mLbl').textContent = 'Importo indicativo';
+  document.getElementById('mPrezzo').textContent = eur(importo);
+  document.getElementById('mUnit').textContent = 'IVA esclusa \u00b7 intervento una tantum'
+    + (m.ore ? ' \u00b7 ' + m.ore.toFixed(1).replace('.', ',') + ' h stimate' : '');
+
+  let bk = m.righe.map(x => '<div class="bk-row"><span>' + x[0] + '</span><strong>\u20ac ' + eur(x[1]) + '</strong></div>').join('');
+  m.spec.forEach(s => { bk += '<div class="bk-row"><span>' + s.n + '</span><strong>su preventivo</strong></div>'; });
+  document.getElementById('mBk').innerHTML = bk || '<div class="bk-row"><span>Nessuna manutenzione selezionata</span><strong></strong></div>';
+
+  renderSplit('mSplit', ex.righe.length ? [['Manutenzioni una tantum', importo]].concat(ex.righe) : [], null);
+  mostraSconto('mSconto', scB, nServ);
+
+  const sn = document.getElementById('mSoprNote');
+  if (m.spec.length){
+    sn.innerHTML = '<strong>' + m.spec.map(s => s.n).join(', ') + ':</strong> non incluse nell\'importo sopra. Ci appoggiamo a un artigiano specializzato: facciamo da ponte tra lui e te, coordinando sopralluogo, tempi e consegna. Ricevi un preventivo dedicato entro 24 ore dal sopralluogo.';
+  } else if (minimo){
+    sn.innerHTML = '<strong>Importo minimo di uscita.</strong> Per lavori di piccola entit\u00e0 si applica la tariffa minima di \u20ac ' + UT.minimoUscita + ', che copre trasferta e organizzazione del cantiere.';
+  } else {
+    sn.innerHTML = '<strong>Questa \u00e8 una stima di base.</strong> Per finalizzare il preventivo fissiamo un sopralluogo: lo stato reale delle superfici e degli accessi pu\u00f2 cambiare i tempi di lavoro. Il sopralluogo \u00e8 gratuito e senza impegno.';
+  }
+
+  lastMan = { ric:false, righe:m.righe.map(x => x[0]), spec:m.spec, ore:m.ore, note, indirizzo,
+              importo, extra:ex.righe, totale:importo + ex.tot };
+}
+
+// ─── Servizi abbinati (pulizie / verde) ───
+function extraServizi(addPul, addVer, pMq, vMq, vMl, km, nServ){
+  const righe = []; let tot = 0;
+  if (addPul){
+    const rp = motorePulizie({ mq:pMq, tipo:document.getElementById('mPulTipo').value, pav:'gres',
+      piani:1, bagni:1, scrivanie:0, freq:document.querySelector('input[name="mPulFreq"]:checked').value,
+      km, durata:12, agente:null, scontoComm:0, servizi:nServ });
+    righe.push(['Pulizie professionali \u00b7 ' + rp.freqLabel, rp.finale]); tot += rp.finale;
+  }
+  if (addVer && (vMq > 0 || vMl > 0)){
+    const rv = motoreVerde({ sfalcio:vMq, siepi:vMl, smaltimento:true,
+      interventi:+document.querySelector('input[name="mVerFreq"]:checked').value,
+      km:kmToTrasf(km), sconto:P.bundle[Math.min(nServ,3)] || 0 });
+    if (rv){ righe.push(['Gestione del verde \u00b7 ' + rv.interventi + '\u00d7 al mese', rv.mensile]); tot += rv.mensile; }
+  }
+  return { righe, tot };
+}
+
+function renderSplit(id, righe, totale){
+  const box = document.getElementById(id);
+  if (!righe.length){ box.style.display = 'none'; return; }
+  let h = righe.map(r => '<div class="tot-row"><span>' + r[0] + '</span><strong>\u20ac ' + eur(r[1]) + '</strong></div>').join('');
+  if (totale) h += '<div class="tot-row"><span><strong>Totale mensile</strong></span><strong>\u20ac ' + eur(totale) + '</strong></div>';
+  box.style.display = 'block'; box.innerHTML = h;
+}
+
+function mostraSconto(id, sc, n){
+  const b = document.getElementById(id);
+  if (sc > 0){ b.style.display = 'block'; b.innerHTML = '<strong>Sconto multiservizio:</strong><br>' + n + ' servizi attivi: \u2212' + Math.round(sc * 100) + '%'; }
+  else b.style.display = 'none';
+}
+
+function mostraSoloSopr(righe, spec, fuori){
+  document.getElementById('mContent').style.display = 'none';
+  document.getElementById('mEmpty').style.display = 'none';
+  document.getElementById('mSoloSopr').style.display = 'block';
+  document.getElementById('mSoprMsg').textContent = fuori
+    ? "L'immobile si trova fuori dalle province di Trento e Bolzano: valutiamo la logistica caso per caso e formuliamo il preventivo dopo un sopralluogo."
+    : 'Hai selezionato lavorazioni sugli impianti. Non ti diamo una cifra a caso: veniamo a vedere il lavoro con l\'artigiano specializzato e ti mandiamo un preventivo dettagliato entro 24 ore.';
+  let b = righe.map(r => '<div class="bk-row"><span>' + r[0] + '</span><strong></strong></div>').join('');
+  b += spec.map(s => '<div class="bk-row"><span>' + s.n + '</span><strong>su preventivo</strong></div>').join('');
+  document.getElementById('mBkSopr').innerHTML = b;
+}
+
+function richiediMan(){
+  if (!lastMan){ openModal('Manutenzioni tecniche', null); return; }
+  const m = lastMan;
+  let det = '<strong>Manutenzioni \u00b7 richiesta:</strong><br>';
+  if (m.ric){
+    det += 'Manutenzione programmata: ' + m.oreMese + ' h al mese su ' + m.nImm + ' immobil' + (m.nImm === 1 ? 'e' : 'i');
+  } else {
+    det += (m.righe && m.righe.length ? m.righe.join('<br>') : 'Nessuna lavorazione a listino');
+    if (m.spec && m.spec.length) det += '<br><strong>Da quotare dopo sopralluogo tecnico:</strong><br>'
+      + m.spec.map(s => s.n + (s.note ? ': ' + s.note.replace(/</g, '&lt;') : '')).join('<br>');
+  }
+  if (m.extra && m.extra.length) det += '<br><strong>Servizi abbinati:</strong><br>' + m.extra.map(x => x[0] + ' \u2014 \u20ac ' + eur(x[1]) + '/mese').join('<br>');
+  if (m.indirizzo) det += '<br>Indirizzo: ' + m.indirizzo;
+  if (m.note) det += '<br><strong>Note del cliente:</strong><br>' + m.note.replace(/</g, '&lt;').replace(/\n/g, '<br>');
+  det += m.totale
+    ? '<span class="s-price">' + (m.ric ? 'Canone: \u20ac ' + eur(m.totale) + '/mese' : 'Stima di base: \u20ac ' + eur(m.totale)) + ' (IVA esclusa)</span>'
+    : '<span class="s-price">Preventivo dopo sopralluogo</span>';
+  openModal('Manutenzioni tecniche', det);
 }
 
 // ─── CALCOLATORE VERDE ────────────────────────────────────
@@ -981,10 +2875,26 @@ function toggleSvc(name){
 }
 
 function calcVerde() {
+  // ── Bundle: altri servizi (sempre valutato, anche senza servizi verde) ──
+  const addPul=document.getElementById('vAddPul').checked;
+  const addMan=document.getElementById('vAddMan').checked;
+  document.getElementById('panelPul').classList.toggle('show', addPul);
+  document.getElementById('panelManV').classList.toggle('show', addMan);
+  let nServ=1; if(addPul) nServ++; if(addMan) nServ++;
+  const scBundle=P.bundle[Math.min(nServ,3)]||0;
+  const pulMqLive=+document.getElementById('vPulMq').value;
+  document.getElementById('vPulMqVal').innerHTML=pulMqLive.toLocaleString('it-IT')+' <small>mq</small>';
+
+  // modalità ricorrente / una tantum
+  const vRic=document.querySelector('input[name="vModo"]:checked').value==='ric';
+  document.getElementById('grpVFreq').style.display=vRic?'':'none';
+  if(!vRic){ document.getElementById('vf-una').checked=true; }
+  else if(document.getElementById('vf-una').checked){ document.getElementById('vf-mese').checked=true; }
+
   const dist=+document.getElementById('vDist').value;
   const fEl=document.querySelector('input[name="vFreq"]:checked');
   const fKey=fEl.value;
-  const fLabel=document.querySelector(`label[for="${fEl.id}"]`).textContent.trim();
+  const fLabel=vRic?document.querySelector(`label[for="${fEl.id}"]`).textContent.trim():'Intervento singolo';
 
   let costo=0; const righe=[];
   if(document.getElementById('vSfalcio').checked){const mq=+document.getElementById('vSfalcioMq').value; if(mq>0){const c=(mq/300)*40; costo+=c; righe.push(['Sfalcio '+mq+' mq', c]);}}
@@ -1008,9 +2918,54 @@ function calcVerde() {
   if(perInt<V_MIN_INTERVENTO) perInt=V_MIN_INTERVENTO;
 
   const mult=V_FREQ[fKey];
-  const totale=perInt*mult;
+  let totale=perInt*mult*(1-scBundle);
+  // pavimento di margine anche qui
+  const costoMeseV=(costo+trasf)*(1+V_OVH)*mult;
+  const floorV=costoMeseV/(1-P.margineFloor);
+  if(totale<floorV) totale=floorV;
+
   const min=r5(totale*(1-V_VAR)), max=r5(totale*(1+V_VAR));
   const isUna=(fKey==='una');
+
+  // ── Canone pulizie abbinato ──
+  let pulCanone=0, pulLabel='';
+  if(addPul){
+    const pMq=pulMqLive;
+    const pTipo=document.getElementById('vPulTipo').value;
+    const pFreq=document.querySelector('input[name="vPulFreq"]:checked').value;
+    const kmMap={15:10,40:25,80:50};
+    const rp=motorePulizie({mq:pMq,tipo:pTipo,pav:'gres',piani:1,bagni:1,scrivanie:0,
+                            freq:pFreq,km:kmMap[dist]||10,durata:12,agente:null,
+                            scontoComm:0,servizi:nServ});
+    pulCanone=rp.finale;
+    pulLabel=P.labelTipo[pTipo]+' '+pMq.toLocaleString('it-IT')+' mq \u00b7 '+rp.freqLabel;
+  }
+
+  // ── Riquadro riepilogo servizi aggiunti ──
+  const splitBox=document.getElementById('vSplit');
+  if(addPul){
+    const vLab=isUna?'a intervento':'al mese';
+    let h='<div class="tot-row"><span>Gestione del verde</span><strong>\u20ac '+eur(r5(totale))+' '+vLab+'</strong></div>';
+    h+='<div class="tot-row"><span>Pulizie professionali</span><strong>\u20ac '+eur(pulCanone)+' al mese</strong></div>';
+    if(!isUna) h+='<div class="tot-row"><span><strong>Totale mensile</strong></span><strong>\u20ac '+eur(r5(totale)+pulCanone)+'</strong></div>';
+    splitBox.style.display='block'; splitBox.innerHTML=h;
+  } else splitBox.style.display='none';
+
+  const scBox=document.getElementById('vScontoBox');
+  if(scBundle>0){
+    scBox.style.display='block';
+    scBox.innerHTML='<strong>Sconto multiservizio:</strong><br>'+nServ+' servizi attivi: \u2212'+Math.round(scBundle*100)+'%';
+  } else scBox.style.display='none';
+
+  const manBox=document.getElementById('vManNote');
+  const vman=addMan?leggiMan('vm'):null;
+  if(addMan){
+    manBox.style.display='block';
+    let t='<strong>Manutenzioni tecniche:</strong> non incluse nell\'importo sopra, le quotiamo a parte ma sono gi\u00e0 conteggiate nello sconto multiservizio.';
+    if(vman&&vman.righe.length) t+='<br>Selezionate: '+vman.righe.map(x=>x[0]).join(', ');
+    if(vman&&vman.spec.length)  t+='<br>Via artigiano specializzato: '+vman.spec.map(x=>x.n).join(', ');
+    manBox.innerHTML=t;
+  } else manBox.style.display='none';
 
   document.getElementById('vLbl').textContent = isUna ? 'Stima intervento' : 'Fascia orientativa mensile';
   document.getElementById('vUnit').textContent = isUna ? 'IVA esclusa · per intervento' : 'IVA esclusa · al mese';
@@ -1021,7 +2976,8 @@ function calcVerde() {
   bk+=`<div class="bk-row"><span>Frequenza</span><strong>${fLabel}</strong></div>`;
   document.getElementById('vBk').innerHTML=bk;
 
-  lastVerde={righe:righe.map(r=>r[0]), fLabel, min, max, isUna};
+  lastVerde={righe:righe.map(r=>r[0]), fLabel, min, max, isUna,
+             addPul, pulCanone, pulLabel, addMan, nServ, scBundle};
 }
 
 // ─── MODAL ────────────────────────────────────────────────
@@ -1040,14 +2996,20 @@ function openModal(svcName, dettagli) {
 function openModalFromCalc(type){
   if(type==='pulizie' && lastPulizie){
     const p=lastPulizie;
-    const price=`€${p.min.toLocaleString('it-IT')} – €${p.max.toLocaleString('it-IT')}/mese (IVA esclusa)`;
-    const det=`<strong>Pulizie · dati inseriti:</strong><br>${p.mq} mq · ${p.tipLabel.split('/')[0].trim()} · ${p.fLabel} · ${p.dLabel}${p.extras.length?'<br>Extra: '+p.extras.join(', '):''}<span class="s-price">${price}</span>`;
+    let det='<strong>Pulizie · dati inseriti:</strong><br>';
+    det+=righeOfferta(p).filter(r=>!r[0].startsWith('CANONE')).map(r=>r[0]+': '+r[1]).join('<br>');
+    if(p.sconti.length) det+='<br>'+p.sconti.join('<br>');
+    det+='<span class="s-price">€ '+eur(p.totale)+' / mese</span>';
     openModal('Pulizie', det);
   } else if(type==='verde' && lastVerde){
     const v=lastVerde;
     const unit=v.isUna?'per intervento':'/mese';
     const price=`€${v.min.toLocaleString('it-IT')} – €${v.max.toLocaleString('it-IT')} ${unit} (IVA esclusa)`;
-    const det=`<strong>Verde · servizi richiesti:</strong><br>${v.righe.join(', ')}<br>Frequenza: ${v.fLabel}<span class="s-price">${price}</span>`;
+    let det=`<strong>Verde · servizi richiesti:</strong><br>${v.righe.join(', ')}<br>Frequenza: ${v.fLabel}`;
+    if(v.addPul) det+=`<br><strong>Pulizie abbinate:</strong> ${v.pulLabel} — € ${eur(v.pulCanone)}/mese`;
+    if(v.addMan) det+=`<br><strong>Manutenzioni tecniche:</strong> da quotare dopo sopralluogo`;
+    if(v.scBundle>0) det+=`<br>Sconto multiservizio: −${Math.round(v.scBundle*100)}%`;
+    det+=`<span class="s-price">${price}</span>`;
     openModal('Gestione verde', det);
   } else {
     openModal('Richiesta preventivo', null);
@@ -1094,6 +3056,14 @@ const FAQ_VERDE=[
   ['Lavorate anche fuori orario o nei weekend?','Sì, possiamo organizzare gli interventi negli orari più comodi per te, compreso il sabato mattina.'],
   ['Quanto dura il contratto minimo?','Per i contratti continuativi lo standard è di 12 mesi, così da coprire l\'intero ciclo stagionale. Gli interventi una tantum, invece, non hanno alcun vincolo di durata.'],
   ['I materiali e l\'attrezzatura sono inclusi?','Sì. Macchinari, attrezzatura professionale e materiali di consumo sono sempre inclusi nel preventivo. Nessun costo nascosto.']
+];
+const FAQ_MAN=[
+  ['Gli artigiani con cui lavorate sono abilitati?','S\u00ec. Per impianti elettrici, idraulici e termici collaboriamo esclusivamente con professionisti iscritti e assicurati, che rilasciano regolare dichiarazione di conformit\u00e0 dove prevista dalla normativa. Noi coordiniamo il lavoro e restiamo il tuo unico referente.'],
+  ['Perch\u00e9 dovrei passare da voi invece di chiamare direttamente l\'artigiano?','Perch\u00e9 su un lavoro che tocca pi\u00f9 mestieri qualcuno deve tenere insieme i tempi. Ci occupiamo noi di coordinare gli accessi, la sequenza delle lavorazioni e la pulizia finale: tu ricevi un lavoro finito e una sola interlocuzione, invece di tre preventivi da far combaciare.'],
+  ['Fate anche interventi urgenti?','Ci organizziamo in base alla disponibilit\u00e0 e alla gravit\u00e0. Per i clienti con contratto continuativo garantiamo tempi di risposta concordati: \u00e8 uno dei vantaggi concreti del piano di manutenzione programmata.'],
+  ['Il preventivo del configuratore \u00e8 definitivo?','No, \u00e8 una stima di base calcolata sulle quantit\u00e0 che indichi. Per le lavorazioni semplici \u00e8 gi\u00e0 molto vicina al vero; per gli impianti serve necessariamente un sopralluogo, perch\u00e9 senza vedere lo stato reale qualsiasi cifra sarebbe inventata.'],
+  ['Il sopralluogo ha un costo?','No, il sopralluogo \u00e8 sempre gratuito e senza impegno, anche se poi decidi di non procedere.'],
+  ['Potete occuparvi anche della pulizia dopo i lavori?','S\u00ec, ed \u00e8 il nostro mestiere di partenza. Abbinando la pulizia di fine cantiere alla manutenzione ottieni anche lo sconto multiservizio, perch\u00e9 organizziamo tutto in un\'unica gestione.']
 ];
 function buildFAQ(containerId, data){
   const c=document.getElementById(containerId);
@@ -1206,9 +3176,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   paintLogos();
   buildFAQ('faqPulizie', FAQ_PULIZIE);
   buildFAQ('faqVerde', FAQ_VERDE);
-  document.getElementById('cf-2').checked=true;
+  buildFAQ('faqMan', FAQ_MAN);
+  document.getElementById('cf-mens').checked=true;
+  renderMan('pmanBox', 'pm', 'calcPulizie()');
+  renderMan('mmanBox', 'mm', 'calcMan()');
+  renderMan('vmanBox', 'vm', 'calcVerde()');
   calcPulizie();
   calcVerde();
+  calcUT();
+  calcMan();
   buildCarousel('carPulizie','pulizie');
   buildCarousel('carVerde','verde');
   initReveal();
