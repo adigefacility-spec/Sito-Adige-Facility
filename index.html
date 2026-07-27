@@ -1727,38 +1727,42 @@ function scrollToContact() {
 //  Nessun'altra parte del sito va toccata.
 // ═══════════════════════════════════════════════════════════════
 const P = {
-  costoOrario:   10.50,   // Parametri!B5   costo orario CCNL Multiservizi
-  uscitaFurgone: 20,      // Parametri!B6   costo uscita furgone
-  costoKm:       0.35,    // Parametri!B7   costo al km (andata+ritorno)
-  overhead:      0.12,    // Parametri!B8   spese generali
-  interessi:     0.02,    // Parametri!B9   costo del debito
-  ricarico:      1.22,    // Parametri!B10  ricarico base → margine di listino ~18%
-                          //   (1.15 = solo prezzo-pavimento, azzera ogni sconto)
-  margineMin:    0.15,    // Parametri!B11  soglia semaforo margine (obiettivo)
-  margineFloor:  0.13,    // margine netto MINIMO garantito: gli sconti vengono
-                          //   automaticamente ridotti pur di non scendere sotto
-  maggPiano:     0.05,    // Parametri!B15  maggiorazione per piano oltre il primo
-  minutiBagno:   12,      // Parametri!B16  minuti per bagno per intervento
-  minutiScrivania: 2,     // ⚠ DA CONFERMARE — minuti per scrivania per intervento
+  costoOrario:   10.50,   // Parametri!B4   costo orario CCNL Multiservizi ⚠ DA CONFERMARE
+  uscitaFurgone: 20,      // Parametri!B5   costo uscita furgone
+  costoKm:       0.35,    // Parametri!B6   costo al km (andata+ritorno) ⚠ DA CONFERMARE
+  overhead:      0.12,    // Parametri!B7   spese generali
+  interessi:     0.02,    // Parametri!B8   costo del debito
+  ricarico:      1.30,    // Parametri!B9   CORRETTO (v2.0) da 1.22 — con 1.22 il pavimento di
+                          //   margine scattava già oltre il 5,8% di sconto totale, annullando
+                          //   in pratica il bundle 3 servizi e il 24 mesi. Vedi Listino v2.0.
+  margineMin:    0.15,    // Parametri!B10  soglia semaforo margine (obiettivo)
+  margineFloor:  0.13,    // Parametri!B11  margine netto MINIMO garantito: gli sconti vengono
+                          //   automaticamente ridotti pur di non scendere sotto (rete di sicurezza,
+                          //   ora non dovrebbe più scattare con l'uso normale della scala sconti)
+  maggPiano:     0.05,    // Parametri!B12  maggiorazione per piano oltre il primo (solo pavimenti)
+  minutiBagno:   12,      // Parametri!B13  minuti per bagno per intervento
+  minutiScrivania: 2,     // Parametri!B14  ⚠ DA CONFERMARE — minuti per scrivania per intervento
                           //   (spolvero + piano e tastiera con panno umido disinfettante)
-  maggAgente:    0.03,    // Parametri!B17  maggiorazione canale commerciale (non mostrata)
-  scontoCommMax: 0.07,    // Parametri!B18  sconto commerciale massimo
-  capSconti:     0.10,    // Parametri!B19  tetto sconti cumulati
+  maggAgente:    0.03,    // Parametri!B15  maggiorazione canale commerciale (non mostrata)
+  scontoCommMax: 0.05,    // Parametri!B16  RIDOTTO (v2.0) da 0.07 — sconto commerciale massimo
+  capSconti:     0.12,    // Parametri!B19  AUMENTATO da 0.10 ma coerente col nuovo ricarico — tetto
+                          //   su bundle+commerciale (il 24 mesi si applica sempre in più, a parte)
   sconto24:      0.02,    // Parametri!B20  sconto contratto 24 mesi
-  canoneMinimo:  45,      // ⚠ DA CONFERMARE — canone minimo di uscita
+  canoneMinimo:  45,      // Parametri!B21  ⚠ DA CONFERMARE — canone minimo di uscita
   mqMin: 50, mqMax: 1500,
   rese:  { ufficio:200, negozio:250, capannone:400, garage:450, condominio:150 },   // Parametri!B24:B28
-  pavim: { gres:0, marmo:0.10, parquet:0.15, moquette:0.20, resina:-0.10 },         // Parametri!B32:B36
-  freq: {                                                                            // Parametri!A40:C45
+  pavim: { gres:0, marmo:0.10, parquet:0.15, moquette:0.20, resina:-0.10 },         // Parametri!B31:B35
+  // ── Frequenze — ora selezionabili INDIPENDENTEMENTE per pavimenti / bagni / scrivanie (v2.0) ──
+  // i = interventi al mese, e = efficienza oraria (meno sporco accumulato = intervento più rapido)
+  freq: {                                                                            // Parametri!A38:C44
     mensile:      { i:1,     e:0,    l:'Mensile' },
-    quindicinale: { i:2.17,  e:0,    l:'Quindicinale' },
-    f1:           { i:4.33,  e:0,    l:'1\u00d7 / settimana' },
-    f2:           { i:8.67,  e:0,    l:'2\u00d7 / settimana' },
-    f3:           { i:13,    e:0.05, l:'3\u00d7 / settimana' },
-    f5:           { i:21.67, e:0.05, l:'5\u00d7 / settimana' }
+    quindicinale: { i:2.17,  e:0.01, l:'Quindicinale' },
+    f1:           { i:4.33,  e:0.02, l:'1× / settimana' },
+    f2:           { i:8.67,  e:0.03, l:'2× / settimana' },
+    f3:           { i:13,    e:0.04, l:'3× / settimana' },
+    f5:           { i:21.67, e:0.05, l:'5× / settimana' }
   },
-  bundle: { 1:0, 2:0.05, 3:0.08 },                                                   // Parametri!B49:B51
-
+  bundle: { 1:0, 2:0.04, 3:0.07 },                                                   // Parametri!B17:B18 RIDOTTI da 0.05/0.08
   // ── GESTIONE DEL VERDE (abbinata alle pulizie) ──────────────────────────────
   // Tariffe allineate al calcolatore della sezione Verde: se cambiate le une,
   // cambiate anche le altre (più in basso: V_OVH, V_MARG, V_TRASF, V_MIN_INTERVENTO).
@@ -1781,22 +1785,34 @@ let lastPulizie = null;
 
 // ─── Motore di calcolo (identico alla catena del foglio) ───
 function motorePulizie(d){
-  const resa    = P.rese[d.tipo];
-  const f       = P.freq[d.freq];
-  const oreInt  = (d.mq / resa)
-                + (d.bagni * P.minutiBagno / 60)
-                + (d.scrivanie * P.minutiScrivania / 60);
-  const oreMese = oreInt * f.i;
-
-  const cManodopera = oreMese * P.costoOrario;
-  const cFurgone    = f.i * P.uscitaFurgone;
-  const cKm         = d.km * P.costoKm * f.i;
-  const costoBase   = cManodopera + cFurgone + cKm;
+  const resa = P.rese[d.tipo];
+  const fP = P.freq[d.freqPav];
+  const fB = P.freq[d.freqBagni];
+  const fS = d.scrivanie > 0 ? P.freq[d.freqScriv] : null;
 
   const mPav   = P.pavim[d.pav];
   const mPiani = (d.piani - 1) * P.maggPiano;
-  const costoRett = costoBase * (1 + mPav) * (1 + mPiani) * (1 - f.e);
-  const costoTot  = costoRett * (1 + P.overhead) * (1 + P.interessi);
+
+  const orePavInt   = (d.mq / resa);
+  const oreBagniInt = d.bagni * P.minutiBagno / 60;
+  const oreScrivInt = d.scrivanie * P.minutiScrivania / 60;
+
+  // ogni attività ha la propria frequenza e la propria efficienza oraria
+  // (meno sporco accumulato con passaggi più ravvicinati = intervento più rapido)
+  const orePavMese   = orePavInt * (1 + mPav) * (1 + mPiani) * fP.i * (1 - fP.e);
+  const oreBagniMese = oreBagniInt * fB.i * (1 - fB.e);
+  const oreScrivMese = fS ? oreScrivInt * fS.i * (1 - fS.e) : 0;
+  const oreMese = orePavMese + oreBagniMese + oreScrivMese;
+
+  // le uscite (furgone/km) seguono la frequenza più alta tra le attività attive:
+  // è quante volte al mese la squadra deve fisicamente presentarsi
+  const interventi = Math.max(fP.i, fB.i, fS ? fS.i : 0);
+
+  const cManodopera = oreMese * P.costoOrario;
+  const cFurgone    = interventi * P.uscitaFurgone;
+  const cKm         = d.km * P.costoKm * interventi;
+  const costoBase   = cManodopera + cFurgone + cKm;
+  const costoTot    = costoBase * (1 + P.overhead) * (1 + P.interessi);
 
   let canone = costoTot * P.ricarico;
   canone = canone * (1 + (d.agente ? P.maggAgente : 0));   // +3% canale, incluso nel totale
@@ -1812,6 +1828,8 @@ function motorePulizie(d){
   // ── PAVIMENTO DI MARGINE ──────────────────────────────────────
   // Il prezzo non scende mai sotto il livello che garantisce il
   // margine netto minimo: se gli sconti lo sfondano, vengono ridotti.
+  // Con il ricarico e i tetti sconto v2.0 questo non dovrebbe più scattare
+  // nell'uso normale della scala sconti (vedi Listino v2.0, foglio Parametri).
   const prezzoFloor = costoTot / (1 - P.margineFloor);
   let scontoRidotto = false, sottoMinimo = false;
   if (finale < prezzoFloor) { finale = prezzoFloor; scontoRidotto = true; }
@@ -1823,44 +1841,9 @@ function motorePulizie(d){
   const scontoEffettivo = canone > 0 ? Math.max(0, 1 - finale / canone) : 0;
   const margine = finale > 0 ? (finale - costoTot) / finale : 0;
 
-  return { oreInt, oreMese, interventi:f.i, freqLabel:f.l, costoTot,
-           mPav, mPiani, eff:f.e, sBundle, sComm, sTot, s24, finale, margine,
+  return { oreMese, interventi, freqPavLabel:fP.l, freqBagniLabel:fB.l, freqScrivLabel: fS ? fS.l : null,
+           costoTot, mPav, mPiani, sBundle, sComm, sTot, s24, finale, margine,
            sottoMinimo, scontoRidotto, scontoTeorico, scontoEffettivo };
-}
-
-// ─── Motore pulizie UNA TANTUM (tariffe di mercato del modulo UT) ───
-function motorePuliziaUna(d){
-  const tar = { cantiere:4.50, affitto:3.20, straord:2.80, sanif:2.20 };
-  const lab = { cantiere:'Pulizia di fine cantiere', affitto:'Pulizia dopo affitto',
-                straord:'Pulizia straordinaria approfondita', sanif:'Sanificazione ambienti' };
-  const resa= { cantiere:12, affitto:18, straord:25, sanif:45 };
-
-  const mPav   = P.pavim[d.pav];
-  const mPiani = (d.piani - 1) * P.maggPiano;
-
-  let prezzo = tar[d.tipo] * d.mq * (1 + mPav) * (1 + mPiani);
-  prezzo += d.bagni * 15;        // ⚠ addendo per bagno su intervento singolo
-  prezzo += d.scrivanie * 2.50;  // ⚠ addendo per scrivania su intervento singolo
-
-  const ore   = d.mq / resa[d.tipo] + d.bagni * 0.25 + d.scrivanie * (P.minutiScrivania / 60);
-  const gg    = Math.max(1, Math.ceil(ore / 7));
-  const costoTot = (ore * P.costoOrario + 0.30 * d.mq + (P.uscitaFurgone + d.km * P.costoKm) * gg)
-                 * (1 + P.overhead) * (1 + P.interessi);
-
-  const sBundle = P.bundle[Math.min(d.servizi, 3)] || 0;
-  let finale = prezzo * (1 - sBundle);
-
-  const floor = costoTot / (1 - P.margineFloor);
-  let scontoRidotto = false, sottoMinimo = false;
-  if (finale < floor)          { finale = floor; scontoRidotto = true; }
-  if (finale < UT.minimoUscita){ finale = UT.minimoUscita; sottoMinimo = true; }
-  finale = (scontoRidotto || sottoMinimo) ? Math.ceil(finale) : Math.round(finale);
-
-  return { unaTantum:true, tipoLabel:lab[d.tipo], oreMese:ore, giornate:gg, interventi:1,
-           freqLabel:'Intervento singolo', costoTot, mPav, mPiani, eff:0,
-           sBundle, sComm:0, sTot:sBundle, s24:0, finale,
-           margine:(finale - costoTot) / finale, sottoMinimo, scontoRidotto,
-           scontoTeorico:sBundle, scontoEffettivo: prezzo > 0 ? Math.max(0, 1 - finale / prezzo) : 0 };
 }
 
 // ─── Motore verde abbinato (stessa logica del calcolatore Verde) ───
