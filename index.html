@@ -627,7 +627,9 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
             <input type="radio" name="cModo" id="cm-una" value="una" onchange="calcPulizie()">
             <label for="cm-una"><span class="m-t">Intervento una tantum</span><span class="m-d">Un solo intervento, senza contratto</span></label>
           </div>
-
+          <div class="finfo" id="cUnaTantumNote" style="display:none; margin:-10px 0 24px; padding:11px 13px; background:rgba(234,179,8,0.10); border-left:3px solid #eab308; border-radius:0 8px 8px 0; color:rgba(255,255,255,0.65)">
+            Gli interventi una tantum hanno una maggiorazione del 10% rispetto al servizio ricorrente equivalente: un contratto continuativo ci permette di organizzare meglio mezzi e squadra, quindi costa meno per ora di lavoro.
+          </div>
           <div class="fgroup" id="grpTipoUna" style="display:none">
             <label class="flab">Tipo di intervento</label>
             <select id="cTipoUna" onchange="calcPulizie()">
@@ -1773,6 +1775,8 @@ const P = {
   capSconti:     0.12,    // Parametri!B19  AUMENTATO da 0.10 ma coerente col nuovo ricarico — tetto
                           //   su bundle+commerciale (il 24 mesi si applica sempre in più, a parte)
   sconto24:      0.02,    // Parametri!B20  sconto contratto 24 mesi
+  maggUnaTantum: 0.10,    // maggiorazione sugli interventi una tantum: un contratto continuativo
+                          // organizza meglio mezzi e squadra, quindi costa meno per ora di lavoro
   canoneMinimo:  45,      // Parametri!B21  ⚠ DA CONFERMARE — canone minimo di uscita
   mqMin: 50, mqMax: 1500,
   rese:  { ufficio:200, negozio:250, capannone:400, garage:450, condominio:150 },   // Parametri!B24:B28
@@ -1870,7 +1874,41 @@ function motorePulizie(d){
            costoTot, mPav, mPiani, sBundle, sComm, sTot, s24, finale, margine,
            sottoMinimo, scontoRidotto, scontoTeorico, scontoEffettivo };
 }
-
+// ─── Motore "Intervento una tantum" dentro il calcolatore Pulizie ───
+// Stesse tariffe per mq della scheda "Una tantum", più il ricarico e la
+// maggiorazione P.maggUnaTantum: un intervento singolo non gode delle
+// economie di scala di un contratto continuativo (mezzi e squadra
+// organizzati su base ricorrente), quindi costa di più per ora di lavoro.
+const UNA_TIPI = {
+  cantiere: { l:'Pulizia di fine cantiere',           resa:12, mat:0.30 },
+  affitto:  { l:'Pulizia appartamento dopo affitto',  resa:18, mat:0.25 },
+  straord:  { l:'Pulizia straordinaria approfondita', resa:25, mat:0.20 },
+  sanif:    { l:'Sanificazione ambienti',             resa:45, mat:0.30 }
+};
+function motorePuliziaUna(d){
+  const t = UNA_TIPI[d.tipo] || UNA_TIPI.straord;
+  const mPav   = P.pavim[d.pav];
+  const mPiani = (d.piani - 1) * P.maggPiano;
+  const oreBase = (d.mq / t.resa) + (d.bagni * P.minutiBagno / 60) + (d.scrivanie * P.minutiScrivania / 60);
+  const oreMese = oreBase * (1 + mPav) * (1 + mPiani);
+  const giornate = Math.max(1, Math.ceil(oreMese / 7));
+  const costoBase = oreMese * P.costoOrario + t.mat * d.mq + P.uscitaFurgone + d.km * P.costoKm;
+  const costoTot  = costoBase * (1 + P.overhead) * (1 + P.interessi);
+  let canone = costoTot * P.ricarico * (1 + P.maggUnaTantum);
+  const sBundle = P.bundle[Math.min(d.servizi, 3)] || 0;
+  let finale = canone * (1 - sBundle);
+  const prezzoFloor = costoTot / (1 - P.margineFloor);
+  let scontoRidotto = false, sottoMinimo = false;
+  if (finale < prezzoFloor) { finale = prezzoFloor; scontoRidotto = true; }
+  if (finale < P.canoneMinimo) { finale = P.canoneMinimo; sottoMinimo = true; }
+  finale = (scontoRidotto || sottoMinimo) ? Math.ceil(finale) : Math.round(finale);
+  const margine = finale > 0 ? (finale - costoTot) / finale : 0;
+  return { tipoLabel: t.l, oreMese, giornate, mPav, mPiani,
+           sBundle, sComm:0, sTot:sBundle, s24:0,
+           finale, margine, sottoMinimo, scontoRidotto,
+           scontoTeorico: sBundle, scontoEffettivo: sBundle,
+           freqPavLabel:null, freqBagniLabel:null, freqScrivLabel:null, interventi:1 };
+}
 // ─── Motore verde abbinato (stessa logica del calcolatore Verde) ───
 function motoreVerde(d){
   let costo = 0; const voci = [];
@@ -2108,12 +2146,179 @@ lastPulizie = {
 }
 
 // ─── Codice offerta tracciabile ───
-function nuovoCodiceOfferta(){
+  function nuovoCodiceOfferta(){
   const anno = new Date().getFullYear();
   const n = Math.floor(1000 + Math.random() * 9000);
   return 'ADG-' + anno + '-' + n;
 }
-
+function calcPulizie(){
+  const mq = +document.getElementById('cMq').value;
+  document.getElementById('cMqVal').innerHTML = mq.toLocaleString('it-IT') + ' <small>mq</small>';
+  const prov  = document.getElementById('cProv').value;
+  const km    = +document.getElementById('cKm').value;
+  const indirizzo = document.getElementById('cIndirizzo').value.trim();
+  const tipo  = document.getElementById('cTipo').value;
+  const pav   = document.getElementById('cPav').value;
+  const piani = Math.max(1, +document.getElementById('cPiani').value || 1);
+  const bagni = Math.max(0, +document.getElementById('cBagni').value || 0);
+  const freqPav = document.querySelector('input[name="cFreqPav"]:checked').value;
+  const freqBagni = document.querySelector('input[name="cFreqBagni"]:checked').value;
+  const durata = +document.querySelector('input[name="cDur"]:checked').value;
+  const modo  = document.querySelector('input[name="cModo"]:checked').value;
+  const unaT  = (modo === 'una');
+  document.getElementById('grpFreqPav').style.display    = unaT ? 'none' : '';
+  document.getElementById('grpFreqBagni').style.display  = unaT ? 'none' : '';
+  document.getElementById('grpDurata').style.display  = unaT ? 'none' : '';
+  document.getElementById('grpTipoUna').style.display = unaT ? '' : 'none';
+  const unaNote = document.getElementById('cUnaTantumNote');
+  if (unaNote) unaNote.style.display = unaT ? 'block' : 'none';
+  const cod    = document.getElementById('cAgente').value.trim().toUpperCase();
+  const agente = P.agenti.includes(cod) ? cod : null;
+  document.getElementById('cAgenteBox').style.display = agente ? 'block' : 'none';
+  const scontoComm = agente ? (+document.getElementById('cScontoComm').value) / 100 : 0;
+  const isUfficio = (tipo === 'ufficio');
+  document.getElementById('panelScriv').classList.toggle('show', isUfficio);
+  const scrivOn = isUfficio && document.getElementById('cScrivOn').checked;
+  document.getElementById('scrivSlider').classList.toggle('disabled-slider', !scrivOn);
+  document.getElementById('scrivNote').style.display = scrivOn ? 'block' : 'none';
+  const nScriv = +document.getElementById('cScriv').value;
+  document.getElementById('cScrivVal').innerHTML = nScriv + ' <small>postazion' + (nScriv === 1 ? 'e' : 'i') + '</small>';
+  const scrivanie = scrivOn ? nScriv : 0;
+  document.getElementById('grpFreqScriv').style.display = (scrivOn && !unaT) ? '' : 'none';
+  const freqScriv = document.querySelector('input[name="cFreqScriv"]:checked').value;
+  const verdeOn = document.getElementById('cBundleVerde').checked;
+  document.getElementById('panelVerde').classList.toggle('show', verdeOn);
+  const vSfOn = verdeOn && document.getElementById('cVSfalcioOn').checked;
+  const vSiOn = verdeOn && document.getElementById('cVSiepiOn').checked;
+  document.getElementById('vSfalcioSlider').classList.toggle('disabled-slider', !vSfOn);
+  document.getElementById('vSiepiSlider').classList.toggle('disabled-slider', !vSiOn);
+  const vSfMq = +document.getElementById('cVSfalcio').value;
+  const vSiMl = +document.getElementById('cVSiepi').value;
+  document.getElementById('cVSfalcioVal').innerHTML = vSfMq.toLocaleString('it-IT') + ' <small>mq</small>';
+  document.getElementById('cVSiepiVal').innerHTML = vSiMl + ' <small>m lineari</small>';
+  let servizi = 1;
+  if (verdeOn) servizi++;
+  if (document.getElementById('cBundleMan').checked) servizi++;
+  const boxPrezzo = document.getElementById('cContent');
+  const boxSopr   = document.getElementById('cSopr');
+  if (prov === 'ALTRA') {
+    boxPrezzo.style.display = 'none'; boxSopr.style.display = 'block';
+    document.getElementById('cSoprMsg').textContent =
+      "L'immobile si trova fuori dalle province di Trento e Bolzano: per queste zone valutiamo la logistica caso per caso e formuliamo il preventivo dopo un sopralluogo.";
+    lastPulizie = null; return;
+  }
+  boxPrezzo.style.display = 'block'; boxSopr.style.display = 'none';
+  const man = document.getElementById('cBundleMan').checked ? leggiMan('pm') : null;
+  document.getElementById('panelManP').classList.toggle('show', document.getElementById('cBundleMan').checked);
+  const r = unaT
+    ? motorePuliziaUna({ mq, tipo: document.getElementById('cTipoUna').value, pav, piani, bagni, scrivanie, km, servizi })
+    : motorePulizie({ mq, tipo, pav, piani, bagni, scrivanie, freqPav, freqBagni, freqScriv, km, durata, agente, scontoComm, servizi });
+  const vFreqEl = document.querySelector('input[name="cVFreq"]:checked');
+  const rv = (vSfOn || vSiOn) ? motoreVerde({
+    sfalcio: vSfOn ? vSfMq : 0,
+    siepi:   vSiOn ? vSiMl : 0,
+    smaltimento: document.getElementById('cVSmalt').checked,
+    interventi: +vFreqEl.value,
+    km: kmToTrasf(km),
+    sconto: Math.min(r.sTot + r.s24, P.capSconti)
+  }) : null;
+  const manImporto = (man && man.righe.length) ? Math.round(man.prezzo * (1 - (P.bundle[Math.min(servizi,3)] || 0))) : 0;
+  const totale = r.finale + (rv ? rv.mensile : 0);
+  document.getElementById('cPrezzo').textContent = eur(totale);
+  document.getElementById('cDurLbl').textContent = unaT
+    ? r.tipoLabel + (r.giornate > 1 ? ' · ' + r.giornate + ' giornate' : '')
+    : durata + ' mesi';
+  document.getElementById('cPrezzoLbl').textContent = unaT
+    ? 'Importo intervento'
+    : (rv ? 'Canone mensile complessivo' : 'Canone mensile');
+  const splitBox = document.getElementById('cSplit');
+  if (rv || manImporto) {
+    const per = unaT ? '' : ' al mese';
+    let h = '<div class="tot-row"><span>Pulizie professionali</span><strong>€ ' + eur(r.finale) + per + '</strong></div>';
+    if (rv) h += '<div class="tot-row"><span>Gestione del verde &middot; ' + rv.interventi + '× al mese</span><strong>€ ' + eur(rv.mensile) + '</strong></div>';
+    if (rv && !unaT) h += '<div class="tot-row"><span><strong>Totale mensile</strong></span><strong>€ ' + eur(totale) + '</strong></div>';
+    if (manImporto) h += '<div class="tot-row"><span>Manutenzioni &middot; una tantum</span><strong>€ ' + eur(manImporto) + '</strong></div>';
+    splitBox.style.display = 'block'; splitBox.innerHTML = h;
+  } else splitBox.style.display = 'none';
+  const snOut = document.getElementById('cScrivNoteOut');
+  if (scrivanie > 0) {
+    snOut.style.display = 'block';
+    snOut.innerHTML = '<strong>Scrivanie:</strong> gli addetti non spostano gli oggetti presenti sulle postazioni. Lasciare le scrivanie sgombere consente una pulizia completa del piano di lavoro.';
+  } else snOut.style.display = 'none';
+  const flag = document.getElementById('cAgentFlag');
+  if (agente) { flag.style.display = 'inline-flex'; document.getElementById('cAgentCode').textContent = 'Modalità commerciale · ' + agente; }
+  else flag.style.display = 'none';
+  const pct = v => (v >= 0 ? '+' : '−') + Math.abs(Math.round(v * 100)) + '%';
+  let bk = '';
+  bk += '<div class="bk-row"><span>Superficie</span><strong>' + mq.toLocaleString('it-IT') + ' mq</strong></div>';
+  bk += '<div class="bk-row"><span>Tipologia</span><strong>' + P.labelTipo[tipo] + '</strong></div>';
+  bk += '<div class="bk-row"><span>Pavimentazione</span><strong>' + P.labelPav[pav] + (r.mPav ? ' (' + pct(r.mPav) + ')' : '') + '</strong></div>';
+  bk += '<div class="bk-row"><span>Piani serviti</span><strong>' + piani + (r.mPiani ? ' (' + pct(r.mPiani) + ')' : '') + '</strong></div>';
+  bk += '<div class="bk-row"><span>Bagni</span><strong>' + bagni + '</strong></div>';
+  if (scrivanie > 0) bk += '<div class="bk-row"><span>Scrivanie (spolvero e sanificazione)</span><strong>' + scrivanie + '</strong></div>';
+  if (unaT){
+    bk += '<div class="bk-row"><span>Tipo di intervento</span><strong>' + r.tipoLabel + '</strong></div>';
+    bk += '<div class="bk-row"><span>Tempo stimato</span><strong>' + r.oreMese.toFixed(1).replace('.', ',') + ' h</strong></div>';
+  } else {
+    bk += '<div class="bk-row"><span>Frequenza pavimenti</span><strong>' + r.freqPavLabel + '</strong></div>';
+    bk += '<div class="bk-row"><span>Frequenza bagni</span><strong>' + r.freqBagniLabel + '</strong></div>';
+    if (r.freqScrivLabel) bk += '<div class="bk-row"><span>Frequenza scrivanie</span><strong>' + r.freqScrivLabel + '</strong></div>';
+    bk += '<div class="bk-row"><span>Visite al mese</span><strong>' + Math.round(r.interventi) + '</strong></div>';
+    bk += '<div class="bk-row"><span>Ore di servizio al mese</span><strong>' + r.oreMese.toFixed(1).replace('.', ',') + ' h</strong></div>';
+  }
+  if (man && man.attivo){
+    man.righe.forEach(x => { bk += '<div class="bk-row"><span>Manutenzione</span><strong>' + x[0] + '</strong></div>'; });
+    man.spec.forEach(x => { bk += '<div class="bk-row"><span>' + x.n + '</span><strong>su preventivo</strong></div>'; });
+  }
+  if (rv) rv.voci.forEach(v => { bk += '<div class="bk-row"><span>Verde</span><strong>' + v + '</strong></div>'; });
+  document.getElementById('cBk').innerHTML = bk;
+  const sc = [];
+  if (r.sBundle) sc.push('Multiservizio: −' + Math.round(r.sBundle * 100) + '%');
+  if (r.sComm)   sc.push('Sconto commerciale: −' + Math.round(r.sComm * 100) + '%');
+  if (r.sTot < (r.sBundle + r.sComm)) sc.push('(applicato il tetto massimo del ' + Math.round(P.capSconti * 100) + '%)');
+  if (r.s24)     sc.push('Contratto 24 mesi: −' + Math.round(r.s24 * 100) + '%');
+  if (unaT && P.maggUnaTantum) sc.push('Maggiorazione una tantum: +' + Math.round(P.maggUnaTantum * 100) + '%');
+  if (r.scontoRidotto && r.scontoTeorico > 0) {
+    sc.push('Sconto effettivamente applicato: −' + (r.scontoEffettivo * 100).toFixed(1).replace('.', ',') + '%');
+  }
+  const scBox = document.getElementById('cSconti');
+  if (sc.length) { scBox.style.display = 'block'; scBox.innerHTML = '<strong>Sconti applicati:</strong><br>' + sc.join('<br>'); }
+  else scBox.style.display = 'none';
+  const clipBox = document.getElementById('cClip');
+  if (r.scontoRidotto && r.scontoTeorico > 0.001) {
+    clipBox.style.display = 'block';
+    clipBox.textContent = agente
+      ? 'Sconto ridotto automaticamente: lo sconto richiesto (−' + Math.round(r.scontoTeorico * 100) + '%) portava il margine sotto il ' + Math.round(P.margineFloor * 100) + '% minimo. Questo è il prezzo più basso praticabile su questa configurazione.'
+      : 'Su questa configurazione il canone è già al livello minimo praticabile: gli sconti applicabili sono limitati.';
+  } else clipBox.style.display = 'none';
+  const mBox = document.getElementById('cMargine');
+  if (agente) {
+    const m = Math.round(r.margine * 100);
+    let cls = 'margin-ok', txt = 'Margine netto ' + m + '% · sopra l\'obiettivo del ' + Math.round(P.margineMin * 100) + '%';
+    if (r.margine <= P.margineFloor + 0.001) { cls = 'margin-warn'; txt = 'Margine netto ' + m + '% · sei sul pavimento minimo, non c\'è più spazio di trattativa'; }
+    else if (r.margine < P.margineMin)       { cls = 'margin-warn'; txt = 'Margine netto ' + m + '% · sotto l\'obiettivo del ' + Math.round(P.margineMin * 100) + '%, spazio residuo limitato'; }
+    mBox.style.display = 'block'; mBox.className = 'margin-note ' + cls; mBox.textContent = txt;
+  } else mBox.style.display = 'none';
+  document.getElementById('cMinimo').style.display = r.sottoMinimo ? 'block' : 'none';
+  if (man && man.spec.length){
+    const sn = document.getElementById('cScrivNoteOut');
+    sn.style.display = 'block';
+    sn.innerHTML = '<strong>' + man.spec.map(x => x.n).join(', ') + ':</strong> quotate a parte dopo il sopralluogo del tecnico. Ci appoggiamo a un artigiano specializzato e coordiniamo noi tempi e consegna.';
+  }
+  lastPulizie = {
+    mq, tipo, pav, piani, bagni, scrivanie, durata, indirizzo, prov, km, agente, servizi,
+    tipoLabel: P.labelTipo[tipo], pavLabel: P.labelPav[pav],
+    freqPavLabel: unaT ? null : r.freqPavLabel,
+    freqBagniLabel: unaT ? null : r.freqBagniLabel,
+    freqScrivLabel: unaT ? null : r.freqScrivLabel,
+    interventi: Math.round(r.interventi),
+    oreMese: r.oreMese, sconti: sc, canone: r.finale,
+    verde: rv ? { voci: rv.voci, interventi: rv.interventi, canone: rv.mensile } : null,
+    man: (man && man.attivo) ? { righe: man.righe.map(x => x[0]), spec: man.spec, importo: manImporto } : null,
+    unaTantum: unaT, tipoUnaLabel: unaT ? r.tipoLabel : null,
+    totale: totale
+  };
+}
 // ─── Testo riepilogo (usato da modale e PDF) ───
 function righeOfferta(p){
   const r = [
@@ -3196,7 +3401,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   buildFAQ('faqPulizie', FAQ_PULIZIE);
   buildFAQ('faqVerde', FAQ_VERDE);
   buildFAQ('faqMan', FAQ_MAN);
-  document.getElementById('cf-mens').checked=true;
   renderMan('pmanBox', 'pm', 'calcPulizie()');
   renderMan('mmanBox', 'mm', 'calcMan()');
   renderMan('vmanBox', 'vm', 'calcVerde()');
