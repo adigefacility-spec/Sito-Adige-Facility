@@ -666,7 +666,7 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
             <div class="finfo">Oltre 1.500 mq il preventivo richiede un sopralluogo tecnico.</div>
           </div>
 
-          <div class="fgroup">
+           <div class="fgroup" id="grpTipoImmobile">
             <label class="flab">3 &middot; Tipologia immobile</label>
             <select id="cTipo" onchange="calcPulizie()">
               <option value="ufficio">Ufficio / Studio professionale</option>
@@ -833,9 +833,10 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
               <div class="margin-note" id="cClip" style="display:none; background:rgba(74,144,196,0.09); color:#2c6a99"></div>
               <div class="margin-note" id="cMargine" style="display:none"></div>
               <div class="note-box" id="cMinimo" style="display:none">Il canone corrisponde all'importo minimo di uscita: per interventi molto ridotti si applica la tariffa minima.</div>
-              <div class="note-box">Reverse charge: sui servizi di pulizia su edifici tra soggetti passivi IVA l'imposta &egrave; assolta dal committente ex art. 17 DPR 633/72. Prezzo calcolato sui dati inseriti; eventuali difformit&agrave; rilevate in avvio servizio possono comportare una revisione.</div>
-              <button class="btn-p" style="width:100%; margin-bottom:10px" onclick="openOrdine()"><i class="fas fa-file-signature"></i> Concludi l'ordine online</button>
-              <button class="btn-s" style="width:100%; color:var(--navy); border-color:var(--gray-light); background:var(--off)" onclick="openModalFromCalc('pulizie')"><i class="fas fa-calendar-check"></i> Preferisco un sopralluogo</button>
+              <div class="note-box" id="cUnaPrezzoNote" style="display:none">Prezzo indicativo: viene confermato dopo aver visionato le foto allegate alla richiesta, oppure dopo un sopralluogo gratuito se necessario per valutare meglio il lavoro.</div>
+              <div class="note-box" id="cNoteRicorrente">Reverse charge: sui servizi di pulizia su edifici tra soggetti passivi IVA l'imposta &egrave; assolta dal committente ex art. 17 DPR 633/72. Prezzo calcolato sui dati inseriti; eventuali difformit&agrave; rilevate in avvio servizio possono comportare una revisione.</div>
+              <button class="btn-p" id="cBtnOrdine" style="width:100%; margin-bottom:10px" onclick="openOrdine()"><i class="fas fa-file-signature"></i> Concludi l'ordine online</button>
+              <button class="btn-s" id="cBtnRichiedi" style="width:100%; color:var(--navy); border-color:var(--gray-light); background:var(--off)" onclick="openModalFromCalc('pulizie')"><i class="fas fa-calendar-check"></i> Preferisco un sopralluogo</button>
             </div>
             <div id="cSopr" style="display:none">
               <div class="result-lbl" style="color:var(--navy)">Serve un sopralluogo</div>
@@ -1047,7 +1048,7 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
               <div class="bk" id="vBk"></div>
               <div class="extra-note" id="vScontoBox" style="display:none"></div>
               <div class="warn-note" id="vManNote" style="display:none"></div>
-              <div class="note-box">La stima non costituisce offerta contrattuale. Il preventivo definitivo viene elaborato dopo sopralluogo gratuito.</div>
+             <div class="note-box">La stima non costituisce offerta contrattuale. Il preventivo definitivo viene confermato dopo aver visionato le foto allegate alla richiesta, oppure dopo un sopralluogo gratuito se necessario per valutare meglio l'area verde.</div>
               <button class="btn-p" style="width:100%" onclick="openModalFromCalc('verde')"><i class="fas fa-paper-plane"></i> Richiedi preventivo gratuito</button>
             </div>
             <div id="vFar" style="display:none">
@@ -1621,7 +1622,7 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
       <h3>Richiedi il preventivo gratuito</h3>
       <p class="modal-sub">Ti ricontatteremo entro 24 ore lavorative per organizzare il sopralluogo.</p>
       <div class="summary" id="modalSummary" style="display:none"></div>
-      <form id="pForm" action="https://formspree.io/f/xjgzveeb" method="POST">
+      <form id="pForm" action="https://formspree.io/f/xjgzveeb" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="Servizio" id="hSvc">
         <input type="hidden" name="Dettagli_stima" id="hDett">
         <input type="hidden" name="_subject" id="hSubj" value="Richiesta preventivo ADIGE Facility">
@@ -1635,7 +1636,8 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
           <div class="fg"><label>Telefono *</label><input type="tel" name="Telefono" required placeholder="+39 3XX XXX XXXX"></div>
         </div>
         <div class="fg"><label>Indirizzo immobile (consigliato)</label><input type="text" name="Indirizzo" placeholder="Via Roma 1, Trento"></div>
-        <div class="fg"><label>Note libere</label><textarea name="Note_libere" placeholder="Descrivici la tua situazione: tipo di attività, orari preferiti, dimensioni e piani, esigenze particolari..."></textarea></div>
+        <div class="fg"><label>Note libere</label><textarea name="Note_libere" id="pNoteLibere" placeholder="Descrivici l'intervento: stato dei luoghi, dimensioni, tempistiche desiderate, tutto ciò che ci aiuta a valutare meglio il lavoro..."></textarea></div>
+        <div class="fg"><label>Foto (facoltativo)</label><input type="file" name="Foto" accept="image/*" multiple><div class="finfo" style="color:var(--gray); margin-top:6px">Allega qualche foto della zona da trattare: ci aiuta a confermare il prezzo indicativo senza dover per forza fissare un sopralluogo.</div></div>
         <button type="submit" class="btn-submit" id="sbBtn"><i class="fas fa-paper-plane"></i> Invia richiesta</button>
       </form>
     </div>
@@ -1973,11 +1975,24 @@ function calcPulizie(){
   document.getElementById('grpTipoUna').style.display = unaT ? '' : 'none';
   const unaNote = document.getElementById('cUnaTantumNote');
   if (unaNote) unaNote.style.display = unaT ? 'block' : 'none';
+  const btnOrdine = document.getElementById('cBtnOrdine');
+  const btnRichiedi = document.getElementById('cBtnRichiedi');
+  if (btnOrdine) btnOrdine.style.display = unaT ? 'none' : '';
+  if (btnRichiedi) btnRichiedi.innerHTML = unaT
+    ? '<i class="fas fa-paper-plane"></i> Richiedi conferma del preventivo'
+    : '<i class="fas fa-calendar-check"></i> Preferisco un sopralluogo';
+  const unaPrezzoNote = document.getElementById('cUnaPrezzoNote');
+  const noteRicorrente = document.getElementById('cNoteRicorrente');
+  if (unaPrezzoNote) unaPrezzoNote.style.display = unaT ? 'block' : 'none';
+  if (noteRicorrente) noteRicorrente.style.display = unaT ? 'none' : 'block';
   const cod    = document.getElementById('cAgente').value.trim().toUpperCase();
   const agente = P.agenti.includes(cod) ? cod : null;
   document.getElementById('cAgenteBox').style.display = agente ? 'block' : 'none';
   const scontoComm = agente ? (+document.getElementById('cScontoComm').value) / 100 : 0;
-  const isUfficio = (tipo === 'ufficio');
+ // ── Tipologia immobile: non serve in una tantum (il calcolo usa solo il tipo di intervento) ──
+  document.getElementById('grpTipoImmobile').style.display = unaT ? 'none' : '';
+  // ── Scrivanie: pannello visibile per uffici, oppure sempre in una tantum (non c'è tipologia da controllare) ──
+  const isUfficio = unaT ? true : (tipo === 'ufficio');
   document.getElementById('panelScriv').classList.toggle('show', isUfficio);
   const scrivOn = isUfficio && document.getElementById('cScrivOn').checked;
   document.getElementById('scrivSlider').classList.toggle('disabled-slider', !scrivOn);
@@ -2052,7 +2067,7 @@ function calcPulizie(){
   const pct = v => (v >= 0 ? '+' : '−') + Math.abs(Math.round(v * 100)) + '%';
   let bk = '';
   bk += '<div class="bk-row"><span>Superficie</span><strong>' + mq.toLocaleString('it-IT') + ' mq</strong></div>';
-  bk += '<div class="bk-row"><span>Tipologia</span><strong>' + P.labelTipo[tipo] + '</strong></div>';
+  if (!unaT) bk += '<div class="bk-row"><span>Tipologia</span><strong>' + P.labelTipo[tipo] + '</strong></div>';
   bk += '<div class="bk-row"><span>Pavimentazione</span><strong>' + P.labelPav[pav] + (r.mPav ? ' (' + pct(r.mPav) + ')' : '') + '</strong></div>';
   bk += '<div class="bk-row"><span>Piani serviti</span><strong>' + piani + (r.mPiani ? ' (' + pct(r.mPiani) + ')' : '') + '</strong></div>';
   bk += '<div class="bk-row"><span>Bagni</span><strong>' + bagni + '</strong></div>';
