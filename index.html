@@ -1877,26 +1877,30 @@ function motorePulizie(d){
            sottoMinimo, scontoRidotto, scontoTeorico, scontoEffettivo };
 }
 // ─── Motore "Intervento una tantum" dentro il calcolatore Pulizie ───
-// Stesse tariffe per mq della scheda "Una tantum", più il ricarico e la
-// maggiorazione P.maggUnaTantum: un intervento singolo non gode delle
-// economie di scala di un contratto continuativo (mezzi e squadra
-// organizzati su base ricorrente), quindi costa di più per ora di lavoro.
-const UNA_TIPI = {
-  cantiere: { l:'Pulizia di fine cantiere',           resa:12, mat:0.30 },
-  affitto:  { l:'Pulizia appartamento dopo affitto',  resa:18, mat:0.25 },
-  straord:  { l:'Pulizia straordinaria approfondita', resa:25, mat:0.20 },
-  sanif:    { l:'Sanificazione ambienti',             resa:45, mat:0.30 }
-};
+// UNICA fonte per le tariffe: UT.voci (definito più sotto, nel modulo Una Tantum).
+// cantiere→uCantiere, affitto→uAffitto, straord→uStraord, sanif→uSanif: stesse
+// identiche tariffe di mercato (resa mq/h, materiali) del configuratore dedicato.
+// Qui in più si tiene conto di pavimentazione/piani/bagni/scrivanie, che nel
+// configuratore Una Tantum non esistono come campi — è l'unica differenza voluta.
+// La maggiorazione P.maggUnaTantum resta: un intervento singolo non gode delle
+// economie di scala di un contratto continuativo.
+const PULIZIE_UNA_MAP = { cantiere:'uCantiere', affitto:'uAffitto', straord:'uStraord', sanif:'uSanif' };
 function motorePuliziaUna(d){
-  const t = UNA_TIPI[d.tipo] || UNA_TIPI.straord;
+  const voce = UT.voci[PULIZIE_UNA_MAP[d.tipo]] || UT.voci.uStraord;
   const mPav   = P.pavim[d.pav];
   const mPiani = (d.piani - 1) * P.maggPiano;
-  const oreBase = (d.mq / t.resa) + (d.bagni * P.minutiBagno / 60) + (d.scrivanie * P.minutiScrivania / 60);
-  const oreMese = oreBase * (1 + mPav) * (1 + mPiani);
+  const mqEff  = d.mq * (1 + mPav) * (1 + mPiani);
+  const oreMq    = mqEff / voce.resa;
+  const oreExtra = (d.bagni * P.minutiBagno + d.scrivanie * P.minutiScrivania) / 60;
+  const oreMese  = oreMq + oreExtra;
   const giornate = Math.max(1, Math.ceil(oreMese / 7));
-  const costoBase = oreMese * P.costoOrario + t.mat * d.mq + P.uscitaFurgone + d.km * P.costoKm;
-  const costoTot  = costoBase * (1 + P.overhead) * (1 + P.interessi);
-  let canone = costoTot * P.ricarico * (1 + P.maggUnaTantum);
+  // tariffa di mercato sulla superficie (stessa della pagina Una Tantum) + ore
+  // extra di bagni/scrivanie valorizzate a costo orario con lo stesso ricarico
+  // artigiano usato nel configuratore dedicato
+  const prezzoBase = voce.t * mqEff + oreExtra * P.costoOrario * UT.ricaricoArtigiano;
+  const costoBase  = oreMese * P.costoOrario + voce.mat * mqEff + P.uscitaFurgone + d.km * P.costoKm;
+  const costoTot   = costoBase * (1 + P.overhead) * (1 + P.interessi);
+  let canone = prezzoBase * (1 + P.maggUnaTantum);
   const sBundle = P.bundle[Math.min(d.servizi, 3)] || 0;
   let finale = canone * (1 - sBundle);
   const prezzoFloor = costoTot / (1 - P.margineFloor);
@@ -1905,7 +1909,7 @@ function motorePuliziaUna(d){
   if (finale < P.canoneMinimo) { finale = P.canoneMinimo; sottoMinimo = true; }
   finale = (scontoRidotto || sottoMinimo) ? Math.ceil(finale) : Math.round(finale);
   const margine = finale > 0 ? (finale - costoTot) / finale : 0;
-  return { tipoLabel: t.l, oreMese, giornate, mPav, mPiani,
+  return { tipoLabel: voce.n, oreMese, giornate, mPav, mPiani,
            sBundle, sComm:0, sTot:sBundle, s24:0,
            finale, margine, sottoMinimo, scontoRidotto,
            scontoTeorico: sBundle, scontoEffettivo: sBundle,
