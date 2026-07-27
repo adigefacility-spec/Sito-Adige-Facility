@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -712,20 +713,44 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
             </div>
           </div>
 
-          <div class="fgroup" id="grpFreq">
-            <label class="flab">6 &middot; Frequenza degli interventi</label>
+       <div class="fgroup" id="grpFreqPav">
+            <label class="flab">6 &middot; Frequenza pulizia pavimenti/superfici</label>
             <div class="radio-tabs">
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-mens" value="mensile" checked onchange="calcPulizie()"><label for="cf-mens">Mensile</label></div>
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-quind" value="quindicinale" onchange="calcPulizie()"><label for="cf-quind">Quindicinale</label></div>
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-1" value="f1" onchange="calcPulizie()"><label for="cf-1">1&times; / sett</label></div>
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-2" value="f2" onchange="calcPulizie()"><label for="cf-2">2&times; / sett</label></div>
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-3" value="f3" onchange="calcPulizie()"><label for="cf-3">3&times; / sett</label></div>
-              <div class="rtab"><input type="radio" name="cFreq" id="cf-5" value="f5" onchange="calcPulizie()"><label for="cf-5">5&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreqPav" id="cfp-mens" value="mensile" checked onchange="calcPulizie()"><label for="cfp-mens">Mensile</label></div>
+              <div class="rtab"><input type="radio" name="cFreqPav" id="cfp-quind" value="quindicinale" onchange="calcPulizie()"><label for="cfp-quind">Quindicinale</label></div>
+              <div class="rtab"><input type="radio" name="cFreqPav" id="cfp-1" value="f1" onchange="calcPulizie()"><label for="cfp-1">1&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreqPav" id="cfp-2" value="f2" onchange="calcPulizie()"><label for="cfp-2">2&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreqPav" id="cfp-3" value="f3" onchange="calcPulizie()"><label for="cfp-3">3&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreqPav" id="cfp-5" value="f5" onchange="calcPulizie()"><label for="cfp-5">5&times; / sett</label></div>
+            </div>
+          </div>
+
+          <div class="fgroup" id="grpFreqBagni">
+            <label class="flab">7 &middot; Frequenza pulizia bagni</label>
+            <div class="radio-tabs">
+              <div class="rtab"><input type="radio" name="cFreqBagni" id="cfb-mens" value="mensile" checked onchange="calcPulizie()"><label for="cfb-mens">Mensile</label></div>
+              <div class="rtab"><input type="radio" name="cFreqBagni" id="cfb-quind" value="quindicinale" onchange="calcPulizie()"><label for="cfb-quind">Quindicinale</label></div>
+              <div class="rtab"><input type="radio" name="cFreqBagni" id="cfb-1" value="f1" onchange="calcPulizie()"><label for="cfb-1">1&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreqBagni" id="cfb-2" value="f2" onchange="calcPulizie()"><label for="cfb-2">2&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreqBagni" id="cfb-3" value="f3" onchange="calcPulizie()"><label for="cfb-3">3&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreqBagni" id="cfb-5" value="f5" onchange="calcPulizie()"><label for="cfb-5">5&times; / sett</label></div>
+            </div>
+          </div>
+
+          <div class="fgroup" id="grpFreqScriv" style="display:none">
+            <label class="flab">8 &middot; Frequenza spolvero scrivanie</label>
+            <div class="radio-tabs">
+              <div class="rtab"><input type="radio" name="cFreqScriv" id="cfs-mens" value="mensile" checked onchange="calcPulizie()"><label for="cfs-mens">Mensile</label></div>
+              <div class="rtab"><input type="radio" name="cFreqScriv" id="cfs-quind" value="quindicinale" onchange="calcPulizie()"><label for="cfs-quind">Quindicinale</label></div>
+              <div class="rtab"><input type="radio" name="cFreqScriv" id="cfs-1" value="f1" onchange="calcPulizie()"><label for="cfs-1">1&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreqScriv" id="cfs-2" value="f2" onchange="calcPulizie()"><label for="cfs-2">2&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreqScriv" id="cfs-3" value="f3" onchange="calcPulizie()"><label for="cfs-3">3&times; / sett</label></div>
+              <div class="rtab"><input type="radio" name="cFreqScriv" id="cfs-5" value="f5" onchange="calcPulizie()"><label for="cfs-5">5&times; / sett</label></div>
             </div>
           </div>
 
           <div class="fgroup" id="grpDurata">
-            <label class="flab">7 &middot; Durata del contratto</label>
+            <label class="flab">9 &middot; Durata del contratto</label>
             <div class="radio-tabs" style="grid-template-columns:1fr 1fr">
               <div class="rtab"><input type="radio" name="cDur" id="cd-12" value="12" checked onchange="calcPulizie()"><label for="cd-12">12 mesi</label></div>
               <div class="rtab"><input type="radio" name="cDur" id="cd-24" value="24" onchange="calcPulizie()"><label for="cd-24">24 mesi &middot; scontato</label></div>
@@ -733,12 +758,12 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
           </div>
 
           <div class="fgroup">
-            <label class="flab">8 &middot; Altri servizi (sconto multiservizio)</label>
+            <label class="flab">10 &middot; Altri servizi (sconto multiservizio)</label>
             <div class="cbox-group">
               <label class="cbox-row"><input type="checkbox" id="cBundleVerde" onchange="calcPulizie()"><span>Aggiungi Gestione del Verde</span></label>
               <label class="cbox-row"><input type="checkbox" id="cBundleMan" onchange="calcPulizie()"><span>Aggiungi Manutenzioni Tecniche</span></label>
             </div>
-            <div class="finfo">2 servizi: &minus;5% &middot; 3 servizi: &minus;8%.</div>
+            <div class="finfo">2 servizi: &minus;4% &middot; 3 servizi: &minus;7%.</div>
 
             <div class="subpanel" id="panelManP">
               <div class="sub-title"><i class="fas fa-wrench"></i> Quali manutenzioni ti servono?</div>
@@ -775,7 +800,7 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
           </div>
 
           <div class="fgroup">
-            <label class="flab">9 &middot; Codice agente (facoltativo)</label>
+            <label class="flab">11 &middot; Codice agente (facoltativo)</label>
             <input type="text" class="ftxt" id="cAgente" placeholder="AG-001" oninput="calcPulizie()">
             <div class="finfo">Da compilare solo nel caso in cui sia un commerciale di ADIGE Facility ad eseguire il sopralluogo.</div>
             <div id="cAgenteBox" style="display:none; margin-top:14px">
@@ -977,7 +1002,7 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
               <label class="cbox-row"><input type="checkbox" id="vAddPul" onchange="calcVerde()"><span>Aggiungi Pulizie Professionali</span></label>
               <label class="cbox-row"><input type="checkbox" id="vAddMan" onchange="calcVerde()"><span>Aggiungi Manutenzioni Tecniche</span></label>
             </div>
-            <div class="finfo">2 servizi: &minus;5% &middot; 3 servizi: &minus;8%.</div>
+            <div class="finfo">2 servizi: &minus;4% &middot; 3 servizi: &minus;7%.</div>
 
             <div class="subpanel" id="panelPul">
               <div class="sub-title"><i class="fas fa-spray-can-sparkles"></i> Configura le pulizie</div>
@@ -1193,7 +1218,7 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
               <label class="cbox-row"><input type="checkbox" id="mAddPul" onchange="calcMan()"><span>Aggiungi Pulizie Professionali</span></label>
               <label class="cbox-row"><input type="checkbox" id="mAddVer" onchange="calcMan()"><span>Aggiungi Gestione del Verde</span></label>
             </div>
-            <div class="finfo">2 servizi: &minus;5% &middot; 3 servizi: &minus;8%.</div>
+            <div class="finfo">2 servizi: &minus;4% &middot; 3 servizi: &minus;7%.</div>
 
             <div class="subpanel" id="mPanelPul">
               <div class="sub-title"><i class="fas fa-spray-can-sparkles"></i> Configura le pulizie</div>
@@ -1892,16 +1917,17 @@ function calcPulizie(){
   const pav   = document.getElementById('cPav').value;
   const piani = Math.max(1, +document.getElementById('cPiani').value || 1);
   const bagni = Math.max(0, +document.getElementById('cBagni').value || 0);
-  const freq  = document.querySelector('input[name="cFreq"]:checked').value;
+  const freqPav = document.querySelector('input[name="cFreqPav"]:checked').value;
+  const freqBagni = document.querySelector('input[name="cFreqBagni"]:checked').value;
   const durata = +document.querySelector('input[name="cDur"]:checked').value;
   const modo  = document.querySelector('input[name="cModo"]:checked').value;
   const unaT  = (modo === 'una');
 
   // campi visibili in base alla modalità
-  document.getElementById('grpFreq').style.display    = unaT ? 'none' : '';
+  document.getElementById('grpFreqPav').style.display    = unaT ? 'none' : '';
+  document.getElementById('grpFreqBagni').style.display  = unaT ? 'none' : '';
   document.getElementById('grpDurata').style.display  = unaT ? 'none' : '';
   document.getElementById('grpTipoUna').style.display = unaT ? '' : 'none';
-  const indirizzo = document.getElementById('cIndirizzo').value.trim();
 
   const cod    = document.getElementById('cAgente').value.trim().toUpperCase();
   const agente = P.agenti.includes(cod) ? cod : null;
@@ -1914,9 +1940,11 @@ function calcPulizie(){
   const scrivOn = isUfficio && document.getElementById('cScrivOn').checked;
   document.getElementById('scrivSlider').classList.toggle('disabled-slider', !scrivOn);
   document.getElementById('scrivNote').style.display = scrivOn ? 'block' : 'none';
-  const nScriv = +document.getElementById('cScriv').value;
+   const nScriv = +document.getElementById('cScriv').value;
   document.getElementById('cScrivVal').innerHTML = nScriv + ' <small>postazion' + (nScriv === 1 ? 'e' : 'i') + '</small>';
   const scrivanie = scrivOn ? nScriv : 0;
+  document.getElementById('grpFreqScriv').style.display = (scrivOn && !unaT) ? '' : 'none';
+  const freqScriv = document.querySelector('input[name="cFreqScriv"]:checked').value;
 
   // ── Verde abbinato ──
   const verdeOn = document.getElementById('cBundleVerde').checked;
@@ -1950,9 +1978,9 @@ function calcPulizie(){
   const man = document.getElementById('cBundleMan').checked ? leggiMan('pm') : null;
   document.getElementById('panelManP').classList.toggle('show', document.getElementById('cBundleMan').checked);
 
-  const r = unaT
+   const r = unaT
     ? motorePuliziaUna({ mq, tipo: document.getElementById('cTipoUna').value, pav, piani, bagni, scrivanie, km, servizi })
-    : motorePulizie({ mq, tipo, pav, piani, bagni, scrivanie, freq, km, durata, agente, scontoComm, servizi });
+    : motorePulizie({ mq, tipo, pav, piani, bagni, scrivanie, freqPav, freqBagni, freqScriv, km, durata, agente, scontoComm, servizi });
 
   // Verde abbinato: sconto uguale a quello delle pulizie
   const vFreqEl = document.querySelector('input[name="cVFreq"]:checked');
@@ -2011,9 +2039,12 @@ function calcPulizie(){
     bk += '<div class="bk-row"><span>Tipo di intervento</span><strong>' + r.tipoLabel + '</strong></div>';
     bk += '<div class="bk-row"><span>Tempo stimato</span><strong>' + r.oreMese.toFixed(1).replace('.', ',') + ' h</strong></div>';
   } else {
-    bk += '<div class="bk-row"><span>Frequenza</span><strong>' + r.freqLabel + '</strong></div>';
-    bk += '<div class="bk-row"><span>Interventi al mese</span><strong>' + Math.round(r.interventi) + '</strong></div>';
+    bk += '<div class="bk-row"><span>Frequenza pavimenti</span><strong>' + r.freqPavLabel + '</strong></div>';
+    bk += '<div class="bk-row"><span>Frequenza bagni</span><strong>' + r.freqBagniLabel + '</strong></div>';
+    if (r.freqScrivLabel) bk += '<div class="bk-row"><span>Frequenza scrivanie</span><strong>' + r.freqScrivLabel + '</strong></div>';
+    bk += '<div class="bk-row"><span>Visite al mese</span><strong>' + Math.round(r.interventi) + '</strong></div>';
     bk += '<div class="bk-row"><span>Ore di servizio al mese</span><strong>' + r.oreMese.toFixed(1).replace('.', ',') + ' h</strong></div>';
+  }
   }
   if (man && man.attivo){
     man.righe.forEach(x => { bk += '<div class="bk-row"><span>Manutenzione</span><strong>' + x[0] + '</strong></div>'; });
@@ -2062,11 +2093,14 @@ function calcPulizie(){
     sn.innerHTML = '<strong>' + man.spec.map(x => x.n).join(', ') + ':</strong> quotate a parte dopo il sopralluogo del tecnico. Ci appoggiamo a un artigiano specializzato e coordiniamo noi tempi e consegna.';
   }
 
-  lastPulizie = {
+lastPulizie = {
     mq, tipo, pav, piani, bagni, scrivanie, durata, indirizzo, prov, km, agente, servizi,
     tipoLabel: P.labelTipo[tipo], pavLabel: P.labelPav[pav],
-    freqLabel: r.freqLabel, interventi: Math.round(r.interventi),
-    oreMese: r.oreMese, sconti: sc, canone: r.finale,
+    freqPavLabel: unaT ? null : r.freqPavLabel,
+    freqBagniLabel: unaT ? null : r.freqBagniLabel,
+    freqScrivLabel: unaT ? null : r.freqScrivLabel,
+    interventi: Math.round(r.interventi),
+    oreMese: r.oreMese, sconti: sc, canone: r.finale,  
     verde: rv ? { voci: rv.voci, interventi: rv.interventi, canone: rv.mensile } : null,
     man: (man && man.attivo) ? { righe: man.righe.map(x => x[0]), spec: man.spec, importo: manImporto } : null,
     unaTantum: unaT, tipoUnaLabel: unaT ? r.tipoLabel : null,
@@ -2096,8 +2130,10 @@ function righeOfferta(p){
     r.push(['Tipo di intervento', p.tipoUnaLabel]);
     r.push(['Modalit\u00e0', 'Intervento una tantum']);
   } else {
-    r.push(['Frequenza', p.freqLabel]);
-    r.push(['Interventi al mese', String(p.interventi)]);
+    r.push(['Frequenza pavimenti', p.freqPavLabel]);
+    r.push(['Frequenza bagni', p.freqBagniLabel]);
+    if (p.freqScrivLabel) r.push(['Frequenza scrivanie', p.freqScrivLabel]);
+    r.push(['Visite al mese', String(p.interventi)]);
     r.push(['Durata contratto', p.durata + ' mesi']);
   }
   if (p.man){
@@ -2784,10 +2820,11 @@ function calcMan(){
 function extraServizi(addPul, addVer, pMq, vMq, vMl, km, nServ){
   const righe = []; let tot = 0;
   if (addPul){
+    const fSel = document.querySelector('input[name="mPulFreq"]:checked').value;
     const rp = motorePulizie({ mq:pMq, tipo:document.getElementById('mPulTipo').value, pav:'gres',
-      piani:1, bagni:1, scrivanie:0, freq:document.querySelector('input[name="mPulFreq"]:checked').value,
+      piani:1, bagni:1, scrivanie:0, freqPav:fSel, freqBagni:fSel, freqScriv:fSel,
       km, durata:12, agente:null, scontoComm:0, servizi:nServ });
-    righe.push(['Pulizie professionali \u00b7 ' + rp.freqLabel, rp.finale]); tot += rp.finale;
+    righe.push(['Pulizie professionali · ' + rp.freqPavLabel, rp.finale]); tot += rp.finale;
   }
   if (addVer && (vMq > 0 || vMl > 0)){
     const rv = motoreVerde({ sfalcio:vMq, siepi:vMl, smaltimento:true,
@@ -2918,10 +2955,10 @@ function calcVerde() {
     const pFreq=document.querySelector('input[name="vPulFreq"]:checked').value;
     const kmMap={15:10,40:25,80:50};
     const rp=motorePulizie({mq:pMq,tipo:pTipo,pav:'gres',piani:1,bagni:1,scrivanie:0,
-                            freq:pFreq,km:kmMap[dist]||10,durata:12,agente:null,
+                            freqPav:pFreq,freqBagni:pFreq,freqScriv:pFreq,km:kmMap[dist]||10,durata:12,agente:null,
                             scontoComm:0,servizi:nServ});
     pulCanone=rp.finale;
-    pulLabel=P.labelTipo[pTipo]+' '+pMq.toLocaleString('it-IT')+' mq \u00b7 '+rp.freqLabel;
+    pulLabel=P.labelTipo[pTipo]+' '+pMq.toLocaleString('it-IT')+' mq · '+rp.freqPavLabel;
   }
 
   // ── Riquadro riepilogo servizi aggiunti ──
