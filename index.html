@@ -1913,6 +1913,7 @@ function calcPulizie(){
 
   const prov  = document.getElementById('cProv').value;
   const km    = +document.getElementById('cKm').value;
+  const indirizzo = document.getElementById('cIndirizzo').value.trim();
   const tipo  = document.getElementById('cTipo').value;
   const pav   = document.getElementById('cPav').value;
   const piani = Math.max(1, +document.getElementById('cPiani').value || 1);
@@ -2044,7 +2045,6 @@ function calcPulizie(){
     if (r.freqScrivLabel) bk += '<div class="bk-row"><span>Frequenza scrivanie</span><strong>' + r.freqScrivLabel + '</strong></div>';
     bk += '<div class="bk-row"><span>Visite al mese</span><strong>' + Math.round(r.interventi) + '</strong></div>';
     bk += '<div class="bk-row"><span>Ore di servizio al mese</span><strong>' + r.oreMese.toFixed(1).replace('.', ',') + ' h</strong></div>';
-  }
   }
   if (man && man.attivo){
     man.righe.forEach(x => { bk += '<div class="bk-row"><span>Manutenzione</span><strong>' + x[0] + '</strong></div>'; });
