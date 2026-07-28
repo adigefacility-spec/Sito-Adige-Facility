@@ -429,6 +429,22 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
 .ut-free textarea::placeholder { color:rgba(255,255,255,0.32); }
 .ut-free textarea:focus { border-color:var(--t-light); }
 .est-badge { display:inline-flex; align-items:center; gap:7px; font-size:0.68rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; background:rgba(234,179,8,0.13); color:#a16207; padding:5px 11px; border-radius:50px; margin-bottom:12px; }
+.promo-teaser{
+  margin-top:14px; padding:12px 16px; border-radius:var(--r);
+  background:linear-gradient(90deg, var(--navy), var(--acciaio));
+  color:#fff; font-size:.95rem; font-weight:600; cursor:pointer;
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  box-shadow:var(--shadow); transition:transform .15s ease;
+}
+.promo-teaser:hover{ transform:translateY(-2px); }
+.promo-teaser .arrow{ opacity:.85; }
+.home-promo-teaser{
+  margin-top:18px; display:inline-flex; padding:10px 18px; border-radius:999px;
+  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.35);
+  color:#fff; font-weight:600; font-size:.9rem; cursor:pointer; gap:8px; align-items:center;
+}
+.home-promo-teaser:hover{ background:rgba(255,255,255,.2); }
+@media (max-width:640px){ .promo-teaser{ font-size:.85rem } }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -2140,8 +2156,9 @@ function calcPulizie(){
     verde: rv ? { voci: rv.voci, interventi: rv.interventi, canone: rv.mensile } : null,
     man: (man && man.attivo) ? { righe: man.righe.map(x => x[0]), spec: man.spec, importo: manImporto } : null,
     unaTantum: unaT, righeUna: unaT ? r.righeUna.map(x => x[0]) : null,
-    totale: totale
+   totale: totale
   };
+  aggiornaBannerPromo();
 }
 // ─── Testo riepilogo (usato da modale e PDF) ───
 function righeOfferta(p){
@@ -2374,6 +2391,124 @@ function apriRecupero(payload){
 }
 function closeRec(){ document.getElementById('overlayRec').classList.remove('open'); document.body.style.overflow = ''; }
 function scaricaRec(){ generaPDF(recDati, recOfferta, recCod); }
+
+  // ─── Promo: "Fedeltà Una Tantum" + "Porta un amico" ─────────────────────
+// Aggiorna il piccolo banner cliccabile nei calcolatori Pulizie/Verde in
+// base alla modalità corrente (una tantum vs ricorrente). Non tocca il
+// prezzo: è solo marketing verso la pagina /promo.
+function aggiornaBannerPromo(){
+  const cModo = document.querySelector('input[name="cModo"]:checked');
+  const cTeaser = document.getElementById('cPromoTeaser');
+  if (cModo && cTeaser) {
+    cTeaser.innerHTML = cModo.value === 'una'
+      ? '🎁 Con questo intervento ricevi un codice fedeltà per il prossimo lavoro <span class="arrow">→</span>'
+      : '🎁 Porta un amico: firma con te e l\'ultimo canone è gratis per entrambi <span class="arrow">→</span>';
+  }
+  const vModo = document.querySelector('input[name="vModo"]:checked');
+  const vTeaser = document.getElementById('vPromoTeaser');
+  if (vModo && vTeaser) {
+    vTeaser.innerHTML = vModo.value === 'una'
+      ? '🎁 Con questo intervento ricevi un codice fedeltà per il prossimo lavoro <span class="arrow">→</span>'
+      : '🎁 Porta un amico: firma con te e l\'ultimo canone è gratis per entrambi <span class="arrow">→</span>';
+  }
+}
+// Costruisce, una sola volta, tutti i pezzi della promo: voce di menu,
+// pagina dedicata, banner in home e nei due calcolatori.
+function initPromoUI(){
+  if (document.getElementById('view-promo')) return; // già inizializzato
+  // 1) voce di menu, prima del pulsante "Contattaci"
+  const navCta = document.querySelector('.nav-cta');
+  if (navCta) navCta.insertAdjacentHTML('beforebegin', '<a onclick="showView(\'promo\')">Promo</a>');
+  // 2) banner in home, subito sotto le 4 pillole dell'hero
+  const pills = document.querySelector('.hero-pills');
+  if (pills) pills.insertAdjacentHTML('afterend',
+    '<div class="promo-teaser home-promo-teaser" onclick="showView(\'promo\')">🎁 Promozioni attive — fedeltà e porta un amico <span class="arrow">→</span></div>');
+  // 3) banner dentro il calcolatore Pulizie, sopra il riepilogo
+  const cSplitEl = document.getElementById('cSplit');
+  if (cSplitEl) cSplitEl.insertAdjacentHTML('beforebegin',
+    '<div class="promo-teaser" id="cPromoTeaser" onclick="showView(\'promo\')"></div>');
+  // 4) banner dentro il calcolatore Verde, sopra il riepilogo
+  const vSplitEl = document.getElementById('vSplit');
+  if (vSplitEl) vSplitEl.insertAdjacentHTML('beforebegin',
+    '<div class="promo-teaser" id="vPromoTeaser" onclick="showView(\'promo\')"></div>');
+  // 5) pagina dedicata con i dettagli di entrambi i programmi
+  document.body.insertAdjacentHTML('beforeend', `
+  <div id="view-promo" class="view bu-blue-theme">
+    <div class="back-bar"><button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Torna alla home</button></div>
+    <section>
+      <div class="wrap">
+        <div class="sec-label">Promozioni</div>
+        <h2>Due modi per risparmiare</h2>
+        <p class="sec-sub">Che tu scelga un intervento singolo o un contratto continuativo, hai sempre un motivo per tornare — o per portare qualcuno con te.</p>
+      </div>
+    </section>
+    <section class="sec-dark">
+      <div class="wrap">
+        <div class="hero-glow"></div>
+        <div class="sec-label">Programma 1</div>
+        <h2>Fedeltà Una Tantum</h2>
+        <p class="sec-sub">Ogni intervento singolo (pulizie, verde o manutenzioni) ti dà diritto a un codice valido 3 mesi, da usare in uno dei due modi qui sotto.</p>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-num">1</div>
+            <h3>Ricevi il codice</h3>
+            <p>A fine intervento ti arriva via email un codice personale, valido 3 mesi.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-num">2</div>
+            <h3>Un altro intervento singolo</h3>
+            <p>Usalo entro 3 mesi e ottieni il 15% di sconto sul prossimo intervento una tantum.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-num">3</div>
+            <h3>Oppure passa al ricorrente</h3>
+            <p>Se firmi un contratto continuativo di 24 mesi entro la validità del codice, il primo canone è scontato del 50%.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="wrap">
+        <div class="sec-label">Programma 2</div>
+        <h2>Porta un amico</h2>
+        <p class="sec-sub">Se hai (o firmi) un contratto ricorrente con noi, ricevi un codice personale permanente da condividere.</p>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-num">1</div>
+            <h3>Condividi il codice</h3>
+            <p>Te lo inviamo nell'email di conferma contratto. Non ha scadenza.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-num">2</div>
+            <h3>L'amico firma 24 mesi</h3>
+            <p>L'ultimo canone del contratto è gratis al 100% per entrambi — tu e il tuo amico.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-num">3</div>
+            <h3>L'amico firma 12 mesi</h3>
+            <p>L'ultimo canone è scontato del 50% per entrambi.</p>
+          </div>
+        </div>
+        <div class="note-box">
+          <strong>Come funziona nel dettaglio:</strong> il vantaggio riguarda solo la coppia diretta che ha usato il codice (non si propaga a chi verrà invitato successivamente), vale una sola volta per contratto attivo e decade se il contratto viene rescisso prima della scadenza concordata. Un solo utilizzo come nuovo cliente per persona/P.IVA/indirizzo. Dal secondo amico portato in poi, il premio diventa un buono da €100 su un futuro intervento o sul rinnovo.
+        </div>
+      </div>
+    </section>
+    <section class="sec-dark">
+      <div class="wrap">
+        <div class="hero-glow"></div>
+        <div class="sec-label">Inizia da qui</div>
+        <h2>Scegli il servizio</h2>
+        <div class="hero-btns">
+          <a class="btn-p" onclick="showView('pulizie')">Calcolatore Pulizie</a>
+          <a class="btn-s" onclick="showView('verde')">Calcolatore Verde</a>
+          <a class="btn-s" onclick="showView('unatantum')">Interventi Una Tantum</a>
+        </div>
+      </div>
+    </section>
+  </div>`);
+  aggiornaBannerPromo();
+}
 
 document.addEventListener('DOMContentLoaded', function(){
   const off = new URLSearchParams(location.search).get('off');
@@ -3069,8 +3204,9 @@ function calcVerde() {
   bk+=`<div class="bk-row"><span>Frequenza</span><strong>${fLabel}</strong></div>`;
   document.getElementById('vBk').innerHTML=bk;
 
-  lastVerde={righe:righe.map(r=>r[0]), fLabel, min, max, isUna,
+ lastVerde={righe:righe.map(r=>r[0]), fLabel, min, max, isUna,
              addPul, pulCanone, pulLabel, addMan, nServ, scBundle};
+  aggiornaBannerPromo();
 }
 
 // ─── MODAL ────────────────────────────────────────────────
@@ -3274,6 +3410,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderMan('mmanBox', 'mm', 'calcMan()');
   renderMan('vmanBox', 'vm', 'calcVerde()');
   renderUnaTantum('puBox', 'pu', 'calcPulizie()', PULIZIE_UNA_KEYS);
+  initPromoUI();
   calcPulizie();
   calcVerde();
   calcUT();
