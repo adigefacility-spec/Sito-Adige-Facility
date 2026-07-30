@@ -46,6 +46,22 @@ body.theme-verde {
   --shadow: 0 4px 28px rgba(30,77,51,0.10);
   --shadow-lg: 0 10px 48px rgba(30,77,51,0.18);
 }
+  /* tema graphite, applicato sul body quando si entra nella BU manutenzioni */
+  body.theme-manutenzioni {
+  --t-dark: #1F272D;
+  --t-mid: #33414B;
+  --t-light: #6B7A85;
+  --t-pale: #DDE2E5;
+  --navy: #1F272D;
+  --acciaio: #33414B;
+  --ghiaccio: #6B7A85;
+  --lago: #DDE2E5;
+  --gray: #7C8A93;
+  --off: #F4F5F6;
+  --gray-light: #E1E5E7;
+  --shadow: 0 4px 28px rgba(51,65,75,0.10);
+  --shadow-lg: 0 10px 48px rgba(51,65,75,0.18);
+}
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html { scroll-behavior:smooth; }
@@ -62,6 +78,7 @@ nav {
   transition: background 0.3s;
 }
 body.theme-verde nav { background: rgba(30,77,51,0.97); }
+body.theme-manutenzioni nav { background: rgba(31,39,45,0.97); }
 
 .nav-logo { display:flex; align-items:center; gap:13px; cursor:pointer; text-decoration:none; }
 .nav-brand { font-family:'DM Serif Display',serif; font-size:1.5rem; color:#fff; line-height:1.05; }
@@ -88,7 +105,8 @@ body.theme-verde nav { background: rgba(30,77,51,0.97); }
 }
 .hero-glow { position:absolute; width:420px; height:420px; border-radius:50%; top:5%; right:-100px; background:radial-gradient(circle, rgba(15,124,138,0.2), transparent 70%); }
 body.theme-verde .hero-glow { background:radial-gradient(circle, rgba(62,157,92,0.22), transparent 70%); }
-.hero-content { position:relative; z-index:2; max-width:680px; }
+body.theme-manutenzioni .hero-glow { background:radial-gradient(circle, rgba(51,65,75,0.22), transparent 70%); }
+  .hero-content { position:relative; z-index:2; max-width:680px; }
 .hero-chip { display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); color:var(--t-light); font-size:0.72rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:6px 14px; border-radius:50px; margin-bottom:24px; }
 h1 { font-family:'DM Serif Display',serif; font-size:clamp(2.3rem,5vw,3.7rem); color:#fff; line-height:1.13; margin-bottom:20px; }
 h1 em { font-style:italic; color:var(--t-light); }
@@ -156,18 +174,21 @@ h2 { font-family:'DM Serif Display',serif; font-size:clamp(1.8rem,3.5vw,2.7rem);
 .svc-ico { width:40px; height:40px; min-width:40px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:1rem; }
 .bu-blue-theme .svc-ico { background:rgba(15,124,138,0.1); color:#0F7C8A; }
 .bu-green-theme .svc-ico { background:rgba(62,157,92,0.1); color:#3E9D5C; }
+.bu-graphite-theme .svc-ico { background:rgba(51,65,75,0.1); color:#33414B; }
 .svc-item h4 { font-size:0.95rem; font-weight:600; color:var(--navy); margin-bottom:4px; }
 .svc-item p { font-size:0.82rem; color:var(--gray); line-height:1.5; }
 
 .process-box { border-radius:16px; padding:34px; color:#fff; position:sticky; top:84px; overflow:hidden; }
 .bu-blue-theme .process-box { background:var(--navy); }
 .bu-green-theme .process-box { background:#1E4D33; }
+.bu-graphite-theme .process-box { background:#1F272D; }
 .process-box h3 { font-family:'DM Serif Display',serif; font-size:1.4rem; margin-bottom:6px; }
 .process-box > p { font-size:0.875rem; color:rgba(255,255,255,0.6); line-height:1.6; margin-bottom:26px; font-weight:300; }
 .step { display:flex; gap:13px; align-items:center; margin-bottom:14px; }
 .step-num { width:28px; height:28px; min-width:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.78rem; font-weight:700; color:#fff; }
 .bu-blue-theme .step-num { background:#0F7C8A; }
 .bu-green-theme .step-num { background:#3E9D5C; }
+.bu-graphite-theme .step-num { background:#33414B; }
 .step span { font-size:0.85rem; color:rgba(255,255,255,0.75); line-height:1.45; }
 
 /* ─── CALC ─── */
@@ -223,6 +244,7 @@ select option { background:var(--t-dark); }
 .extra-note { font-size:0.78rem; padding:10px 12px; border-radius:8px; margin-bottom:14px; line-height:1.6; }
 .bu-blue-theme .extra-note { color:#0F7C8A; background:rgba(15,124,138,0.07); }
 .bu-green-theme .extra-note { color:#3E9D5C; background:rgba(62,157,92,0.08); }
+.bu-graphite-theme .extra-note { color:#33414B; background:rgba(51,65,75,0.07); }
 .note-box { font-size:0.74rem; color:var(--gray); line-height:1.6; padding:11px 13px; border-left:3px solid var(--t-light); border-radius:0 8px 8px 0; margin-bottom:18px; background:rgba(0,0,0,0.02); }
 .result-empty { text-align:center; padding:18px 0; color:var(--gray); font-size:0.88rem; }
 .result-empty i { display:block; font-size:2rem; color:var(--t-light); margin-bottom:10px; }
@@ -432,8 +454,8 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
 .est-badge { display:inline-flex; align-items:center; gap:7px; font-size:0.68rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; background:rgba(234,179,8,0.13); color:#a16207; padding:5px 11px; border-radius:50px; margin-bottom:12px; }
 .promo-teaser{
   margin-top:14px; padding:12px 16px; border-radius:var(--r);
-  background:linear-gradient(90deg, var(--navy), var(--acciaio));
-  color:#fff; font-size:.95rem; font-weight:600; cursor:pointer;
+  background:#E9A13C;
+  color:#3a2a05; font-size:.95rem; font-weight:700; cursor:pointer;
   display:flex; align-items:center; justify-content:space-between; gap:10px;
   box-shadow:var(--shadow); transition:transform .15s ease;
 }
@@ -441,10 +463,10 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
 .promo-teaser .arrow{ opacity:.85; }
 .home-promo-teaser{
   margin-top:18px; display:inline-flex; padding:10px 18px; border-radius:999px;
-  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.35);
-  color:#fff; font-weight:600; font-size:.9rem; cursor:pointer; gap:8px; align-items:center;
+  background:#E9A13C; border:1px solid rgba(0,0,0,.08);
+  color:#3a2a05; font-weight:700; font-size:.9rem; cursor:pointer; gap:8px; align-items:center;
 }
-.home-promo-teaser:hover{ background:rgba(255,255,255,.2); }
+.home-promo-teaser:hover{ background:#D68F2E; }
 .nav-promo-link{ margin-right:22px; }
 @media (max-width:640px){ .promo-teaser{ font-size:.85rem } }
 </style>
@@ -480,6 +502,7 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
       <div class="hero-btns">
         <a class="btn-p" onclick="goBU('pulizie')"><i class="fas fa-spray-can-sparkles"></i> Servizio pulizie</a>
         <a class="btn-s" onclick="goBU('verde')"><i class="fas fa-leaf"></i> Gestione verde</a>
+        <a class="btn-s" onclick="goBU('manutenzioni')"><i class="fas fa-screwdriver-wrench"></i> Manutenzioni tecniche</a>
       </div>
       <div class="hero-pills">
         <span class="hero-pill">✓ Sopralluogo gratuito</span>
@@ -1119,7 +1142,7 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
 </div>
 
 <!-- ══════════ MANUTENZIONI VIEW ══════════ -->
-<div class="view bu-blue-theme" id="view-manutenzioni">
+<div class="view bu-graphite-theme" id="view-manutenzioni">
   <div class="back-bar"><button class="back-btn" onclick="showView('home')"><i class="fas fa-arrow-left"></i> Torna alla home</button></div>
 
   <section style="padding-top:30px;">
@@ -1129,7 +1152,11 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
       <p class="sec-sub">Imbiancature, riparazioni, silicone, montaggi: li facciamo noi. Impianti elettrici, idraulici, termici, opere murarie e serramenti: li affidiamo ad artigiani abilitati con cui lavoriamo stabilmente, coordinando noi tempi, accessi e qualit&agrave;. Tu hai un solo numero da chiamare e una sola fattura da gestire.</p>
     </div>
   </section>
-
+<section style="padding-top:0;">
+    <div class="wrap">
+      <div class="carousel" id="carManutenzioni"></div>
+    </div>
+  </section>
   <section class="sec-off" style="padding-top:20px;">
     <div class="wrap">
       <div class="svc-grid">
@@ -1741,7 +1768,8 @@ function paintLogos() {
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-' + id).classList.add('active');
-  document.body.classList.toggle('theme-verde', id === 'verde');
+document.body.classList.toggle('theme-verde', id === 'verde');
+  document.body.classList.toggle('theme-manutenzioni', id === 'manutenzioni');
   window.scrollTo({ top: 0, behavior: 'instant' in window ? 'auto' : 'auto' });
   window.scrollTo(0, 0);
 }
@@ -3341,6 +3369,16 @@ const CAROUSEL = {
       { eyebrow:'Pulizia stagionale', title:'Foglie e grondaie, pensiamo a tutto noi', icon:'fa-broom' },
       { eyebrow:'Smaltimento incluso', title:'Residui gestiti nel rispetto delle norme', icon:'fa-recycle' }
     ]
+  },
+  manutenzioni: {
+    cls: 'ph-graphite',
+    images: ['manutenzioni1.png','manutenzioni2.png','manutenzioni3.png','manutenzioni4.png'],   // foto manutenzioni
+    slides: [
+      { eyebrow:'Manutenzioni tecniche', title:'Piccoli interventi, gestiti con metodo', icon:'fa-toolbox' },
+      { eyebrow:'Rete di artigiani', title:'Professionisti verificati per ogni lavorazione', icon:'fa-user-gear' },
+      { eyebrow:'Un solo referente', title:'Coordiniamo noi tempi e consegne', icon:'fa-handshake' },
+      { eyebrow:'Preventivo trasparente', title:'Prezzo chiaro prima di iniziare', icon:'fa-file-invoice' }
+    ]
   }
 };
 const carTimers = {};
@@ -3420,6 +3458,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   calcMan();
   buildCarousel('carPulizie','pulizie');
   buildCarousel('carVerde','verde');
+  buildCarousel('carManutenzioni','manutenzioni');
   initReveal();
 });
 </script>
