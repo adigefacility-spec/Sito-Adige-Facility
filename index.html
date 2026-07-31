@@ -2570,7 +2570,14 @@ function initPromoUI(){
 }
 
 // ─── Calcolo km automatico dall'indirizzo (geocoding gratuito, nessuna chiave) ───
-const ADIGE_BASE = { lat: 46.0605291, lon: 11.2406747 }; // Pergine Valsugana (TN)
+
+  function vDistBucket(km) {
+  if (km <= 15) return 15;
+  if (km <= 40) return 40;
+  if (km <= 80) return 80;
+  return 999;
+}
+  const ADIGE_BASE = { lat: 46.0605291, lon: 11.2406747 }; // Pergine Valsugana (TN)
 
 function haversineKm(lat1, lon1, lat2, lon2) {
   const R = 6371;
