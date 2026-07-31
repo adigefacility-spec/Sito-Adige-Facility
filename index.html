@@ -115,8 +115,9 @@ h1 em { font-style:italic; color:var(--t-light); }
 .btn-p { display:inline-flex; align-items:center; justify-content:center; gap:9px; background:var(--t-mid); color:#fff; padding:14px 26px; border-radius:9px; text-decoration:none; font-weight:600; font-size:0.95rem; border:none; cursor:pointer; transition:transform 0.15s, box-shadow 0.2s; font-family:inherit; }
 .btn-p:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.2); }
 .btn-p:active { transform:scale(0.98); }
-.btn-s { display:inline-flex; align-items:center; justify-content:center; gap:9px; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.85); padding:14px 26px; border-radius:9px; text-decoration:none; font-weight:500; font-size:0.95rem; border:1px solid rgba(255,255,255,0.16); cursor:pointer; }
-.btn-s:hover { border-color:var(--t-light); color:var(--t-light); }
+.btn-s { display:inline-flex; align-items:center; justify-content:center; gap:9px; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.85); padding:14px 26px; border-radius:9px; text-decoration:none; font-weight:500; font-size:0.95rem; border:1px solid rgba(255,255,255,0.16); cursor:pointer; transition:transform 0.15s, border-color 0.2s, color 0.2s, background 0.2s; }
+.btn-s:hover { border-color:var(--t-light); color:var(--t-light); transform:translateY(-2px); }
+.btn-s:active { transform:scale(0.98); }
 
 .hero-pills { display:flex; gap:9px; flex-wrap:wrap; margin-top:30px; }
 .hero-pill { font-size:0.74rem; color:rgba(255,255,255,0.55); background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); padding:5px 12px; border-radius:50px; }
@@ -3261,8 +3262,6 @@ function calcVerde() {
   const costoMeseV=(costo+trasf)*(1+V_OVH)*mult;
   const floorV=costoMeseV/(1-P.margineFloor);
   if(totale<floorV) totale=floorV;
-
-  const min=r5(totale*(1-V_VAR)), max=r5(totale*(1+V_VAR));
   const isUna=(fKey==='una');
 
   // ── Canone pulizie abbinato ──
