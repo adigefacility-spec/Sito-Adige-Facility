@@ -985,11 +985,31 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
       <p class="sec-sub">Seleziona i servizi che ti servono e inserisci le dimensioni. Il calcolatore combina i costi e ti dà una fascia indicativa.</p>
       <div class="calc-container">
         <div class="calc-form">
+          <div class="fgroup">
+            <label class="flab">Dove si trova l'area verde</label>
+            <input type="text" class="ftxt" id="vIndirizzo" placeholder="Via Roma 1, Trento" onblur="calcolaKmDaIndirizzo(this.value,'vDist','vKmStatus',calcVerde)">
+            <div class="km-status" id="vKmStatus" style="font-size:.78rem;color:var(--gray);margin-top:6px;"></div>
+            <select id="vDist" onchange="calcVerde()" style="margin-top:10px">
+              <option value="15">Entro 15 km (zona locale)</option>
+              <option value="40">16 – 40 km</option>
+              <option value="80">41 – 80 km</option>
+              <option value="999">Oltre 80 km</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label class="flab">Tipo di cliente</label>
+            <div class="modo-switch">
+              <input type="radio" name="vCliente" id="vcl-b2b" value="b2b" checked onchange="calcVerde()">
+              <label for="vcl-b2b"><span class="m-t">Azienda</span><span class="m-d">Prezzo IVA esclusa</span></label>
+              <input type="radio" name="vCliente" id="vcl-b2c" value="b2c" onchange="calcVerde()">
+              <label for="vcl-b2c"><span class="m-t">Privato</span><span class="m-d">Prezzo IVA inclusa</span></label>
+            </div>
+          </div>
           <div class="modo-switch">
-            <input type="radio" name="vModo" id="vm-una" value="una" checked onchange="calcVerde()">
-            <label for="vm-una"><span class="m-t">Intervento una tantum</span><span class="m-d">Un solo intervento, senza contratto</span></label>
-            <input type="radio" name="vModo" id="vm-ric" value="ric" onchange="calcVerde()">
+            <input type="radio" name="vModo" id="vm-ric" value="ric" checked onchange="calcVerde()">
             <label for="vm-ric"><span class="m-t">Servizio ricorrente</span><span class="m-d">Interventi programmati a canone</span></label>
+            <input type="radio" name="vModo" id="vm-una" value="una" onchange="calcVerde()">
+            <label for="vm-una"><span class="m-t">Intervento una tantum</span><span class="m-d">Un solo intervento, senza contratto</span></label>
           </div>
           <div class="fgroup">
             <label class="flab">Servizi richiesti</label>
@@ -1029,15 +1049,6 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
               <div class="rtab"><input type="radio" name="vFreq" id="vf-2mese" value="2mese" onchange="calcVerde()"><label for="vf-2mese">2× / mese</label></div>
               <div class="rtab"><input type="radio" name="vFreq" id="vf-sett" value="sett" onchange="calcVerde()"><label for="vf-sett">1× / sett</label></div>
             </div>
-          </div>
-          <div class="fgroup">
-            <label class="flab">Distanza dalla nostra sede</label>
-            <select id="vDist" onchange="calcVerde()">
-              <option value="15">Entro 15 km (zona locale)</option>
-              <option value="40">16 – 40 km</option>
-              <option value="80">41 – 80 km</option>
-              <option value="999">Oltre 80 km</option>
-            </select>
           </div>
 
           <div class="fgroup">
@@ -1210,8 +1221,18 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
 
       <div class="calc-container">
         <div class="calc-form">
+          <div class="fgroup">
+            <label class="flab">Tipo di cliente</label>
+            <div class="modo-switch">
+              <input type="radio" name="mCliente" id="mcl-b2b" value="b2b" checked onchange="calcMan()">
+              <label for="mcl-b2b"><span class="m-t">Azienda</span><span class="m-d">Prezzo IVA esclusa</span></label>
+              <input type="radio" name="mCliente" id="mcl-b2c" value="b2c" onchange="calcMan()">
+              <label for="mcl-b2c"><span class="m-t">Privato</span><span class="m-d">Prezzo IVA inclusa</span></label>
+            </div>
+          </div>
 
           <div class="modo-switch">
+
             <input type="radio" name="mModo" id="mm-una" value="una" checked onchange="calcMan()">
             <label for="mm-una"><span class="m-t">Intervento una tantum</span><span class="m-d">Un lavoro singolo, senza contratto</span></label>
             <input type="radio" name="mModo" id="mm-ric" value="ric" onchange="calcMan()">
@@ -3086,8 +3107,11 @@ function calcMan(){
 
   document.getElementById('mBadge').textContent = 'Stima di base';
   document.getElementById('mLbl').textContent = 'Importo indicativo';
+  const _mCliente = document.querySelector('input[name="mCliente"]:checked');
+  const _mB2C = _mCliente && _mCliente.value === 'b2c';
+  if (_mB2C) importo = Math.round(importo * 1.15 * 1.22);
   document.getElementById('mPrezzo').textContent = eur(importo);
-  document.getElementById('mUnit').textContent = 'IVA esclusa \u00b7 intervento una tantum'
+  document.getElementById('mUnit').textContent = (_mB2C ? 'IVA inclusa' : 'IVA esclusa') + ' · intervento una tantum';
     + (m.ore ? ' \u00b7 ' + m.ore.toFixed(1).replace('.', ',') + ' h stimate' : '');
 
   let bk = m.righe.map(x => '<div class="bk-row"><span>' + x[0] + '</span><strong>\u20ac ' + eur(x[1]) + '</strong></div>').join('');
@@ -3282,7 +3306,12 @@ function calcVerde() {
   } else manBox.style.display='none';
 
   document.getElementById('vLbl').textContent = isUna ? 'Stima intervento' : 'Fascia orientativa mensile';
-  document.getElementById('vUnit').textContent = isUna ? 'IVA esclusa · per intervento' : 'IVA esclusa · al mese';
+  const _vCliente = document.querySelector('input[name="vCliente"]:checked');
+  const _vB2C = _vCliente && _vCliente.value === 'b2c';
+  const _vMult = _vB2C ? 1.15 * 1.22 : 1;
+  const _vIvaLabel = _vB2C ? 'IVA inclusa' : 'IVA esclusa';
+  document.getElementById('vUnit').textContent = isUna ? (_vIvaLabel + ' · per intervento') : (_vIvaLabel + ' · al mese');
+  const min=r5(totale*_vMult*(1-V_VAR)), max=r5(totale*_vMult*(1+V_VAR));
   document.getElementById('vMin').textContent=min.toLocaleString('it-IT');
   document.getElementById('vMax').textContent=max.toLocaleString('it-IT');
 
