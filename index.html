@@ -682,7 +682,8 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
           </div>
           <div class="fgroup">
             <label class="flab">1 &middot; Dove si trova l'immobile</label>
-            <input type="text" class="ftxt" id="cIndirizzo" placeholder="Via Roma 1, Trento" oninput="calcPulizie()">
+            <input type="text" class="ftxt" id="cIndirizzo" placeholder="Via Roma 1, Trento" oninput="calcPulizie()" onblur="calcolaKmDaIndirizzo(this.value,'cKm','cKmStatus',calcPulizie)">
+            <div class="km-status" id="cKmStatus" style="font-size:.78rem;color:var(--gray);margin-top:6px;"></div>
             <div class="fhalf" style="margin-top:12px">
               <select id="cProv" onchange="calcPulizie()">
                 <option value="TN">Provincia di Trento</option>
@@ -1244,6 +1245,7 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
           <div class="fgroup">
             <label class="flab">Dove si trova l'immobile</label>
             <input type="text" class="ftxt" id="mIndirizzo" placeholder="Via Roma 1, Trento" oninput="calcMan()">
+            <div class="km-status" id="mKmStatus" style="font-size:.78rem;color:var(--gray);margin-top:6px;"></div>
             <div class="fhalf" style="margin-top:12px">
               <select id="mProv" onchange="calcMan()">
                 <option value="TN">Provincia di Trento</option>
@@ -2545,6 +2547,54 @@ function initPromoUI(){
   aggiornaBannerPromo();
 }
 
+// ─── Calcolo km automatico dall'indirizzo (geocoding gratuito, nessuna chiave) ───
+const ADIGE_BASE = { lat: 46.0605291, lon: 11.2406747 }; // Pergine Valsugana (TN)
+
+function haversineKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function impostaKmCalcolato(selectId, km) {
+  const sel = document.getElementById(selectId);
+  if (!sel) return;
+  let opt = sel.querySelector('option[data-auto="1"]');
+  if (!opt) { opt = document.createElement('option'); opt.dataset.auto = '1'; sel.insertBefore(opt, sel.firstChild); }
+  const kmRound = Math.max(1, Math.round(km));
+  opt.value = kmRound;
+  opt.textContent = kmRound + ' km da Pergine Valsugana (calcolato)';
+  sel.value = kmRound;
+}
+
+let _kmReqId = 0;
+async function calcolaKmDaIndirizzo(indirizzo, selectId, statusId, cb) {
+  const statusEl = document.getElementById(statusId);
+  const myReq = ++_kmReqId;
+  if (!indirizzo || indirizzo.trim().length < 6) { if (statusEl) statusEl.textContent = ''; return; }
+  if (statusEl) { statusEl.style.color = 'var(--gray)'; statusEl.textContent = '📍 Calcolo la distanza da Pergine Valsugana...'; }
+  try {
+    const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=it&q=' + encodeURIComponent(indirizzo);
+    const res = await fetch(url, { headers: { 'Accept-Language': 'it' } });
+    const data = await res.json();
+    if (myReq !== _kmReqId) return;
+    if (!data || !data.length) {
+      if (statusEl) { statusEl.style.color = '#c0392b'; statusEl.textContent = '⚠️ Indirizzo non trovato: seleziona la distanza qui sotto.'; }
+      return;
+    }
+    const kmLinea = haversineKm(ADIGE_BASE.lat, ADIGE_BASE.lon, +data[0].lat, +data[0].lon);
+    const km = kmLinea * 1.3; // correzione linea d'aria → stima strada
+    impostaKmCalcolato(selectId, km);
+    if (statusEl) { statusEl.style.color = 'var(--gray)'; statusEl.textContent = '✓ Circa ' + Math.round(km) + ' km da Pergine Valsugana (stima)'; }
+    if (cb) cb();
+  } catch (e) {
+    if (myReq !== _kmReqId) return;
+    if (statusEl) { statusEl.style.color = '#c0392b'; statusEl.textContent = '⚠️ Impossibile calcolare la distanza ora: seleziona a mano qui sotto.'; }
+  }
+}
+  
 document.addEventListener('DOMContentLoaded', function(){
   const off = new URLSearchParams(location.search).get('off');
   if(!off) return;
@@ -3311,12 +3361,11 @@ const FAQ_PULIZIE=[
   ['I materiali e i prodotti sono inclusi nel prezzo?','Sì. Attrezzatura, macchinari e prodotti professionali sono sempre inclusi nel canone. Su richiesta possiamo gestire anche la fornitura dei materiali di consumo come carta igienica, sapone e sacchi.'],
   ['Lavorate anche fuori orario o nei weekend?','Sì. Possiamo operare prima dell\'apertura o dopo la chiusura per non interferire con la tua attività. Siamo disponibili anche il sabato mattina.'],
   ['Quanto dura il contratto minimo?','Il contratto standard è di 12 mesi: la formula che garantisce continuità del servizio e un canone fisso ottimizzato. Per esigenze particolari valutiamo insieme soluzioni dedicate.'],
-  ['Posso modificare la frequenza durante il contratto?','Assolutamente sì. Offriamo massima flessibilità: puoi aumentare la frequenza, aggiungere servizi o richiedere un intervento straordinario quando se ne presenta l\'occasione, ricontrattualizzando in modo semplice.'],
+['Posso modificare la frequenza durante il contratto?','Sì. Ti basta inviare una nuova richiesta dal sito con le modifiche che ti servono, oppure contattarci direttamente: valutiamo insieme la soluzione migliore per te.'],
   ['Fate interventi una tantum o solo contratti continuativi?','Entrambi. Ci adattiamo alle tue esigenze: dal singolo intervento straordinario al contratto continuativo con canone fisso mensile.']
 ];
 const FAQ_VERDE=[
-  ['Smaltite voi sfalci e potature?','Sì. La raccolta e lo smaltimento di sfalci, potature e residui verdi sono gestiti interamente da noi, nel rispetto delle normative ambientali. È un servizio sempre incluso.'],
-  ['Fate interventi una tantum o solo contratti continuativi?','Entrambi. Offriamo massima flessibilità legata alle esigenze del cliente: dal singolo intervento di pulizia stagionale al contratto continuativo con interventi programmati.'],
+['Smaltite voi sfalci e potature?','Se indicato sulla richiesta di preventivo sì. La raccolta e lo smaltimento di sfalci, potature e residui verdi sono gestiti interamente da noi, nel rispetto delle normative ambientali.'],  ['Fate interventi una tantum o solo contratti continuativi?','Entrambi. Offriamo massima flessibilità legata alle esigenze del cliente: dal singolo intervento di pulizia stagionale al contratto continuativo con interventi programmati.'],
   ['Posso modificare la frequenza durante il contratto?','Sì. Puoi aumentare o ridurre la frequenza, aggiungere servizi o richiedere interventi straordinari. Ci adattiamo all\'andamento stagionale del tuo verde.'],
   ['Lavorate anche fuori orario o nei weekend?','Sì, possiamo organizzare gli interventi negli orari più comodi per te, compreso il sabato mattina.'],
   ['Quanto dura il contratto minimo?','Per i contratti continuativi lo standard è di 12 mesi, così da coprire l\'intero ciclo stagionale. Gli interventi una tantum, invece, non hanno alcun vincolo di durata.'],
