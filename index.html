@@ -98,9 +98,8 @@ body.theme-manutenzioni nav { background: rgba(31,39,45,0.97); }
 /* ─── HERO ─── */
 .hero {
   background: var(--t-dark);
-  padding: 120px 5% 80px;
+  padding: 96px 5%;
   position:relative; overflow:hidden;
-  min-height: 92vh;
   display:flex; flex-direction:column; justify-content:center;
 }
 .hero-glow { position:absolute; width:420px; height:420px; border-radius:50%; top:5%; right:-100px; background:radial-gradient(circle, rgba(15,124,138,0.2), transparent 70%); }
@@ -167,8 +166,8 @@ h2 { font-family:'DM Serif Display',serif; font-size:clamp(1.8rem,3.5vw,2.7rem);
 .back-btn:hover { gap:11px; }
 
 /* ─── SERVIZI DETAIL ─── */
-.svc-grid { display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:start; }
-.svc-list { display:flex; flex-direction:column; gap:14px; }
+.svc-grid { display:grid; grid-template-columns:1fr; gap:28px; }
+.svc-list { display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:14px; }
 .svc-item { display:flex; gap:15px; align-items:flex-start; padding:18px; border-radius:var(--r); border:1px solid var(--gray-light); background:#fff; transition:all 0.2s; }
 .svc-item:hover { border-color:var(--t-light); box-shadow:var(--shadow); transform:translateX(4px); }
 .svc-ico { width:40px; height:40px; min-width:40px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:1rem; }
@@ -178,7 +177,9 @@ h2 { font-family:'DM Serif Display',serif; font-size:clamp(1.8rem,3.5vw,2.7rem);
 .svc-item h4 { font-size:0.95rem; font-weight:600; color:var(--navy); margin-bottom:4px; }
 .svc-item p { font-size:0.82rem; color:var(--gray); line-height:1.5; }
 
-.process-box { border-radius:16px; padding:34px; color:#fff; position:sticky; top:84px; overflow:hidden; }
+.process-box { border-radius:16px; padding:34px; color:#fff; overflow:hidden; display:flex; flex-wrap:wrap; gap:10px 26px; }
+.process-box > h3, .process-box > p { flex-basis:100%; }
+.process-box .step { flex:1 1 200px; margin-bottom:0; }
 .bu-blue-theme .process-box { background:var(--navy); }
 .bu-green-theme .process-box { background:#1E4D33; }
 .bu-graphite-theme .process-box { background:#1F272D; }
@@ -468,6 +469,10 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
 }
 .home-promo-teaser:hover{ background:#D68F2E; }
 .nav-promo-link{ margin-right:22px; }
+.btn-s.btn-hero-verde{ background:#3E9D5C; border-color:#3E9D5C; }
+.btn-s.btn-hero-verde:hover{ background:#358A4F; }
+.btn-s.btn-hero-man{ background:#33414B; border-color:#33414B; }
+.btn-s.btn-hero-man:hover{ background:#2B3841; }
 @media (max-width:640px){ .promo-teaser{ font-size:.85rem } }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -500,9 +505,9 @@ footer { background:#1C3557; color:rgba(255,255,255,0.55); padding:48px 5% 32px;
       <h1>Gestiamo i tuoi spazi.<br><em>Tu pensi al business.</em></h1>
       <p class="hero-sub">Pulizia, verde e manutenzione. Un solo partner, un solo referente, canoni fissi mensili senza sorprese in fattura.</p>
       <div class="hero-btns">
-        <a class="btn-p" onclick="goBU('pulizie')"><i class="fas fa-spray-can-sparkles"></i> Servizio pulizie</a>
-        <a class="btn-s" onclick="goBU('verde')"><i class="fas fa-leaf"></i> Gestione verde</a>
-        <a class="btn-s" onclick="goBU('manutenzioni')"><i class="fas fa-screwdriver-wrench"></i> Manutenzioni tecniche</a>
+        <a class="btn-p" onclick="goBU('pulizie')"><i class="fas fa-spray-can-sparkles"></i> Adige Cleaning</a>
+        <a class="btn-s btn-hero-verde" onclick="goBU('verde')"><i class="fas fa-leaf"></i> Adige Green</a>
+        <a class="btn-s btn-hero-man" onclick="goBU('manutenzioni')"><i class="fas fa-screwdriver-wrench"></i> Adige Maintenance</a>
       </div>
       <div class="hero-pills">
         <span class="hero-pill">✓ Sopralluogo gratuito</span>
